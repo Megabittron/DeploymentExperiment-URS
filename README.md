@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Megabittron/DeploymentExperiment-URS .svg?branch=master)](https://travis-ci.org/Megabittron/DeploymentExperiment-URS)
 
 
 ## Deployment for URS WebApp
