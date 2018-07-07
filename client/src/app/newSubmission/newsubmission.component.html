@@ -1,0 +1,366 @@
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title>2018 URS Submission Form</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <mat-horizontal-stepper #stepper>
+                    <mat-step>
+                        All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
+                        The faculty mentor should indicate:<br>
+                        * Confidence that the student's work will be ready to present by the URS date.<br>
+                        * Approval of the submitted abstract/statement/proposal for publication as-is in the program book.<br>
+                        Project adviser recommendations should complete the form prior to the student submitting their abstract for review.<br><br>
+
+                        The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative, and scholarly work representing the Divisions of Education,
+                        Humanities, Science and Mathematics, and Social Sciences at UMM. Accordingly, submissions from students enrolled at other institutions will not be accepted.<br><br>
+
+                        Your username (x500) will be recorded when you submit this form.
+
+                        URS submission descriptions:<br><br>
+
+                        General Criteria:<br>
+                        All submissions should be no more than 250 words and should contain the following elements:<br>
+                        1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?<br>
+                        2. Language that is clear and comprehensible to those who are not experts in the field.<br>
+                        3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.<br><br>
+
+                        Field-specific criteria:<br><br>
+
+                        Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.<br><br>
+
+                        Artist Statement Criteria<br>
+                        Humanities Proposal Criteria<br>
+                        Science and Social Science Abstract Criteria<br><br>
+
+                        If you are unsure which category best fits your project, please consult your faculty sponsor.<br><br>
+                        <div class="mainTextButton">
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </mat-step>
+
+                    <mat-step>
+                        <div class="presentationTitle" >
+                            <form #newAbstractForm="ngForm">
+                                <mat-form-field class="presentationTitleBox">
+                                    <input matInput #input
+                                           required
+                                           placeholder="Presentation Title"
+
+                                           name="data.abstract.title"
+                                           rows="1"
+                                           cols="1">
+                                </mat-form-field>
+
+                                <mat-form-field class="abstractBox">
+                                <textarea matInput #input
+                                          placeholder="Artist Statement/ Proposal/ Abstract"
+                                          rows="10"
+                                          cols="1"></textarea>
+                                </mat-form-field>
+                                <br><br>
+                                <mat-select placeholder="Format for Submission">
+                                    <mat-option #input value="artist statement">Artist Statement</mat-option>
+                                    <mat-option #input value="humanities proposal">Humanities Proposal</mat-option>
+                                    <mat-option #input value="science or social science abstract">Science or Social Science Abstract</mat-option>
+                                </mat-select>
+
+                                <mat-select placeholder="Type of Presentation">
+                                    <mat-option #input value="poster or visual display">Poster or Visual Display</mat-option>
+                                    <mat-option #input value="oral presentation">Oral Presentation</mat-option>
+                                    <mat-option #input value="performance">Performance</mat-option>
+                                </mat-select>
+                                <br><br>
+                                Because of space constraints, we may not be able to have everyone do their preferred type of presentation.
+                                If necessary, would you be willing to give your presentation in another format?
+                                <br>
+                                (No change in format will be made without first contacting the presenter first)
+                                <br><br>
+
+                                <mat-radio-group>
+                                    <mat-radio-button value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
+                                    <mat-radio-button value="no">No</mat-radio-button>
+                                </mat-radio-group>
+                                <br><br>
+                                <button mat-raised-button button matStepperPrevious color="warn">Previous</button>
+                                <button mat-raised-button matStepperNext color="primary" [disabled]="!newAbstractForm.form.valid">Next</button>
+                            </form>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <div class="presenterForm">
+
+                            Who will be presenting? Please add their name(s) and their university email below. If there are more than one presenter, click the plus button
+                            for more rows.
+                            <br>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="Last Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="this.secondPresenter = true" *ngIf="!this.secondPresenter"><mat-icon>add_circle</mat-icon></button>
+                            <br>
+                            <mat-form-field *ngIf="this.secondPresenter">
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.secondPresenter">
+                                <textarea matInput
+                                          placeholder="Last Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.secondPresenter">
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="this.thirdPresenter = true"
+                                    *ngIf="this.secondPresenter && !this.thirdPresenter"><mat-icon>add_circle</mat-icon></button>
+                            <br>
+                            <mat-form-field *ngIf="this.thirdPresenter">
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.thirdPresenter">
+                                <textarea matInput
+                                          placeholder="Last Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.thirdPresenter">
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <mat-select placeholder="Academic Discipline" class="academicDiscipline">
+                                <mat-option #input value="african and black american studies">African and Black American Studies</mat-option>
+                                <mat-option #input value="anthropology">Anthropology</mat-option>
+                                <mat-option #input value="art history">Art History</mat-option>
+                                <mat-option #input value="biology">Biology</mat-option>
+                                <mat-option #input value="chemistry & biochemistry">Chemistry and Biochemistry</mat-option>
+                                <mat-option #input value="communication, media, & rhetoric">Communication, Media, & Rhetoric</mat-option>
+                                <mat-option #input value="computer science">Computer Science</mat-option>
+                                <mat-option #input value="economics">Economics</mat-option>
+                                <mat-option #input value="education">Education</mat-option>
+                                <mat-option #input value="elementary education">Elementary Education</mat-option>
+                                <mat-option #input value="english/creative writing">English/Creative Writing</mat-option>
+                                <mat-option #input value="environmental science">Environmental Science</mat-option>
+                                <mat-option #input value="environmental studies">Environmental Studies</mat-option>
+                                <mat-option #input value="french">French</mat-option>
+                                <mat-option #input value="gender, women, and sexuality studies">Gender, Women, and Sexuality Studies</mat-option>
+                                <mat-option #input value="geology">Geology</mat-option>
+                                <mat-option #input value="german studies">German Studies</mat-option>
+                                <mat-option #input value="history">History</mat-option>
+                                <mat-option #input value="human services/general/criminal justice/social justice/human development">Human Services/General/Criminal Justice/Social Justice/Human Development</mat-option>
+                                <mat-option #input value="latin american area studies">Latin American Area Studies</mat-option>
+                                <mat-option #input value="management">Management</mat-option>
+                                <mat-option #input value="medieval studies">Medieval Studies</mat-option>
+                                <mat-option #input value="music">Music</mat-option>
+                                <mat-option #input value="native american and indigenous studies">Native American and Indigenous Studies</mat-option>
+                                <mat-option #input value="philosophy">Philosophy</mat-option>
+                                <mat-option #input value="german studies">Physics</mat-option>
+                                <mat-option #input value="political science">Political Science</mat-option>
+                                <mat-option #input value="psychology">Psychology</mat-option>
+                                <mat-option #input value="secondary education">Secondary Education</mat-option>
+                                <mat-option #input value="social science">Social Science</mat-option>
+                                <mat-option #input value="sociology">Sociology</mat-option>
+                                <mat-option #input value="spanish">Spanish</mat-option>
+                                <mat-option #input value="sport management">Sport Management</mat-option>
+                                <mat-option #input value="statistics">Statistics</mat-option>
+                                <mat-option #input value="studio art">Studio Art</mat-option>
+                                <mat-option #input value="theatre arts">Theatre Arts</mat-option>
+                                <mat-option #input value="other" (click)="this.other = true">Other</mat-option>
+                            </mat-select>
+                            <br>
+                            <br>
+                            <mat-form-field *ngIf="this.other">
+                                <textarea matInput
+                                          placeholder="Please specify"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <br>
+                            The URS features one presentation in the opening ceremony. This presentation
+                            should have broader appeal with interdisciplinary components, and may easily
+                            accommodate a performance component. The featured presenter will have more time,
+                            as well as a bigger room than regular presentations. Would you be interested in
+                            having your presentation featured during the opening ceremony?
+                            <br>
+                            <br>
+                            <mat-radio-group>
+                                <mat-radio-button value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
+                                <mat-radio-button value="no">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <br>
+                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <div class="sponOrganization">
+                            Sponsoring Organization or Fund
+                            <br>
+
+                            Choose any applicable. If funded by faculty grant, specify under 'other'
+                            <br>
+                            <br>
+                            <div class="checkboxes">
+                                <mat-checkbox>UROP</mat-checkbox>
+                                <br>
+                                <mat-checkbox>MAP</mat-checkbox>
+                                <br>
+                                <mat-checkbox>MMP</mat-checkbox>
+                                <br>
+                                <mat-checkbox>LSAMP</mat-checkbox>
+                            </div>
+                            <br>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="Other"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <div class="adviserForm">
+                            Who is the advisor(s)? Please add their name(s) and their university email below.
+                            If there are more than one presenter, click the plus button for more rows.
+                            <br>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field>
+                              <textarea matInput
+                                        placeholder="Last Name"
+                                        rows="1"
+                                        cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="this.secondAdvisor = true"
+                                    *ngIf="!this.secondAdvisor"><mat-icon>add_circle</mat-icon></button>
+                            <br>
+                            <mat-form-field *ngIf="this.secondAdvisor">
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.secondAdvisor">
+                                <textarea matInput
+                                          placeholder="Last Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.secondAdvisor">
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="this.thirdAdvisor = true"
+                                    *ngIf="this.secondAdvisor && !this.thirdAdvisor"><mat-icon>add_circle</mat-icon></button>
+                            <br>
+                            <mat-form-field *ngIf="this.thirdAdvisor">
+                                <textarea matInput
+                                          placeholder="First Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.thirdAdvisor">
+                                <textarea matInput
+                                          placeholder="Last Name"
+                                          rows="1"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="this.thirdAdvisor">
+                                <textarea matInput
+                                          placeholder="Full Email Address"
+                                          rows="1"
+                                          col="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <div class="additionalInfoPage">
+                            Each presentation room will have available an overhead projector and a
+                            Macintosh or PC computer with video projection capabilities.
+                            Do you anticipate needing any additional Media Services equipment?
+                            Please explain in detail:
+                            <br>
+                            <mat-form-field class="additionalInfoBoxes">
+                                <textarea matInput
+                                          placeholder="Additional Media Equipment"
+                                          rows="3"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <br>
+                            Do you anticipate any special room location,
+                            non-media services equipment (i.e., recital hall, piano, etc.),
+                            or scheduling requirements (i.e., several groups holding a forum
+                            that would require more than the allotted 15 minutes)? Please explain in detail:
+                            <br>
+                            <mat-form-field class="additionalInfoBoxes">
+                                <textarea matInput
+                                          placeholder="Additional Info"
+                                          rows="3"
+                                          cols="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <br>
+                            Is there anything else you would like us to know about your presentation?
+                            <br>
+                            <mat-form-field class="additionalInfoBoxes">
+                                 <textarea matInput
+                                           placeholder="Other"
+                                           rows="3"
+                                           cols="1"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                            <button mat-raised-button color="primary">Submit</button>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
