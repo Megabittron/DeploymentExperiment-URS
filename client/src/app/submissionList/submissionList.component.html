@@ -1,0 +1,87 @@
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title>Filtering</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="Search by name">
+                </mat-form-field>
+
+                <form>
+                    <mat-select placeholder="Review Group">
+                        <mat-option #input value="all">All</mat-option>
+                        <mat-option #input value="unassigned">Unassigned</mat-option>
+                        <mat-option #input value="group1">Review Group 1</mat-option>
+                        <mat-option #input value="group2">Review Group 2</mat-option>
+                        <mat-option #input value="group3">Review Group 3</mat-option>
+                        <mat-option #input value="group4">Review Group 4</mat-option>
+                    </mat-select>
+                </form>
+
+                <form>
+                    <mat-select placeholder="Feature Presentation">
+                        <mat-option #input value="all">All</mat-option>
+                        <mat-option #input value="wantsFeatured">Wants to be Featured</mat-option>
+                        <mat-option #input value="notWantFeatured">Doesn't Want to be Featured</mat-option>
+                    </mat-select>
+                </form>
+
+                <form>
+                    <mat-select placeholder="Flagged for Resubmission">
+                        <mat-option #input value="all">All</mat-option>
+                        <mat-option #input value="flagged">Flagged</mat-option>
+                        <mat-option #input value="notFlagged">Not Flagged</mat-option>
+                    </mat-select>
+                </form>
+
+                <form>
+                    <mat-select placeholder="Pending Resubmissions">
+                        <mat-option #input value="all">All</mat-option>
+                        <mat-option #input value="pending">Pending Resubmission</mat-option>
+                        <mat-option #input value="notPending">Not Pending Resubmission</mat-option>
+                    </mat-select>
+                </form>
+
+                <form>
+                    <mat-select placeholder="Pending Resubmissions">
+                        <mat-option #input value="all">All</mat-option>
+                        <mat-option #input value="pending">Pending Resubmission</mat-option>
+                        <mat-option #input value="notPending">Not Pending Resubmission</mat-option>
+                    </mat-select>
+                </form>
+
+                <mat-divider></mat-divider>
+
+                <mat-radio-group>
+                    <mat-radio-button value="newest">Sort by Newest</mat-radio-button>
+                    <mat-radio-button value="oldest">Sort by Oldest</mat-radio-button>
+                </mat-radio-group>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title>Status Legend:</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                Accepted <br>
+                Revisions Needed <br>
+                Reviewing in Process <br>
+                Awaiting Adviser Approval <br>
+                Withdrawn
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div flex-gt-s.="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title>Submssions</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                [Insert Submission Material]
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
