@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="navigation">
+    <button mat-button routerLink="/">Undergraduate Research Symposium</button>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+    </button>
+    <button mat-button routerLink="/admin" routerLinkActive="nav-active">Admin</button>
+    <button mat-button routerLink="/submissionList" routerLinkActive="nav-active">Submission List</button>
+    <span class="profile-pic"></span>
+</mat-toolbar>

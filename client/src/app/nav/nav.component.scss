@@ -1,0 +1,27 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.profile-pic {
+    height: 32px;
+    width: 32px;
+    background-color: black;
+    border-radius: 50%;
+    border: 1px solid #ffcc33;
+    display: inline-block;
+    margin-left: 25px;
+    margin-right: 20px;
+}
+
+button {
+    font-family: Arial;
+    font-size: 100%;
+}
+
+button:not(:first-child) {
+    margin: 5px;
+}
+
+button:hover:not(:first-child) {
+    border-bottom: 1px solid #ffcc33;
+}
