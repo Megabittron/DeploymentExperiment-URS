@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 @Component({
     selector: 'app-accountInfo-component',
     templateUrl: 'accountInfo.component.html',
-    styleUrls: ['./accountInfo.component.css'],
+    styleUrls: ['./accountInfo.component.scss'],
     providers: [AppService]
 })
 export class AccountInfoComponent {
