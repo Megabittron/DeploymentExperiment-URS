@@ -8,7 +8,7 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'server.Server'
+mainClassName = 'server.database.Server'
 
 dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
