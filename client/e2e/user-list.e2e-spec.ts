@@ -25,9 +25,9 @@ describe('User list', () => {
         page = new UserPage();
     });
 
-    it('should get and highlight Users title attribute ', () => {
+    it('should get and highlight User title attribute ', () => {
         UserPage.navigateTo();
-        expect(page.getUserTitle()).toEqual('Users');
+        expect(page.getUserTitle()).toEqual('User');
     });
 
     it('should type something in filter name box and check that it returned correct element', () => {

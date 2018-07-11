@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     constructor(private authenticationService: AuthenticationService) { }
 
     checkUserDetails() {
-        console.log('User: ' + this.user.FirstName);
+        console.log('Users: ' + this.user.FirstName);
         console.log('Authloaded: ' + this.authIsLoaded);
         console.log('IsLoggedIn: ' + this.isLoggedIn);
         console.log(gapi.auth2.getAuthInstance().currentUser.get().isSignedIn());

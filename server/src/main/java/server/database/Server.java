@@ -117,4 +117,3 @@ public class Server {
         response.header("Content-Encoding", "gzip");
     }
 }
-© 2018 Git
