@@ -1,29 +1,39 @@
-package umm3601;
+package server;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import server.database.users.UserRequestHandler;
+import server.database.users.UserController;
+import server.database.abstracts.AbstractController;
+import server.database.abstracts.AbstractRequestHandler;
+import server.database.login.LoginController;
+import server.database.login.LoginRequestHandler;
 import spark.Request;
 import spark.Response;
-import umm3601.user.UserController;
-import umm3601.user.UserRequestHandler;
-
+import spark.Route;
+import org.apache.commons.io.IOUtils;
 import java.io.IOException;
-
-
+import java.io.InputStream;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
-    private static final String userDatabaseName = "dev";
+    private static final String databaseName = "dev";
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
 
-        UserController userController = new UserController(userDatabase);
+        UserController userController = new UserController(database);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+        AbstractController abstractController = new AbstractController(database);
+        AbstractRequestHandler abstractRequestHandler = new AbstractRequestHandler(abstractController);
+
+        LoginController loginController = new LoginController(userController);
+        LoginRequestHandler loginRequestHandler = new LoginRequestHandler(loginController);
 
         //Configure Spark
         port(serverPort);
@@ -49,24 +59,39 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-
-        // Simple example route
-        get("/hello", (req, res) -> "Hello World");
-
         // Redirects for the "home" page
         redirect.get("", "/");
 
-        /// User Endpoints ///////////////////////////
-        /////////////////////////////////////////////
+        Route clientRoute = (req, res) -> {
+            InputStream stream = userController.getClass().getResourceAsStream("/public/index.html");
+            return stream != null ? IOUtils.toString(stream) : "Sorry, we couldn't find that!";
+        };
 
-        //List users, filtered using query parameters
+        Route notFoundRoute = (req, res) -> {
+            res.type("text");
+            res.status(404);
+            return "Sorry, we couldn't find that!!";
+        };
+
+        get("/", clientRoute);
+
+        /// User Endpoints ///////////////////////////
+
+
+        //We will be taking this out later for security purposes but for the time being it is serving as the only
+        //api routes
 
         get("api/users", userRequestHandler::getUsers);
-        get("api/users/:id", userRequestHandler::getUserJSON);
-        post("api/users/new", userRequestHandler::addNewUser);
+        get("api/user/:_id", userRequestHandler::getUserJSON);
 
-        // An example of throwing an unhandled exception so you can see how the
-        // Java Spark debugger displays errors like this.
+        // Abstracts Endpoints
+
+        get("api/abstracts", abstractRequestHandler::getAbstracts);
+        get("api/abstracts/:id", abstractRequestHandler::getAbstractJSON);
+
+        get("api/login/:token", loginRequestHandler::loginUser);
+
+
         get("api/error", (req, res) -> {
             throw new RuntimeException("A demonstration error");
         });
@@ -78,12 +103,13 @@ public class Server {
         // before they they're processed by things like `get`.
         after("*", Server::addGzipHeader);
 
+        get("api/*", notFoundRoute);
+
+        get("/*", clientRoute);
+
         // Handle "404" file not found requests:
-        notFound((req, res) -> {
-            res.type("text");
-            res.status(404);
-            return "Sorry, we couldn't find that!";
-        });
+        notFound(notFoundRoute);
+
     }
 
     // Enable GZIP for all responses
@@ -91,3 +117,4 @@ public class Server {
         response.header("Content-Encoding", "gzip");
     }
 }
+© 2018 Git
