@@ -1,2 +1,2 @@
 #!/bin/bash
-~/server/bin/server
+~/Server/bin/Server
