@@ -1,7 +1,7 @@
-mport {Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppService} from "../app.service";
 import {Router} from "@angular/router";
-import {Observable} from 'rxjs/Observable'
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-admin-component',
