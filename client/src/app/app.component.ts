@@ -1,10 +1,39 @@
-import {Component} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-@Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-    title = 'Mongo-Angular-Spark lab';
-}
+import {AppModule} from './app.module';
+import {AppComponent} from './app.component';
+import {CustomModule} from './custom.module';
+import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+
+describe('AppComponent', () => {
+    let appInstance: AppComponent;
+    let appFixture: ComponentFixture<AppComponent>;
+    let debugElement: DebugElement;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                CustomModule,
+                AppModule
+            ],
+            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}],
+        });
+
+        appFixture = TestBed.createComponent(AppComponent);
+
+        appInstance = appFixture.componentInstance;
+
+        debugElement = appFixture.debugElement;
+    });
+
+    it('should create the app', () => {
+        expect(appFixture).toBeTruthy();
+    });
+
+    it(`should have as title 'app'`, () => {
+        expect(appInstance.title).toEqual('Mongo-Angular-Spark lab');
+    });
+
+});
