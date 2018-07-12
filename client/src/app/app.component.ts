@@ -1,39 +1,30 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "./authentication.service";
 
-import {AppModule} from './app.module';
-import {AppComponent} from './app.component';
-import {CustomModule} from './custom.module';
-import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+    title = 'Mongo-Angular-Spark lab';
 
-describe('AppComponent', () => {
-    let appInstance: AppComponent;
-    let appFixture: ComponentFixture<AppComponent>;
-    let debugElement: DebugElement;
+    public authIsLoaded: boolean = false;
+    public isLoggedIn: boolean = false;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                CustomModule,
-                AppModule
-            ],
-            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}],
+    constructor(private authenticationService: AuthenticationService) { }
+
+    signOut(): void {
+        this.authenticationService.signOut();
+    }
+
+    ngOnInit() {
+        this.authenticationService.isLoaded$.subscribe( value => {
+            this.authIsLoaded = value;
         });
 
-        appFixture = TestBed.createComponent(AppComponent);
-
-        appInstance = appFixture.componentInstance;
-
-        debugElement = appFixture.debugElement;
-    });
-
-    it('should create the app', () => {
-        expect(appFixture).toBeTruthy();
-    });
-
-    it(`should have as title 'app'`, () => {
-        expect(appInstance.title).toEqual('Mongo-Angular-Spark lab');
-    });
-
-});
+        this.authenticationService.isLoggedIn$.subscribe( value => {
+            this.isLoggedIn = value;
+        });
+    }
+}
