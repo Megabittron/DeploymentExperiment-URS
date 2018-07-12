@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {CustomModule} from '../custom.module';
 import { LoginComponent } from './login.component';
 import {AuthenticationService} from "../authentication.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {User} from "../user";
+import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+
 
 describe('LoginComponent', () => {
     let component: LoginComponent;
@@ -34,8 +36,10 @@ describe('LoginComponent', () => {
         };
 
         TestBed.configureTestingModule({
+            imports: [CustomModule],
             declarations: [ LoginComponent ],
-            providers: [{provide: AuthenticationService, useValue: authenticationServiceStub}]
+            providers: [{provide: AuthenticationService, useValue: authenticationServiceStub},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         })
             .compileComponents();
     }));

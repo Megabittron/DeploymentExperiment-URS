@@ -6,7 +6,7 @@ declare const gapi: any;
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -16,19 +16,6 @@ export class LoginComponent implements OnInit {
     public user: User;
 
     constructor(private authenticationService: AuthenticationService) { }
-
-    checkUserDetails() {
-        console.log('Users: ' + this.user.FirstName);
-        console.log('Authloaded: ' + this.authIsLoaded);
-        console.log('IsLoggedIn: ' + this.isLoggedIn);
-        console.log(gapi.auth2.getAuthInstance().currentUser.get().isSignedIn());
-        console.log(gapi.auth2.getAuthInstance().currentUser.get());
-
-    }
-
-    signIn(): void {
-        this.authenticationService.signIn();
-    };
 
     signOut(): void {
         this.authenticationService.signOut();
