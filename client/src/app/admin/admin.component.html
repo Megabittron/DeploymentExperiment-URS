@@ -2,18 +2,6 @@
 
 <div class="row container-fluid">
 
-    <div class="col-lg-3">
-        <div class="btn-group-vertical">
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.statsToggle}}" ng-click="toggleStats()">System Information</button>
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.subFormEditorToggle}}" ng-click="toggleSubEditor()"> Edit the Submission Form</button>
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.statusEditToggle}}" ng-click="toggleStatusEdit()">Edit Status Options</button>
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.userEditToggle}}" ng-click="toggleUserEdit()">Edit Users</button>
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.groupChangeToggle}}" ng-click="toggleGroupChange()">Edit Review Groups</button>
-            <button type="button" class="btn btn-default buttonLrg active-{{toggles.abstractBookToggle}}" ng-click="toggleAbstractBook()">Abstract Book Preview</button>
-        </div>
-    </div>
-
-
     <div class="col-lg-8">
 
         <div ng-show="toggles.abstractBookToggle">
@@ -61,8 +49,8 @@
                     <hr>
                     <h4>User Statistics</h4>
                     <p>Total number of registered users: </p>
-                    <p>Admins: {{totalAdmins()}}</p>
-                    <p>Chairs: {{totalChairs()}}</p>
+                    <p>Admins: </p>
+                    <p>Chairs: </p>
                     <p>Reviewers in Group 1: </p>
                     <p>Reviewers in Group 2: </p>
                     <p>Reviewers in Group 3: </p>
@@ -70,12 +58,6 @@
                     <p>Total Users (Advisers/Presenters): </p>
                     <hr>
                     <h4>T-Shirt Statistics</h4>
-                    <p>Small T-Shirts: </p>
-                    <p>Medium T-Shirts: </p>
-                    <p>Large T-Shirts: </p>
-                    <p>XLarge T-Shirts: </p>
-                    <p>XXLarge T-Shirts: </p>
-                    <p>XXXLarge T-Shirts: </p>
 
                 </li>
             </ul>
