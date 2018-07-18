@@ -11,6 +11,11 @@
         "typeRoots": [
             "node_modules/@types"
         ],
+        "types": [
+            "gapi",
+            "gapi.auth2",
+            "jasmine"
+        ],
         "lib": [
             "es2017",
             "dom"
