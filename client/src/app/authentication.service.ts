@@ -35,7 +35,7 @@ export class AuthenticationService {
     loadAuth2(): void {
         gapi.load('auth2', () => {
             gapi.auth2.init({
-                client_id: '450453277496-7vivahunsdfj4rvqv4q1pb6e6bqlk4v3.apps.googleusercontent.com',
+                client_id: '450453277496-3a23399vrg1s5tp2pd93m0lani8543vu.apps.googleusercontent.com',
                 fetch_basic_profile: true,
                 hosted_domain: 'morris.umn.edu'
             }).then((auth) => {
