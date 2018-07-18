@@ -1,10 +1,15 @@
 @import "theme";
 /* You can add global styles to this file, and also import other style files */
 .nav-active {
-    background-color: mat-color($mat-grey, 100) !important;
-    color: mat-color($accent) !important;
+    border-bottom: 1px solid mat-color($accent) !important;
+    background-color: rgba(253, 255, 100, 0.2) !important;
+
 }
 
 .nav-active mat-icon {
     color: mat-color($accent) !important;
+}
+
+body {
+    background-color: #efefef;
 }
