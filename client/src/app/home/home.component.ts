@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AppService} from "../app.service";
 import {Router} from "@angular/router";
-import {UserService} from './home.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -12,8 +11,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class HomeComponent {
 
-    constructor(public userService: UserService,
-                public appService: AppService) {
+    constructor(private router: Router) {
     }
 
     newSubmission(): void{
