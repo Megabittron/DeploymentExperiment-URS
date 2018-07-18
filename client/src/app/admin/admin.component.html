@@ -1,8 +1,86 @@
-<div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
-            <mat-card-content>
-            </mat-card-content>
-        </mat-card>
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="row container-fluid">
+
+    <div class="col-lg-3">
+        <div class="btn-group-vertical">
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.statsToggle}}" ng-click="toggleStats()">System Information</button>
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.subFormEditorToggle}}" ng-click="toggleSubEditor()"> Edit the Submission Form</button>
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.statusEditToggle}}" ng-click="toggleStatusEdit()">Edit Status Options</button>
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.userEditToggle}}" ng-click="toggleUserEdit()">Edit Users</button>
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.groupChangeToggle}}" ng-click="toggleGroupChange()">Edit Review Groups</button>
+            <button type="button" class="btn btn-default buttonLrg active-{{toggles.abstractBookToggle}}" ng-click="toggleAbstractBook()">Abstract Book Preview</button>
+        </div>
     </div>
+
+
+    <div class="col-lg-8">
+
+        <div ng-show="toggles.abstractBookToggle">
+            <button class="btn btn-primary padded" ng-click="abstractBookRedirect()">Go to Abstract Book Page</button>
+            <p>Click the button above to display the abstract book information in a clean view.</p>
+        </div>
+
+        <div ng-show="toggles.subFormEditorToggle">
+            <div ng-include="'app/subformeditor/subformeditor.html'"></div>
+        </div>
+
+        <div ng-show="toggles.userEditToggle">
+            <div ng-include="'app/roleChange/roleChange.html'"></div>
+        </div>
+
+        <div ng-show="toggles.statusEditToggle">
+            <div ng-include="'app/statuseditor/statuseditor.html'"></div>
+        </div>
+
+        <div ng-show="toggles.abstractBookToggle">
+            <div ng-include="'app/abstractBook/abstractBook.html'"></div>
+        </div>
+
+        <div ng-show="toggles.groupChangeToggle">
+            <div ng-include="'app/groupChange/groupChange.html'"></div>
+        </div>
+
+        <div ng-show="toggles.statsToggle">
+            <ul class="list-group" >
+                <li class="list-group-item">
+                    <div id= "title">
+                        System Information
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <h4>Current Year Submission Statistics</h4>
+                    <p>Primary Submissions: </p>
+                    <p>Submissions stored: </p>
+                    <p>Percentage of stored submissions that are primary submissions: </p>
+                    <p>Number of submissions currently flagged for re-submission: </p>
+                    <hr>
+                    <h4>All Submission Statistics</h4>
+                    <p>Total number of Primary Submissions: </p>
+                    <p>Total number of Submissions stored: </p>
+                    <hr>
+                    <h4>User Statistics</h4>
+                    <p>Total number of registered users: </p>
+                    <p>Admins: {{totalAdmins()}}</p>
+                    <p>Chairs: {{totalChairs()}}</p>
+                    <p>Reviewers in Group 1: </p>
+                    <p>Reviewers in Group 2: </p>
+                    <p>Reviewers in Group 3: </p>
+                    <p>Reviewers in Group 4: </p>
+                    <p>Total Users (Advisers/Presenters): </p>
+                    <hr>
+                    <h4>T-Shirt Statistics</h4>
+                    <p>Small T-Shirts: </p>
+                    <p>Medium T-Shirts: </p>
+                    <p>Large T-Shirts: </p>
+                    <p>XLarge T-Shirts: </p>
+                    <p>XXLarge T-Shirts: </p>
+                    <p>XXXLarge T-Shirts: </p>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
 </div>
