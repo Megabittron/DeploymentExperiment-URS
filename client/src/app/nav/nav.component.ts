@@ -4,6 +4,7 @@ import {User} from "../user";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {AccountDialogComponent} from "../account-dialog/account-dialog.component";
 
+declare const gapi: any;
 @Component({
     selector: 'app-nav',
     templateUrl: 'nav.component.html',
@@ -50,7 +51,7 @@ export class NavComponent implements OnInit{
         this.authenticationService.user$.subscribe(value => {
             this.user = value;
 
-            if (this.authIsLoaded) {
+            if (gapi) {
                 this.profilePic = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getImageUrl();
             }
 
