@@ -17,8 +17,6 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
-import { AccountDialogComponent } from "./account-dialog/account-dialog.component";
-
 
 @NgModule({
     imports: [
@@ -35,15 +33,14 @@ import { AccountDialogComponent } from "./account-dialog/account-dialog.componen
         SubmissionListComponent,
         NewSubmissionComponent,
         NavComponent,
-        LoginComponent,
-        AccountDialogComponent,
+        LoginComponent
     ],
     providers: [
         AuthenticationService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
-    entryComponents: [AccountDialogComponent],
+    entryComponents: [],
     bootstrap: [AppComponent]
 })
 
