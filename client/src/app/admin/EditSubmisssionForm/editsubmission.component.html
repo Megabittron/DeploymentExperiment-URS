@@ -1,0 +1,207 @@
+<div ng-controller="SubformeditorCtrl" ng-show="isAdmin() || isChair()" class="container-fluid FormBox">
+    <form ng-submit="submitChangesConfirm()" id="form2">
+
+        <h1>URS Submission Form Text Editor</h1>
+        <hr>
+
+        <label class="padded mobileCompatable">
+            Edit the presentation title:
+            <br>
+            <textarea ng-model="submissionText.title"  cols="30" name="Title"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the text describing the necessary adviser conditions:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.adviserDisclaimer"  cols="75" rows="8" name="AdviserDisclaimer"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the summary for the Undergraduate Research Symposium:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.ursSummary"  cols="75" rows="8" name="UrsSummary"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Add additional information here:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.notes1"  cols="75" rows="8" name="Notes1"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Add any disclaimers here:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.nameDisclaimer"  cols="75" rows="8" name="NameDisclaimer"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the section title for submission criteria:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.header1"  cols="75" rows="2" name="Header1"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit general criteria for the submission here:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.criteria"  cols="75" rows="8" name="Criteria"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the section title for field-specific criteria:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.header2"  cols="75" rows="2" name="Header2"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Add notes relevant to field-specific criteria:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.notes2"  cols="75" rows="8" name="Notes2"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the field-specific criteria for Artist Submissions:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.artistCriteria"  cols="75" rows="8" name="ArtistCriteria"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the field-specific criteria for Humanities Submissions:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.humanitiesCriteria"  cols="75" rows="8" name="HumanitiesCriteria"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the field-specific criteria for Science & Social Science Submission:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.scienceCriteria"  cols="75" rows="8" name="ScienceCriteria"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Add additional notes or information here:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.notes3"  cols="75" rows="8" name="Notes3"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the presentation title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionTitle"  cols="75" rows="2" name="SubmissionTitle"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the submission format drop-down Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionFormat"  cols="75" rows="2" name="SubmissionFormat"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the title describing the submission abstract:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionAbstract"  cols="75" rows="2" name="SubmissionAbstract"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the notes for the submission abstract:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionAbstractNotes"  cols="75" rows="8" name="SubmissionAbstractNotes"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the text presentation type drop-down title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionPresentationType"  cols="75" rows="2" name="SubmissionPresentationType"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the text asking if the presentation can be given in a different format:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionFormatChange"  cols="75" rows="8" name="SubmissionFormatChange"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the notes for the format type:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionChangeNotes"  cols="75" rows="8" name="SubmissionChangeNotes"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Primary Presenter Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionPresenter"  cols="75" rows="2" name="SubmissionPresenter"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the CoPresenter One Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionCopresenterOne"  cols="75" rows="2" name="SubmissionCopresenterOne"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the CoPresenter Two Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionCopresenterTwo"  cols="75" rows="2" name="SubmissionCopresenterTwo"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Sponsor Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionSponsors"  cols="75" rows="2" name="SubmissionSponsors"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Sponsor Notes:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionSponsorsNotes"  cols="75" rows="8" name="SubmissionSponsorsNotes"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Sponsor / Adviser Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionAdviser"  cols="75" rows="2" name="SubmissionAdviser"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Sponsor / Adviser Notes:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionAdviserNotes"  cols="75" rows="8" name="SubmissionAdviserNotes"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the CoAdviser One Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionCoadviserOne"  cols="75" rows="2" name="SubmissionCoadviserOne"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the CoAdviser Two Title:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionCoadviserTwo"  cols="75" rows="2" name="SubmissionCoadviserTwo"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Feature Presentation Section:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionFeatured"  cols="75" rows="8" name="SubmissionFeatured"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Special Media Section:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionMediaServices"  cols="75" rows="8" name="SubmissionMediaServices"></textarea>
+        </label>
+        <br>
+        <label class="padded mobileCompatable">
+            Edit the Special Requirements Section:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionSpecialRequirements"  cols="75" rows="8" name="SubmissionSpecialRequirements"></textarea>
+        </label>
+        <br>
+        <label class="padded">
+            Edit the section asking for other information:
+            <br>
+            <textarea class="mobileCompatable" ng-model="submissionText.submissionOther"  cols="75" rows="8" name="SubmissionOther"></textarea>
+        </label>
+        <br>
+        <button class="btn btn-primary padded" type="submit" value="submit" >Submit Changes </button>
+    </form>
+</div>
