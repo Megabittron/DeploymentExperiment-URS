@@ -6,5 +6,5 @@
     </button>
     <button mat-button routerLink="/admin" routerLinkActive="nav-active">Admin</button>
     <button mat-button routerLink="/submissionList" routerLinkActive="nav-active">Submission List</button>
-    <span class="profile-pic"></span>
+    <img class="profile-pic" (click)="openDialog()" [src]="profilePic">
 </mat-toolbar>

@@ -43,8 +43,7 @@ import { AccountDialogComponent } from "./account-dialog/account-dialog.componen
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
-    entryComponents: [
-    ],
+    entryComponents: [AccountDialogComponent],
     bootstrap: [AppComponent]
 })
 
