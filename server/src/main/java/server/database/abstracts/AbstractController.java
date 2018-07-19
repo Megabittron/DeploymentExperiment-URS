@@ -385,16 +385,35 @@ public class AbstractController {
      * // with specific userID and automated time stamp
      */
     public String addNewAbstract(String userID,
-                                 String title,
-                                 String format,
-                                 String abstracts,
+                                 String presentationTitle,
+                                 String abstractContent,
+                                 String submissionFormat,
                                  String presentationType,
-                                 String formatChange,
-                                 String discipline,
-                                 String featured,
-                                 String mediaServicesEquipment,
-                                 String specialRequirements,
-                                 String otherInfo,
+                                 String changePresentationFormat,
+                                 String firstPresenterFirstName,
+                                 String firstPresenterLastName,
+                                 String firstPresenterEmail,
+                                 String secondPresenterFirstName,
+                                 String secondPresenterLastName,
+                                 String secondPresenterEmail,
+                                 String thirdPresenterFirstName,
+                                 String thirdPresenterLastName,
+                                 String thirdPresenterEmail,
+                                 String academicDiscipline,
+                                 String featurePresenter,
+                                 String sponOrganization,
+                                 String firstAdvisorFirstName,
+                                 String firstAdvisorLastName,
+                                 String firstAdvisorEmail,
+                                 String secondAdvisorFirstName,
+                                 String secondAdvisorLastName,
+                                 String secondAdvisorEmail,
+                                 String thirdAdvisorFirstName,
+                                 String thirdAdvisorLastName,
+                                 String thirdAdvisorEmail,
+                                 String additionalMediaEquipment,
+                                 String additionalInfo,
+                                 String other,
                                  String approval,
                                  String cc,
                                  String rejection,
@@ -406,37 +425,41 @@ public class AbstractController {
                                  String acceptedVotes,
                                  String comments,
                                  String isPrimarySubmission,
-                                 String resubmitFlag,
-                                 String firstPresenterFirstName,
-                                 String firstPresenterLastName,
-                                 String firstPresenterEmail,
-                                 String secondPresenterFirstName,
-                                 String secondPresenterLastName,
-                                 String secondPresenterEmail,
-                                 String thirdPresenterFirstName,
-                                 String thirdPresenterLastName,
-                                 String thirdPresenterEmail,
-                                 String firstAdviserFirstName,
-                                 String firstAdviserLastName,
-                                 String firstAdviserEmail,
-                                 String secondAdviserFirstName,
-                                 String secondAdviserLastName,
-                                 String secondAdviserEmail) {
+                                 String resubmitFlag) {
 
         Document newAbstract = new Document();
 
         newAbstract.append("userID", userID);
 
-        newAbstract.append("title", title);
-        newAbstract.append("format", format);
-        newAbstract.append("abstracts", abstracts);
+        newAbstract.append("presentationTitle", presentationTitle);
+        newAbstract.append("abstractContent", abstractContent);
+        newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("presentationType", presentationType);
-        newAbstract.append("formatChange", formatChange);
-        newAbstract.append("discipline", discipline);
-        newAbstract.append("featured", featured);
-        newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
-        newAbstract.append("specialRequirements", specialRequirements);
-        newAbstract.append("otherInfo", otherInfo);
+        newAbstract.append("changePresentationFormat", changePresentationFormat);
+        newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
+        newAbstract.append("firstPresenterLastName", firstPresenterLastName);
+        newAbstract.append("firstPresenterEmail", firstPresenterEmail);
+        newAbstract.append("secondPresenterFirstName", secondPresenterFirstName);
+        newAbstract.append("secondPresenterLastName", secondPresenterLastName);
+        newAbstract.append("secondPresenterEmail", secondPresenterEmail);
+        newAbstract.append("thirdPresenterFirstName", thirdPresenterFirstName);
+        newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
+        newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
+        newAbstract.append("academicDiscipline", academicDiscipline);
+        newAbstract.append("featurePresenter", featurePresenter);
+        newAbstract.append("sponOrganization", sponOrganization);
+        newAbstract.append("firstAdvisorFirstName", firstAdvisorFirstName);
+        newAbstract.append("firstAdvisorLastName", firstAdvisorLastName);
+        newAbstract.append("firstAdvisorEmail", firstAdvisorEmail);
+        newAbstract.append("secondAdvisorFirstName", secondAdvisorFirstName);
+        newAbstract.append("secondAdvisorLastName", secondAdvisorLastName);
+        newAbstract.append("secondAdvisorEmail", secondAdvisorEmail);
+        newAbstract.append("thirdAdvisorFirstName", thirdAdvisorFirstName);
+        newAbstract.append("thirdAdvisorLastName", thirdAdvisorLastName);
+        newAbstract.append("thirdAdvisorEmail", thirdAdvisorEmail);
+        newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
+        newAbstract.append("additionalInfo", additionalInfo);
+        newAbstract.append("other", other);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
         newAbstract.append("rejection", rejection);
@@ -449,21 +472,6 @@ public class AbstractController {
         newAbstract.append("comments", comments);
         newAbstract.append("isPrimarySubmission", isPrimarySubmission);
         newAbstract.append("resubmitFlag", resubmitFlag);
-        newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
-        newAbstract.append("firstPresenterLastName", firstPresenterLastName);
-        newAbstract.append("firstPresenterEmail", firstPresenterEmail);
-        newAbstract.append("secondPresenterFirstName", secondPresenterFirstName);
-        newAbstract.append("secondPresenterLastName", secondPresenterLastName);
-        newAbstract.append("secondPresenterEmail", secondPresenterEmail);
-        newAbstract.append("thirdPresenterFirstName", thirdPresenterFirstName);
-        newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
-        newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
-        newAbstract.append("firstAdviserFirstName", firstAdviserFirstName);
-        newAbstract.append("firstAdviserLastName", firstAdviserLastName);
-        newAbstract.append("firstAdviserEmail", firstAdviserEmail);
-        newAbstract.append("secondAdviserFirstName", secondAdviserFirstName);
-        newAbstract.append("secondAdviserLastName", secondAdviserLastName);
-        newAbstract.append("secondAdviserEmail", secondAdviserEmail);
 
         Date timestamp = new Date();
         newAbstract.append("timestamp", timestamp.toString());
@@ -471,20 +479,21 @@ public class AbstractController {
         try {
             abstractCollection.insertOne(newAbstract);
             ObjectId id = newAbstract.getObjectId("_id");
-            System.err.println("Successfully added new journal " +
-                "[_id=" + id + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
-                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", otherInfo=" + otherInfo + ", " +
-                "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", timestamp=" + timestamp + ", group=" + group + ", roomAssignment="
-                + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
-                "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
-                + isPrimarySubmission + ", resubmitFlag=" + resubmitFlag + ", firstPresenterFirstName=" + firstPresenterFirstName + ", " +
-                "firstPresenterLastName=" + firstPresenterLastName + ", firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName="
-                + secondPresenterFirstName + ", " + "secondPresenterLastName=" + secondPresenterLastName + ", secondPresenterEmail=" + secondPresenterEmail
-                + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", " + "thirdPresenterLastName=" + thirdPresenterLastName + ", " +
-                "thirdPresenterEmail=" + thirdPresenterEmail + ", firstAdviserFirstName=" + firstAdviserFirstName + ", " + "firstAdviserLastName="
-                + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
-                + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
+            System.err.println("Successfully added new abstract " +
+                "[userID " + userID +
+                ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
+                "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
+                "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
+                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", featurePresenter="
+                + featurePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
+                "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
+                + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
+                "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
+                + additionalMediaEquipment + ", " + "additionalInfo=" + additionalInfo + ", other=" + other
+                + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
+                + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
+                + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
+                + ", resubmitFlag=" + resubmitFlag + ']');
 
             return JSON.serialize(id);
 

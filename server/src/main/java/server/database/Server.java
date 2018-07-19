@@ -88,6 +88,7 @@ public class Server {
 
         get("api/abstracts", abstractRequestHandler::getAbstracts);
         get("api/abstracts/:id", abstractRequestHandler::getAbstractJSON);
+        post("api/abstracts/new", abstractRequestHandler::addNewAbstract);
 
         get("api/login/:token", loginRequestHandler::loginUser);
 
