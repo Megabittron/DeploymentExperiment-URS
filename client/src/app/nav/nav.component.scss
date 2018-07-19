@@ -11,15 +11,33 @@
     margin-right: 20px;
 }
 
-button {
+a {
     font-family: Arial;
     font-size: 100%;
+    text-decoration: none;
+    color: #7a0018;
 }
 
-button:not(:first-child) {
-    margin: 5px;
+a:not(:first-child) {
+    margin: 20px;
 }
 
-button:hover:not(:first-child) {
-    border-bottom: 1px solid #ffcc33;
+a:hover {
+    color: white;
+}
+
+@keyframes urs {
+    from {color: #7a0018;}
+    to {color: white;}
+}
+
+.urs:hover {
+    -webkit-animation-name: urs;
+    -moz-animation-name: urs;
+    -o-animation-name: urs;
+    animation-name: urs;
+    -webkit-animation-duration: .3s;
+    -moz-animation-duration: .3s;
+    -o-animation-duration: .3s;
+    animation-duration: .3s;
 }

@@ -1,11 +1,15 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary">
+    <img src="../../assets/driven.gif">
+</mat-toolbar>
 <mat-toolbar color="accent" class="navigation">
-    <button color="primary" mat-button routerLink="/">Undergraduate Research Symposium</button>
+    <a class="urs" color="primary"  routerLink="/"><b>UNDERGRAD REASEARCH SYMPOSIUM</b></a>
     <span class="spacer"></span>
-    <button color="primary" mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
+    <a color="primary"  routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
+        <b>
         Home
-    </button>
-    <button  color="primary" mat-button routerLink="/admin" routerLinkActive="nav-active">Admin</button>
-    <button color="primary" mat-button routerLink="/submissionList" routerLinkActive="nav-active">Submission List</button>
+        </b>
+    </a>
+    <a  color="primary"  routerLink="/admin" routerLinkActive="nav-active"><b>Admin</b></a>
+    <a color="primary"  routerLink="/submissionList" routerLinkActive="nav-active"><b>Submission List</b></a>
     <img class="profile-pic" [src]="profilePic">
 </mat-toolbar>
