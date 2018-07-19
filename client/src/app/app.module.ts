@@ -18,7 +18,6 @@ import {CustomModule} from './custom.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -34,15 +33,14 @@ import { AuthenticationService } from './authentication.service';
         SubmissionListComponent,
         NewSubmissionComponent,
         NavComponent,
-        LoginComponent,
+        LoginComponent
     ],
     providers: [
         AuthenticationService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
-    entryComponents: [
-    ],
+    entryComponents: [],
     bootstrap: [AppComponent]
 })
 
