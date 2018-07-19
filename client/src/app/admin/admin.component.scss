@@ -1,0 +1,42 @@
+
+.removeBullets {
+    list-style-type: none;
+}
+
+
+.buttonLrg {
+    color: #7a0019;
+    padding: 10px 16px;
+    font-size: 150%;
+    line-height: 1.33;
+    border-radius: 2px;
+    background-color: #FFD700;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Helvetica Nueue", Arial, sans-serif, monospace;
+    border-width: 0px;
+}
+
+.buttonLrg:hover {
+    color: #FFD700;
+    background-color: #7a0019;
+}
+
+.buttonLrg ul li:active {
+    color: #FFD700;
+    background-color: #7a0019;
+}
+
+.buttonLrg:focus {
+    color: #FFD700;
+    background-color: #7a0019;
+}
+
+.active-true {
+    color: #FFD700;
+    background-color: #7a0019;
+}
+
+#title {
+    color: #FFD700;
+    font-size: 30px;
+}
