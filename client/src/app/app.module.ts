@@ -17,6 +17,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
+import { AccountDialogComponent } from "./account-dialog/account-dialog.component";
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AuthenticationService } from './authentication.service';
         NewSubmissionComponent,
         NavComponent,
         LoginComponent,
+        AccountDialogComponent,
     ],
     providers: [
         AuthenticationService,
