@@ -1,0 +1,19 @@
+.FormBox {
+    -webkit-box-shadow: 0px 0px 5px 7px rgba(176,173,176,1);
+    -moz-box-shadow: 0px 0px 5px 7px rgba(176,173,176,1);
+    box-shadow: 0px 0px 5px 7px rgba(176,173,176,1);
+    margin-bottom: 20px;
+    background-color: ghostwhite;
+}
+
+/*Adds padding*/
+.padded {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-device-width: 500px) {
+    .mobileCompatable {
+        width: 20em;
+    }
+}

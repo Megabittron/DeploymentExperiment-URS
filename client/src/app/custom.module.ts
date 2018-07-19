@@ -7,7 +7,7 @@ import {
     MatListModule, MatButtonModule, MatCardModule, MatIconModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
     MatExpansionModule, MatTooltipModule, MatDialogModule, MatSelectModule, MatFormFieldModule,
-    MatRadioModule, MatCheckboxModule, MatStepperModule
+    MatRadioModule, MatCheckboxModule, MatStepperModule,  MatSnackBarModule,
 } from '@angular/material';
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
@@ -40,6 +40,7 @@ const MATERIAL_MODULES: any[] = [
     MatFormFieldModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     MatStepperModule
 ];
 
