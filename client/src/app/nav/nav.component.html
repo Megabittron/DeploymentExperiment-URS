@@ -1,10 +1,11 @@
-<mat-toolbar color="primary" class="navigation">
-    <button mat-button routerLink="/">Undergraduate Research Symposium</button>
+<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="accent" class="navigation">
+    <button color="primary" mat-button routerLink="/">Undergraduate Research Symposium</button>
     <span class="spacer"></span>
-    <button mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
+    <button color="primary" mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
         Home
     </button>
-    <button mat-button routerLink="/admin" routerLinkActive="nav-active">Admin</button>
-    <button mat-button routerLink="/submissionList" routerLinkActive="nav-active">Submission List</button>
-    <span class="profile-pic"></span>
+    <button  color="primary" mat-button routerLink="/admin" routerLinkActive="nav-active">Admin</button>
+    <button color="primary" mat-button routerLink="/submissionList" routerLinkActive="nav-active">Submission List</button>
+    <img class="profile-pic" [src]="profilePic">
 </mat-toolbar>
