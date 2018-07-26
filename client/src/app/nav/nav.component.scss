@@ -2,6 +2,10 @@
     flex: 1 1 auto;
 }
 
+.account-options {
+    display: none;
+}
+
 .profile-pic {
     height: 32px;
     width: 32px;
@@ -9,6 +13,15 @@
     display: inline-block;
     margin-left: 25px;
     margin-right: 20px;
+    z-index: 5;
+}
+
+.profile-pic:hover + .account-options {
+    display: block;
+}
+
+.account-options:hover {
+    display: block;
 }
 
 a {
@@ -40,4 +53,66 @@ a:hover {
     -moz-animation-duration: .3s;
     -o-animation-duration: .3s;
     animation-duration: .3s;
+}
+
+.account-tab {
+    top: 128px;
+    right: 32px;
+    height: 100px;
+    width: 150px;
+    background-color: #810020;
+    position: absolute;
+    z-index: 1;
+}
+
+.triangle {
+    top: 115px;
+    right: 37px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #810020;
+    position: absolute;
+    z-index: 2;
+}
+
+.hover-extender {
+    right: 32px;
+    top: 78px;
+    height: 50px;
+    width: 75px;
+    position: absolute;
+    background-color: rgba(216, 255, 0, 0);
+}
+
+.profile-option:hover, .sign-out-option:hover {
+    background-color: rgb(184, 0, 46);
+}
+
+.profile-option {
+    position: absolute;
+    top: 128px;
+    right: 32px;
+    height: 50px;
+    width: 150px;
+    background-color: #810020;
+    z-index: 3;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sign-out-option {
+    position: absolute;
+    top: 178px;
+    right: 32px;
+    height: 50px;
+    width: 150px;
+    background-color: #810020;
+    z-index: 3;
+    text-align: center;
+}
+
+.option {
+    color: white;
 }
