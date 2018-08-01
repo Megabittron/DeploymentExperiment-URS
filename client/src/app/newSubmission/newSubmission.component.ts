@@ -1,6 +1,5 @@
 
 import {Component} from '@angular/core';
-import {AppService} from "../app.service";
 import {Router} from "@angular/router";
 import {Submission} from "./submission";
 import {newSubmissionService} from "./newSubmission.service";
@@ -11,7 +10,7 @@ import {MatSnackBar} from '@angular/material';
     selector: 'app-newSubmission-component',
     templateUrl: 'newSubmission.component.html',
     styleUrls: ['./newSubmission.component.scss'],
-    providers: [AppService]
+    providers: [newSubmissionService]
 })
 export class NewSubmissionComponent {
 
