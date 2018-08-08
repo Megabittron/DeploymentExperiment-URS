@@ -1,7 +1,6 @@
 evaluationDependsOn ":client"
 evaluationDependsOn ":server"
 
-task stage(dependsOn: ['build', 'clean'])
 
 // Assumes our dev database is named "dev"
 task clearMongoDB(type: Exec) {
