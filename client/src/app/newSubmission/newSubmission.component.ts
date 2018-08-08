@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material';
     selector: 'app-newSubmission-component',
     templateUrl: 'newSubmission.component.html',
     styleUrls: ['./newSubmission.component.scss'],
-    providers: [AppService]
+    providers: [newSubmissionService]
 })
 export class NewSubmissionComponent {
 
@@ -100,5 +100,21 @@ export class NewSubmissionComponent {
                 })
             }
         )
+    }
+
+    sectionOneComplete() {
+        return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
+            || this.presentationType == "" || this.changePresentationFormat == "";
+
+    }
+
+    sectionTwoComplete() {
+        return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
+        || this.academicDiscipline == "" || this.featurePresenter == "";
+    }
+
+    sectionFourComplete() {
+        return this.firstAdvisorFirstName == "" || this.firstAdvisorLastName == "" ||
+            this.firstAdvisorEmail == "";
     }
 }
