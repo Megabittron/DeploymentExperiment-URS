@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
+import {Router} from "@angular/router";
 
 declare const gapi: any;
 @Component({
@@ -16,15 +17,14 @@ export class NavComponent implements OnInit{
     public user: User;
     public profilePic: string = null;
 
-
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(private authenticationService: AuthenticationService,
+                private router: Router) {
         this.text = 'Nav';
 
     }
 
-    openDialog(event) {
-
-
+    goToAccountInfo(): void {
+        this.router.navigate(['accountInfo']);
     }
 
     signOut(): void {

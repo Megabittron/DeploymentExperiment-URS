@@ -1,5 +1,5 @@
-.spacer {
-    flex: 1 1 auto;
+.account-options {
+    display: none;
 }
 
 .profile-pic {
@@ -9,17 +9,107 @@
     display: inline-block;
     margin-left: 25px;
     margin-right: 20px;
+    z-index: 5;
 }
 
-button {
+.profile-pic:hover + .account-options {
+    display: block;
+}
+
+.account-options:hover {
+    display: block;
+}
+
+a {
     font-family: Arial;
     font-size: 100%;
+    text-decoration: none;
+    color: #7a0018;
 }
 
-button:not(:first-child) {
-    margin: 5px;
+a:not(:first-child) {
+    margin: 20px;
 }
 
-button:hover:not(:first-child) {
-    border-bottom: 1px solid #ffcc33;
+a:hover {
+    color: white;
+}
+
+@keyframes urs {
+    from {color: #7a0018;}
+    to {color: white;}
+}
+
+.urs:hover {
+    -webkit-animation-name: urs;
+    -moz-animation-name: urs;
+    -o-animation-name: urs;
+    animation-name: urs;
+    -webkit-animation-duration: .3s;
+    -moz-animation-duration: .3s;
+    -o-animation-duration: .3s;
+    animation-duration: .3s;
+}
+
+.account-tab {
+    top: 128px;
+    right: 32px;
+    height: 100px;
+    width: 150px;
+    background-color: #810020;
+    position: absolute;
+    z-index: 1;
+}
+
+.triangle {
+    top: 115px;
+    right: 37px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #810020;
+    position: absolute;
+    z-index: 2;
+}
+
+.hover-extender {
+    right: 32px;
+    top: 78px;
+    height: 50px;
+    width: 75px;
+    position: absolute;
+    background-color: rgba(216, 255, 0, 0);
+}
+
+.profile-option:hover, .sign-out-option:hover {
+    background-color: rgb(184, 0, 46);
+}
+
+.profile-option {
+    top: 128px;
+}
+
+.sign-out-option {
+    top: 178px;
+}
+
+.sign-out-option, .profile-option {
+    position: absolute;
+    right: 32px;
+    height: 50px;
+    width: 150px;
+    background-color: #810020;
+    z-index: 3;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 15px;
+}
+
+.option {
+    color: white;
+}
+
+.spacer {
+    flex: 1 1 auto;
 }
