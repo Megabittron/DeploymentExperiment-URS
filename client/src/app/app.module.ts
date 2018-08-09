@@ -17,6 +17,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
+import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
 
 @NgModule({
     imports: [
@@ -37,6 +38,7 @@ import { AuthenticationService } from './authentication.service';
     ],
     providers: [
         AuthenticationService,
+        UserIsLoggedInGuard,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
