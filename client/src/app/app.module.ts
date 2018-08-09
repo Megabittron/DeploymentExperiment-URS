@@ -18,6 +18,7 @@ import {CustomModule} from './custom.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
+import { RoleGuard } from './role.guard';
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
     providers: [
         AuthenticationService,
         UserIsLoggedInGuard,
+        RoleGuard,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
