@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {environment} from '../environments/environment';
 import {User} from './user';
+import {Router} from "@angular/router";
 
 declare const gapi: any;
 @Injectable()
@@ -13,8 +14,22 @@ export class AuthenticationService {
     public user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
     public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public isLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public redirectUrl: string;
 
-    constructor(private zone: NgZone, private http: HttpClient) { }
+    constructor(private zone: NgZone, private http: HttpClient, private router: Router) {
+        this.user$.subscribe((user) => {
+            if (user) {
+                this.isLoggedIn$.next(true);
+
+                if (this.redirectUrl) {
+                    this.router.navigate([this.redirectUrl]);
+                }
+            } else {
+                this.isLoggedIn$.next(false);
+            }
+        })
+
+    }
 
     validateToken(token: String): Observable<User> {
         return this.http.get<User>(environment.API_URL + 'login/' + token);
