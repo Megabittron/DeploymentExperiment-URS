@@ -6,11 +6,12 @@ import {AccountInfoComponent} from './accountInfo/accountInfo.component';
 import {SubmissionListComponent} from "./submissionList/submissionList.component";
 import {NewSubmissionComponent} from "./newSubmission/newSubmission.component"
 import {UserIsLoggedInGuard} from "./user-is-logged-in.guard";
+import {RoleGuard} from "./role.guard";
 
 // Route Configuration
 export const routes: Routes = [
     {path: '', component: HomeComponent, canActivate: [UserIsLoggedInGuard]},
-    {path: 'admin', component: AdminComponent, canActivate: [UserIsLoggedInGuard]},
+    {path: 'admin', component: AdminComponent, canActivate: [UserIsLoggedInGuard, RoleGuard]},
     {path: 'accountInfo', component: AccountInfoComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'submissionList', component: SubmissionListComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'newSubmission', component: NewSubmissionComponent, canActivate: [UserIsLoggedInGuard]}
