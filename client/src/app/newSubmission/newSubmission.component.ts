@@ -100,4 +100,20 @@ export class NewSubmissionComponent {
             }
         )
     }
+
+    sectionOneComplete() {
+        return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
+            || this.presentationType == "" || this.changePresentationFormat == "";
+
+    }
+
+    sectionTwoComplete() {
+        return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
+        || this.academicDiscipline == "" || this.featurePresenter == "";
+    }
+
+    sectionFourComplete() {
+        return this.firstAdvisorFirstName == "" || this.firstAdvisorLastName == "" ||
+            this.firstAdvisorEmail == "";
+    }
 }
