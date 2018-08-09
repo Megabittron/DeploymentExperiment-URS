@@ -998,5 +998,15 @@
         "LastName": "Houston",
         "ShirtSize": "s",
         "Role": "user"
+    },
+    {
+        "_id": {
+            "$oid": "5b4fafaa7ff1d34e9da88cca"
+        },
+        "SubjectID": "110073864477046231189",
+        "FirstName": "Charles",
+        "LastName": "Menne",
+        "ShirtSize": "m",
+        "Role": "admin"
     }
 ]
