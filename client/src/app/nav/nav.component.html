@@ -9,7 +9,7 @@
         Home
         </b>
     </a>
-    <a  color="primary"  routerLink="/admin" routerLinkActive="nav-active"><b>Admin</b></a>
+    <a *ngIf="isAdmin()" color="primary"  routerLink="/admin" routerLinkActive="nav-active"><b>Admin</b></a>
     <a color="primary"  routerLink="/submissionList" routerLinkActive="nav-active"><b>Submission List</b></a>
     <img class="profile-pic" [src]="profilePic" (click)="goToAccountInfo()">
     <div class="account-options">
