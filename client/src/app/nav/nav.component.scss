@@ -16,8 +16,13 @@
     display: block;
 }
 
+.profile-pic:hover {
+    cursor: pointer;
+}
+
 .account-options:hover {
     display: block;
+    cursor: pointer;
 }
 
 a {
@@ -80,6 +85,10 @@ a:hover {
     width: 75px;
     position: absolute;
     background-color: rgba(216, 255, 0, 0);
+}
+
+.hover-extender:hover {
+    cursor: default;
 }
 
 .profile-option:hover, .sign-out-option:hover {
