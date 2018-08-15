@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {Router} from "@angular/router";
@@ -21,6 +21,12 @@ export class NavComponent implements OnInit{
                 private router: Router) {
         this.text = 'Nav';
 
+    }
+
+    isAdmin(): boolean {
+        if (this.user) {
+            return this.user.Role.includes('admin');
+        }
     }
 
     goToAccountInfo(): void {
