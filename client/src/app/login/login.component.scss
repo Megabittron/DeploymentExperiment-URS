@@ -16,7 +16,7 @@
     position: absolute;
     top: 57px;
     left: 0;
-    background-color: rgba(129, 0, 32, 0.17);
+    background-color: rgba(129, 0, 32, 0.11);
     height: 94%;
     width: 100%;
     z-index: 0;
@@ -51,15 +51,11 @@
     text-align: center;
     font-family: "Montserrat Black";
     font-size: 200%;
+    color: #ffffff;
 }
 
 .welcome-explanation {
-    color: #ffffff;
     font-family: "Montserrat SemiBold";
-}
-
-.quote {
-    color: #ffffff;
 }
 
 /*.morris-logo {
