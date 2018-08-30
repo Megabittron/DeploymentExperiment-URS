@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Megabittron/DeploymentExperiment-URS.svg?branch=master)](https://travis-ci.org/Megabittron/DeploymentExperiment-URS)
 
+[![](https://codescene.io/projects/3291/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/3291/jobs/latest-successful/results)
 
 ## Deployment for URS WebApp
 
