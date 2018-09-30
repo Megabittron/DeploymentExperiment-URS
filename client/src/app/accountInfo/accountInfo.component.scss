@@ -1,16 +1,44 @@
 .account-info-header {
-    height: 300px;
+    height: 275px;
     width: 850px;
     margin: 2vh auto;
     background-color: #f0f0f0;
-    border: 2px solid #ffcc33;
-    box-shadow: 5px 6px 0 #ffcc33;
+    border: 2px solid #7a0018;
+    box-shadow: 5px 6px 0 #7a0018;
+    padding: 25px 0;
+}
+
+.profile-pic-wrapper {
+    position: relative;
+    width: 25%;
+    height: 75%;
 }
 
 .profile-pic {
-    height: 40%;
+    position: absolute;
+    bottom: 0;
+    height: 75%;
     width: auto;
+    border: 4px solid #7a0018;
     border-radius: 50%;
-    border-color: #ffcc33;
-    background: #ffcc33;
+    background: #7a0018;
+    margin-top: 15%;
+}
+
+.account-info-header-container {
+    height: 100%;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-details {
+    padding-top: 5%;
+    width: 75%;
+    height: auto;
+}
+
+.profile-name, .profile-role, .profile-shirt-size {
+    color: #7A0018;
+    font-family: Arial;
 }
