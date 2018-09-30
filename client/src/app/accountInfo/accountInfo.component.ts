@@ -23,11 +23,11 @@ export class AccountInfoComponent implements OnInit {
     }
 
     getRole(): String {
-        return this.user.Role;
+        return this.user.Role.toUpperCase();
     }
 
     getShirtSize(): String {
-        return this.user.ShirtSize;
+        return this.user.ShirtSize.toUpperCase();
     }
 
     ngOnInit(): void {
