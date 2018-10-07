@@ -15,8 +15,13 @@ export class AccountInfoComponent implements OnInit {
 
     public user: User;
     public profilePic: string;
+    public isEditing: boolean = false;
 
     constructor(private authenticationService: AuthenticationService) { }
+
+    changeEditState(): void {
+        this.isEditing = !this.isEditing;
+    }
 
     getName(): String {
         return this.user.FirstName + ' ' + this.user.LastName;

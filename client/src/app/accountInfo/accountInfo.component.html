@@ -9,7 +9,8 @@
             <h3 class="profile-shirt-size" *ngIf="user">Shirt Size: {{getShirtSize()}}</h3>
         </div>
         <div class="account-buttons">
-            <button *ngIf="" color="primary" mat-raised-button class="edit-button">Edit Profile</button>
+            <button *ngIf="!isEditing" (click)="changeEditState()" color="primary" mat-raised-button class="edit-button">Edit Profile</button>
+            <button *ngIf="isEditing" (click)="changeEditState()" color="accent" mat-raised-button class="save-button">Update Profile</button>
         </div>
     </div>
 </div>
