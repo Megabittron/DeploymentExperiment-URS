@@ -27,7 +27,7 @@ public class AbstractController {
     public AbstractController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
-        abstractCollection = database.getCollection("abstracts");
+        abstractCollection = database.getCollection("submissions");
     }
 
     /**
@@ -99,12 +99,12 @@ public class AbstractController {
 
         }
 
-        if (queryParams.containsKey("abstracts")) {
-            String targetContent = (queryParams.get("abstracts")[0]);
+        if (queryParams.containsKey("submissions")) {
+            String targetContent = (queryParams.get("submissions")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("abstracts", contentRegQuery);
+            filterDoc = filterDoc.append("submissions", contentRegQuery);
         }
 
         if (queryParams.containsKey("presentationType")) {

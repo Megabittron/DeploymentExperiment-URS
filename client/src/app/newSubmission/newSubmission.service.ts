@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 
 
 @Injectable()
-export class newSubmissionService {
+export class NewSubmissionService {
     readonly baseUrl: string = environment.API_URL + 'abstracts';
     private submissionUrl: string = this.baseUrl;
     private noID: boolean = false;

@@ -2,7 +2,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {Submission} from "./submission";
-import {newSubmissionService} from "./newSubmission.service";
+import {NewSubmissionService} from "./newSubmission.service";
 import {Observable} from 'rxjs/Observable';
 import {MatSnackBar} from '@angular/material';
 
@@ -10,12 +10,12 @@ import {MatSnackBar} from '@angular/material';
     selector: 'app-newSubmission-component',
     templateUrl: 'newSubmission.component.html',
     styleUrls: ['./newSubmission.component.scss'],
-    providers: [newSubmissionService]
+    providers: [NewSubmissionService]
 })
 export class NewSubmissionComponent {
 
     constructor(public snackBar: MatSnackBar,
-                public newSubmissionService: newSubmissionService) {
+                public newSubmissionService: NewSubmissionService) {
     }
 
     private highlightedID: { '$oid': string } = {'$oid': ''}
