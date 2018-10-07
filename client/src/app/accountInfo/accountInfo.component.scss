@@ -34,8 +34,14 @@
 
 .profile-details {
     padding-top: 5%;
-    width: 75%;
+    width: 50%;
     height: auto;
+}
+
+.account-buttons {
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
 }
 
 .profile-name, .profile-role, .profile-shirt-size {
