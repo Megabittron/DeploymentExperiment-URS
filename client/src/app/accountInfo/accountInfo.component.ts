@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "../app.service";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
+import {AccountInfoService} from "./account-info.service";
 
 declare const gapi: any;
 @Component({
@@ -17,7 +18,8 @@ export class AccountInfoComponent implements OnInit {
     public profilePic: string;
     public isEditing: boolean = false;
 
-    constructor(private authenticationService: AuthenticationService) { }
+    constructor(private authenticationService: AuthenticationService,
+                private accountInfoService: AccountInfoService) { }
 
     changeEditState(): void {
         this.isEditing = !this.isEditing;
