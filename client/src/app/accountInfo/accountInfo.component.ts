@@ -17,6 +17,7 @@ export class AccountInfoComponent implements OnInit {
     public user: User;
     public profilePic: string;
     public isEditing: boolean = false;
+    public shirtSize: string = "";
 
     constructor(private authenticationService: AuthenticationService,
                 private accountInfoService: AccountInfoService) { }
@@ -25,15 +26,22 @@ export class AccountInfoComponent implements OnInit {
         this.isEditing = !this.isEditing;
     }
 
-    getName(): String {
+    saveUser(): void {
+        this.user.ShirtSize = this.shirtSize;
+        this.shirtSize = "";
+        this.accountInfoService.editShirtSize(this.user);
+        this.changeEditState();
+    }
+
+    getName(): string {
         return this.user.FirstName + ' ' + this.user.LastName;
     }
 
-    getRole(): String {
+    getRole(): string {
         return this.user.Role.toUpperCase();
     }
 
-    getShirtSize(): String {
+    getShirtSize(): string {
         return this.user.ShirtSize.toUpperCase();
     }
 

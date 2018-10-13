@@ -10,7 +10,7 @@
             <div class="edit-form" *ngIf="isEditing">
                 <form>
                     <mat-form-field>
-                        <input matInput #profileName placeholder={{getName()}}>
+                        <input matInput name="profileShirtSize" placeholder={{getShirtSize()}} [(ngModel)]="shirtSize">
                     </mat-form-field>
                 </form>
             </div>
@@ -20,7 +20,7 @@
             <button *ngIf="!isEditing" (click)="changeEditState()" color="primary" mat-raised-button class="edit-button">
                 Edit Profile
             </button>
-            <button *ngIf="isEditing" (click)="changeEditState()" color="accent" mat-raised-button class="save-button">
+            <button *ngIf="isEditing" (click)="saveUser()" color="accent" mat-raised-button class="save-button">
                 Update Profile
             </button>
         </div>
