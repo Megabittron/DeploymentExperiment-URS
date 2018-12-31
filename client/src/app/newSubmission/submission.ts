@@ -30,5 +30,5 @@ export interface Submission {
     thirdAdvisorEmail: string;
     additionalMediaEquipment: string;
     additionalInfo: string;
-    other: string;
+    other: boolean;
 }
