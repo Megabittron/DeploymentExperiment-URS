@@ -52,7 +52,7 @@ export class NewSubmissionComponent {
     public thirdAdvisorEmail = "";
     public additionalMediaEquipment = "";
     public additionalInfo = "";
-    public other = "";
+    public other: boolean;
 
     saveSubmission(): void {
         const newSubmission: Submission = {
