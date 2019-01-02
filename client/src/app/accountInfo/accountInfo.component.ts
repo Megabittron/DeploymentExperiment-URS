@@ -13,11 +13,17 @@ declare const gapi: any;
 })
 export class AccountInfoComponent implements OnInit {
 
-
     public user: User;
     public profilePic: string;
     public isEditing: boolean = false;
-    public shirtSize: string = "";
+
+    shirtSizes = [
+        {value: 'xs', viewValue: 'Extra Small'},
+        {value: 's', viewValue: 'Small'},
+        {value: 'm', viewValue: 'Medium'},
+        {value: 'l', viewValue: 'Large'},
+        {value: 'xl', viewValue: 'Extra Large'}
+    ];
 
     constructor(private authenticationService: AuthenticationService,
                 private accountInfoService: AccountInfoService) { }
@@ -26,9 +32,8 @@ export class AccountInfoComponent implements OnInit {
         this.isEditing = !this.isEditing;
     }
 
-    saveUser(): void {
-        this.user.ShirtSize = this.shirtSize;
-        this.shirtSize = "";
+    saveUser(shirtSize: string): void {
+        this.user.ShirtSize = shirtSize;
         this.accountInfoService.editShirtSize(this.user);
         this.changeEditState();
     }

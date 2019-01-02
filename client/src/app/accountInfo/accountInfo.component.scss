@@ -49,7 +49,7 @@
     font-family: Arial;
 }
 
-.profile-shirt-size > h3, .profile-shirt-size > mat-icon {
+.profile-shirt-size > h3, .profile-shirt-size > mat-icon, .profile-shirt-size > div {
     display: inline-block;
     vertical-align: middle;
 }
@@ -60,6 +60,10 @@
 
 .edit-icon {
     margin-left: .5em;
+}
+
+.edit-form {
+    margin-bottom: 1em;
 }
 
 mat-form-field {
