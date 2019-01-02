@@ -49,6 +49,19 @@
     font-family: Arial;
 }
 
+.profile-shirt-size > h3, .profile-shirt-size > mat-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profile-shirt-size {
+    margin-top: -4%;
+}
+
+.edit-icon {
+    margin-left: .5em;
+}
+
 mat-form-field {
     width: 80%;
 }

@@ -4,9 +4,12 @@
             <img class="profile-pic" [src]="profilePic">
         </div>
         <div class="profile-details">
-            <h1 class="profile-name" *ngIf="user && !isEditing">{{getName()}}</h1>
-            <h3 class="profile-role" *ngIf="user && !isEditing && user.Role != 'user'">Role: {{getRole()}}</h3>
-            <h3 class="profile-shirt-size" *ngIf="user && !isEditing">Shirt Size: {{getShirtSize()}}</h3>
+            <h1 class="profile-name" *ngIf="user">{{getName()}}</h1>
+            <h3 class="profile-role" *ngIf="user && user.Role != 'user'">Role: {{getRole()}}</h3>
+            <div class="profile-shirt-size">
+            <h3 *ngIf="user && !isEditing">Shirt Size: {{getShirtSize()}}</h3>
+            <mat-icon class="edit-icon" (click)="changeEditState()">edit</mat-icon>
+            </div>
             <div class="edit-form" *ngIf="isEditing">
                 <form>
                     <mat-form-field>
@@ -16,13 +19,13 @@
             </div>
 
         </div>
-        <div class="account-buttons">
+        <!--<div class="account-buttons">
             <button *ngIf="!isEditing" (click)="changeEditState()" color="primary" mat-raised-button class="edit-button">
                 Edit Profile
             </button>
             <button *ngIf="isEditing" (click)="saveUser()" color="accent" mat-raised-button class="save-button">
                 Update Profile
             </button>
-        </div>
+        </div>-->
     </div>
 </div>
