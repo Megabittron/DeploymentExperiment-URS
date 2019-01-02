@@ -12,7 +12,8 @@ export class AccountInfoService {
     constructor(private http: HttpClient) {
     }
 
-    editShirtSize(newUser: User): Observable<{'$oid': string}> {
+    saveShirtSize(newUser: User): Observable<{'$oid': string}> {
+        this.editUserUrl = this.baseUrl;
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

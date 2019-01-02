@@ -22,7 +22,8 @@ export class AccountInfoComponent implements OnInit {
         {value: 's', viewValue: 'Small'},
         {value: 'm', viewValue: 'Medium'},
         {value: 'l', viewValue: 'Large'},
-        {value: 'xl', viewValue: 'Extra Large'}
+        {value: 'xl', viewValue: 'Extra Large'},
+        {value: 'xxl', viewValue: 'Double Extra Large'}
     ];
 
     constructor(private authenticationService: AuthenticationService,
@@ -32,9 +33,9 @@ export class AccountInfoComponent implements OnInit {
         this.isEditing = !this.isEditing;
     }
 
-    saveUser(shirtSize: string): void {
+    saveUserShirtSize(shirtSize: string): void {
         this.user.ShirtSize = shirtSize;
-        this.accountInfoService.editShirtSize(this.user);
+        this.accountInfoService.saveShirtSize(this.user).subscribe();
         this.changeEditState();
     }
 
