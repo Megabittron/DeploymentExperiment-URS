@@ -27,7 +27,7 @@ public class AbstractController {
     public AbstractController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
-        abstractCollection = database.getCollection("submissions");
+        abstractCollection = database.getCollection("abstracts");
     }
 
     /**

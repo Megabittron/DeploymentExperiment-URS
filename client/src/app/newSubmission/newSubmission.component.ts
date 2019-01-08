@@ -1,10 +1,10 @@
 
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
-import {Observable} from 'rxjs/Observable';
 import {MatSnackBar} from '@angular/material';
+import {AuthenticationService} from "../authentication.service";
+import {User} from "../user";
 
 @Component({
     selector: 'app-newSubmission-component',
@@ -12,13 +12,16 @@ import {MatSnackBar} from '@angular/material';
     styleUrls: ['./newSubmission.component.scss'],
     providers: [NewSubmissionService]
 })
-export class NewSubmissionComponent {
+export class NewSubmissionComponent implements OnInit{
 
     constructor(public snackBar: MatSnackBar,
-                public newSubmissionService: NewSubmissionService) {
+                public newSubmissionService: NewSubmissionService,
+                private authenticationService: AuthenticationService) {
     }
 
-    private highlightedID: { '$oid': string } = {'$oid': ''}
+    public user: User;
+
+    private highlightedID: { '$oid': string } = {'$oid': ''};
 
     public presentationTitle = "";
     public abstractContent = "";
@@ -57,7 +60,7 @@ export class NewSubmissionComponent {
     saveSubmission(): void {
         const newSubmission: Submission = {
             _id: '',
-            userID: localStorage.getItem("userID"),
+            userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
             abstractContent: this.abstractContent,
             submissionFormat: this.submissionFormat,
@@ -115,5 +118,11 @@ export class NewSubmissionComponent {
     sectionFourComplete() {
         return this.firstAdvisorFirstName == "" || this.firstAdvisorLastName == "" ||
             this.firstAdvisorEmail == "";
+    }
+
+    ngOnInit(): void {
+        this.authenticationService.user$.subscribe(user => {
+            this.user = user;
+        });
     }
 }

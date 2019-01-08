@@ -30,12 +30,10 @@ export class NewSubmissionService {
             }),
         };
 
-        console.log(this.http.post<{'$oid': string}>(this.submissionUrl + '/new', newSubmission, httpOptions));
-
-        if(this. noID){
+        if(this.noID){
             return this.emptyObservable;
         }
-        // This function sends a post request to add a new emotion with the emotion data as the body with specified headers.
+
         return this.http.post<{'$oid': string}>(this.submissionUrl + '/new', newSubmission, httpOptions);
     }
 }
