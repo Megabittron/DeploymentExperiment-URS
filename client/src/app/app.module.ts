@@ -5,7 +5,6 @@ import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 
 
 import {HttpClientModule} from '@angular/common/http';
-import {AppService} from './app.service';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
@@ -22,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
 import { RoleGuard } from './role.guard';
+import {AccountInfoService} from "./accountInfo/account-info.service";
 
 @NgModule({
     imports: [
@@ -42,7 +42,7 @@ import { RoleGuard } from './role.guard';
     ],
     providers: [
         AuthenticationService,
-        AppService,
+        AccountInfoService,
         SubmissionListService,
         NewSubmissionService,
         UserIsLoggedInGuard,

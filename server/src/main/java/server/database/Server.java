@@ -83,6 +83,7 @@ public class Server {
 
         get("api/users", userRequestHandler::getUsers);
         get("api/user/:_id", userRequestHandler::getUserJSON);
+        put("api/user/:_id", userRequestHandler::editUsertShirtSize);
 
         // Abstracts Endpoints
 

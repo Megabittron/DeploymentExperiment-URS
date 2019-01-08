@@ -98,11 +98,8 @@ public class UserRequestHandler {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
-                    String userID = dbO.getString("userID");
-                    String tShirtSize = dbO.getString("size");
-
-                    System.out.println("userID: " + userID);
-                    System.out.println("size: " + tShirtSize);
+                    String userID = dbO.getString("_id");
+                    String tShirtSize = dbO.getString("ShirtSize");
 
                     return userController.editUsertShirtSize(userID, tShirtSize);
                 }

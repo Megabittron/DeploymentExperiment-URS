@@ -129,7 +129,7 @@ public class UserController {
         }
 
         Document newtShirtSize = new Document();
-        newtShirtSize.append("tShirtSize", size);
+        newtShirtSize.append("ShirtSize", size);
 
         Document setQuery = new Document();
         setQuery.append("$set", newtShirtSize);
