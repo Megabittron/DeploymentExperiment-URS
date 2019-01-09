@@ -9,6 +9,7 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import javax.print.Doc;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -40,20 +41,13 @@ public class AbstractController {
      * //
      */
 
-    public String getAbstract(String id) {
-        FindIterable<Document> jsonUsers
-            = abstractCollection
-            .find(eq("_id", new ObjectId(id)));
+    public String getAbstractsForUser(String id) {
+        Document filterDoc = new Document();
+        filterDoc.append("userID", id);
 
-        Iterator<Document> iterator = jsonUsers.iterator();
-        if (iterator.hasNext()) {
-            Document user = iterator.next();
-            return user.toJson();
-        } else {
+        FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
-            // Did not find a Abstract for that specific userID
-            return null;
-        }
+        return JSON.serialize(abstracts);
     }
 
     /**

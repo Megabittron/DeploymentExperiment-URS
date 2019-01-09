@@ -3,7 +3,9 @@ import {SubmissionListService} from './submissionList.service';
 import {Submission} from '../newSubmission/submission';
 import {Observable} from 'rxjs/Observable';
 import {AppService} from '../app.service';
-import {Router} from '@angular/router';
+import {AuthenticationService} from "../authentication.service";
+import {User} from "../user";
+
 
 @Component({
     selector: 'app-submissions-component',
@@ -16,9 +18,10 @@ export class SubmissionListComponent implements OnInit {
 
     // Inject the SubmissionsService into this component.
     constructor(public submissionListService: SubmissionListService,
-                public appService: AppService,
-                private router: Router) {
+                private authenticationService: AuthenticationService) {
     }
+
+    public user: User;
     // These are public so that tests can reference them (.spec.ts)
     public submissions: Submission[] = []; // full list of submissions
     // The ID of the submission
@@ -46,15 +49,15 @@ export class SubmissionListComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        console.log('this is submissions.component.ts and it has this for userID: ' + localStorage.getItem('userID'));
+        //console.log('this is submissions.component.ts and it has this for userID: ' + localStorage.getItem('userID'));
 
-        let userID = localStorage.getItem('userID');
+        let userID = this.user.SubjectID;
 
         if (userID == null) {
             userID = '';
         }
-        const submissionObservable: Observable<Submission[]> = this.submissionListService.getSubmissions(userID);
-        console.log(submissionObservable);
+        const submissionObservable: Observable<Submission[]> = this.submissionListService.getSubmissionsForUser(userID);
+        //console.log(submissionObservable);
         submissionObservable.subscribe(
             submissions => {
                 console.log(submissions);
@@ -70,8 +73,7 @@ export class SubmissionListComponent implements OnInit {
 
     // loads the list of submissions for the page
     loadService(): void {
-        console.log(localStorage.getItem('userID'));
-        this.submissionListService.getSubmissions(localStorage.getItem('userID')).subscribe(
+        this.submissionListService.getSubmissionsForUser(this.user.SubjectID).subscribe(
             submissions => {
                 this.submissions = submissions;
             },
@@ -83,6 +85,9 @@ export class SubmissionListComponent implements OnInit {
 
     // Runs when the page is initialized
     ngOnInit(): void {
+        this.authenticationService.user$.subscribe(user => {
+            this.user = user;
+        });
         this.refreshSubmissions();
         this.loadService();
     }

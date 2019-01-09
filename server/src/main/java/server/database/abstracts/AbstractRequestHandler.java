@@ -32,7 +32,7 @@ public class AbstractRequestHandler {
 
         String abstracts;
         try {
-            abstracts = abstractController.getAbstract(id);
+            abstracts = abstractController.getAbstractsForUser(id);
         } catch (IllegalArgumentException e) {
 
             // This is thrown if the ID doesn't have the appropriate

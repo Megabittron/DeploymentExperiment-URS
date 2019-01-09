@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Submission} from '../newSubmission/submission';
 import {environment} from '../../environments/environment';
@@ -11,26 +11,16 @@ import 'rxjs/add/observable/of';
 export class SubmissionListService {
     readonly baseUrl: string = environment.API_URL + 'abstracts';
     private submissionUrl: string = this.baseUrl;
-    private noID: boolean = false;
-    private emptyObservable: Observable<Submission[]> = Observable.of([]);
 
     constructor(
         private http: HttpClient) {
     }
 
     // This function gets submissions from the server
-    getSubmissions(userID: string): Observable<Submission[]> {
+    getSubmissionsForUser(userID: string): Observable<Submission[]> {
         this.submissionUrl = this.baseUrl;
-        this.noID = false;
 
-        this.filterByUserID(userID);
-
-        // require a userID
-        if (this.noID) {
-            return this.emptyObservable;
-        }
-        console.log(this.submissionUrl);
-        return this.http.get<Submission[]>(this.submissionUrl);
+        return this.http.get<Submission[]>(this.submissionUrl + '/' + userID);
     }
 
     getSubmissionById(id: string): Observable<Submission> {
@@ -38,7 +28,7 @@ export class SubmissionListService {
         return this.http.get<Submission>(this.submissionUrl + '/' + id);
     }
 
-    // sets the submissionUrl to the serachParam
+    /*// sets the submissionUrl to the serachParam
     private parameterPresent(searchParam: string) {
         return this.submissionUrl.indexOf(searchParam) !== -1;
     }
@@ -75,5 +65,5 @@ export class SubmissionListService {
             // there was no userID
             this.noID = true;
         }
-    }
+    }*/
 }
