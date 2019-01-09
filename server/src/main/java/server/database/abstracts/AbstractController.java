@@ -71,10 +71,10 @@ public class AbstractController {
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("userID", contentRegQuery);
-        } else {
+        }/* else {
             System.out.println("It had no userID");
-            return JSON.serialize("[ ]");
-        }
+            return JSON.serialize("[]");
+        }*/
 
         if (queryParams.containsKey("title")) {
             String targetContent = (queryParams.get("title")[0]);

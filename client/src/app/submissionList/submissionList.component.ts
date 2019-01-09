@@ -56,7 +56,16 @@ export class SubmissionListComponent implements OnInit {
         if (userID == null) {
             userID = '';
         }
-        const submissionObservable: Observable<Submission[]> = this.submissionListService.getSubmissionsForUser(userID);
+        let submissionObservable: Observable<Submission[]>;
+
+        if (this.user.Role.includes('user')) {
+            submissionObservable = this.submissionListService.getSubmissionsForUser(userID);
+        } else if (this.user.Role.includes('reviewer')) {
+            //submissionObservable = this.submissionListService.getSubmissionsForReview();
+        } else if (this.user.Role.includes('admin' || 'chair')) {
+            submissionObservable = this.submissionListService.getSubmissions();
+        }
+
         //console.log(submissionObservable);
         submissionObservable.subscribe(
             submissions => {
@@ -73,14 +82,35 @@ export class SubmissionListComponent implements OnInit {
 
     // loads the list of submissions for the page
     loadService(): void {
-        this.submissionListService.getSubmissionsForUser(this.user.SubjectID).subscribe(
-            submissions => {
-                this.submissions = submissions;
-            },
-            err => {
-                console.log(err);
-            }
-        );
+        if (this.user.Role.includes('user')) {
+            this.submissionListService.getSubmissionsForUser(this.user.SubjectID).subscribe(
+                submissions => {
+                    this.submissions = submissions;
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        } else if (this.user.Role.includes('reviewer')) {
+            /*this.submissionListService.getSubmissionsForReview(this.user.SubjectID).subscribe(
+                submissions => {
+                    this.submissions = submissions;
+                },
+                err => {
+                    console.log(err);
+                }
+            );*/
+        } else if (this.user.Role.includes('admin' || 'chair')) {
+            this.submissionListService.getSubmissions().subscribe(
+                submissions => {
+                    this.submissions = submissions;
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        }
+
     }
 
     // Runs when the page is initialized

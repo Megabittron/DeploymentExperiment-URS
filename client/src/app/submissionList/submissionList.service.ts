@@ -23,6 +23,18 @@ export class SubmissionListService {
         return this.http.get<Submission[]>(this.submissionUrl + '/' + userID);
     }
 
+    getSubmissions(): Observable<Submission[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<Submission[]>(this.submissionUrl);
+    }
+
+    getSubmissionsForReview(userID: string): Observable<Submission[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<Submission[]>(this.submissionUrl + '/' + userID);
+    }
+
     getSubmissionById(id: string): Observable<Submission> {
         this.submissionUrl = this.baseUrl;
         return this.http.get<Submission>(this.submissionUrl + '/' + id);
