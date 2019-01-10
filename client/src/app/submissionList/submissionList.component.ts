@@ -38,6 +38,12 @@ export class SubmissionListComponent implements OnInit {
             });
         return this.submissions;
     }
+
+    fixDate(date: string): string {
+        let d = new Date(date);
+        return d.toDateString();
+    }
+
     /**
      * Starts an asynchronous operation to update the submissions list
      *
@@ -69,7 +75,7 @@ export class SubmissionListComponent implements OnInit {
         //console.log(submissionObservable);
         submissionObservable.subscribe(
             submissions => {
-                console.log(submissions);
+                //console.log(submissions);
                 if (submissions != null) {
                     this.submissions = submissions;
                 }
