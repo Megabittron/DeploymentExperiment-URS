@@ -1,12 +1,16 @@
-<div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
-    <div flex-gt-s.="80" flex-offset-gt-sm="10">
-        <mat-card *ngFor = "let submission of submissions">
-            <mat-card-title>{{submission.presentationTitle}}</mat-card-title>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-            </mat-card-content>
-        </mat-card>
+<div class="container">
+    <div class="status-legend">
+
     </div>
-</div>
+    <div class="submission-card-container">
+        <div class="submission-card" *ngFor="let submission of submissions">
+            <div class="status-bar"></div>
+            <div class="submission-card-content">
+                <p><i>{{submission.presentationTitle}}</i></p>
+                <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+                <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
+                <p>Submission Date: {{fixDate(submission.timestamp)}}</p>
+            </div>
+        </div>
+    </div>
 </div>

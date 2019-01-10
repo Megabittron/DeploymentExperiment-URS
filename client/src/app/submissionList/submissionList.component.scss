@@ -1,1 +1,54 @@
+.submission-card-container {
+    width: 50%;
+    margin-top: 7em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+
+.submission-card-container > div {
+    background-color: white;
+    max-width: 800px;
+    min-width: 400px;
+    width: 100%;
+    border: 1px solid #4b4b4b;
+    border-bottom: 0;
+}
+
+.submission-card-container > div:hover {
+    background-color: #fdffd1;
+    cursor: pointer;
+}
+
+.submission-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.status-bar {
+    height: auto;
+    width: 10px;
+    background-color: blue;
+    margin-right: 2vw;
+}
+
+.submission-card-content {
+    width: 100%;
+}
+
+.status-legend {
+    width: 25%;
+}
+
+.container {
+    display: flex;
+}
+
+p {
+    font-family: Times New Roman, serif;
+}
+
+p > i {
+    font-size: 2em;
+}
