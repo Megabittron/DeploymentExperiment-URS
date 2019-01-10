@@ -31,4 +31,5 @@ export interface Submission {
     additionalMediaEquipment: string;
     additionalInfo: string;
     other: boolean;
+    timestamp: string;
 }
