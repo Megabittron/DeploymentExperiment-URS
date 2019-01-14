@@ -1,22 +1,24 @@
-<section class="admin-section">
+<section *ngIf="systemInformation" class="admin-section">
     <h1>System Information</h1>
     <h2><u>All Submission Statistics</u></h2>
-    <p>Primary submissions: </p>
-    <p>Submissions stored: </p>
+    <p>Primary submissions: {{systemInformation.primarySubmissions}}</p>
+    <p>Submissions stored: {{systemInformation.submissionStored}}</p>
     <p>Percentage of stored submissions that are primary submissions: </p>
     <p>Number of submissions currently flagged for re-submission: </p>
     <hr>
     <h2><u>User Statistics</u></h2>
-    <p>Users: </p>
-    <p>Admins: </p>
-    <p>Chairs: </p>
-    <p>Reviewers in group x:</p>
+    <p>Users: {{systemInformation.users}}</p>
+    <p>Admins: {{systemInformation.admins}}</p>
+    <p>Chairs: {{systemInformation.chairs}}</p>
+    <div *ngFor="let reviewGroup of systemInformation.reviewGroups">
+        <p>Reviewers in group {{reviewGroup.key}}: {{reviewGroup.key.value}}</p>
+    </div>
     <hr>
     <h2><u>T-Shirt Statistics</u></h2>
-    <p>XXL: </p>
-    <p>XL: </p>
-    <p>L: </p>
-    <p>M: </p>
-    <p>S: </p>
-    <p>XS: </p>
+    <p>XXL: {{systemInformation.xxl}}</p>
+    <p>XL: {{systemInformation.xl}}</p>
+    <p>L: {{systemInformation.l}}</p>
+    <p>M: {{systemInformation.m}}</p>
+    <p>S: {{systemInformation.s}}</p>
+    <p>XS: {{systemInformation.xs}}</p>
 </section>

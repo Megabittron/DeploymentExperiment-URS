@@ -22,6 +22,7 @@ import { AuthenticationService } from './authentication.service';
 import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
 import { RoleGuard } from './role.guard';
 import {AccountInfoService} from "./accountInfo/account-info.service";
+import {AdminService} from "./admin/admin.service";
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import {AccountInfoService} from "./accountInfo/account-info.service";
         NewSubmissionService,
         UserIsLoggedInGuard,
         RoleGuard,
+        AdminService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
