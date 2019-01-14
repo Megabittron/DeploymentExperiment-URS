@@ -2,6 +2,8 @@ package server.database;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import server.database.system_information.SystemController;
+import server.database.system_information.SystemRequestHandler;
 import server.database.users.UserRequestHandler;
 import server.database.users.UserController;
 import server.database.abstracts.AbstractController;
@@ -34,6 +36,9 @@ public class Server {
 
         LoginController loginController = new LoginController(userController);
         LoginRequestHandler loginRequestHandler = new LoginRequestHandler(loginController);
+
+        SystemController systemController = new SystemController(database);
+        SystemRequestHandler systemRequestHandler = new SystemRequestHandler(systemController);
 
         //Configure Spark
         port(serverPort);
@@ -93,6 +98,7 @@ public class Server {
 
         get("api/login/:token", loginRequestHandler::loginUser);
 
+        get("api/system-information", systemRequestHandler::getSystemInformation);
 
         get("api/error", (req, res) -> {
             throw new RuntimeException("A demonstration error");
