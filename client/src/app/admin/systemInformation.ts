@@ -5,12 +5,12 @@ export interface SystemInformation {
     primarySubmissions: number;
     submissionStored: number;
     submissionsFlagged: number;
+    totalUsers;
     users: number;
     admins: number;
     chairs: number;
-    reviewGroups: {
-        [key: string]: ReviewGroup
-    };
+    reviewers: number;
+    reviewGroups: Array<ReviewGroup>;
     xs: number;
     s: number;
     m: number;

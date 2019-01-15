@@ -3,15 +3,20 @@
     <h2><u>All Submission Statistics</u></h2>
     <p>Primary submissions: {{systemInformation.primarySubmissions}}</p>
     <p>Submissions stored: {{systemInformation.submissionStored}}</p>
-    <p>Percentage of stored submissions that are primary submissions: </p>
-    <p>Number of submissions currently flagged for re-submission: </p>
+    <p>Percentage of stored submissions that are primary submissions: {{getPrimarySubmissionPercent()}}</p>
+    <p>Number of submissions currently flagged for re-submission: {{systemInformation.submissionsFlagged}}</p>
     <hr>
     <h2><u>User Statistics</u></h2>
+    <p>Total users: {{systemInformation.totalUsers}}</p>
     <p>Users: {{systemInformation.users}}</p>
     <p>Admins: {{systemInformation.admins}}</p>
     <p>Chairs: {{systemInformation.chairs}}</p>
-    <div *ngFor="let reviewGroup of systemInformation.reviewGroups">
-        <p>Reviewers in group {{reviewGroup.key}}: {{reviewGroup.key.value}}</p>
+    <p>Reviewers: {{systemInformation.reviewers}}</p>
+    <div *ngFor="let reviewGroup of systemInformation.reviewGroups; let i = index">
+        <p>Group {{i}} has {{reviewGroup.users.length}} reviewers:</p>
+        <p class="users" *ngFor="let user of reviewGroup.users; let lastItem = last">
+            {{user.FirstName}} {{user.LastName}}{{lastItem ? '' : ', '}}
+        </p>
     </div>
     <hr>
     <h2><u>T-Shirt Statistics</u></h2>

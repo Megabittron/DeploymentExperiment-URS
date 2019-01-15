@@ -12,8 +12,10 @@ export class AdminComponent implements OnInit {
 
     public systemInformation: SystemInformation;
 
-    constructor(private adminService: AdminService) {
+    constructor(private adminService: AdminService) {}
 
+    getPrimarySubmissionPercent(): string {
+        return (this.systemInformation.primarySubmissions/this.systemInformation.submissionStored*100).toFixed(2);
     }
 
     ngOnInit(): void {
