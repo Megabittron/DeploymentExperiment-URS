@@ -96,7 +96,7 @@
         "SubjectID": 9,
         "FirstName": "Bailey",
         "LastName": "Copeland",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "user"
     },
     {
@@ -166,7 +166,7 @@
         "SubjectID": 16,
         "FirstName": "Marian",
         "LastName": "Hooper",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "chair"
     },
     {
@@ -256,7 +256,7 @@
         "SubjectID": 25,
         "FirstName": "Dunn",
         "LastName": "Marks",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
@@ -316,7 +316,7 @@
         "SubjectID": 31,
         "FirstName": "Melton",
         "LastName": "Lamb",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -366,7 +366,7 @@
         "SubjectID": 36,
         "FirstName": "Sherri",
         "LastName": "Carlson",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
@@ -416,7 +416,7 @@
         "SubjectID": 41,
         "FirstName": "Fitzpatrick",
         "LastName": "Hays",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -426,7 +426,7 @@
         "SubjectID": 42,
         "FirstName": "Emerson",
         "LastName": "Mejia",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "user"
     },
     {
@@ -446,7 +446,7 @@
         "SubjectID": 44,
         "FirstName": "Daniel",
         "LastName": "Ortiz",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
@@ -476,7 +476,7 @@
         "SubjectID": 47,
         "FirstName": "Jordan",
         "LastName": "Scott",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -516,7 +516,7 @@
         "SubjectID": 51,
         "FirstName": "Doris",
         "LastName": "Strong",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
@@ -706,7 +706,7 @@
         "SubjectID": 70,
         "FirstName": "Rivers",
         "LastName": "Michael",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -716,7 +716,7 @@
         "SubjectID": 71,
         "FirstName": "Eloise",
         "LastName": "Kidd",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -866,7 +866,7 @@
         "SubjectID": 86,
         "FirstName": "Lourdes",
         "LastName": "Lynch",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "user"
     },
     {
@@ -886,7 +886,7 @@
         "SubjectID": 88,
         "FirstName": "Best",
         "LastName": "Vance",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "reviewer"
     },
     {
@@ -896,7 +896,7 @@
         "SubjectID": 89,
         "FirstName": "Shawna",
         "LastName": "Wise",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
@@ -906,7 +906,7 @@
         "SubjectID": 90,
         "FirstName": "Jacobs",
         "LastName": "Fuentes",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "chair"
     },
     {
@@ -926,7 +926,7 @@
         "SubjectID": 92,
         "FirstName": "Barr",
         "LastName": "Quinn",
-        "ShirtSize": "xxxl",
+        "ShirtSize": "xs",
         "Role": "admin"
     },
     {
