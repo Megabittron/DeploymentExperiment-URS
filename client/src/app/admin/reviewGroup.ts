@@ -1,6 +1,7 @@
 import {User} from "../user";
 
 export interface ReviewGroup {
-    users: Array<User>;
+    name: string;
+    reviewers: Array<User>;
 
 }

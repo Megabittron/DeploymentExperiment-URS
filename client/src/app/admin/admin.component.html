@@ -12,10 +12,10 @@
     <p>Admins: {{systemInformation.admins}}</p>
     <p>Chairs: {{systemInformation.chairs}}</p>
     <p>Reviewers: {{systemInformation.reviewers}}</p>
-    <div *ngFor="let reviewGroup of systemInformation.reviewGroups; let i = index">
-        <p>Group {{i}} has {{reviewGroup.users.length}} reviewers:</p>
-        <p class="users" *ngFor="let user of reviewGroup.users; let lastItem = last">
-            {{user.FirstName}} {{user.LastName}}{{lastItem ? '' : ', '}}
+    <div *ngFor="let reviewGroup of systemInformation.reviewGroups">
+        <p>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</p>
+        <p class="users" *ngFor="let reviewer of reviewGroup.reviewers; let lastItem = last">
+            {{reviewer.FirstName}} {{reviewer.LastName}}{{lastItem ? '' : ', '}}
         </p>
     </div>
     <hr>

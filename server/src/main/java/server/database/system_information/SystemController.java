@@ -44,15 +44,6 @@ public class SystemController {
     public String getAllSystemInformation() {
         Document systemInformationDocument = new Document();
         Document filterDoc = new Document();
-        Document reviewGroups = new Document();
-        Document reviewGroup = new Document();
-        Document reviewGroup2 = new Document();
-        reviewGroup.append("users", usersCollection.find().limit(4));
-        reviewGroup2.append("users", usersCollection.find().limit(2));
-
-        List<Document> array = new ArrayList<>();
-        array.add(reviewGroup);
-        array.add(reviewGroup2);
 
         filterDoc.append("isPrimarySubmission", true);
         systemInformationDocument.append("primarySubmissions", abstractCollection.count(filterDoc));
@@ -76,7 +67,7 @@ public class SystemController {
         filterDoc.append("Role", "reviewer");
         systemInformationDocument.append("reviewers", usersCollection.count(filterDoc));
 
-        systemInformationDocument.append("reviewGroups", array);
+        systemInformationDocument.append("reviewGroups", reviewGroupCollection.find());
 
         filterDoc.clear();
         filterDoc.append("ShirtSize", "xs");
