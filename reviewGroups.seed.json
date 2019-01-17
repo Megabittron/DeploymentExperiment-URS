@@ -1,0 +1,90 @@
+[
+    {
+        "name": "A",
+        "reviewers":
+        [
+            {
+                "_id": {
+                    "$oid": "5b4fafaa7ff1d34e9da88cca"
+                },
+                "SubjectID": "110073864477046231189",
+                "FirstName": "Charles",
+                "LastName": "Menne",
+                "ShirtSize": "m",
+                "Role": "admin"
+            },
+            {
+                "_id": {
+                    "$oid": "5b3524baee7cd3745132ed04"
+                },
+                "SubjectID": 75,
+                "FirstName": "Stevenson",
+                "LastName": "Oneal",
+                "ShirtSize": "s",
+                "Role": "reviewer"
+            },
+            {
+                "_id": {
+                    "$oid": "5b3524ba2265dc1618585d6e"
+                },
+                "SubjectID": 70,
+                "FirstName": "Rivers",
+                "LastName": "Michael",
+                "ShirtSize": "xs",
+                "Role": "reviewer"
+            }
+        ]
+    },
+    {
+        "name": "B",
+        "reviewers":
+        [
+            {
+                "_id": {
+                    "$oid": "5b3524ba4a335d8b0e8a8eb0"
+                },
+                "SubjectID": 59,
+                "FirstName": "Nichols",
+                "LastName": "Mendoza",
+                "ShirtSize": "xxl",
+                "Role": "reviewer"
+            },
+            {
+                "_id": {
+                    "$oid": "5b3524bad5309aaa0357a3c0"
+                },
+                "SubjectID": 58,
+                "FirstName": "Nikki",
+                "LastName": "Russell",
+                "ShirtSize": "l",
+                "Role": "reviewer"
+            },
+            {
+                "_id": {
+                    "$oid": "5b3524ba73e322e014586c39"
+                },
+                "SubjectID": 77,
+                "FirstName": "Kathleen",
+                "LastName": "Herman",
+                "ShirtSize": "s",
+                "Role": "reviewer"
+            }
+        ]
+    },
+    {
+        "name": "C",
+        "reviewers":
+        [
+            {
+                "_id": {
+                    "$oid": "5b3524ba76bdf718e137b492"
+                },
+                "SubjectID": 55,
+                "FirstName": "Angela",
+                "LastName": "Meadows",
+                "ShirtSize": "l",
+                "Role": "reviewer"
+            }
+        ]
+    }
+]
