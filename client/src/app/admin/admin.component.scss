@@ -6,6 +6,17 @@
     margin-left: 1em;
 }
 
-.users {
-    display: inline;
+.reviewer {
+    border: 2px solid black;
+}
+
+.review-groups {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.review-group {
+    margin-right: 5em;
+    text-align: center;
 }
