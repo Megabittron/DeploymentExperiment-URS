@@ -1,7 +1,6 @@
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {NavComponent} from './nav.component';
 import {CustomModule} from '../custom.module';
-import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
 import {AppModule} from "../app.module";
 import {RouterTestingModule} from "@angular/router/testing";
 import {routes} from "../app.routes";
@@ -19,7 +18,6 @@ describe('Nav', () => {
                 AppModule,
                 RouterTestingModule.withRoutes(routes)
             ],
-            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}],
         });
 
         fixture = TestBed.createComponent(NavComponent);
