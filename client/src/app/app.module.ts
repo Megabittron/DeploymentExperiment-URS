@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
-
-
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -49,8 +46,7 @@ import {AdminService} from "./admin/admin.service";
         UserIsLoggedInGuard,
         RoleGuard,
         AdminService,
-        {provide: APP_BASE_HREF, useValue: '/'},
-        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
+        {provide: APP_BASE_HREF, useValue: '/'}
     ],
     entryComponents: [],
     bootstrap: [AppComponent]

@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authenticationService.loadAuth2();
-
         this.authenticationService.renderSignIn();
 
         this.authenticationService.isLoaded$.subscribe( value => {
