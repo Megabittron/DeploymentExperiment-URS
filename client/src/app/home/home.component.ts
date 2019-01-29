@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AppService} from "../app.service";
 import {Router} from "@angular/router";
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-home-component',

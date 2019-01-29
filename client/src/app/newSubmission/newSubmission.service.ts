@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Submission} from './submission';
 import {environment} from '../../environments/environment';
-import 'rxjs/add/observable/of';
+
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class NewSubmissionService {
     readonly baseUrl: string = environment.API_URL + 'abstracts';
     private submissionUrl: string = this.baseUrl;
     private noID: boolean = false;
-    private emptyObservable: Observable<{'$oid': string}> = Observable.of({'$oid': ""});
+    private emptyObservable: Observable<{'$oid': string}>;
 
     constructor(private http: HttpClient) {
     }

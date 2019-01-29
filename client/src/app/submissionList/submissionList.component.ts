@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubmissionListService} from './submissionList.service';
 import {Submission} from '../newSubmission/submission';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {AppService} from '../app.service';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";

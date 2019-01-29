@@ -1,14 +1,13 @@
-import {Injectable, NgZone} from '@angular/core';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Injectable, NgZone, OnInit} from '@angular/core';
+import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
 import {environment} from '../environments/environment';
 import {User} from './user';
 import {Router} from "@angular/router";
 
 declare const gapi: any;
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService implements OnInit{
 
     public auth2: any;
     public user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -36,7 +35,7 @@ export class AuthenticationService {
     }
 
     signOut(): void {
-        this.auth2.signOut().then(() => {
+        gapi.auth2.getAuthInstance().signOut().then(() => {
                 this.zone.run(() => {
                     this.isLoggedIn$.next(false);
                     this.user$.next(null);
@@ -47,44 +46,76 @@ export class AuthenticationService {
             });
     }
 
-    loadAuth2(): void {
-        gapi.load('auth2', () => {
-            gapi.auth2.init({
-                client_id: '824929985356-3gcba0bncv685jv4261kg0om7j54vqr2.apps.googleusercontent.com',
-                fetch_basic_profile: true,
-                hosted_domain: 'morris.umn.edu'
-            }).then((auth) => {
-                    this.zone.run(() => {
-                        this.auth2 = auth;
-                        this.isLoaded$.next(true);
-                    });
-                },
-            );
+    loadAuth2(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.zone.run(() => {
+                gapi.load('auth2', {
+                    callback: resolve,
+                    onerror: reject,
+                    timeout: 1000,
+                    ontimeout: reject
+                });
+            });
         });
     }
 
-    renderSignIn() {
-        gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'light',
-            'onsuccess': user => {
-                this.validateToken(user.getAuthResponse().id_token).subscribe(user => {
-                        this.zone.run(() => {
-                            this.user$.next(user[0]);
-                            this.isLoggedIn$.next(true);
-                        });
-                    },
-                    (err) => {
-                        console.log(err);
-                    });
-            },
-            'onfailure': param => {
-                console.log('FAILED TO SIGN IN!!!');
-                console.log(param);
-            }
+    initAuth2(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.zone.run(() => {
+                gapi.auth2.init({
+                    client_id: '824929985356-3gcba0bncv685jv4261kg0om7j54vqr2.apps.googleusercontent.com',
+                    fetch_basic_profile: true,
+                    hosted_domain: 'morris.umn.edu'
+                }).then(googleAuth => {
+                    console.log(googleAuth);
+                    this.auth2 = googleAuth;
+                    resolve();
+                }, () => {
+                    reject();
+                });
+            });
         });
+    }
+
+    renderSignIn(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.zone.run(() => {
+                    gapi.signin2.render('my-signin2', {
+                        'scope': 'profile email',
+                        'width': 240,
+                        'height': 50,
+                        'longtitle': true,
+                        'theme': 'light',
+                        'onsuccess': user => {
+                            this.validateToken(user.getAuthResponse().id_token).subscribe(user => {
+                                    this.zone.run(() => {
+                                        this.user$.next(user[0]);
+                                        this.isLoggedIn$.next(true);
+                                        resolve();
+                                    });
+                                },
+                                (err) => {
+                                    console.log(err);
+                                });
+                        },
+                        'onfailure': () => {
+                            console.log('FAILED TO SIGN IN!!!');
+                            reject();
+                        }
+                    });
+            })
+        })
+    }
+
+    ngOnInit(): void {
+        this.loadAuth2().then(() => {
+            return this.initAuth2();
+        },
+            () => {}).then(() => {
+                this.isLoaded$.next(true);
+        },
+            () => {
+                this.isLoaded$.next(false);
+            });
     }
 }
