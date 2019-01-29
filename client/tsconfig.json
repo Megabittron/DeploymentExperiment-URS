@@ -1,27 +1,30 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "outDir": "./dist/out-tsc",
-        "sourceMap": true,
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "target": "es5",
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "gapi",
-            "gapi.auth2",
-            "jasmine"
-        ],
-        "lib": [
-            "es2017",
-            "dom"
-        ]
-    },
-    "angularCompilerOptions": {
-        "preserveWhitespaces": false
-    }
+  "compileOnSave": false,
+  "compilerOptions": {
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "gapi",
+      "gapi.auth2",
+      "jasmine"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "module": "es2015",
+    "baseUrl": "./"
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": false
+  }
 }
