@@ -1,2 +1,2 @@
 #!/bin/bash
-~/server/bin/server
+/usr/local/deploy-user/server/bin/server
