@@ -1,102 +1,39 @@
-.bg {
-    /* The image used */
-    background-image: url('../../assets/research.png');
-    filter: blur(6px);
-
-    /* Full height */
-    height: 92%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.tint {
-    position: absolute;
-    top: 57px;
-    left: 0;
-    background-color: rgba(129, 0, 32, 0.11);
-    height: 94%;
-    width: 100%;
-    z-index: 0;
-}
-
-.sign-in {
-    text-align: center;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-}
-
-#my-signin2 {
-    display: inline-block;
-}
-
-.sign-in-request {
-    color: white;
-    font-family: "Montserrat Medium";
-    font-size: 150%;
-}
-
-.content {
-    max-height: 20%;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-family: "Montserrat Black";
-    font-size: 200%;
-    color: #ffffff;
-}
-
-.welcome-explanation {
-    font-family: "Montserrat SemiBold";
-}
-
-/*.morris-logo {
-    max-width: 108px;
-}
-
-.background {
-    width: 100%;
+.login-page {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
-.main-content {
+.main {
+    background-image: linear-gradient(rgba(122, 0, 25, 0.61), rgba(122, 118, 10, 0.5)),
+                        url("../../assets/research.png");
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #7a0019;
+    flex-direction: column;
     display: flex;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 75vh;
-    min-height: 550px;
+    font-size: 1.6rem;
+    overflow-y: auto;
 }
 
-.welcome-content {
-    max-width: 550px;
-    padding-right: 15%;
+.content {
+    text-align: center;
 }
 
-.welcome-title {
-    size: 30px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 50px;
+.sign-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.welcome-explanation {
-    max-width: 500px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 30px;
+.nav-bar {
+    background-color: #7a0019;
+    height: 8vh;
 }
-
-.sign-in-text {
-    font-size: 20px;
-}
-
-.urs-logo {
-    max-width: 550px;
-}*/
