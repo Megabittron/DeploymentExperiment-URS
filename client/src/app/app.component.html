@@ -14,9 +14,9 @@
 <body>
 <header class="umnhf" id="umnhf-h" role="banner">
     <div id="skipLinks"><a href="#main-nav">Main navigation</a><a href="#main-content">Main content</a></div>
-    <div class="printer"><div class="left"></div><div class="right"><strong>University of Minnesota</strong><br />http://twin-cities.umn.edu/<br />612-625-5000</div></div>
+    <div class="printer"><div class="left"></div><div class="right"><strong>University of Minnesota Morris</strong><br />http://www.morris.umn.edu/index.php<br />888-866-3382</div></div>
     <div class="umnhf" id="umnhf-h-mast">
-        <a class="umnhf" id="umnhf-h-logo" href="http://twin-cities.umn.edu/"><span>Go to the U of M home page</span></a>
+        <a class="umnhf" id="umnhf-h-logo" href="http://www.morris.umn.edu/index.php/"><span>Go to the U of M Morris home page</span></a>
         <ul class="umnhf" id="umnhf-h-ql">
             <li><a href="http://onestop.umn.edu/">One Stop</a></li>
             <li class="umnhf"><a href="https://www.myu.umn.edu/">MyU <span></span></a></li>
@@ -30,11 +30,13 @@
         <input class="umnhf" id="umnhf-h-sb" type="submit" value="">
     </form>
 </header>
-<a name="main-nav"></a>
+<a name="main-nav">
+    <app-nav *ngIf="isLoggedIn"></app-nav>
+</a>
 <a name="main-content"></a>
 <main id="umn-main" role="main"></main>
 
-<app-nav *ngIf="isLoggedIn"></app-nav>
+
 <div class="router-outlet" *ngIf="isLoggedIn">
     <router-outlet ></router-outlet>
 </div>
@@ -50,6 +52,7 @@
         </ul>
     </nav>
     <small>&copy; <span id="cdate">2019</span> Regents of the University of Minnesota. All rights reserved. The University of Minnesota is an equal opportunity educator and employer. <a href="http://privacy.umn.edu">Privacy Statement</a></small>
+    <small><a id="report-web-disability-issue" href="http://oit-drupal-prd-web.oit.umn.edu/indexAccess.php?ref_url=">Report Web Disability-Related Issue</a></small>
 </footer>
 
 </body>

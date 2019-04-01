@@ -35,6 +35,7 @@ export class NavComponent implements OnInit{
 
     signOut(): void {
         this.authenticationService.signOut();
+        this.router.navigate(['/']);
     }
 
     ngOnInit() {
