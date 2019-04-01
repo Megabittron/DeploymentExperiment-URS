@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
     }
 
     setHref(href: string): any {
-        console.log('set');
         document.getElementById("report-web-disability-issue").setAttribute('href', "http://oit-drupal-prd-web.oit.umn.edu/indexAccess.php?ref_url=" + href);
     }
 
