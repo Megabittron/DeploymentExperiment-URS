@@ -10,3 +10,12 @@ html, body {
     height: 100vh;
 }
 
+@media only screen and (max-width: 960px) {
+    .nav-active mat-icon {
+        color: #434343 !important;
+    }
+
+    .nav-active .link-name{
+        color: #434343;
+    }
+}

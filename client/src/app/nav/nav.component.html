@@ -1,5 +1,5 @@
 
-<mat-toolbar color="accent" class="navigation">
+<mat-toolbar *ngIf="!isMobile" color="accent" class="navigation">
     <a class="urs" color="primary"  routerLink="/"><b>UNDERGRAD REASEARCH SYMPOSIUM</b></a>
     <span class="spacer"></span>
     <a color="primary"  routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
@@ -23,6 +23,33 @@
         <div class="account-tab"></div>
         <div class="triangle"></div>
     </div>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="isMobile" class="navigation">
+    <a routerLink="/accountInfo" class="route" routerLinkActive="nav-active">
+        <mat-icon>account_box</mat-icon>
+        <div class="link-name">
+            PROFILE
+        </div>
+    </a>
+    <a routerLink="/" class="route" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>home</mat-icon>
+        <div class="link-name">
+            HOME
+        </div>
+    </a>
+    <a routerLink="/submissionList" class="route" routerLinkActive="nav-active">
+        <mat-icon>view_list</mat-icon>
+        <div class="link-name">
+            SUBMISSIONS
+        </div>
+    </a>
+    <a *ngIf="isAdmin()" class="route" routerLink="/admin" routerLinkActive="nav-active">
+        <mat-icon>dashboard</mat-icon>
+        <div class="link-name">
+            ADMIN
+        </div>
+    </a>
 </mat-toolbar>
 
 

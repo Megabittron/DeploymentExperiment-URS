@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {Router} from "@angular/router";
+import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
+import {Observable} from "rxjs/Rx";
 
 declare const gapi: any;
 @Component({
@@ -16,9 +18,12 @@ export class NavComponent implements OnInit{
     public isLoggedIn: boolean = false;
     public user: User;
     public profilePic: string = null;
+    public breakPointState: Observable<BreakpointState> = this.breakPointObserver.observe('(max-width: 960px)');
+    public isMobile: boolean;
 
     constructor(private authenticationService: AuthenticationService,
-                private router: Router) {
+                private router: Router,
+                private breakPointObserver: BreakpointObserver) {
         this.text = 'Nav';
 
     }
@@ -54,7 +59,11 @@ export class NavComponent implements OnInit{
                 this.profilePic = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getImageUrl();
             }
 
-        })
+        });
+
+        this.breakPointState.subscribe(result => {
+            this.isMobile = result.matches;
+        });
     }
 
 }
