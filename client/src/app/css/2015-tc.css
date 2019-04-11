@@ -772,3 +772,13 @@ body {
     padding-bottom: 0;
   }
 }
+
+@media all and (max-width: 960px){
+  #umnhf-f small:last-child {
+    padding-bottom: 100px; /* Raise footer above bottom navbar */
+  }
+}
+
+#umnhf-f small a {
+    font-weight: bold;
+}
