@@ -1,14 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SystemInfoComponent } from './system-info.component';
+import {AdminService} from "../admin/admin.service";
+import {Observable} from "rxjs/Rx";
+import {SystemInformation} from "../admin/systemInformation";
+
 
 describe('SystemInfoComponent', () => {
   let component: SystemInfoComponent;
   let fixture: ComponentFixture<SystemInfoComponent>;
 
+  let adminServiceStub: {
+      getSystemInformation: () => Observable<SystemInformation>;
+  }
+
   beforeEach(async(() => {
+      adminServiceStub = {
+
+          getSystemInformation: () => new Observable<SystemInformation>()
+      };
+
     TestBed.configureTestingModule({
-      declarations: [ SystemInfoComponent ]
+      declarations: [ SystemInfoComponent ],
+        providers: [{provide: AdminService, useValue: adminServiceStub}]
     })
     .compileComponents();
   }));
