@@ -1,22 +1,22 @@
-.admin-section > h1{
-    text-align: center;
-}
-
-.admin-section {
-    margin-left: 1em;
-}
-
-.reviewer {
-    border: 2px solid black;
-}
-
-.review-groups {
+.admin {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    height: 100%;
+    max-width: 1151px;
+    margin: 30px auto;
 }
 
-.review-group {
-    margin-right: 5em;
-    text-align: center;
+.components {
+    width: 75%;
 }
+
+.routes {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.routes a {
+    background-color: white;
+}
+
+

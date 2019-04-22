@@ -1,41 +1,10 @@
-<section *ngIf="systemInformation" class="admin-section">
-    <h1>System Information</h1>
-    <section>
-        <h2><u>All Submission Statistics</u></h2>
-        <p>Primary submissions: {{systemInformation.primarySubmissions}}</p>
-        <p>Submissions stored: {{systemInformation.submissionStored}}</p>
-        <p>Percentage of stored submissions that are primary submissions: {{getPrimarySubmissionPercent()}}</p>
-        <p>Number of submissions currently flagged for re-submission: {{systemInformation.submissionsFlagged}}</p>
+<div class="admin">
+    <section class="routes">
+        <a>System Information</a>
+        <a>Edit Review Groups</a>
     </section>
-    <hr>
-    <section>
-        <h2><u>User Statistics</u></h2>
-        <p>Total users: {{systemInformation.totalUsers}}</p>
-        <p>Users: {{systemInformation.users}}</p>
-        <p>Admins: {{systemInformation.admins}}</p>
-        <p>Chairs: {{systemInformation.chairs}}</p>
-        <p>Reviewers: {{systemInformation.reviewers}}</p>
-    </section>
-    <hr>
-    <section>
-        <h2><u>Review Groups</u></h2>
-        <div class="review-groups">
-            <div class="review-group" *ngFor="let reviewGroup of systemInformation.reviewGroups">
-                <p>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</p>
-                <p class="reviewer" *ngFor="let reviewer of reviewGroup.reviewers">
-                    {{reviewer.FirstName}} {{reviewer.LastName}}
-                </p>
-            </div>
-        </div>
-    </section>
-    <hr>
-    <section>
-        <h2><u>T-Shirt Statistics</u></h2>
-        <p>XXL: {{systemInformation.xxl}}</p>
-        <p>XL: {{systemInformation.xl}}</p>
-        <p>L: {{systemInformation.l}}</p>
-        <p>M: {{systemInformation.m}}</p>
-        <p>S: {{systemInformation.s}}</p>
-        <p>XS: {{systemInformation.xs}}</p>
-    </section>
-</section>
+    <div class="components">
+        <router-outlet name="admin"></router-outlet>
+    </div>
+</div>
+
