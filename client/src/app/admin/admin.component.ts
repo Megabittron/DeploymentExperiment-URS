@@ -4,6 +4,8 @@ import {AdminService} from "./admin.service";
 import {RandomizeReviewGroupsComponent} from "./randomize-review-groups.component";
 import {MatDialog} from "@angular/material";
 
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 @Component({
     selector: 'app-admin-component',
     templateUrl: 'admin.component.html',
@@ -11,6 +13,33 @@ import {MatDialog} from "@angular/material";
     providers: []
 })
 export class AdminComponent implements OnInit {
+
+    //TODO: Bind the data to real reviewers
+    groupAData = [
+        'Hardcoded Reviewer 1',
+        'Hardcoded Reviewer 2'
+    ];
+
+    groupBData = [
+        'Hardcoded Reviewer 3',
+        'Hardcoded Reviewer 4'
+    ];
+
+    groupCData = [
+        'Hardcoded Reviewer 5',
+        'Hardcoded Reviewer 6'
+    ];
+
+    drop(event: CdkDragDrop<string[]>) {
+        if (event.previousContainer === event.container) {
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        } else {
+            transferArrayItem(event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex);
+        }
+    }
 
     public systemInformation: SystemInformation;
 
