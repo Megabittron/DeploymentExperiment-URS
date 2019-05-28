@@ -12,7 +12,7 @@ import {
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const FLEX_LAYOUT_MODULES: any[] = [
@@ -57,6 +57,8 @@ const COVALENT_MODULES: any[] = [
         MATERIAL_MODULES,
         COVALENT_MODULES,
         FLEX_LAYOUT_MODULES,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
 

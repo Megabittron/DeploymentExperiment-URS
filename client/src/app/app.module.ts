@@ -20,6 +20,7 @@ import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
 import { RoleGuard } from './role.guard';
 import {AccountInfoService} from "./accountInfo/account-info.service";
 import {AdminService} from "./admin/admin.service";
+import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import {AdminService} from "./admin/admin.service";
         SubmissionListComponent,
         NewSubmissionComponent,
         NavComponent,
-        LoginComponent
+        LoginComponent,
+        RandomizeReviewGroupsComponent
     ],
     providers: [
         AuthenticationService,
@@ -48,7 +50,7 @@ import {AdminService} from "./admin/admin.service";
         AdminService,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
-    entryComponents: [],
+    entryComponents: [RandomizeReviewGroupsComponent],
     bootstrap: [AppComponent]
 })
 
