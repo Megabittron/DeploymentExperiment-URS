@@ -32,46 +32,20 @@
 
         <br>
 
-        <div class="example-container">
-            <h2>Group A</h2>
-
-            <div
-                cdkDropList
-                #groupA="cdkDropList"
-                [cdkDropListData]="groupAData"
-                [cdkDropListConnectedTo]="[groupB, groupC]"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of groupAData" cdkDrag>{{item}}</div>
+        <div *ngFor="let reviewGroup of systemInformation.reviewGroups">
+            <div class="example-container">
+                <h2>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers</h2>
+                <div
+                    cdkDropList
+                    #groupA="cdkDropList"
+                    [cdkDropListData]="groupAData"
+                    [cdkDropListConnectedTo]="[groupB, groupC]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of groupAData" cdkDrag>{{item}}</div>
+                </div>
             </div>
-        </div>
 
-        <div class="example-container">
-            <h2>Group B</h2>
-
-            <div
-                cdkDropList
-                #groupB="cdkDropList"
-                [cdkDropListData]="groupBData"
-                [cdkDropListConnectedTo]="[groupA, groupC]"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of groupBData" cdkDrag>{{item}}</div>
-            </div>
-        </div>
-
-        <div class="example-container">
-            <h2>Group C</h2>
-
-            <div
-                cdkDropList
-                #groupC="cdkDropList"
-                [cdkDropListData]="groupCData"
-                [cdkDropListConnectedTo]="[groupA, groupB]"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of groupCData" cdkDrag>{{item}}</div>
-            </div>
         </div>
     </section>
     <hr>
