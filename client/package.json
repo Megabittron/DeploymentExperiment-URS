@@ -27,7 +27,7 @@
     "@angular/platform-server": "^7.2.2",
     "@angular/router": "7.2.2",
     "@covalent/core": "^2.0.1",
-    "@types/core-js": "^0.9.46",
+    "@types/core-js": "^2.5.1",
     "@types/gapi": "0.0.35",
     "@types/gapi.auth2": "0.0.47",
     "core-js": "^2.4.1",
