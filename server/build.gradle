@@ -13,9 +13,9 @@ mainClassName = 'server.database.Server'
 dependencies {
     compile 'com.sparkjava:spark-core:2.6.0'
     compile 'com.sparkjava:spark-debug-tools:0.5'
-    compile 'org.slf4j:slf4j-simple:1.7.25'
+    compile 'org.slf4j:slf4j-simple:1.7.26'
     compile 'com.google.code.gson:gson:2.8.5'
-    compile 'org.mongodb:mongodb-driver:3.4.2'
+    compile 'org.mongodb:mongodb-driver:3.10.2'
     compile 'com.google.apis:google-api-services-oauth2:v1-rev139-1.23.0'
     compile 'org.json:json:20180813'
 
