@@ -1,1 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.router-outlet, app-login {
+    flex: 1 1 auto;
+}
+
+#umnhf-f {
+    background: #efefef;
+}
 

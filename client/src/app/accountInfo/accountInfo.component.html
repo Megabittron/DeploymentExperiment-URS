@@ -1,23 +1,26 @@
-<div class="account-info-header">
-    <div class="account-info-header-container">
-        <div class="profile-pic-wrapper">
-            <img class="profile-pic" [src]="profilePic">
-        </div>
-        <div class="profile-details">
-            <h1 class="profile-name" *ngIf="user">{{getName()}}</h1>
-            <h3 class="profile-role" *ngIf="user && user.Role != 'user'">Role: {{getRole()}}</h3>
-            <div class="profile-shirt-size">
-                <h3 *ngIf="user && !isEditing">Shirt Size: {{getShirtSize()}}</h3>
-                <h3 *ngIf="user && isEditing">Shirt Size: </h3>
-                <div class="edit-form" *ngIf="isEditing">
-                    <mat-select [(value)]="user.ShirtSize" (selectionChange)="saveUserShirtSize($event.source.value)">
-                        <mat-option *ngFor="let size of shirtSizes" [value]="size.value">
-                            {{size.viewValue}}
-                        </mat-option>
-                    </mat-select>
+<section class="account-info">
+    <div class="account-info-header">
+        <div class="account-info-header-container">
+            <div class="profile-pic-wrapper">
+                <img class="profile-pic" [src]="profilePic">
+            </div>
+            <div class="profile-details">
+                <h1 class="profile-name" *ngIf="user">{{getName()}}</h1>
+                <h3 class="profile-role" *ngIf="user && user.Role != 'user'">Role: {{getRole()}}</h3>
+                <div class="profile-shirt-size">
+                    <h3 *ngIf="user && !isEditing">Shirt Size: {{getShirtSize()}}</h3>
+                    <h3 *ngIf="user && isEditing">Shirt Size: </h3>
+                    <div class="edit-form" *ngIf="isEditing">
+                        <mat-select [(value)]="user.ShirtSize"
+                                    (selectionChange)="saveUserShirtSize($event.source.value)">
+                            <mat-option *ngFor="let size of shirtSizes" [value]="size.value">
+                                {{size.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <mat-icon class="edit-icon" *ngIf="!isEditing" (click)="changeEditState()">edit</mat-icon>
                 </div>
-                <mat-icon class="edit-icon" *ngIf="!isEditing" (click)="changeEditState()">edit</mat-icon>
             </div>
         </div>
     </div>
-</div>
+</section>

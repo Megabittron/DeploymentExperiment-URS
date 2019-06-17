@@ -1,3 +1,59 @@
-<app-nav *ngIf="isLoggedIn"></app-nav>
-<router-outlet *ngIf="isLoggedIn"></router-outlet>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>University of Minnesota</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <base href="/">
+    <link type="text/css" href="/css/2015-tc.css">
+    <link type="text/css" href="/css/ie8.css">
+    <script src="/js/umnhf-2015.js" type="text/javascript"></script>
+    <script src="/js/html5shiv-printshiv.js" type="text/javascript"></script>
+</head>
+<body>
+<header class="umnhf" id="umnhf-h" role="banner">
+    <div id="skipLinks"><a href="#main-nav">Main navigation</a><a href="#main-content">Main content</a></div>
+    <div class="printer"><div class="left"></div><div class="right"><strong>University of Minnesota Morris</strong><br />http://www.morris.umn.edu/index.php<br />888-866-3382</div></div>
+    <div class="umnhf" id="umnhf-h-mast">
+        <a class="umnhf" id="umnhf-h-logo" href="http://www.morris.umn.edu/index.php/"><span>Go to the U of M Morris home page</span></a>
+        <ul class="umnhf" id="umnhf-h-ql">
+            <li><a href="http://onestop.morris.umn.edu/">One Stop</a></li>
+            <li class="umnhf"><a href="https://www.myu.umn.edu/">MyU <span></span></a></li>
+        </ul>
+        <button class="umnhf" id="umnhf-m-search">Search</button>
+    </div>
+    <form class="umnhf" id="umnhf-h-search" action="//search.umn.edu/tc/" method="get" title="Search Websites and People" role="search">
+        <label class="umnhf" for="umnhf-h-st">Search</label>
+        <input class="umnhf" id="umnhf-h-st" type="text" name="q" />
+        <label class="umnhf" for="umnhf-h-sb">Submit search query</label>
+        <input class="umnhf" id="umnhf-h-sb" type="submit" value="" label="Search">
+    </form>
+</header>
+<a name="main-nav">
+    <app-nav *ngIf="isLoggedIn"></app-nav>
+</a>
+<a name="main-content"></a>
+<main id="umn-main" role="main"></main>
+
+
+<div class="router-outlet" *ngIf="isLoggedIn">
+    <router-outlet ></router-outlet>
+</div>
 <app-login *ngIf="!isLoggedIn"></app-login>
+
+
+<footer id="umnhf-f" class="umnhf" role="contentinfo">
+    <nav id="umnhf-f-myu">
+        <h3 class="umnhf-f-title visually-hidden">For Students, Faculty, and Staff</h3>
+        <ul>
+            <li><a href="http://onestop.morris.umn.edu/">One Stop</a></li>
+            <li><a href="https://www.myu.umn.edu/">My U <span></span></a></li>
+        </ul>
+    </nav>
+    <small>&copy; <span id="cdate">2019</span> Regents of the University of Minnesota. All rights reserved. The University of Minnesota is an equal opportunity educator and employer. <a href="http://privacy.umn.edu">Privacy Statement</a></small>
+    <small><a id="report-web-disability-issue" href="http://oit-drupal-prd-web.oit.umn.edu/indexAccess.php?ref_url=">Report Web Disability-Related Issue</a></small>
+</footer>
+
+</body>
+</html>
