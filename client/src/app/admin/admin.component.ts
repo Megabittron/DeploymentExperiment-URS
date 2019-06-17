@@ -49,12 +49,12 @@ export class AdminComponent implements OnInit {
         return (this.systemInformation.primarySubmissions/this.systemInformation.submissionStored*100).toFixed(2);
     }
 
-    openRandomizeDialog(): void {
-        console.log("openDeleteDialog");
-        const dialogRef = this.dialog.open(RandomizeReviewGroupsComponent, {
-            width: '500px'
-        });
-    }
+    // openRandomizeDialog(): void {
+    //     console.log("openDeleteDialog");
+    //     const dialogRef = this.dialog.open(RandomizeReviewGroupsComponent, {
+    //         width: '500px'
+    //     });
+    // }
 
     ngOnInit(): void {
         this.adminService.getSystemInformation().subscribe(info => {
