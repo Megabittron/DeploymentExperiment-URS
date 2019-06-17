@@ -5,6 +5,10 @@
     color: mat-color($accent) !important;
 }
 
+html {
+    font-size: 100%;
+}
+
 html, body {
     background-color: #efefef;
     height: 100vh;
