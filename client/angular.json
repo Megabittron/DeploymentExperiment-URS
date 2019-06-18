@@ -22,10 +22,13 @@
             ],
             "styles": [
               "node_modules/@covalent/core/common/platform.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+                "src/app/css/2015-tc.css"
             ],
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+                "src/app/js/umnhf-2015.js",
+                "src/app/js/html5shiv-printshiv.js"
             ]
           },
           "configurations": {

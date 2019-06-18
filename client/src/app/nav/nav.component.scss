@@ -122,3 +122,59 @@ a:hover {
 .spacer {
     flex: 1 1 auto;
 }
+
+@media only screen and (max-width: 960px) {
+    .navigation {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        z-index: 1;
+        position: fixed;
+        bottom: 0;
+    }
+
+    a:not(:first-child) {
+        margin: 0px;
+
+    }
+
+    a {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        color: #a8a8a8;
+        font-size: 0.75em;
+        font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    mat-toolbar {
+        height: 60px;
+        background-color: white;
+        border-top: 1px #c4c4c4 solid;
+    }
+
+    mat-icon {
+        margin-bottom: -4px;
+        font-size: 1.25em;
+    }
+
+    .route {
+        border-bottom: 10px transparent solid;
+    }
+
+    .nav-active {
+        border-bottom: 10px #810020 solid;
+    }
+
+    .link-name {
+        margin-bottom: -1em;
+    }
+
+    a:hover {
+        color: black;
+    }
+}

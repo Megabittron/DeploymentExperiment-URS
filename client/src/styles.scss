@@ -5,7 +5,21 @@
     color: mat-color($accent) !important;
 }
 
-html, body {
-    background-color: #efefef;
+html {
+    font-size: 100%;
 }
 
+html, body {
+    background-color: #efefef;
+    height: 100vh;
+}
+
+@media only screen and (max-width: 960px) {
+    .nav-active mat-icon {
+        color: #434343 !important;
+    }
+
+    .nav-active .link-name{
+        color: #434343;
+    }
+}
