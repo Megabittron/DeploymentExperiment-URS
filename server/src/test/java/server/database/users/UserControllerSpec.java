@@ -1,5 +1,6 @@
 package server.database.users;
 
+import com.mongodb.util.JSON;
 import server.database.users.UserController;
 
 import com.mongodb.BasicDBObject;
@@ -75,9 +76,10 @@ public class UserControllerSpec {
     }
 
     @Test
-    public void getUserThatExists() {
+    public void getUser() {
         String desiredUser = userController.getUser("5b199522a21a8c67f0ec85b1");
         assertNotNull("getUser should have found a user ", desiredUser);
+        System.out.println("Desired user: " + desiredUser);
 
         String nonExistingUser = userController.getUser("6b199532a21a8c76f0ec85b9");
         assertEquals("[ ]", nonExistingUser); //TODO: Please look over the assertion syntax
