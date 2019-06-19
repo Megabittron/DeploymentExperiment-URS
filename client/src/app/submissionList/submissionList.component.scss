@@ -10,7 +10,7 @@
 .submission-card-container > div {
     background-color: white;
     max-width: 800px;
-    min-width: 400px;
+    min-width: 300px; //iPhone 5/SE is 320px wide, screen would get cut off at higher than 320px
     width: 100%;
     border: 1px solid #4b4b4b;
     border-bottom: 0;
