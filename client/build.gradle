@@ -19,7 +19,7 @@ task clean(type: Delete) {
 task runClient(type: Exec, dependsOn: yarn_install) {
     group = 'application'
     executable "ng"
-    args = ["serve"]
+    args = ["serve", "--poll=2000"]
 }
 
 task runClientTestsAndWatch(type: NpmTask) {
