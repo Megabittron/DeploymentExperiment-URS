@@ -5,6 +5,7 @@ import {RandomizeReviewGroupsComponent} from "./randomize-review-groups.componen
 import {MatDialog} from "@angular/material";
 
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {User} from "../user";
 
 @Component({
     selector: 'app-admin-component',
@@ -16,7 +17,8 @@ export class AdminComponent implements OnInit {
 
     connectedTo = []; //https://www.freakyjolly.com/angular-7-drag-and-drop-across-multi-lists-in-angular-material-7/
 
-    drop(event: CdkDragDrop<string[]>) {
+    //
+    drop(event: CdkDragDrop<Array<User>, any>) {
         if (event.previousContainer === event.container) {
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
