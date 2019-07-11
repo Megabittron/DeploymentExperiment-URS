@@ -17,36 +17,25 @@
         <p>Reviewers: {{systemInformation.reviewers}}</p>
     </section>
     <hr>
-    <section>
-        <h2><u>Review Groups</u></h2>
-        <div class="review-groups">
-            <div class="review-group" *ngFor="let reviewGroup of systemInformation.reviewGroups">
-                <p>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</p>
-                <p class="reviewer" *ngFor="let reviewer of reviewGroup.reviewers">
-                    {{reviewer.FirstName}} {{reviewer.LastName}}
-                </p>
-            </div>
-        </div>
-        <!--<button mat-raised-button (click)="openRandomizeDialog()" style="background: #ffd75f">-->
-            <!--Randomize Review Groups [WIP]</button>-->
+    <section *ngFor="let reviewGroup of systemInformation.reviewGroups">
 
-        <br>
+        <div class="example-container">
+            <h2>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</h2>
 
-        <div *ngFor="let reviewGroup of systemInformation.reviewGroups">
-            <div class="example-container">
-                <h2>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers</h2>
-                <div
-                    cdkDropList
-                    #groupA="cdkDropList"
-                    [cdkDropListData]="groupAData"
-                    [cdkDropListConnectedTo]="[groupB, groupC]"
-                    class="example-list"
-                    (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let item of groupAData" cdkDrag>{{item}}</div>
+            <!-- Code Spy @ https://stackoverflow.com/a/55649389/8273171 on  Apr 12 at 10:15 -->
+            <div
+                cdkDropList
+                id="{{reviewGroup.name}}"
+                [cdkDropListData]="reviewGroup.reviewers"
+                [cdkDropListConnectedTo]="connectedTo"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of reviewGroup.reviewers" cdkDrag>
+                    {{item.FirstName}} {{item.LastName}}
                 </div>
             </div>
-
         </div>
+
     </section>
     <hr>
     <section>

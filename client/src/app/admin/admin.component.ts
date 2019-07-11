@@ -14,21 +14,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class AdminComponent implements OnInit {
 
-    //TODO: Bind the data to real reviewers
-    groupAData = [
-        'Hardcoded Reviewer 1',
-        'Hardcoded Reviewer 2'
-    ];
-
-    groupBData = [
-        'Hardcoded Reviewer 3',
-        'Hardcoded Reviewer 4'
-    ];
-
-    groupCData = [
-        'Hardcoded Reviewer 5',
-        'Hardcoded Reviewer 6'
-    ];
+    connectedTo = []; //Code Spy @ https://stackoverflow.com/a/55649389/8273171 on  Apr 12 at 10:15
 
     drop(event: CdkDragDrop<string[]>) {
         if (event.previousContainer === event.container) {
@@ -46,7 +32,13 @@ export class AdminComponent implements OnInit {
     constructor(private adminService: AdminService, public dialog: MatDialog) {}
 
     getPrimarySubmissionPercent(): string {
-        return (this.systemInformation.primarySubmissions/this.systemInformation.submissionStored*100).toFixed(2);
+
+        for (let i of this.systemInformation.reviewGroups) {
+            this.connectedTo.push(i.name); //Code Spy @ https://stackoverflow.com/a/55649389/8273171 on  Apr 12 at 10:15
+        }
+
+        return (this.systemInformation.primarySubmissions
+            /this.systemInformation.submissionStored*100).toFixed(2);
     }
 
     // openRandomizeDialog(): void {
