@@ -14,7 +14,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class AdminComponent implements OnInit {
 
-    connectedTo = []; //Code Spy @ https://stackoverflow.com/a/55649389/8273171 on  Apr 12 at 10:15
+    connectedTo = []; //https://www.freakyjolly.com/angular-7-drag-and-drop-across-multi-lists-in-angular-material-7/
 
     drop(event: CdkDragDrop<string[]>) {
         if (event.previousContainer === event.container) {
@@ -34,7 +34,7 @@ export class AdminComponent implements OnInit {
     getPrimarySubmissionPercent(): string {
 
         for (let i of this.systemInformation.reviewGroups) {
-            this.connectedTo.push(i.name); //Code Spy @ https://stackoverflow.com/a/55649389/8273171 on  Apr 12 at 10:15
+            this.connectedTo.push(i.name); //https://www.freakyjolly.com/angular-7-drag-and-drop-across-multi-lists-in-angular-material-7/
         }
 
         return (this.systemInformation.primarySubmissions
