@@ -62,7 +62,11 @@ public class Server {
             return "OK";
         });
 
-        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "http://localhost:9000");
+            response.header("Access-Control-Allow-Credentials", "true");
+            }
+        );
 
         // Redirects for the "home" page
         redirect.get("", "/");
