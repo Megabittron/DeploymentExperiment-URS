@@ -18,6 +18,8 @@
     </section>
     <hr>
     <h2><u>Review Groups</u></h2>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+
     <section *ngFor="let reviewGroup of systemInformation.reviewGroups">
         <div class="example-container">
             <h3>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</h3>
@@ -35,8 +37,8 @@
                 </div>
             </div>
         </div>
-
     </section>
+
     <hr>
     <section>
         <h2><u>T-Shirt Statistics</u></h2>

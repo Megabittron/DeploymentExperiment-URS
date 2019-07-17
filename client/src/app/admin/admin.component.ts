@@ -33,6 +33,20 @@ export class AdminComponent implements OnInit {
 
     constructor(private adminService: AdminService, public dialog: MatDialog) {}
 
+    openDialog(): void {
+        const dialogRef = this.dialog.open(SaveReviewGroupsDialog, {
+            // width: '250px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if(result) {
+                console.log('Review groups SAVED');
+            } else {
+                console.log('Review groups NOT saved');
+            }
+        });
+    }
+
     getPrimarySubmissionPercent(): string {
 
         for (let i of this.systemInformation.reviewGroups) {
@@ -55,4 +69,12 @@ export class AdminComponent implements OnInit {
             this.systemInformation = info;
         });
     }
+}
+
+@Component({
+    selector: 'save-review-group-dialog',
+    templateUrl: 'save-review-group-dialog.html',
+})
+export class SaveReviewGroupsDialog {
+
 }

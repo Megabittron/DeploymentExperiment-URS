@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
-import {AdminComponent} from './admin/admin.component';
+import {AdminComponent, SaveReviewGroupsDialog} from './admin/admin.component';
 import {SubmissionListComponent} from './submissionList/submissionList.component';
 import {SubmissionListService} from './submissionList/submissionList.service';
 import {AccountInfoComponent} from './accountInfo/accountInfo.component';
@@ -38,7 +38,8 @@ import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.co
         NewSubmissionComponent,
         NavComponent,
         LoginComponent,
-        RandomizeReviewGroupsComponent
+        RandomizeReviewGroupsComponent,
+        SaveReviewGroupsDialog
     ],
     providers: [
         AuthenticationService,
@@ -50,7 +51,7 @@ import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.co
         AdminService,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
-    entryComponents: [RandomizeReviewGroupsComponent],
+    entryComponents: [RandomizeReviewGroupsComponent, SaveReviewGroupsDialog],
     bootstrap: [AppComponent]
 })
 
