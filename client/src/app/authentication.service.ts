@@ -30,8 +30,8 @@ export class AuthenticationService implements OnInit{
 
     }
 
-    validateToken(token: String): Observable<User> {
-        return this.http.get<User>(environment.API_URL + 'login/' + token);
+    validateToken(id_token: String): Observable<User> {
+        return this.http.post<User>(environment.API_URL + 'login', {id_token: id_token});
     }
 
     signOut(): void {
@@ -40,6 +40,8 @@ export class AuthenticationService implements OnInit{
                     this.isLoggedIn$.next(false);
                     this.user$.next(null);
                 });
+
+                this.http.post(environment.API_URL + 'logout', {isSignedIn: false}, {responseType: 'text'}).subscribe();
             },
             (err) => {
                 console.log(err);
