@@ -1,6 +1,7 @@
 package server.database.login;
 
-import com.mongodb.util.JSON;
+import com.mongodb.BasicDBObject;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
@@ -27,10 +28,36 @@ public class LoginRequestHandler {
 
     public String loginUser(Request req, Response res) {
         res.type("application/json");
-        String idTokenString = req.params("token");
-        String verifyResponse = loginController.verifyIdToken(idTokenString);
+
+        String idTokenString;
+        String verifyResponse;
+
+        try {
+            BasicDBObject tokenJSON = BasicDBObject.parse(req.body());
+            idTokenString = tokenJSON.getString("id_token");
+
+            verifyResponse = loginController.verifyIdToken(idTokenString);
+
+            if (verifyResponse != null) {
+                JSONArray userArray = new JSONArray(verifyResponse);
+                JSONObject userObject = userArray.getJSONObject(0);
+
+                req.session().attribute("isSignedIn", true);
+                req.session().attribute("Role", userObject.getString("Role"));
+                req.session().attribute("SubjectID", userObject.getString("SubjectID"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
         return verifyResponse;
+    }
 
+    public String logoutUser(Request req, Response res) {
+        req.session().invalidate();
+
+        return "OK";
     }
 }

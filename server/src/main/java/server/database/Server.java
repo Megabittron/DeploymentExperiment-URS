@@ -62,7 +62,22 @@ public class Server {
             return "OK";
         });
 
-        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        before((request, response) -> {
+            String requestMethod = request.requestMethod();
+            String requestURI = request.uri();
+            boolean authenticated;
+
+            response.header("Access-Control-Allow-Origin", "http://localhost:9000");
+            response.header("Access-Control-Allow-Credentials", "true");
+
+            if (!requestMethod.equals("OPTIONS") && !requestURI.equals("/api/login")) {
+                authenticated = request.session().attribute("isSignedIn") != null;
+
+                if (!authenticated) {
+                    halt(401, "You are not welcome here");
+                }
+            }
+        });
 
         // Redirects for the "home" page
         redirect.get("", "/");
@@ -96,7 +111,8 @@ public class Server {
         get("api/abstracts/:id", abstractRequestHandler::getAbstractJSON);
         post("api/abstracts/new", abstractRequestHandler::addNewAbstract);
 
-        get("api/login/:token", loginRequestHandler::loginUser);
+        post("api/login", loginRequestHandler::loginUser);
+        post("api/logout", loginRequestHandler::logoutUser);
 
         get("api/system-information", systemRequestHandler::getSystemInformation);
 

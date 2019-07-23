@@ -6,7 +6,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.mongodb.client.MongoDatabase;
 import server.database.users.UserController;
 
 import java.io.FileReader;
@@ -14,8 +13,8 @@ import java.util.Collections;
 
 public class LoginController {
 
-    // Construct controller for login.
     private final UserController userController;
+
     public LoginController(UserController userController){
         this.userController = userController;
     }
@@ -42,8 +41,8 @@ public class LoginController {
                 GoogleIdToken.Payload payload = idToken.getPayload();
 
                 if (payload.getHostedDomain().equals("morris.umn.edu")) {
-                    String user = userController.getUserBySub(payload.getSubject());
                     String subjectID = payload.getSubject();
+                    String user = userController.getUserBySub(subjectID);
                     String firstName = (String) payload.get("given_name");
                     String lastName = (String) payload.get("family_name");
 
@@ -58,7 +57,9 @@ public class LoginController {
                 System.out.println("Invalid ID token.");
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+
+            return null;
         }
 
 
