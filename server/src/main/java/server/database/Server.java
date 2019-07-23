@@ -63,10 +63,21 @@ public class Server {
         });
 
         before((request, response) -> {
+            String requestMethod = request.requestMethod();
+            String requestURI = request.uri();
+            boolean authenticated;
+
             response.header("Access-Control-Allow-Origin", "http://localhost:9000");
             response.header("Access-Control-Allow-Credentials", "true");
+
+            if (!requestMethod.equals("OPTIONS") && !requestURI.equals("/api/login")) {
+                authenticated = request.session().attribute("isSignedIn") != null;
+
+                if (!authenticated) {
+                    halt(401, "You are not welcome here");
+                }
             }
-        );
+        });
 
         // Redirects for the "home" page
         redirect.get("", "/");
