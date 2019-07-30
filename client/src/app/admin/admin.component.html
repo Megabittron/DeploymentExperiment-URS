@@ -18,7 +18,7 @@
     </section>
     <hr>
     <h2><u>Review Groups</u></h2>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
+    <button mat-raised-button (click)="openDialog()">Save Groups</button>
 
     <section *ngFor="let reviewGroup of systemInformation.reviewGroups">
         <div class="example-container">
@@ -32,8 +32,10 @@
                 [cdkDropListConnectedTo]="connectedTo"
                 class="example-list"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of reviewGroup.reviewers" cdkDrag>
+                <div class="example-box" *ngFor="let item of reviewGroup.reviewers"
+                     cdkDrag [cdkDragData]="reviewGroup" >
                     {{item.FirstName}} {{item.LastName}}
+                    {{reviewGroup.name}}
                 </div>
             </div>
         </div>
