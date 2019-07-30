@@ -99,6 +99,8 @@ public class Server {
         get("api/login/:token", loginRequestHandler::loginUser);
 
         get("api/system-information", systemRequestHandler::getSystemInformation);
+        get("api/review-groups", systemRequestHandler::getReviewGroups);
+        post("api/review-groups/editReviewGroups", systemRequestHandler::editReviewGroups);
 
         get("api/error", (req, res) -> {
             throw new RuntimeException("A demonstration error");
