@@ -1,25 +1,14 @@
 package server.database.system_information;
 
 import com.google.gson.Gson;
-import com.mongodb.MongoException;
-import com.mongodb.client.FindIterable;
+import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.UpdateResult;
 import com.mongodb.util.JSON;
-import org.bson.BsonDocument;
 import org.bson.Document;
-import org.bson.types.ObjectId;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import javax.print.Doc;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 
 public class SystemController {
 
@@ -28,7 +17,7 @@ public class SystemController {
 
     private final MongoCollection<Document> abstractCollection;
     private final MongoCollection<Document> usersCollection;
-    private final MongoCollection<Document> reviewGroupCollection;
+    private MongoCollection<Document> reviewGroupCollection;
 
 
     // Construct controller for user.
@@ -39,7 +28,6 @@ public class SystemController {
         usersCollection = database.getCollection("users");
         reviewGroupCollection = database.getCollection("reviewGroups");
     }
-
 
     public String getAllSystemInformation() {
         Document systemInformationDocument = new Document();
@@ -94,5 +82,49 @@ public class SystemController {
         systemInformationDocument.append("xxl", usersCollection.count(filterDoc));
 
         return JSON.serialize(systemInformationDocument);
+    }
+
+    public String getReviewGroups() {
+        Document reviewGroupsDocument = new Document();
+
+        reviewGroupsDocument.append("reviewGroups", reviewGroupCollection.find());
+
+        return JSON.serialize(reviewGroupsDocument);
+    }
+
+    Boolean editReviewGroups(BasicDBList changedReviewGroups) {
+
+        try {
+            for(int i = 0; i < changedReviewGroups.size(); i++) { //for each review group
+                Object reviewGroupObject = changedReviewGroups.get(i); //get a particular group
+
+                if(reviewGroupObject.getClass().equals(BasicDBObject.class)) {
+                    try {
+                        //cast it as a BasicDBObject
+                        BasicDBObject reviewGroupBasicDBO = (BasicDBObject) reviewGroupObject;
+                        //get the group's name
+                        String revGroupName = reviewGroupBasicDBO.getString("name");
+                        //set that BDBObject as what will replace the old one
+                        BasicDBObject updateSetValue = new BasicDBObject("$set", reviewGroupBasicDBO);
+                        //update the old review group by its name with the new one
+                        UpdateResult updateResult =
+                            reviewGroupCollection.updateMany(in("name", revGroupName), updateSetValue);
+                        //This logs out an acknowledgment of changes. Not needed strictly. Without it, the IDE may
+                        //make it look like updateResults is not used as it would be greyed out.
+                        //However, even though updateResult is not used any bit later it still updates the groups.
+                        System.out.println(updateResult);
+                    } catch(NullPointerException e) {
+                        return null;
+                    }
+                } else {
+                    System.err.println("Expected BasicDBObject, received " + changedReviewGroups.getClass());
+                    return null;
+                }
+            }
+        } catch(RuntimeException ree) {
+            ree.printStackTrace();
+            return null;
+        }
+        return true;
     }
 }
