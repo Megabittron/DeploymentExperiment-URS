@@ -17,7 +17,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
     private static final String databaseName = "dev";
@@ -40,9 +39,7 @@ public class Server {
         SystemController systemController = new SystemController(database);
         SystemRequestHandler systemRequestHandler = new SystemRequestHandler(systemController);
 
-        //Configure Spark
         port(serverPort);
-        enableDebugScreen();
 
         // Specify where assets like images will be "stored"
         staticFiles.location("/public");
