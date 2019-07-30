@@ -102,8 +102,8 @@ public class Server {
         //api routes
 
         get("api/users", userRequestHandler::getUsers);
-        get("api/user/:_id", userRequestHandler::getUserJSON);
-        put("api/user/:_id", userRequestHandler::editUsertShirtSize);
+        get("api/users/:_id", userRequestHandler::getUserJSON);
+        put("api/users/:_id", userRequestHandler::editUsertShirtSize);
 
         // Abstracts Endpoints
 

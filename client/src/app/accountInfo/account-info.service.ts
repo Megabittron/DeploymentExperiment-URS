@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class AccountInfoService {
-    readonly baseUrl: string = environment.API_URL + 'user/';
+    readonly baseUrl: string = environment.API_URL + 'users/';
     private editUserUrl: string = this.baseUrl;
 
     constructor(private http: HttpClient) {
