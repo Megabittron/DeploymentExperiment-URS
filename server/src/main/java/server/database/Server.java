@@ -75,8 +75,7 @@ public class Server {
                 }
             }
         });
-
-        // Redirects for the "home" page
+        
         redirect.get("", "/");
 
         Route clientRoute = (req, res) -> {
@@ -92,17 +91,10 @@ public class Server {
 
         get("/", clientRoute);
 
-        /// User Endpoints ///////////////////////////
-
-
-        //We will be taking this out later for security purposes but for the time being it is serving as the only
-        //api routes
 
         get("api/users", userRequestHandler::getUsers);
         get("api/users/:_id", userRequestHandler::getUserJSON);
         put("api/users/:_id", userRequestHandler::editUsertShirtSize);
-
-        // Abstracts Endpoints
 
         get("api/abstracts", abstractRequestHandler::getAbstracts);
         get("api/abstracts/:id", abstractRequestHandler::getAbstractJSON);
@@ -120,8 +112,6 @@ public class Server {
         // Called after each request to insert the GZIP header into the response.
         // This causes the response to be compressed _if_ the client specified
         // in their request that they can accept compressed responses.
-        // There's a similar "before" method that can be used to modify requests
-        // before they they're processed by things like `get`.
         after("*", Server::addGzipHeader);
 
         get("api/*", notFoundRoute);
