@@ -19,7 +19,6 @@ public class LoginRequestHandler {
 
     /**
      * Method called from Server when the 'api/login' endpoint is received.
-     * Get a JSON response with a list of all the users in the database.
      *
      * @param req the HTTP request
      * @param res the HTTP response
