@@ -65,7 +65,7 @@ public class Server {
 
             if (!reqMethod.equals("OPTIONS") && !reqURI.equals("/api/login")) {
                 authenticated = req.session().attribute("isSignedIn") != null;
-                System.out.println(req.headers("Accept-Encoding"));
+                
                 if (!authenticated) {
                     halt(401, "You are not welcome here");
                 }
