@@ -21,6 +21,7 @@ import { RoleGuard } from './role.guard';
 import {AccountInfoService} from "./accountInfo/account-info.service";
 import {AdminService} from "./admin/admin.service";
 import {CredentialInterceptor} from "./interceptors/credential-interceptor";
+import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import {CredentialInterceptor} from "./interceptors/credential-interceptor";
         SubmissionListComponent,
         NewSubmissionComponent,
         NavComponent,
-        LoginComponent
+        LoginComponent,
+        SubmissionViewComponent
     ],
     providers: [
         AuthenticationService,
@@ -47,6 +49,7 @@ import {CredentialInterceptor} from "./interceptors/credential-interceptor";
         UserIsLoggedInGuard,
         RoleGuard,
         AdminService,
+        SubmissionListService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CredentialInterceptor,

@@ -2,15 +2,16 @@
     <div class="status-legend">
 
     </div>
+
     <div class="submission-card-container">
-        <div class="submission-card" *ngFor="let submission of submissions">
-            <div class="status-bar"></div>
-            <div class="submission-card-content">
-                <p><i>{{submission.presentationTitle}}</i></p>
-                <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
-                <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
-                <p>Submission Date: {{fixDate(submission.timestamp)}}</p>
-            </div>
+        <div class="submission-card" *ngFor="let submission of submissions" routerLink="/abstract/{{submission._id}}">
+                <div class="status-bar"></div>
+                <div class="submission-card-content">
+                    <p><i>{{submission.presentationTitle}}</i></p>
+                    <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+                    <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
+                    <p>Submission Date: {{fixDate(submission.timestamp)}}</p>
+                </div>
         </div>
     </div>
 </div>
