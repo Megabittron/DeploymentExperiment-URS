@@ -15,23 +15,20 @@ public class UserController {
     private final Gson gson;
     private MongoDatabase database;
 
-    // userCollection is the collection that the users data is in.
-
     private final MongoCollection<Document> userCollection;
 
-    // Construct controller for user.
     public UserController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
         userCollection = database.getCollection("users");
     }
 
-    /**  Helper method that gets a single user specified by the `id`
+    /**  Helper method that gets a single user specified by the `subjectID`
      //     * parameter in the request.
      //     *
-     //     * @param id the Mongo ID of the desired user
-     //     * @return the desired user as a JSON object if the user with that ID is found,
-     //     * and `null` if no user with that ID is found
+     //     * @param subjectID the Google subjectID of the desired user
+     //     * @return the desired user as a JSON object if the user with that subjectID is found,
+     //     * and `null` if no user with that subjectID is found
      //     */
     public String getUserBySub(String subjectID) {
         Document filterDoc = new Document();
@@ -67,8 +64,6 @@ public class UserController {
             filterDoc = filterDoc.append("company", contentRegQuery);
         }
 
-        //FindIterable comes from mongo, Document comes from Gson
-
         FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
 
         return JSON.serialize(matchingUsers);
@@ -76,8 +71,6 @@ public class UserController {
 
     public String addNewUser(String subjectID, String firstName, String lastName) {
 
-
-        // by default a user is given an empty tshirt size and the role of a user
         Document newUser = new Document();
         newUser.append("SubjectID", subjectID);
         newUser.append("FirstName", firstName);
@@ -97,7 +90,6 @@ public class UserController {
         }
     }
 
-    //edits user t-shirt size settings
     public String editUsertShirtSize(String userID, String size) {
 
         Document filterDoc = new Document();
@@ -115,7 +107,6 @@ public class UserController {
         Document setQuery = new Document();
         setQuery.append("$set", newtShirtSize);
 
-        //Document searchQuery = new Document().append("_id", new ObjectId(id));
         Document searchQuery = new Document().append("_id", new ObjectId(id));
 
         try {
@@ -126,7 +117,7 @@ public class UserController {
             return null;
         }
     }
-    // changing a user's role setting
+
     public String editUserrole(String userID, String position) {
 
         Document filterDoc = new Document();
@@ -144,7 +135,6 @@ public class UserController {
         Document setQuery = new Document();
         setQuery.append("$set", newrole);
 
-        //Document searchQuery = new Document().append("_id", new ObjectId(id));
         Document searchQuery = new Document().append("_id", new ObjectId(id));
 
         try {

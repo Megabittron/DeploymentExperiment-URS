@@ -5,9 +5,6 @@ import com.mongodb.util.JSON;
 import spark.Request;
 import spark.Response;
 
-/**
- *
- */
 public class UserRequestHandler {
 
     private final UserController userController;
@@ -42,11 +39,10 @@ public class UserRequestHandler {
 
 
     /**Method called from Server when the 'api/users' endpoint is received.
-     * This handles the request received and the response
-     * that will be sent back.
+     *
      *@param req the HTTP request
      * @param res the HTTP response
-     * @return an array of users in JSON formatted String
+     * @return an array of users in a JSON formatted String
      */
     public String getUsers(Request req, Response res)
     {
@@ -54,10 +50,6 @@ public class UserRequestHandler {
         return userController.getUsers(req.queryMap().toMap());
     }
 
-
-    /*
-        changes a user's tShirtSize settings
-     */
     public String editUsertShirtSize(Request req, Response res){
         res.type("application/json");
         Object o = JSON.parse(req.body());
@@ -94,9 +86,6 @@ public class UserRequestHandler {
 
     }
 
-    /*
-        changes a user's role settings
-     */
     public String editUserrole(Request req, Response res){
         res.type("application/json");
         Object o = JSON.parse(req.body());
