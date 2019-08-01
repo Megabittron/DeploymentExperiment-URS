@@ -14,36 +14,6 @@ public class UserRequestHandler {
     public UserRequestHandler(UserController userController){
         this.userController = userController;
     }
-    /**Method called from Server when the 'api/users/:id' endpoint is received.
-     * Get a JSON response with a list of all the users in the database.
-     *
-     * @param req the HTTP request
-     * @param res the HTTP response
-     * @return one user in JSON formatted string and if it fails it will return text with a different HTTP status code
-     */
-    public String getUserJSON(Request req, Response res){
-        res.type("application/json");
-        String id = req.params("_id");
-        String user;
-        try {
-            user = userController.getUser(id);
-        } catch (IllegalArgumentException e) {
-            // This is thrown if the ID doesn't have the appropriate
-            // form for a Mongo Object ID.
-            // https://docs.mongodb.com/manual/reference/method/ObjectId/
-            res.status(400);
-            res.body("The requested user id " + id + " wasn't a legal Mongo Object ID.\n" +
-                "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
-            return "";
-        }
-        if (user != null) {
-            return user;
-        } else {
-            res.status(404);
-            res.body("The requested user with id " + id + " was not found");
-            return "";
-        }
-    }
 
     public String getUserBySubjectID(Request req, Response res){
         res.type("application/json");

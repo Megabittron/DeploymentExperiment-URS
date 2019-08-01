@@ -8,11 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-
-import java.util.Iterator;
 import java.util.Map;
-
-import static com.mongodb.client.model.Filters.eq;
 
 public class UserController {
 
@@ -28,21 +24,6 @@ public class UserController {
         gson = new Gson();
         this.database = database;
         userCollection = database.getCollection("users");
-    }
-
-    /**  Helper method that gets a single user specified by the `id`
-     //     * parameter in the request.
-     //     *
-     //     * @param id the Mongo ID of the desired user
-     //     * @return the desired user as a JSON object if the user with that ID is found,
-     //     * and `null` if no user with that ID is found
-     //     */
-    public String getUser(String id) {
-        ObjectId idToFind = new ObjectId(id);
-
-        FindIterable<Document> user = userCollection.find(eq("_id", idToFind));
-
-        return JSON.serialize(user);
     }
 
     /**  Helper method that gets a single user specified by the `id`

@@ -93,7 +93,6 @@ public class Server {
 
 
         get("api/users", userRequestHandler::getUsers);
-        get("api/users/:_id", userRequestHandler::getUserJSON);
         put("api/users/:_id", userRequestHandler::editUsertShirtSize);
 
         get("api/abstracts", abstractRequestHandler::getAbstracts);
