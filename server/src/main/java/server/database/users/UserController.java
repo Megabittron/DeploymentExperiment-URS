@@ -30,9 +30,15 @@ public class UserController {
         Document filterDoc = new Document();
         filterDoc.append("SubjectID", subjectID);
 
-        FindIterable<Document> user = userCollection.find(filterDoc);
+        FindIterable<Document> user = userCollection.find(filterDoc).limit(1);
 
-        return JSON.serialize(user);
+        String userJSON = "";
+
+        for (Document doc: user) {
+            userJSON = doc.toJson();
+        }
+
+        return userJSON;
     }
 
     /**
