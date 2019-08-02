@@ -1,12 +1,13 @@
 package server.database.users;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
 import java.util.Map;
 
 public class UserController {
@@ -56,7 +57,7 @@ public class UserController {
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("SubjectID")) {
-            int targetAge = Integer.parseInt(queryParams.get("SubjectID")[0]);
+            String targetAge = queryParams.get("SubjectID")[0];
             filterDoc = filterDoc.append("SubjectID", targetAge);
         }
 
@@ -65,12 +66,17 @@ public class UserController {
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("company", contentRegQuery);
+            filterDoc = filterDoc.append("FirstName", contentRegQuery);
         }
 
         FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
+        JSONArray userArr = new JSONArray();
 
-        return JSON.serialize(matchingUsers);
+        for (Document user: matchingUsers) {
+            userArr.put(user);
+        }
+
+        return userArr.toString();
     }
 
     public String addNewUser(String subjectID, String firstName, String lastName) {
@@ -87,7 +93,7 @@ public class UserController {
             ObjectId id = newUser.getObjectId("_id");
             System.err.println("Successfully added new user [_id= " + id + ", SubjectID= " + subjectID + ", FirstName= " + firstName + ", LastName= " + lastName + "]");
 
-            return JSON.serialize(id);
+            return new BasicDBObject("_id", id).toJson();
         } catch (MongoException e) {
             e.printStackTrace();
             return null;
@@ -120,7 +126,7 @@ public class UserController {
             searchQuery.append("_id", new ObjectId(id));
             userCollection.updateOne(searchQuery, setQuery);
 
-            return JSON.serialize(field);
+            return new BasicDBObject("ShirtSize",field).toJson();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
 
