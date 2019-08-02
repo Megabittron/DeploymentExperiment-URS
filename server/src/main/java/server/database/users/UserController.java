@@ -1,6 +1,5 @@
 package server.database.users;
 
-import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -12,14 +11,9 @@ import java.util.Map;
 
 public class UserController {
 
-    private final Gson gson;
-    private MongoDatabase database;
-
     private final MongoCollection<Document> userCollection;
 
     public UserController(MongoDatabase database) {
-        gson = new Gson();
-        this.database = database;
         userCollection = database.getCollection("users");
     }
 
