@@ -1,8 +1,6 @@
 package server.database.login;
 
 import com.mongodb.BasicDBObject;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
@@ -38,8 +36,8 @@ public class LoginRequestHandler {
             verifyResponse = loginController.verifyIdToken(idTokenString);
 
             if (verifyResponse != null) {
-                JSONArray userArray = new JSONArray(verifyResponse);
-                JSONObject userObject = userArray.getJSONObject(0);
+
+                BasicDBObject userObject = BasicDBObject.parse(verifyResponse);
 
                 req.session().attribute("isSignedIn", true);
                 req.session().attribute("Role", userObject.getString("Role"));

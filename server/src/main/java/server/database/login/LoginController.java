@@ -46,7 +46,7 @@ public class LoginController {
                     String firstName = (String) payload.get("given_name");
                     String lastName = (String) payload.get("family_name");
 
-                    if (user.equals("[ ]")) {
+                    if (user.equals("")) {
                         userController.addNewUser(subjectID, firstName, lastName);
                         user = userController.getUserBySub(payload.getSubject());
                     }
