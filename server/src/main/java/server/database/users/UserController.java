@@ -52,7 +52,7 @@ public class UserController {
      * //     * @return an array of Users in a JSON formatted string
      * //
      */
-    public String getUsers(Map<String, String[]> queryParams) {
+    String getUsers(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -100,7 +100,7 @@ public class UserController {
         }
     }
 
-    public String editUsertShirtSize(String userID, String size) {
+    String editUsertShirtSize(String userID, String size) {
 
         Document newtShirtSize = new Document();
         newtShirtSize.append("ShirtSize", size);
@@ -108,7 +108,7 @@ public class UserController {
         return updateUserField(size, userID, newtShirtSize);
     }
 
-    public String editUserrole(String userID, String position) {
+    String editUserrole(String userID, String position) {
 
         Document newrole = new Document();
         newrole.append("role", position);
