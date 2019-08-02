@@ -98,18 +98,7 @@ public class UserController {
         Document newtShirtSize = new Document();
         newtShirtSize.append("ShirtSize", size);
 
-        Document setQuery = new Document();
-        setQuery.append("$set", newtShirtSize);
-
-        Document searchQuery = new Document().append("_id", new ObjectId(id));
-
-        try {
-            userCollection.updateOne(searchQuery, setQuery);
-            return JSON.serialize(size);
-        } catch(MongoException me) {
-            me.printStackTrace();
-            return null;
-        }
+        return updateUserField(size, id, newtShirtSize);
     }
 
     public String editUserrole(String userID, String position) {
@@ -126,15 +115,19 @@ public class UserController {
         Document newrole = new Document();
         newrole.append("role", position);
 
+        return updateUserField(position, id, newrole);
+    }
+
+    private String updateUserField(String field, String id, Document updateDoc) {
         Document setQuery = new Document();
-        setQuery.append("$set", newrole);
+        setQuery.append("$set", updateDoc);
 
         Document searchQuery = new Document().append("_id", new ObjectId(id));
 
         try {
             userCollection.updateOne(searchQuery, setQuery);
 
-            return JSON.serialize(position);
+            return JSON.serialize(field);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;
