@@ -17,13 +17,15 @@ public class UserController {
         userCollection = database.getCollection("users");
     }
 
-    /**  Helper method that gets a single user specified by the `subjectID`
-     //     * parameter in the request.
-     //     *
-     //     * @param subjectID the Google subjectID of the desired user
-     //     * @return the desired user as a JSON object if the user with that subjectID is found,
-     //     * and `null` if no user with that subjectID is found
-     //     */
+    /**
+     * Helper method that gets a single user specified by the `subjectID`
+     * //     * parameter in the request.
+     * //     *
+     * //     * @param subjectID the Google subjectID of the desired user
+     * //     * @return the desired user as a JSON object if the user with that subjectID is found,
+     * //     * and `null` if no user with that subjectID is found
+     * //
+     */
     public String getUserBySub(String subjectID) {
         Document filterDoc = new Document();
         filterDoc.append("SubjectID", subjectID);
@@ -33,14 +35,16 @@ public class UserController {
         return JSON.serialize(user);
     }
 
-    /** Helper method which iterates through the collection, receiving all
-     //     * documents if no query parameter is specified. If the SubjectID query parameter
-     //     * is specified, then the collection is filtered so only documents of that
-     //     * specified SubjectID are found.
-     //     *
-     //     * @param queryParams
-     //     * @return an array of Users in a JSON formatted string
-     //     */
+    /**
+     * Helper method which iterates through the collection, receiving all
+     * //     * documents if no query parameter is specified. If the SubjectID query parameter
+     * //     * is specified, then the collection is filtered so only documents of that
+     * //     * specified SubjectID are found.
+     * //     *
+     * //     * @param queryParams
+     * //     * @return an array of Users in a JSON formatted string
+     * //
+     */
     public String getUsers(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
@@ -78,58 +82,46 @@ public class UserController {
             System.err.println("Successfully added new user [_id= " + id + ", SubjectID= " + subjectID + ", FirstName= " + firstName + ", LastName= " + lastName + "]");
 
             return JSON.serialize(id);
-        } catch(MongoException me) {
-            me.printStackTrace();
+        } catch (MongoException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
     public String editUsertShirtSize(String userID, String size) {
 
-        Document filterDoc = new Document();
-        String id;
-
-        if (!(userID == "")) {
-            id = userID;
-        } else {
-            return JSON.serialize("[ ]");
-        }
-
         Document newtShirtSize = new Document();
         newtShirtSize.append("ShirtSize", size);
 
-        return updateUserField(size, id, newtShirtSize);
+        return updateUserField(size, userID, newtShirtSize);
     }
 
     public String editUserrole(String userID, String position) {
 
-        Document filterDoc = new Document();
-        String id;
-
-        if (!(userID == "")) {
-            id = userID;
-        } else {
-            return JSON.serialize("[ ]");
-        }
-
         Document newrole = new Document();
         newrole.append("role", position);
 
-        return updateUserField(position, id, newrole);
+        return updateUserField(position, userID, newrole);
     }
 
     private String updateUserField(String field, String id, Document updateDoc) {
         Document setQuery = new Document();
+        Document searchQuery = new Document();
+
         setQuery.append("$set", updateDoc);
 
-        Document searchQuery = new Document().append("_id", new ObjectId(id));
-
         try {
+            searchQuery.append("_id", new ObjectId(id));
             userCollection.updateOne(searchQuery, setQuery);
 
             return JSON.serialize(field);
-        } catch(MongoException me) {
-            me.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+
+            return new Document().toJson();
+        } catch (MongoException e) {
+            e.printStackTrace();
+
             return null;
         }
     }
