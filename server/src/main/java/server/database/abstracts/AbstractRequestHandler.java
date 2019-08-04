@@ -136,7 +136,7 @@ public class AbstractRequestHandler {
                 featurePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
                 secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,
                 additionalInfo, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
-                comments, isPrimarySubmission, resubmitFlag).toString();
+                comments, isPrimarySubmission, resubmitFlag);
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
             return null;
@@ -214,7 +214,7 @@ public class AbstractRequestHandler {
                 firstPresenterEmail, secondPresenterFirstName, secondPresenterLastName, secondPresenterEmail
                 , thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, firstAdviserFirstName,
                 firstAdviserLastName, firstAdviserEmail, secondAdviserFirstName, secondAdviserLastName, secondAdviserEmail
-            ).toString();
+            );
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
             return null;
