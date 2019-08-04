@@ -1,20 +1,16 @@
 package server.database.abstracts;
 
 import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-
-import javax.print.Doc;
+import org.json.JSONArray;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
-
-import static com.mongodb.client.model.Filters.eq;
 
 public class AbstractController {
     private final Gson gson;
@@ -40,7 +36,7 @@ public class AbstractController {
 
         FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
-        return JSON.serialize(abstracts);
+        return newAbstractArray(abstracts);
     }
 
     /**
@@ -59,10 +55,7 @@ public class AbstractController {
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("userID", contentRegQuery);
-        }/* else {
-            System.out.println("It had no userID");
-            return JSON.serialize("[]");
-        }*/
+        }
 
         if (queryParams.containsKey("title")) {
             String targetContent = (queryParams.get("title")[0]);
@@ -354,11 +347,9 @@ public class AbstractController {
             filterDoc = filterDoc.append("secondAdviserEmail", contentRegQuery);
         }
 
-        //FindIterable comes from mongo, Document comes from Gson
-
         FindIterable<Document> matchingAbstracts = abstractCollection.find(filterDoc);
 
-        return JSON.serialize(matchingAbstracts);
+        return newAbstractArray(matchingAbstracts);
 
     }
 
@@ -477,7 +468,7 @@ public class AbstractController {
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
                 + ", resubmitFlag=" + resubmitFlag + ']');
 
-            return JSON.serialize(id);
+            return new BasicDBObject("_id", id).toJson();
 
         } catch (MongoException me) {
 
@@ -599,13 +590,11 @@ public class AbstractController {
                 + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
-            return JSON.serialize(id1);
-        } catch(MongoException me) {
+            return new BasicDBObject("_id", id1).toJson();
+        } catch (MongoException me) {
             me.printStackTrace();
             return null;
         }
-
-
     }
 
     /**
@@ -613,7 +602,7 @@ public class AbstractController {
      *
      * @param id MongoDB ObjectId for abstract to be deleted
      */
-    public void deleteAbstract(String id){
+    public void deleteAbstract(String id) {
         Document searchQuery = new Document().append("_id", new ObjectId(id));
         System.out.println("Abstract id: " + id);
         try {
@@ -621,10 +610,26 @@ public class AbstractController {
             ObjectId theID = searchQuery.getObjectId("_id");
             System.out.println("Succesfully deleted abstract with ID: " + theID);
 
-        } catch(MongoException me) {
+        } catch (MongoException me) {
             me.printStackTrace();
             System.out.println("error");
         }
+    }
+
+    /**
+     * Helper method to create array of abstracts
+     *
+     * @param abstracts FindIterable of MongoDB Documents
+     * @return Array of abstracts as a JSON formatted string
+     */
+    private String newAbstractArray(FindIterable<Document> abstracts) {
+        JSONArray abstractsArr = new JSONArray();
+
+        for (Document _abstract : abstracts) {
+            abstractsArr.put(_abstract);
+        }
+
+        return abstractsArr.toString();
     }
 
 }
