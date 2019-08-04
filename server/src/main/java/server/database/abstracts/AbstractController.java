@@ -20,11 +20,8 @@ public class AbstractController {
     private final Gson gson;
     private MongoDatabase database;
 
-    // AbstractCollection is the collection that the collection data is in"
-
     private final MongoCollection<Document> abstractCollection;
 
-    // Construct Abstract controller for the Abstracts:
     public AbstractController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
@@ -32,15 +29,11 @@ public class AbstractController {
     }
 
     /**
-     * Helper method that gets a single abstract specified by the `id` specific user ID
-     * //     * parameter in the request.
-     * //     *
-     * //     * @param id the Mongo ID of the desired Abstract
-     * //     * @return the desired Abstract as a JSON object if the user with that ID is found,
-     * //     * and `null` if no user with that ID is found
-     * //
+     * Helper method called by getAbstractJSON(..)
+     *
+     * @param id Users SubjectID
+     * @return Array of abstracts by userID as a JSON formatted string
      */
-
     public String getAbstractsForUser(String id) {
         Document filterDoc = new Document();
         filterDoc.append("userID", id);
@@ -51,16 +44,11 @@ public class AbstractController {
     }
 
     /**
-     * Helper method which iterates through the collection, receiving all
-     * //     * documents if no query parameter is specified. If the userID query parameter
-     * //     * is specified, then the collection is filtered so only documents of that
-     * //     * specified userID are found.
-     * //     *
-     * //     * @param queryParams
-     * //     * @return an array of Abstracts in a JSON formatted string
-     * //
+     * Helper method called by getAbstracts(..)
+     *
+     * @param queryParams Map of request params
+     * @return Array of abstracts based on on query params as a JSON formatted string
      */
-
     public String getAbstracts(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
@@ -375,8 +363,8 @@ public class AbstractController {
     }
 
     /**
-     * // Function that adds new Abstract to the Abstract collection
-     * // with specific userID and automated time stamp
+     * Helper method called by addNewAbstract(..)
+     *
      */
     public String addNewAbstract(String userID,
                                  String presentationTitle,
@@ -500,6 +488,8 @@ public class AbstractController {
     }
 
     /**
+     * Helper method called by editAbstract(..)
+     *
      * // Function that edits existing Abstract to the Abstract collection
      * // with specific userID and automated time stamp. Only specific fields would be allowed
      * // to be edited with specific userIDs but for the time being this function allows
@@ -619,12 +609,10 @@ public class AbstractController {
     }
 
     /**
-     * // Function that deletes existing Abstract from the Abstract collection
-     * // with specific userID and automated time stamp. Only specific fields would be allowed
-     * // to be deleted with specific userID but for the time being this function allows
-     * // to delete with the option of all the available abstracts with the default userID
+     * Helper method called by deleteAbstract(..)
+     *
+     * @param id MongoDB ObjectId for abstract to be deleted
      */
-
     public void deleteAbstract(String id){
         Document searchQuery = new Document().append("_id", new ObjectId(id));
         System.out.println("Abstract id: " + id);
