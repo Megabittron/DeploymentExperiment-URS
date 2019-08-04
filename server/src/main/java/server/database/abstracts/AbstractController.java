@@ -30,7 +30,7 @@ public class AbstractController {
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    public String getAbstractsForUser(String id) {
+    String getAbstractsForUser(String id) {
         Document filterDoc = new Document();
         filterDoc.append("userID", id);
 
@@ -45,7 +45,7 @@ public class AbstractController {
      * @param queryParams Map of request params
      * @return Array of abstracts based on on query params as a JSON formatted string
      */
-    public String getAbstracts(Map<String, String[]> queryParams) {
+    String getAbstracts(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -357,48 +357,48 @@ public class AbstractController {
      * Helper method called by addNewAbstract(..)
      *
      */
-    public String addNewAbstract(String userID,
-                                 String presentationTitle,
-                                 String abstractContent,
-                                 String submissionFormat,
-                                 String presentationType,
-                                 String changePresentationFormat,
-                                 String firstPresenterFirstName,
-                                 String firstPresenterLastName,
-                                 String firstPresenterEmail,
-                                 String secondPresenterFirstName,
-                                 String secondPresenterLastName,
-                                 String secondPresenterEmail,
-                                 String thirdPresenterFirstName,
-                                 String thirdPresenterLastName,
-                                 String thirdPresenterEmail,
-                                 String academicDiscipline,
-                                 String featurePresenter,
-                                 String sponOrganization,
-                                 String firstAdvisorFirstName,
-                                 String firstAdvisorLastName,
-                                 String firstAdvisorEmail,
-                                 String secondAdvisorFirstName,
-                                 String secondAdvisorLastName,
-                                 String secondAdvisorEmail,
-                                 String thirdAdvisorFirstName,
-                                 String thirdAdvisorLastName,
-                                 String thirdAdvisorEmail,
-                                 String additionalMediaEquipment,
-                                 String additionalInfo,
-                                 String other,
-                                 String approval,
-                                 String cc,
-                                 String rejection,
-                                 String group,
-                                 String roomAssignment,
-                                 String totalRewriteVotes,
-                                 String majorRewriteVotes,
-                                 String minorRewriteVotes,
-                                 String acceptedVotes,
-                                 String comments,
-                                 String isPrimarySubmission,
-                                 String resubmitFlag) {
+    String addNewAbstract(String userID,
+                          String presentationTitle,
+                          String abstractContent,
+                          String submissionFormat,
+                          String presentationType,
+                          String changePresentationFormat,
+                          String firstPresenterFirstName,
+                          String firstPresenterLastName,
+                          String firstPresenterEmail,
+                          String secondPresenterFirstName,
+                          String secondPresenterLastName,
+                          String secondPresenterEmail,
+                          String thirdPresenterFirstName,
+                          String thirdPresenterLastName,
+                          String thirdPresenterEmail,
+                          String academicDiscipline,
+                          String featurePresenter,
+                          String sponOrganization,
+                          String firstAdvisorFirstName,
+                          String firstAdvisorLastName,
+                          String firstAdvisorEmail,
+                          String secondAdvisorFirstName,
+                          String secondAdvisorLastName,
+                          String secondAdvisorEmail,
+                          String thirdAdvisorFirstName,
+                          String thirdAdvisorLastName,
+                          String thirdAdvisorEmail,
+                          String additionalMediaEquipment,
+                          String additionalInfo,
+                          String other,
+                          String approval,
+                          String cc,
+                          String rejection,
+                          String group,
+                          String roomAssignment,
+                          String totalRewriteVotes,
+                          String majorRewriteVotes,
+                          String minorRewriteVotes,
+                          String acceptedVotes,
+                          String comments,
+                          String isPrimarySubmission,
+                          String resubmitFlag) {
 
         Document newAbstract = new Document();
 
@@ -487,44 +487,44 @@ public class AbstractController {
      * // the option to edit all the abstracts with the default userID
      */
 
-    public String editAbstract(String id,
-                               String title,
-                               String format,
-                               String abstracts,
-                               String presentationType,
-                               String formatChange,
-                               String discipline,
-                               String featured,
-                               String mediaServicesEquipment,
-                               String specialRequirements,
-                               String otherInfo,
-                               String approval,
-                               String cc,
-                               String rejection,
-                               String group,
-                               String roomAssignment,
-                               String totalRewriteVotes,
-                               String majorRewriteVotes,
-                               String minorRewriteVotes,
-                               String acceptedVotes,
-                               String comments,
-                               String isPrimarySubmission,
-                               String resubmitFlag,
-                               String firstPresenterFirstName,
-                               String firstPresenterLastName,
-                               String firstPresenterEmail,
-                               String secondPresenterFirstName,
-                               String secondPresenterLastName,
-                               String secondPresenterEmail,
-                               String thirdPresenterFirstName,
-                               String thirdPresenterLastName,
-                               String thirdPresenterEmail,
-                               String firstAdviserFirstName,
-                               String firstAdviserLastName,
-                               String firstAdviserEmail,
-                               String secondAdviserFirstName,
-                               String secondAdviserLastName,
-                               String secondAdviserEmail) {
+    String editAbstract(String id,
+                        String title,
+                        String format,
+                        String abstracts,
+                        String presentationType,
+                        String formatChange,
+                        String discipline,
+                        String featured,
+                        String mediaServicesEquipment,
+                        String specialRequirements,
+                        String otherInfo,
+                        String approval,
+                        String cc,
+                        String rejection,
+                        String group,
+                        String roomAssignment,
+                        String totalRewriteVotes,
+                        String majorRewriteVotes,
+                        String minorRewriteVotes,
+                        String acceptedVotes,
+                        String comments,
+                        String isPrimarySubmission,
+                        String resubmitFlag,
+                        String firstPresenterFirstName,
+                        String firstPresenterLastName,
+                        String firstPresenterEmail,
+                        String secondPresenterFirstName,
+                        String secondPresenterLastName,
+                        String secondPresenterEmail,
+                        String thirdPresenterFirstName,
+                        String thirdPresenterLastName,
+                        String thirdPresenterEmail,
+                        String firstAdviserFirstName,
+                        String firstAdviserLastName,
+                        String firstAdviserEmail,
+                        String secondAdviserFirstName,
+                        String secondAdviserLastName,
+                        String secondAdviserEmail) {
 
         Document newAbstract = new Document();
 
@@ -602,7 +602,7 @@ public class AbstractController {
      *
      * @param id MongoDB ObjectId for abstract to be deleted
      */
-    public void deleteAbstract(String id) {
+    void deleteAbstract(String id) {
         Document searchQuery = new Document().append("_id", new ObjectId(id));
         System.out.println("Abstract id: " + id);
         try {
