@@ -8,22 +8,18 @@ import spark.Response;
 public class AbstractRequestHandler {
 
     private final AbstractController abstractController;
-
-    /**
-     * Abstracts request handler constructor
-     *
-     * @param abstractController
-     */
-
+    
     public AbstractRequestHandler(AbstractController abstractController){
         this.abstractController = abstractController;
     }
 
     /**
-     * Abstracts request handler to fetch abstracts in a Json Format
+     * Method called by 'api/abstracts/:id' endpoint.
      *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return Array of abstracts by userID as a JSON formatted string
      */
-
     public String getAbstractJSON(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
@@ -57,10 +53,12 @@ public class AbstractRequestHandler {
     }
 
     /**
-     * Abstracts request handler to fetch abstracts in a Json Format
-     * DOES NOT SEEM TO WORK
+     * Method called by 'api/abstracts' endpoint.
+     *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return Array of abstracts based on query params as a JSON formatted string
      */
-
     public String getAbstracts(Request req, Response res)
     {
         res.type("application/json");
@@ -68,10 +66,12 @@ public class AbstractRequestHandler {
     }
 
     /**
-     * Abstracts request handler function to add new abstracts
+     * Method called by 'api/abstracts/new' endpoint
      *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return New abstract Id as a JSON formatted string
      */
-
     public String addNewAbstract(Request req, Response res)
     {
 
@@ -169,10 +169,10 @@ public class AbstractRequestHandler {
     }
 
     /**
-     * Abstracts request handler function to add new abstracts
-     *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return Edited abstract Id as a JSON formatted string
      */
-
     public String editAbstract(Request req, Response res)
     {
         System.out.println("Right here");
@@ -270,10 +270,10 @@ public class AbstractRequestHandler {
     }
 
     /**
-     * Abstracts request handler function to delete abstracts
-     *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return Deleted abstract Id
      */
-
     public String deleteAbstract(Request req, Response res){
 
         System.out.println("Deleting abstract with ID: " + req.params(":id"));
