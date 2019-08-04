@@ -1,6 +1,5 @@
 package server.database.abstracts;
 
-import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
@@ -13,14 +12,10 @@ import java.util.Date;
 import java.util.Map;
 
 public class AbstractController {
-    private final Gson gson;
-    private MongoDatabase database;
 
     private final MongoCollection<Document> abstractCollection;
 
     public AbstractController(MongoDatabase database) {
-        gson = new Gson();
-        this.database = database;
         abstractCollection = database.getCollection("abstracts");
     }
 
