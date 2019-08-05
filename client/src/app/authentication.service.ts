@@ -91,7 +91,7 @@ export class AuthenticationService implements OnInit{
                         'onsuccess': user => {
                             this.validateToken(user.getAuthResponse().id_token).subscribe(user => {
                                     this.zone.run(() => {
-                                        this.user$.next(user[0]);
+                                        this.user$.next(user);
                                         this.isLoggedIn$.next(true);
                                         resolve();
                                     });

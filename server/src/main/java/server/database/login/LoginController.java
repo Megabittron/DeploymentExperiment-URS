@@ -20,7 +20,7 @@ public class LoginController {
     }
 
 
-    public String verifyIdToken(String idTokenString) {
+    String verifyIdToken(String idTokenString) {
         String CLIENT_SECRET_FILE = "./src/main/java/server/database/server_files/client_secret.json";
 
         NetHttpTransport transport = new NetHttpTransport();
@@ -46,7 +46,7 @@ public class LoginController {
                     String firstName = (String) payload.get("given_name");
                     String lastName = (String) payload.get("family_name");
 
-                    if (user.equals("[ ]")) {
+                    if (user.equals("")) {
                         userController.addNewUser(subjectID, firstName, lastName);
                         user = userController.getUserBySub(payload.getSubject());
                     }
