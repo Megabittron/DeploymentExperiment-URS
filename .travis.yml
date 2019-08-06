@@ -29,19 +29,19 @@ deploy:
     # deploy develop to the development environment
     - provider: script
       skip_cleanup: true
-      script: deploy_dev.sh
+      script: scripts/deploy_dev.sh
       on:
           branch: development
     # deploy master to production
     - provider: script
       skip_cleanup: true
-      script: deploy_prod.sh
+      script: scripts/deploy_prod.sh
       on:
           branch: master
     # test
     - provider: script
       skip_cleanup: true
-      script: test.sh
+      script: scripts/test.sh $TRAVIS_BRANCH
       on:
           all_branches: true
 
