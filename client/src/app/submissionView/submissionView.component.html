@@ -1,32 +1,44 @@
-<!-- TODO: Style in the theme instead of in component's scss -->
-<div class="button-container">
-    <button mat-button class="back-to-list" routerLink="/submissionList">
-        <mat-icon>arrow_back</mat-icon> Back to Submission List
-    </button>
+<div class="submission-container">
 
-    <br>
+    <div class="submission-content">
 
-    <button mat-button class="approve">
-        <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
-    </button>
+        <!-- TODO: Style in the theme instead of in component's scss -->
+        <div class="button-container">
+            <button mat-button class="back-to-list" routerLink="/submissionList">
+                <mat-icon>arrow_back</mat-icon> Back to Submission List
+            </button>
 
-    <button mat-button class="reject">
-        <mat-icon>thumb_down</mat-icon> Reject Submission [W]
-    </button>
+            <br>
 
-    <button mat-button class="flag">
-        <mat-icon>flag</mat-icon> Flag for Re-Submission [W]
-    </button>
-</div>
+            <button mat-button class="approve">
+                <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
+            </button>
 
-<div *ngIf="submission">
-    <h1>{{submission.presentationTitle}}</h1>
-    <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
-    <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
-    <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s): {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}</p>
-</div>
+            <button mat-button class="reject">
+                <mat-icon>thumb_down</mat-icon> Reject Submission [W]
+            </button>
 
-<div *ngIf="submission">
-    <h1>Abstract</h1>
-    <p>{{submission.abstractContent}}</p>
+            <button mat-button class="flag">
+                <mat-icon>flag</mat-icon> Flag for Re-Submission [W]
+            </button>
+        </div>
+
+        <div *ngIf="submission">
+            <h1>{{submission.presentationTitle}}</h1>
+            <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+            <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
+            <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s): {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}</p>
+        </div>
+
+        <div *ngIf="submission">
+            <h1>Abstract</h1>
+            <p>{{submission.abstractContent}}</p>
+        </div>
+
+    </div>
+
+    <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
+        <h2>Comments</h2>
+    </div>
+
 </div>

@@ -1,10 +1,28 @@
+.submission-container {
+    padding: 2% 5% 2% 5%;
+}
+
+.submission-content {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 70%;
+    float: left;
+}
+
+.submission-comments {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+
 .button-container {
     border: 1px solid red;  //for debugging
 }
 
 // individual buttons
 .back-to-list {
-    background-color: palevioletred;
+    background-color: gray;
 }
 
 .approve {
