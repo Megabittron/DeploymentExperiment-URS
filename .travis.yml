@@ -25,4 +25,24 @@ before_script:
   - ${PWD}/mongodb-linux-x86_64-${MONGODB}/bin/mongod --dbpath ${PWD}/mongodb-linux-x86_64-${MONGODB}/data --logpath ${PWD}/mongodb-linux-x86_64-${MONGODB}/mongodb.log --fork
   - npm install -g @angular/cli
 
+deploy:
+    # deploy develop to the development environment
+    - provider: script
+      skip_cleanup: true
+      script: deploy_dev.sh
+      on:
+          branch: development
+    # deploy master to production
+    - provider: script
+      skip_cleanup: true
+      script: deploy_prod.sh
+      on:
+          branch: master
+    # test
+    - provider: script
+      skip_cleanup: true
+      script: test.sh
+      on:
+          all_branches: true
+
 
