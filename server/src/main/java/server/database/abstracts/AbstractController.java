@@ -25,13 +25,34 @@ public class AbstractController {
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    String getAbstractsForUser(String id) {
+    String getAbstractsForUser(String id) {//https://github.com/Megabittron/DeploymentExperiment-URS/blob/master/server/src/main/java/server/database/users/UserController.java#L30
         Document filterDoc = new Document();
         filterDoc.append("userID", id);
 
         FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
         return newAbstractArray(abstracts);
+    }
+
+    /**
+     * Helper method called by getAbstractJSON(..)
+     *
+     * @param id Users SubjectID
+     * @return Array of abstracts by userID as a JSON formatted string
+     */
+    String getSingleAbstract(String id) {
+        Document filterDoc = new Document();
+        filterDoc.append("_id", id);
+
+        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
+
+        String abstractJSON = "";
+
+        for (Document doc: single_abstract) {
+            abstractJSON = doc.toJson();
+        }
+
+        return abstractJSON;
     }
 
     /**

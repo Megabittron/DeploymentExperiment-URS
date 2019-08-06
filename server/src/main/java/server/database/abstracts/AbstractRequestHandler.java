@@ -19,13 +19,48 @@ public class AbstractRequestHandler {
      * @param res HTTP response
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    public String getAbstractJSON(Request req, Response res){
+    public String getAbstractsJSON(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
 
         String abstracts;
         try {
             abstracts = abstractController.getAbstractsForUser(id);
+        } catch (IllegalArgumentException e) {
+
+            // This is thrown if the ID doesn't have the appropriate
+            // form for a Mongo Object ID.
+            // https://docs.mongodb.com/manual/reference/method/ObjectId/
+
+            res.status(400);
+            res.body("The requested abstract id " + id + " wasn't a legal Mongo Object ID.\n" +
+                "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
+            return "";
+        }
+
+        if (abstracts != null) {
+            return abstracts;
+        } else {
+            res.status(404);
+            res.body("The requested abstract with id " + id + " was not found");
+            return "";
+        }
+    }
+
+    /**
+     * Method called by 'api/abstracts/:id' endpoint.
+     *
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return Array of abstracts by userID as a JSON formatted string
+     */
+    public String getSingleAbstractJSON(Request req, Response res){
+        res.type("application/json");
+        String id = req.params("id");
+
+        String abstracts;
+        try {
+            abstracts = abstractController.getSingleAbstract(id);
         } catch (IllegalArgumentException e) {
 
             // This is thrown if the ID doesn't have the appropriate

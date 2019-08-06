@@ -76,8 +76,9 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         put("api/users/:_id", userRequestHandler::editUsertShirtSize);
 
+        get("api/abstract/:id", abstractRequestHandler::getSingleAbstractJSON);
         get("api/abstracts", abstractRequestHandler::getAbstracts);
-        get("api/abstracts/:id", abstractRequestHandler::getAbstractJSON);
+        get("api/abstracts/:id", abstractRequestHandler::getAbstractsJSON);
         post("api/abstracts/new", abstractRequestHandler::addNewAbstract);
 
         post("api/login", loginRequestHandler::loginUser);
