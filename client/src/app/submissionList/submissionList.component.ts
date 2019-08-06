@@ -44,6 +44,10 @@ export class SubmissionListComponent implements OnInit {
         return d.toDateString();
     }
 
+    grabSubmissionId(id) {
+        this.submissionListService.grabAbstractId(id);
+    }
+
     /**
      * Starts an asynchronous operation to update the submissions list
      *

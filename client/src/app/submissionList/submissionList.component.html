@@ -3,7 +3,7 @@
 
     </div>
     <div class="submission-card-container">
-        <div class="submission-card" *ngFor="let submission of submissions" routerLink="/abstract/{{submission._id}}">
+        <div class="submission-card" *ngFor="let submission of submissions" routerLink="/abstract/{{submission._id}}" (click)="grabSubmissionId(submission._id)">
             <div class="status-bar"></div>
             <div class="submission-card-content">
                 <p><i>{{submission.presentationTitle}}</i></p>
