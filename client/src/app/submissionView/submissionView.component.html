@@ -1,3 +1,19 @@
+<button mat-button routerLink="/submissionList" style="background-color: palevioletred">< Back to Submission List</button>
+
+<div> <!-- Style in the theme instead of in component's scss -->
+    <button mat-button class="approve">Give Adviser Approval [W]</button>
+    <button mat-button class="reject">Reject Submission [W]</button>
+    <button mat-button class="flag">Flag for Re-Submission [W]</button>
+</div>
+
 <div *ngIf="submission">
-    <p>{{submission.presentationTitle}}</p>
+    <h1>{{submission.presentationTitle}}</h1>
+    <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+    <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
+    <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s): {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}</p>
+</div>
+
+<div *ngIf="submission">
+    <h1>Abstract</h1>
+    <p>{{submission.abstractContent}}</p>
 </div>
