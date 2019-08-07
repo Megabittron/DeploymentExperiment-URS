@@ -37,6 +37,10 @@
             <p>{{submission.abstractContent}}</p>
         </div>
 
+        <div>
+            <p>You are seeing this submission because you are a(n): </p>
+        </div>
+
     </div>
 
     <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
@@ -46,7 +50,7 @@
             <mat-icon>edit</mat-icon> New Comment [W]
         </button>
 
-        <div class="comment">{{submission.comments}}</div>
+        <div class="comment" *ngIf="submission.comments">{{submission.comments}}</div>
     </div>
 
 </div>
