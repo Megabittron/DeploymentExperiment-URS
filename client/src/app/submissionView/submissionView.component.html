@@ -29,10 +29,38 @@
             <h1>{{submission.presentationTitle}}</h1>
             <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
             <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
-            <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s): {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}</p>
+            <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s):
+                {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}
+                <!-- TODO: Add condition for third adviser -->
+            </p>
         </div>
 
-        <div>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    More Details
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <p>Presenter Email: {{submission.firstPresenterEmail}}</p>
+            <p>Adviser Email: {{submission.firstAdvisorEmail}}</p>
+            <p *ngIf="submission.secondAdvisorEmail">CoAdviser(s) email:
+                {{submission.secondAdvisorEmail}} {{submission.thirdAdvisorEmail}}
+                <!-- TODO: Add condition for third adviser -->
+            </p>
+            <p *ngIf="submission.academicDiscipline">Discipline: {{submission.academicDiscipline}}</p> <!-- TODO: Standardize seed -->
+            <p>Type: {{submission.presentationType}}</p>
+            <p>Format: {{submission.submissionFormat}}</p> <!-- TODO: Standardize seed -->
+            <p>Willing to Change Format: {{submission.changePresentationFormat}}</p> <!-- TODO: Change boolean display -->
+            <p>Willing to be Feature Presentation: {{submission.featurePresenter}}</p> <!-- TODO: Change boolean display --> <!-- TODO: Clarify field name -->
+            <p>Adviser Approved: </p> <!-- TODO: Recognize field in interface --> <!-- TODO: Change boolean display -->
+            <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p> <!-- TODO: Standardize seed-->
+            <p>Special Requirements: </p> <!-- TODO: Recognize field in interface  -->
+            <p>Additional Information: {{submission.additionalInfo}}</p> <!-- TODO: Standardize seed-->
+            <p>Date of Submission: {{submission.timestamp}}</p>
+        </mat-expansion-panel>
+
+        <div class="abstract">
             <h1>Abstract</h1>
             <p>{{submission.abstractContent}}</p>
         </div>
