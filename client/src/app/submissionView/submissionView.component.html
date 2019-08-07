@@ -1,4 +1,4 @@
-<div class="submission-container">
+<div class="submission-container" *ngIf="submission">
 
     <div class="submission-content">
 
@@ -23,14 +23,14 @@
             </button>
         </div>
 
-        <div *ngIf="submission">
+        <div>
             <h1>{{submission.presentationTitle}}</h1>
             <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
             <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
             <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s): {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}</p>
         </div>
 
-        <div *ngIf="submission">
+        <div>
             <h1>Abstract</h1>
             <p>{{submission.abstractContent}}</p>
         </div>
@@ -39,6 +39,13 @@
 
     <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
         <h2>Comments</h2>
+
+        <button mat-button class="new-comment-btn">
+            <mat-icon>edit</mat-icon> New Comment [W]
+        </button>
+
+        <div class="comment">{{submission.comments}}</div>
     </div>
 
 </div>
+

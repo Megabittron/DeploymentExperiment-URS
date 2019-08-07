@@ -9,6 +9,7 @@
     float: left;
 }
 
+// comments
 .submission-comments {
     border: 1px solid red;  //for debugging
     display: inline-block;
@@ -16,6 +17,17 @@
     float: left;
 }
 
+.comment {
+    background-color: lightblue;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.new-comment-btn {
+    background-color: cadetblue;
+}
+
+// buttons
 .button-container {
     border: 1px solid red;  //for debugging
 }
