@@ -7,6 +7,7 @@
     display: inline-block;
     width: 70%;
     float: left;
+    padding: 0.5rem;
 }
 
 // comments
@@ -15,6 +16,7 @@
     display: inline-block;
     width: 30%;
     float: left;
+    padding: 0.5rem;
 }
 
 .comment {
@@ -35,6 +37,7 @@
 // individual buttons
 .back-to-list {
     background-color: gray;
+    margin-bottom: 0.5rem;
 }
 
 .approve {
