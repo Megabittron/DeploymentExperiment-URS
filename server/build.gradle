@@ -17,7 +17,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'org.mongodb:mongodb-driver:3.10.2'
     compile 'com.google.apis:google-api-services-oauth2:v2-rev20190313-1.28.0'
-    compile 'org.json:json:20180813'
+    compile 'org.json:json:20190722'
 
     testCompile 'junit:junit:4.12'
 }
