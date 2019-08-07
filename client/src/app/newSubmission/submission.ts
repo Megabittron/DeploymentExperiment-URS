@@ -21,7 +21,7 @@ export interface Submission {
     sponOrganization: string;
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
-    firstAdvisorEmail: string;
+    firstAdvisorEmail: string[];
     secondAdvisorFirstName: string;
     secondAdvisorLastName: string;
     secondAdvisorEmail: string;
@@ -32,4 +32,5 @@ export interface Submission {
     additionalInfo: string;
     other: boolean;
     timestamp: string;
+    comments?: string;
 }
