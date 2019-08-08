@@ -1,13 +1,8 @@
 package server.database.system_information;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.util.JSON;
 import spark.Request;
 import spark.Response;
 
-/**
- *
- */
 public class SystemRequestHandler {
 
     private final SystemController systemController;

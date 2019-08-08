@@ -1,67 +1,46 @@
 package server.database.abstracts;
 
-import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-
-import javax.print.Doc;
+import org.json.JSONArray;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
 
-import static com.mongodb.client.model.Filters.eq;
-
 public class AbstractController {
-    private final Gson gson;
-    private MongoDatabase database;
-
-    // AbstractCollection is the collection that the collection data is in"
 
     private final MongoCollection<Document> abstractCollection;
 
-    // Construct Abstract controller for the Abstracts:
     public AbstractController(MongoDatabase database) {
-        gson = new Gson();
-        this.database = database;
         abstractCollection = database.getCollection("abstracts");
     }
 
     /**
-     * Helper method that gets a single abstract specified by the `id` specific user ID
-     * //     * parameter in the request.
-     * //     *
-     * //     * @param id the Mongo ID of the desired Abstract
-     * //     * @return the desired Abstract as a JSON object if the user with that ID is found,
-     * //     * and `null` if no user with that ID is found
-     * //
+     * Helper method called by getAbstractJSON(..)
+     *
+     * @param id Users SubjectID
+     * @return Array of abstracts by userID as a JSON formatted string
      */
-
-    public String getAbstractsForUser(String id) {
+    String getAbstractsForUser(String id) {
         Document filterDoc = new Document();
         filterDoc.append("userID", id);
 
         FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
-        return JSON.serialize(abstracts);
+        return newAbstractArray(abstracts);
     }
 
     /**
-     * Helper method which iterates through the collection, receiving all
-     * //     * documents if no query parameter is specified. If the userID query parameter
-     * //     * is specified, then the collection is filtered so only documents of that
-     * //     * specified userID are found.
-     * //     *
-     * //     * @param queryParams
-     * //     * @return an array of Abstracts in a JSON formatted string
-     * //
+     * Helper method called by getAbstracts(..)
+     *
+     * @param queryParams Map of request params
+     * @return Array of abstracts based on on query params as a JSON formatted string
      */
-
-    public String getAbstracts(Map<String, String[]> queryParams) {
+    String getAbstracts(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -71,10 +50,7 @@ public class AbstractController {
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("userID", contentRegQuery);
-        }/* else {
-            System.out.println("It had no userID");
-            return JSON.serialize("[]");
-        }*/
+        }
 
         if (queryParams.containsKey("title")) {
             String targetContent = (queryParams.get("title")[0]);
@@ -366,60 +342,58 @@ public class AbstractController {
             filterDoc = filterDoc.append("secondAdviserEmail", contentRegQuery);
         }
 
-        //FindIterable comes from mongo, Document comes from Gson
-
         FindIterable<Document> matchingAbstracts = abstractCollection.find(filterDoc);
 
-        return JSON.serialize(matchingAbstracts);
+        return newAbstractArray(matchingAbstracts);
 
     }
 
     /**
-     * // Function that adds new Abstract to the Abstract collection
-     * // with specific userID and automated time stamp
+     * Helper method called by addNewAbstract(..)
+     *
      */
-    public String addNewAbstract(String userID,
-                                 String presentationTitle,
-                                 String abstractContent,
-                                 String submissionFormat,
-                                 String presentationType,
-                                 String changePresentationFormat,
-                                 String firstPresenterFirstName,
-                                 String firstPresenterLastName,
-                                 String firstPresenterEmail,
-                                 String secondPresenterFirstName,
-                                 String secondPresenterLastName,
-                                 String secondPresenterEmail,
-                                 String thirdPresenterFirstName,
-                                 String thirdPresenterLastName,
-                                 String thirdPresenterEmail,
-                                 String academicDiscipline,
-                                 String featurePresenter,
-                                 String sponOrganization,
-                                 String firstAdvisorFirstName,
-                                 String firstAdvisorLastName,
-                                 String firstAdvisorEmail,
-                                 String secondAdvisorFirstName,
-                                 String secondAdvisorLastName,
-                                 String secondAdvisorEmail,
-                                 String thirdAdvisorFirstName,
-                                 String thirdAdvisorLastName,
-                                 String thirdAdvisorEmail,
-                                 String additionalMediaEquipment,
-                                 String additionalInfo,
-                                 String other,
-                                 String approval,
-                                 String cc,
-                                 String rejection,
-                                 String group,
-                                 String roomAssignment,
-                                 String totalRewriteVotes,
-                                 String majorRewriteVotes,
-                                 String minorRewriteVotes,
-                                 String acceptedVotes,
-                                 String comments,
-                                 String isPrimarySubmission,
-                                 String resubmitFlag) {
+    String addNewAbstract(String userID,
+                          String presentationTitle,
+                          String abstractContent,
+                          String submissionFormat,
+                          String presentationType,
+                          String changePresentationFormat,
+                          String firstPresenterFirstName,
+                          String firstPresenterLastName,
+                          String firstPresenterEmail,
+                          String secondPresenterFirstName,
+                          String secondPresenterLastName,
+                          String secondPresenterEmail,
+                          String thirdPresenterFirstName,
+                          String thirdPresenterLastName,
+                          String thirdPresenterEmail,
+                          String academicDiscipline,
+                          String featurePresenter,
+                          String sponOrganization,
+                          String firstAdvisorFirstName,
+                          String firstAdvisorLastName,
+                          String firstAdvisorEmail,
+                          String secondAdvisorFirstName,
+                          String secondAdvisorLastName,
+                          String secondAdvisorEmail,
+                          String thirdAdvisorFirstName,
+                          String thirdAdvisorLastName,
+                          String thirdAdvisorEmail,
+                          String additionalMediaEquipment,
+                          String additionalInfo,
+                          String other,
+                          String approval,
+                          String cc,
+                          String rejection,
+                          String group,
+                          String roomAssignment,
+                          String totalRewriteVotes,
+                          String majorRewriteVotes,
+                          String minorRewriteVotes,
+                          String acceptedVotes,
+                          String comments,
+                          String isPrimarySubmission,
+                          String resubmitFlag) {
 
         Document newAbstract = new Document();
 
@@ -489,7 +463,7 @@ public class AbstractController {
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
                 + ", resubmitFlag=" + resubmitFlag + ']');
 
-            return JSON.serialize(id);
+            return new BasicDBObject("_id", id).toJson();
 
         } catch (MongoException me) {
 
@@ -500,50 +474,52 @@ public class AbstractController {
     }
 
     /**
+     * Helper method called by editAbstract(..)
+     *
      * // Function that edits existing Abstract to the Abstract collection
      * // with specific userID and automated time stamp. Only specific fields would be allowed
      * // to be edited with specific userIDs but for the time being this function allows
      * // the option to edit all the abstracts with the default userID
      */
 
-    public String editAbstract(String id,
-                               String title,
-                               String format,
-                               String abstracts,
-                               String presentationType,
-                               String formatChange,
-                               String discipline,
-                               String featured,
-                               String mediaServicesEquipment,
-                               String specialRequirements,
-                               String otherInfo,
-                               String approval,
-                               String cc,
-                               String rejection,
-                               String group,
-                               String roomAssignment,
-                               String totalRewriteVotes,
-                               String majorRewriteVotes,
-                               String minorRewriteVotes,
-                               String acceptedVotes,
-                               String comments,
-                               String isPrimarySubmission,
-                               String resubmitFlag,
-                               String firstPresenterFirstName,
-                               String firstPresenterLastName,
-                               String firstPresenterEmail,
-                               String secondPresenterFirstName,
-                               String secondPresenterLastName,
-                               String secondPresenterEmail,
-                               String thirdPresenterFirstName,
-                               String thirdPresenterLastName,
-                               String thirdPresenterEmail,
-                               String firstAdviserFirstName,
-                               String firstAdviserLastName,
-                               String firstAdviserEmail,
-                               String secondAdviserFirstName,
-                               String secondAdviserLastName,
-                               String secondAdviserEmail) {
+    String editAbstract(String id,
+                        String title,
+                        String format,
+                        String abstracts,
+                        String presentationType,
+                        String formatChange,
+                        String discipline,
+                        String featured,
+                        String mediaServicesEquipment,
+                        String specialRequirements,
+                        String otherInfo,
+                        String approval,
+                        String cc,
+                        String rejection,
+                        String group,
+                        String roomAssignment,
+                        String totalRewriteVotes,
+                        String majorRewriteVotes,
+                        String minorRewriteVotes,
+                        String acceptedVotes,
+                        String comments,
+                        String isPrimarySubmission,
+                        String resubmitFlag,
+                        String firstPresenterFirstName,
+                        String firstPresenterLastName,
+                        String firstPresenterEmail,
+                        String secondPresenterFirstName,
+                        String secondPresenterLastName,
+                        String secondPresenterEmail,
+                        String thirdPresenterFirstName,
+                        String thirdPresenterLastName,
+                        String thirdPresenterEmail,
+                        String firstAdviserFirstName,
+                        String firstAdviserLastName,
+                        String firstAdviserEmail,
+                        String secondAdviserFirstName,
+                        String secondAdviserLastName,
+                        String secondAdviserEmail) {
 
         Document newAbstract = new Document();
 
@@ -609,23 +585,19 @@ public class AbstractController {
                 + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
-            return JSON.serialize(id1);
-        } catch(MongoException me) {
+            return new BasicDBObject("_id", id1).toJson();
+        } catch (MongoException me) {
             me.printStackTrace();
             return null;
         }
-
-
     }
 
     /**
-     * // Function that deletes existing Abstract from the Abstract collection
-     * // with specific userID and automated time stamp. Only specific fields would be allowed
-     * // to be deleted with specific userID but for the time being this function allows
-     * // to delete with the option of all the available abstracts with the default userID
+     * Helper method called by deleteAbstract(..)
+     *
+     * @param id MongoDB ObjectId for abstract to be deleted
      */
-
-    public void deleteAbstract(String id){
+    void deleteAbstract(String id) {
         Document searchQuery = new Document().append("_id", new ObjectId(id));
         System.out.println("Abstract id: " + id);
         try {
@@ -633,10 +605,26 @@ public class AbstractController {
             ObjectId theID = searchQuery.getObjectId("_id");
             System.out.println("Succesfully deleted abstract with ID: " + theID);
 
-        } catch(MongoException me) {
+        } catch (MongoException me) {
             me.printStackTrace();
             System.out.println("error");
         }
+    }
+
+    /**
+     * Helper method to create array of abstracts
+     *
+     * @param abstracts FindIterable of MongoDB Documents
+     * @return Array of abstracts as a JSON formatted string
+     */
+    private String newAbstractArray(FindIterable<Document> abstracts) {
+        JSONArray abstractsArr = new JSONArray();
+
+        for (Document _abstract : abstracts) {
+            abstractsArr.put(_abstract);
+        }
+
+        return abstractsArr.toString();
     }
 
 }
