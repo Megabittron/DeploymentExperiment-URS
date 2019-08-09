@@ -8,20 +8,22 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import server.database.users.UserController;
 
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.Collections;
+import java.util.Properties;
 
 public class LoginController {
 
     private final UserController userController;
 
-    public LoginController(UserController userController){
+    public LoginController(UserController userController) {
         this.userController = userController;
     }
 
 
     String verifyIdToken(String idTokenString) {
-        String CLIENT_SECRET_FILE = "./src/main/java/server/database/server_files/client_secret.json";
+        String CLIENT_SECRET = getClientSecret();
 
         NetHttpTransport transport = new NetHttpTransport();
         JsonFactory jsonFactory = new JacksonFactory();
@@ -29,7 +31,7 @@ public class LoginController {
         try {
             GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(
-                    JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+                    JacksonFactory.getDefaultInstance(), new StringReader(CLIENT_SECRET));
 
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
                 .setAudience(Collections.singletonList(clientSecrets.getDetails().getClientId()))
@@ -64,5 +66,17 @@ public class LoginController {
 
 
         return null;
+    }
+
+    private String getClientSecret() {
+        Properties properties = new Properties();
+        try {
+            properties.load(LoginController.class.getResourceAsStream("/config.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "IOException Occurred";
+        }
+
+        return properties.getProperty("CLIENT_SECRET");
     }
 }
