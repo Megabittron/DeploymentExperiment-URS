@@ -22,6 +22,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+processResources {
+    filesMatching('config.properties') {
+        expand([RESULT: System.getenv("CLIENT_SECRET")])
+    }
+}
+
 distributions {
     main {
         contents {
