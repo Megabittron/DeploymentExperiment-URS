@@ -48,7 +48,7 @@ deploy:
     # test
     - provider: script
       skip_cleanup: true
-      script: bash scripts/test.sh $TRAVIS_BRANCH
+      script: bash scripts/test.sh
       on:
           all_branches: true
 
