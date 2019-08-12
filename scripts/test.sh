@@ -4,7 +4,7 @@ scp ${TRAVIS_BUILD_DIR}/server/build/distributions/server.tar ${DEPLOY_USER}@${M
 ssh -tt ${DEPLOY_USER}@${MORRIS_HOST} <<-EOF
     scp ~/server.tar ${DEPLOY_HOST}:~
     rm ~/server.tar
-    ssh -tt ${DEPLOY_HOST} <<END
+    ssh -tt ${DEPLOY_HOST} <<-END
         ls
         tar -xvf ~/server.tar .
     END
