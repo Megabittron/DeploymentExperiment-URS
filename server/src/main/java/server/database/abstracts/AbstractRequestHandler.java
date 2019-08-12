@@ -198,7 +198,7 @@ public class AbstractRequestHandler {
             String featured = dbO.getString("featured");
             String mediaServicesEquipment = dbO.getString("mediaServicesEquipment");
             String specialRequirements = dbO.getString("specialRequirments");
-            String otherInfo = dbO.getString("otherInfo");
+            String additionalInfo = dbO.getString("additionalInfo");
             String approval = dbO.getString("approval");
             String cc = dbO.getString("cc");
             String rejection = dbO.getString("rejection");
@@ -230,7 +230,7 @@ public class AbstractRequestHandler {
             System.err.println("Editing abstract" +
                 "[_id=" + id + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
-                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", otherInfo=" + otherInfo + ", " +
+                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
@@ -243,7 +243,7 @@ public class AbstractRequestHandler {
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
             return abstractController.editAbstract(id, title, format, abstracts, presentationType, formatChange
-                , discipline, featured, mediaServicesEquipment, specialRequirements, otherInfo, approval, cc, rejection,
+                , discipline, featured, mediaServicesEquipment, specialRequirements, additionalInfo, approval, cc, rejection,
                 group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes, comments,
                 isPrimarySubmission, resubmitFlag, firstPresenterFirstName, firstPresenterLastName,
                 firstPresenterEmail, secondPresenterFirstName, secondPresenterLastName, secondPresenterEmail

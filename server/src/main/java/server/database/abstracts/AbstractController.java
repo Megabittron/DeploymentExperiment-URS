@@ -145,12 +145,12 @@ public class AbstractController {
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("specialRequirements", contentRegQuery);
         }
-        if (queryParams.containsKey("otherInfo")) {
-            String targetContent = (queryParams.get("otherInfo")[0]);
+        if (queryParams.containsKey("additionalInfo")) {
+            String targetContent = (queryParams.get("additionalInfo")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("otherInfo", contentRegQuery);
+            filterDoc = filterDoc.append("additionalInfo", contentRegQuery);
         }
         if (queryParams.containsKey("approval")) {
             String targetContent = (queryParams.get("approval")[0]);
@@ -513,7 +513,7 @@ public class AbstractController {
                         String featured,
                         String mediaServicesEquipment,
                         String specialRequirements,
-                        String otherInfo,
+                        String additionalInfo,
                         String approval,
                         String cc,
                         String rejection,
@@ -553,7 +553,7 @@ public class AbstractController {
         newAbstract.append("featured", featured);
         newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
-        newAbstract.append("otherInfo", otherInfo);
+        newAbstract.append("additionalInfo", additionalInfo);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
         newAbstract.append("rejection", rejection);
@@ -594,7 +594,7 @@ public class AbstractController {
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
-                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", otherInfo=" + otherInfo + ", " +
+                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
