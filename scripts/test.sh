@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 echo "Test script"
-ls -a
-cd ./server/build
-ls
+scp -C ${TRAVIS_BUILD_DIR}/server/build/distributions/server.tar ${DEPLOY_USER}@${DEPLOY_HOST}:~
+
