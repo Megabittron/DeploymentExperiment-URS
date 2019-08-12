@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 echo "Test script"
 scp ${TRAVIS_BUILD_DIR}/server/build/distributions/server.tar ${DEPLOY_USER}@${MORRIS_HOST}:~
-ssh -t ${DEPLOY_USER}@${MORRIS_HOST} <<EOF
+ssh -tt ${DEPLOY_USER}@${MORRIS_HOST} <<-EOF
     scp ~/server.tar ${DEPLOY_HOST}:~
     rm ~/server.tar
-    ssh -t ${DEPLOY_HOST} <<END
+    ssh -tt ${DEPLOY_HOST} <<END
         ls
         tar -xvf ~/server.tar .
     END
