@@ -33,4 +33,5 @@ export interface Submission {
     other: boolean;
     timestamp: string;
     comments?: string;
+    approval: boolean;
 }

@@ -57,6 +57,7 @@ export class NewSubmissionComponent implements OnInit{
     public additionalInfo = "";
     public other: boolean;
     public timestamp = "";
+    public approval = null;
 
     saveSubmission(): void {
         const newSubmission: Submission = {
@@ -91,7 +92,8 @@ export class NewSubmissionComponent implements OnInit{
             additionalMediaEquipment: this.additionalMediaEquipment,
             additionalInfo: this.additionalInfo,
             other: this.other,
-            timestamp: this.timestamp
+            timestamp: this.timestamp,
+            approval: this.approval
         };
 
         console.log(newSubmission);
