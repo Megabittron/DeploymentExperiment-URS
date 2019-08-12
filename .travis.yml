@@ -36,12 +36,6 @@ script:
     - ./gradlew build -x RunClientTests
 
 deploy:
-    # deploy develop to the development environment
-    - provider: script
-      skip_cleanup: true
-      script: bash scripts/deploy_dev.sh
-      on:
-          branch: development
     # deploy master to production
     - provider: script
       skip_cleanup: true
