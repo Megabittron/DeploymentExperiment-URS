@@ -123,12 +123,12 @@ public class AbstractController {
         }
 
 
-        if (queryParams.containsKey("featured")) {
-            String targetContent = (queryParams.get("featured")[0]);
+        if (queryParams.containsKey("willingToBeFeaturePresenter")) {
+            String targetContent = (queryParams.get("willingToBeFeaturePresenter")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("featured", contentRegQuery);
+            filterDoc = filterDoc.append("willingToBeFeaturePresenter", contentRegQuery);
         }
 
         if (queryParams.containsKey("mediaServicesEquipment")) {
@@ -389,7 +389,7 @@ public class AbstractController {
                           String thirdPresenterLastName,
                           String thirdPresenterEmail,
                           String academicDiscipline,
-                          String featurePresenter,
+                          String willingToBeFeaturePresenter,
                           String sponOrganization,
                           String firstAdvisorFirstName,
                           String firstAdvisorLastName,
@@ -435,7 +435,7 @@ public class AbstractController {
         newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
         newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
         newAbstract.append("academicDiscipline", academicDiscipline);
-        newAbstract.append("featurePresenter", featurePresenter);
+        newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("sponOrganization", sponOrganization);
         newAbstract.append("firstAdvisorFirstName", firstAdvisorFirstName);
         newAbstract.append("firstAdvisorLastName", firstAdvisorLastName);
@@ -473,8 +473,8 @@ public class AbstractController {
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
                 "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", featurePresenter="
-                + featurePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
+                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
+                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
@@ -510,7 +510,7 @@ public class AbstractController {
                         String presentationType,
                         String formatChange,
                         String discipline,
-                        String featured,
+                        String willingToBeFeaturePresenter,
                         String mediaServicesEquipment,
                         String specialRequirements,
                         String additionalInfo,
@@ -550,7 +550,7 @@ public class AbstractController {
         newAbstract.append("presentationType", presentationType);
         newAbstract.append("formatChange", formatChange);
         newAbstract.append("discipline", discipline);
-        newAbstract.append("featured", featured);
+        newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
         newAbstract.append("additionalInfo", additionalInfo);
@@ -593,7 +593,7 @@ public class AbstractController {
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
+                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +

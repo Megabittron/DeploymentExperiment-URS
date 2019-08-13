@@ -226,9 +226,9 @@
                             having your presentation featured during the opening ceremony?
                             <br>
                             <br>
-                            <mat-radio-group>
-                                <mat-radio-button color = "primary" value="yes" (click) = "featurePresenter = 'true'">Yes</mat-radio-button>&nbsp;&nbsp;
-                                <mat-radio-button color = "primary" value="no" (click) = "featurePresenter = 'false'">No</mat-radio-button>
+                            <mat-radio-group (change)="onChange($event)">
+                                <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>
+                                <mat-radio-button color="primary" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
                             <br>

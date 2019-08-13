@@ -2,7 +2,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
-import {MatSnackBar} from '@angular/material';
+import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 
@@ -40,7 +40,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
     public academicDiscipline = "";
-    public featurePresenter = "";
+    public willingToBeFeaturePresenter = "undecided";
     public sponOrganization = "";
     public firstAdvisorFirstName = "";
     public firstAdvisorLastName = "";
@@ -78,7 +78,7 @@ export class NewSubmissionComponent implements OnInit{
             thirdPresenterLastName: this.thirdPresenterLastName,
             thirdPresenterEmail: this.thirdPresenterEmail,
             academicDiscipline: this.academicDiscipline,
-            featurePresenter: this.featurePresenter,
+            willingToBeFeaturePresenter: this.willingToBeFeaturePresenter,
             sponOrganization: this.sponOrganization,
             firstAdvisorFirstName: this.firstAdvisorFirstName,
             firstAdvisorLastName: this.firstAdvisorLastName,
@@ -107,15 +107,19 @@ export class NewSubmissionComponent implements OnInit{
         )
     }
 
+    onChange(change: MatRadioChange): void {
+        console.log("change value: " + change.value);
+        this.willingToBeFeaturePresenter = change.value;
+    }
+
     sectionOneComplete() {
         return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
             || this.presentationType == "" || this.changePresentationFormat == "";
-
     }
 
     sectionTwoComplete() {
         return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.academicDiscipline == "" || this.featurePresenter == "";
+        || this.academicDiscipline == "" || this.willingToBeFeaturePresenter == "undecided";
     }
 
     sectionFourComplete() {

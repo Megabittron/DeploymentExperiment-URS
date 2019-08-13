@@ -122,7 +122,7 @@ public class AbstractRequestHandler {
             String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
             String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
             String academicDiscipline = dbO.getString("academicDiscipline");
-            String featurePresenter = dbO.getString("featurePresenter");
+            String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             String sponOrganization = dbO.getString("sponOrganization");
             String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
             String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
@@ -153,8 +153,8 @@ public class AbstractRequestHandler {
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
                 "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", featurePresenter="
-                + featurePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
+                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
+                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
@@ -168,7 +168,7 @@ public class AbstractRequestHandler {
             return abstractController.addNewAbstract(userID, presentationTitle, abstractContent, submissionFormat, presentationType,
                 changePresentationFormat, firstPresenterFirstName, firstPresenterLastName, firstPresenterEmail, secondPresenterFirstName,
                 secondPresenterLastName, secondPresenterEmail, thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, academicDiscipline,
-                featurePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
+                willingToBeFeaturePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
                 secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,
                 additionalInfo, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
                 comments, isPrimarySubmission, resubmitFlag);
@@ -195,7 +195,7 @@ public class AbstractRequestHandler {
             String presentationType = dbO.getString("presentationType");
             String formatChange = dbO.getString("formatChange");
             String discipline = dbO.getString("discipline");
-            String featured = dbO.getString("featured");
+            String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             String mediaServicesEquipment = dbO.getString("mediaServicesEquipment");
             String specialRequirements = dbO.getString("specialRequirments");
             String additionalInfo = dbO.getString("additionalInfo");
@@ -229,7 +229,7 @@ public class AbstractRequestHandler {
 
             System.err.println("Editing abstract" +
                 "[_id=" + id + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
+                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
@@ -243,7 +243,7 @@ public class AbstractRequestHandler {
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
             return abstractController.editAbstract(id, title, format, abstracts, presentationType, formatChange
-                , discipline, featured, mediaServicesEquipment, specialRequirements, additionalInfo, approval, cc, rejection,
+                , discipline, willingToBeFeaturePresenter, mediaServicesEquipment, specialRequirements, additionalInfo, approval, cc, rejection,
                 group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes, comments,
                 isPrimarySubmission, resubmitFlag, firstPresenterFirstName, firstPresenterLastName,
                 firstPresenterEmail, secondPresenterFirstName, secondPresenterLastName, secondPresenterEmail
