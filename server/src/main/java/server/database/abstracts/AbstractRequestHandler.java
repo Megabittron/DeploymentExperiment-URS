@@ -190,7 +190,7 @@ public class AbstractRequestHandler {
         try {
             String id = dbO.getString("id");
             String title = dbO.getString("title");
-            String format = dbO.getString("format");
+            String submissionFormat = dbO.getString("submissionFormat");
             String abstracts = dbO.getString("abstracts");
             String presentationType = dbO.getString("presentationType");
             String formatChange = dbO.getString("formatChange");
@@ -228,7 +228,7 @@ public class AbstractRequestHandler {
             String secondAdviserEmail = dbO.getString("secondAdviserEmail");
 
             System.err.println("Editing abstract" +
-                "[_id=" + id + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
+                "[_id=" + id + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
@@ -242,7 +242,7 @@ public class AbstractRequestHandler {
                 + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
-            return abstractController.editAbstract(id, title, format, abstracts, presentationType, formatChange
+            return abstractController.editAbstract(id, title, submissionFormat, abstracts, presentationType, formatChange
                 , discipline, willingToBeFeaturePresenter, mediaServicesEquipment, specialRequirements, additionalInfo, approval, cc, rejection,
                 group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes, comments,
                 isPrimarySubmission, resubmitFlag, firstPresenterFirstName, firstPresenterLastName,

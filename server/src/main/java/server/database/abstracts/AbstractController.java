@@ -81,12 +81,12 @@ public class AbstractController {
             filterDoc = filterDoc.append("title", contentRegQuery);
         }
 
-        if (queryParams.containsKey("format")) {
-            String targetContent = (queryParams.get("format")[0]);
+        if (queryParams.containsKey("submissionFormat")) {
+            String targetContent = (queryParams.get("submissionFormat")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("format", contentRegQuery);
+            filterDoc = filterDoc.append("submissionFormat", contentRegQuery);
 
         }
 
@@ -505,7 +505,7 @@ public class AbstractController {
 
     String editAbstract(String id,
                         String title,
-                        String format,
+                        String submissionFormat,
                         String abstracts,
                         String presentationType,
                         String willingToChangePresentationFormat,
@@ -545,7 +545,7 @@ public class AbstractController {
         Document newAbstract = new Document();
 
         newAbstract.append("title", title);
-        newAbstract.append("format", format);
+        newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("abstracts", abstracts);
         newAbstract.append("presentationType", presentationType);
         newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
@@ -592,7 +592,7 @@ public class AbstractController {
             System.out.println(abstractCollection.find());
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
-                "[_id=" + id1 + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
+                "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
