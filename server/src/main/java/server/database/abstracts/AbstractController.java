@@ -131,12 +131,12 @@ public class AbstractController {
             filterDoc = filterDoc.append("willingToBeFeaturePresenter", contentRegQuery);
         }
 
-        if (queryParams.containsKey("mediaServicesEquipment")) {
-            String targetContent = (queryParams.get("mediaServicesEquipment")[0]);
+        if (queryParams.containsKey("additionalMediaEquipment")) {
+            String targetContent = (queryParams.get("additionalMediaEquipment")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("mediaServicesEquipment", contentRegQuery);
+            filterDoc = filterDoc.append("additionalMediaEquipment", contentRegQuery);
         }
         if (queryParams.containsKey("specialRequirements")) {
             String targetContent = (queryParams.get("specialRequirements")[0]);
@@ -511,7 +511,7 @@ public class AbstractController {
                         String willingToChangePresentationFormat,
                         String academicDiscipline,
                         String willingToBeFeaturePresenter,
-                        String mediaServicesEquipment,
+                        String additionalMediaEquipment,
                         String specialRequirements,
                         String additionalInfo,
                         String approval,
@@ -551,7 +551,7 @@ public class AbstractController {
         newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
         newAbstract.append("academicDiscipline", academicDiscipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
-        newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
+        newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
         newAbstract.append("additionalInfo", additionalInfo);
         newAbstract.append("approval", approval);
@@ -594,7 +594,7 @@ public class AbstractController {
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
-                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
+                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
