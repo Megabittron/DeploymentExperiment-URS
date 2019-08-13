@@ -29,7 +29,7 @@ export interface Submission {
     thirdAdvisorLastName: string;
     thirdAdvisorEmail: string;
     additionalMediaEquipment: string;
-    additionalInfo: string;
+    additionalRequirements: string;
     other: boolean;
     timestamp: string;
     comments?: string;

@@ -54,7 +54,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdAdvisorLastName = "";
     public thirdAdvisorEmail = "";
     public additionalMediaEquipment = "";
-    public additionalInfo = "";
+    public additionalRequirements = "";
     public other: boolean;
     public timestamp = "";
     public approval = null;
@@ -90,7 +90,7 @@ export class NewSubmissionComponent implements OnInit{
             thirdAdvisorLastName: this.thirdAdvisorLastName,
             thirdAdvisorEmail: this.thirdAdvisorEmail,
             additionalMediaEquipment: this.additionalMediaEquipment,
-            additionalInfo: this.additionalInfo,
+            additionalRequirements: this.additionalRequirements,
             other: this.other,
             timestamp: this.timestamp,
             approval: this.approval

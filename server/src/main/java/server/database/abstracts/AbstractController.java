@@ -145,12 +145,12 @@ public class AbstractController {
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("specialRequirements", contentRegQuery);
         }
-        if (queryParams.containsKey("additionalInfo")) {
-            String targetContent = (queryParams.get("additionalInfo")[0]);
+        if (queryParams.containsKey("additionalRequirements")) {
+            String targetContent = (queryParams.get("additionalRequirements")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("additionalInfo", contentRegQuery);
+            filterDoc = filterDoc.append("additionalRequirements", contentRegQuery);
         }
         if (queryParams.containsKey("approval")) {
             String targetContent = (queryParams.get("approval")[0]);
@@ -401,7 +401,7 @@ public class AbstractController {
                           String thirdAdvisorLastName,
                           String thirdAdvisorEmail,
                           String additionalMediaEquipment,
-                          String additionalInfo,
+                          String additionalRequirements,
                           String other,
                           String approval,
                           String cc,
@@ -447,7 +447,7 @@ public class AbstractController {
         newAbstract.append("thirdAdvisorLastName", thirdAdvisorLastName);
         newAbstract.append("thirdAdvisorEmail", thirdAdvisorEmail);
         newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
-        newAbstract.append("additionalInfo", additionalInfo);
+        newAbstract.append("additionalRequirements", additionalRequirements);
         newAbstract.append("other", other);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
@@ -478,7 +478,7 @@ public class AbstractController {
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
-                + additionalMediaEquipment + ", " + "additionalInfo=" + additionalInfo + ", other=" + other
+                + additionalMediaEquipment + ", " + "additionalRequirements=" + additionalRequirements + ", other=" + other
                 + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
@@ -513,7 +513,7 @@ public class AbstractController {
                         String willingToBeFeaturePresenter,
                         String additionalMediaEquipment,
                         String specialRequirements,
-                        String additionalInfo,
+                        String additionalRequirements,
                         String approval,
                         String cc,
                         String rejection,
@@ -553,7 +553,7 @@ public class AbstractController {
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
-        newAbstract.append("additionalInfo", additionalInfo);
+        newAbstract.append("additionalRequirements", additionalRequirements);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
         newAbstract.append("rejection", rejection);
@@ -594,7 +594,7 @@ public class AbstractController {
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
-                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
+                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalRequirements=" + additionalRequirements + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="

@@ -134,7 +134,7 @@ public class AbstractRequestHandler {
             String thirdAdvisorLastName = dbO.getString("thirdAdvisorLastName");
             String thirdAdvisorEmail = dbO.getString("thirdAdvisorEmail");
             String additionalMediaEquipment = dbO.getString("additionalMediaEquipment");
-            String additionalInfo = dbO.getString("additionalInfo");
+            String additionalRequirements = dbO.getString("additionalRequirements");
             String other = dbO.getString("other");
             String approval = dbO.getString("approval");
             String cc = dbO.getString("cc");
@@ -158,7 +158,7 @@ public class AbstractRequestHandler {
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
-                + additionalMediaEquipment + ", " + "additionalInfo=" + additionalInfo + ", other=" + other
+                + additionalMediaEquipment + ", " + "additionalRequirements=" + additionalRequirements + ", other=" + other
                 + ", approval=" + approval + ", " + "cc=" + cc + ", " +
                 "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
@@ -170,7 +170,7 @@ public class AbstractRequestHandler {
                 secondPresenterLastName, secondPresenterEmail, thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, academicDiscipline,
                 willingToBeFeaturePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
                 secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,
-                additionalInfo, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
+                additionalRequirements, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
                 comments, isPrimarySubmission, resubmitFlag);
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
@@ -198,7 +198,7 @@ public class AbstractRequestHandler {
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             String additionalMediaEquipment = dbO.getString("additionalMediaEquipment");
             String specialRequirements = dbO.getString("specialRequirments");
-            String additionalInfo = dbO.getString("additionalInfo");
+            String additionalRequirements = dbO.getString("additionalRequirements");
             String approval = dbO.getString("approval");
             String cc = dbO.getString("cc");
             String rejection = dbO.getString("rejection");
@@ -230,7 +230,7 @@ public class AbstractRequestHandler {
             System.err.println("Editing abstract" +
                 "[_id=" + id + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
                 "presentationType=" + presentationType + ", formatChange=" + formatChange + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
-                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
+                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalRequirements=" + additionalRequirements + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
@@ -243,7 +243,7 @@ public class AbstractRequestHandler {
                 + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
 
             return abstractController.editAbstract(id, title, submissionFormat, abstracts, presentationType, formatChange
-                , academicDiscipline, willingToBeFeaturePresenter, additionalMediaEquipment, specialRequirements, additionalInfo, approval, cc, rejection,
+                , academicDiscipline, willingToBeFeaturePresenter, additionalMediaEquipment, specialRequirements, additionalRequirements, approval, cc, rejection,
                 group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes, comments,
                 isPrimarySubmission, resubmitFlag, firstPresenterFirstName, firstPresenterLastName,
                 firstPresenterEmail, secondPresenterFirstName, secondPresenterLastName, secondPresenterEmail
