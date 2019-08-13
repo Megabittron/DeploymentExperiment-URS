@@ -114,12 +114,12 @@ public class AbstractController {
             filterDoc = filterDoc.append("formatChange", contentRegQuery);
         }
 
-        if (queryParams.containsKey("discipline")) {
-            String targetContent = (queryParams.get("discipline")[0]);
+        if (queryParams.containsKey("academicDiscipline")) {
+            String targetContent = (queryParams.get("academicDiscipline")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("discipline", contentRegQuery);
+            filterDoc = filterDoc.append("academicDiscipline", contentRegQuery);
         }
 
 
@@ -509,7 +509,7 @@ public class AbstractController {
                         String abstracts,
                         String presentationType,
                         String willingToChangePresentationFormat,
-                        String discipline,
+                        String academicDiscipline,
                         String willingToBeFeaturePresenter,
                         String mediaServicesEquipment,
                         String specialRequirements,
@@ -549,7 +549,7 @@ public class AbstractController {
         newAbstract.append("abstracts", abstracts);
         newAbstract.append("presentationType", presentationType);
         newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
-        newAbstract.append("discipline", discipline);
+        newAbstract.append("academicDiscipline", academicDiscipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
@@ -593,7 +593,7 @@ public class AbstractController {
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
