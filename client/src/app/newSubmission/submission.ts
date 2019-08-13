@@ -6,7 +6,7 @@ export interface Submission {
     abstractContent: string;
     submissionFormat: string;
     presentationType: string;
-    changePresentationFormat: string;
+    willingToChangePresentationFormat: string;
     firstPresenterFirstName: string;
     firstPresenterLastName: string;
     firstPresenterEmail: string;

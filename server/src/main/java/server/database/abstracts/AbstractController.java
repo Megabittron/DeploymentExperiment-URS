@@ -378,7 +378,7 @@ public class AbstractController {
                           String abstractContent,
                           String submissionFormat,
                           String presentationType,
-                          String changePresentationFormat,
+                          String willingToChangePresentationFormat,
                           String firstPresenterFirstName,
                           String firstPresenterLastName,
                           String firstPresenterEmail,
@@ -424,7 +424,7 @@ public class AbstractController {
         newAbstract.append("abstractContent", abstractContent);
         newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("presentationType", presentationType);
-        newAbstract.append("changePresentationFormat", changePresentationFormat);
+        newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
         newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
         newAbstract.append("firstPresenterLastName", firstPresenterLastName);
         newAbstract.append("firstPresenterEmail", firstPresenterEmail);
@@ -471,7 +471,7 @@ public class AbstractController {
             System.err.println("Successfully added new abstract " +
                 "[userID " + userID +
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
                 "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
                 + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
@@ -508,7 +508,7 @@ public class AbstractController {
                         String format,
                         String abstracts,
                         String presentationType,
-                        String formatChange,
+                        String willingToChangePresentationFormat,
                         String discipline,
                         String willingToBeFeaturePresenter,
                         String mediaServicesEquipment,
@@ -548,7 +548,7 @@ public class AbstractController {
         newAbstract.append("format", format);
         newAbstract.append("abstracts", abstracts);
         newAbstract.append("presentationType", presentationType);
-        newAbstract.append("formatChange", formatChange);
+        newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
         newAbstract.append("discipline", discipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
@@ -593,7 +593,7 @@ public class AbstractController {
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", discipline=" + discipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
                 "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", additionalInfo=" + additionalInfo + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +

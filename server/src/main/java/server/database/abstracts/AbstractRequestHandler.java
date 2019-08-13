@@ -111,7 +111,7 @@ public class AbstractRequestHandler {
             String abstractContent = dbO.getString("abstractContent");
             String submissionFormat = dbO.getString("submissionFormat");
             String presentationType = dbO.getString("presentationType");
-            String changePresentationFormat = dbO.getString("changePresentationForamt");
+            String willingToChangePresentationFormat = dbO.getString("willingToChangePresentationFormat");
             String firstPresenterFirstName = dbO.getString("firstPresenterFirstName");
             String firstPresenterLastName = dbO.getString("firstPresenterLastName");
             String firstPresenterEmail = dbO.getString("firstPresenterEmail");
@@ -151,7 +151,7 @@ public class AbstractRequestHandler {
 
             System.err.println("Adding new Abstract for a specific userID " + userID +
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
                 "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
                 + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
@@ -166,7 +166,7 @@ public class AbstractRequestHandler {
                 + ", resubmitFlag=" + resubmitFlag + ']');
 
             return abstractController.addNewAbstract(userID, presentationTitle, abstractContent, submissionFormat, presentationType,
-                changePresentationFormat, firstPresenterFirstName, firstPresenterLastName, firstPresenterEmail, secondPresenterFirstName,
+                willingToChangePresentationFormat, firstPresenterFirstName, firstPresenterLastName, firstPresenterEmail, secondPresenterFirstName,
                 secondPresenterLastName, secondPresenterEmail, thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, academicDiscipline,
                 willingToBeFeaturePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
                 secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,

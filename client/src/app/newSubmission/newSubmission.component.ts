@@ -27,7 +27,7 @@ export class NewSubmissionComponent implements OnInit{
     public abstractContent = "";
     public submissionFormat = "";
     public presentationType = "";
-    public changePresentationFormat = "";
+    public willingToChangePresentationFormat = "undecided";
     public firstPresenterFirstName = "";
     public firstPresenterLastName = "";
     public firstPresenterEmail = "";
@@ -67,7 +67,7 @@ export class NewSubmissionComponent implements OnInit{
             abstractContent: this.abstractContent,
             submissionFormat: this.submissionFormat,
             presentationType: this.presentationType,
-            changePresentationFormat: this.changePresentationFormat,
+            willingToChangePresentationFormat: this.willingToChangePresentationFormat,
             firstPresenterFirstName: this.firstPresenterFirstName,
             firstPresenterLastName: this.firstPresenterLastName,
             firstPresenterEmail: this.firstPresenterEmail,
@@ -107,14 +107,17 @@ export class NewSubmissionComponent implements OnInit{
         )
     }
 
-    onChange(change: MatRadioChange): void {
-        console.log("change value: " + change.value);
+    onFeaturePresentationChange(change: MatRadioChange): void {
         this.willingToBeFeaturePresenter = change.value;
+    }
+
+    onFormatChange(change: MatRadioChange): void {
+        this.willingToChangePresentationFormat = change.value;
     }
 
     sectionOneComplete() {
         return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
-            || this.presentationType == "" || this.changePresentationFormat == "";
+            || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
     sectionTwoComplete() {

@@ -78,9 +78,9 @@
                                 (No change in format will be made without first contacting the presenter first)
                                 <br><br>
 
-                                <mat-radio-group>
-                                    <mat-radio-button value="yes" color="primary" (click) = "changePresentationFormat = 'true'">Yes</mat-radio-button>&nbsp;&nbsp;
-                                    <mat-radio-button value="no" color="primary" (click) = "changePresentationFormat = 'false'">No</mat-radio-button>
+                                <mat-radio-group (change)="onFormatChange($event)">
+                                    <mat-radio-button value="yes" color="primary">Yes</mat-radio-button>&nbsp;&nbsp;
+                                    <mat-radio-button value="no" color="primary">No</mat-radio-button>
                                 </mat-radio-group>
                                 <br><br>
 
@@ -226,7 +226,7 @@
                             having your presentation featured during the opening ceremony?
                             <br>
                             <br>
-                            <mat-radio-group (change)="onChange($event)">
+                            <mat-radio-group (change)="onFeaturePresentationChange($event)">
                                 <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>
                                 <mat-radio-button color="primary" value="no">No</mat-radio-button>
                             </mat-radio-group>
