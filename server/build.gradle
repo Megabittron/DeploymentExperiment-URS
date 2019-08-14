@@ -24,7 +24,8 @@ dependencies {
 
 processResources {
     filesMatching('config.properties') {
-        expand([RESULT: System.getenv("CLIENT_SECRET")])
+        expand([RESULT: System.getenv("CLIENT_SECRET"),
+                PASS: System.getenv("JKS_PASS")])
     }
 }
 
