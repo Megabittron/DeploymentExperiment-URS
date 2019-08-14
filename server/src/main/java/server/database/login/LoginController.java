@@ -7,11 +7,10 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import server.database.users.UserController;
+import server.database.utils.SystemProperties;
 
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
-import java.util.Properties;
 
 public class LoginController {
 
@@ -23,7 +22,8 @@ public class LoginController {
 
 
     String verifyIdToken(String idTokenString) {
-        String CLIENT_SECRET = getClientSecret();
+
+        String CLIENT_SECRET = SystemProperties.getProperty("CLIENT_SECRET");
 
         NetHttpTransport transport = new NetHttpTransport();
         JsonFactory jsonFactory = new JacksonFactory();
@@ -66,17 +66,5 @@ public class LoginController {
 
 
         return null;
-    }
-
-    private String getClientSecret() {
-        Properties properties = new Properties();
-        try {
-            properties.load(LoginController.class.getResourceAsStream("/config.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "IOException Occurred";
-        }
-
-        return properties.getProperty("CLIENT_SECRET");
     }
 }
