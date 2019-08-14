@@ -10,6 +10,7 @@ import server.database.abstracts.AbstractController;
 import server.database.abstracts.AbstractRequestHandler;
 import server.database.login.LoginController;
 import server.database.login.LoginRequestHandler;
+import server.database.utils.SystemProperties;
 import spark.Request;
 import spark.Response;
 import static spark.Spark.*;
@@ -39,6 +40,13 @@ public class Server {
 
         // Specify where assets like images will be "stored"
         staticFiles.location("/public");
+
+        String keyStoreLocation = "/home/deploy-user/urs.morris.umn.edu.jks";
+        String keyStorePassword = SystemProperties.getProperty("JKS_PASS");
+
+        if (!keyStorePassword.equals("null")) {
+            secure(keyStoreLocation, keyStorePassword, null, null);
+        }
 
         options("/*", (req, res) -> {
 
