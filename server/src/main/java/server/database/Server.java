@@ -84,8 +84,6 @@ public class Server {
                 origin = "https://urs.morris.umn.edu";
             }
 
-            System.out.println(origin);
-
             res.header("Access-Control-Allow-Origin", origin);
             res.header("Vary", "Origin");
             res.header("Access-Control-Allow-Credentials", "true");
