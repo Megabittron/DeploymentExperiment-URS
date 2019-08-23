@@ -1,0 +1,27 @@
+roles:
+    user:
+        '/api/users':
+            - 'GET'
+            - 'POST'
+            - 'PUT'
+            - 'DELETE'
+        '/api/system-information':
+            - 'GET'
+            - 'POST'
+            - 'PUT'
+            - 'DELETE'
+    reviewer:
+        '/api/users':
+            - 'GET'
+            - 'POST'
+            - 'PUT'
+            - 'DELETE'
+        '/api/system-information':
+            - 'GET'
+            - 'POST'
+            - 'PUT'
+            - 'DELETE'
+    admin:
+        '':
+    chair:
+        '':
