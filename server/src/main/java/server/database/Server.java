@@ -2,6 +2,8 @@ package server.database;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 import server.database.system_information.SystemController;
 import server.database.system_information.SystemRequestHandler;
 import server.database.users.UserRequestHandler;
@@ -10,13 +12,13 @@ import server.database.abstracts.AbstractController;
 import server.database.abstracts.AbstractRequestHandler;
 import server.database.login.LoginController;
 import server.database.login.LoginRequestHandler;
+import server.database.utils.RoleAuthorization;
 import server.database.utils.SystemProperties;
 import spark.Request;
 import spark.Response;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.InputStream;
+import java.util.*;
 
 import static spark.Spark.*;
 
@@ -75,8 +77,9 @@ public class Server {
         before((req, res) -> {
             String reqMethod = req.requestMethod();
             String reqURI = req.uri();
+            String role;
             String origin;
-            boolean authenticated;
+            boolean isAuthenticated;
 
             if (allowedOrigins.contains(req.headers("Origin"))) {
                 origin = req.headers("Origin");
@@ -89,11 +92,13 @@ public class Server {
             res.header("Access-Control-Allow-Credentials", "true");
 
             if (!reqMethod.equals("OPTIONS") && !reqURI.equals("/api/login")) {
-                authenticated = req.session().attribute("isSignedIn") != null;
+                isAuthenticated = req.session().attribute("isSignedIn") != null;
+                role = req.session().attribute("Role");
 
-                if (!authenticated) {
-                    halt(401, "You are not welcome here");
-                }
+                if (!isAuthenticated)
+                    halt(401, "You are not authenticated yet.");
+                if (!isAuthorized(role, reqURI, reqMethod))
+                    halt(403, "You are not authorized for this endpoint.");
             }
         });
 
@@ -120,6 +125,24 @@ public class Server {
             return "Sorry, we couldn't find that!!";
         });
 
+    }
+
+    private static boolean isAuthorized(String role, String reqURI, String reqMethod) {
+
+        Yaml yaml = new Yaml(new Constructor(RoleAuthorization.class));
+
+        InputStream inputStream = RoleAuthorization.class
+            .getResourceAsStream("/role_authorization.yaml");
+
+        RoleAuthorization roleAuth = yaml.load(inputStream);
+
+        List<String> httpVerbs = roleAuth.getRoles().get(role).get(reqURI);
+
+        if (httpVerbs != null) {
+            return !httpVerbs.contains(reqMethod);
+        }
+
+        return true;
     }
 
     // Enable GZIP for all responses
