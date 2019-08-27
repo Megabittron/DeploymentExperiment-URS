@@ -1,27 +1,43 @@
 roles:
     user:
-        '/api/users':
+        '/api/abstracts':
             - 'GET'
+        '/api/abstracts/new':
             - 'POST'
-            - 'PUT'
-            - 'DELETE'
-        '/api/system-information':
-            - 'GET'
+        '/api/login':
             - 'POST'
-            - 'PUT'
-            - 'DELETE'
+        '/api/logout':
+            - 'POST'
     reviewer:
+        '/api/abstracts':
+            - 'GET'
+        '/api/login':
+            - 'POST'
+        '/api/logout':
+            - 'POST'
+    admin:
         '/api/users':
             - 'GET'
+        '/api/abstracts':
+            - 'GET'
+        '/api/abstracts/new':
             - 'POST'
-            - 'PUT'
-            - 'DELETE'
+        '/api/login':
+            - 'POST'
+        '/api/logout':
+            - 'POST'
         '/api/system-information':
             - 'GET'
-            - 'POST'
-            - 'PUT'
-            - 'DELETE'
-    admin:
-        '':
     chair:
-        '':
+        '/api/users':
+            - 'GET'
+        '/api/abstracts':
+            - 'GET'
+        '/api/abstracts/new':
+            - 'POST'
+        '/api/login':
+            - 'POST'
+        '/api/logout':
+            - 'POST'
+        '/api/system-information':
+            - 'GET'

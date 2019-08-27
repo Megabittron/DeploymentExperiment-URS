@@ -139,10 +139,10 @@ public class Server {
         List<String> httpVerbs = roleAuth.getRoles().get(role).get(reqURI);
 
         if (httpVerbs != null) {
-            return !httpVerbs.contains(reqMethod);
+            return httpVerbs.contains(reqMethod);
         }
 
-        return true;
+        return false;
     }
 
     // Enable GZIP for all responses
