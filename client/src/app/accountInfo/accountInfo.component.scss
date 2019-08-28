@@ -48,7 +48,7 @@
 
 .profile-name, .profile-role, .profile-shirt-size {
     color: #7A0018;
-    font-family: Arial;
+    font-family: Arial, serif;
     word-wrap: break-word;
 }
 
@@ -72,6 +72,10 @@
 
 mat-form-field {
     width: 80%;
+}
+
+.sign-out-option {
+    text-align: center;
 }
 
 @media screen and (max-width: 700px) {

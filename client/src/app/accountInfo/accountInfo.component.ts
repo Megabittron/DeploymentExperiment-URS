@@ -3,6 +3,7 @@ import {AppService} from "../app.service";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {AccountInfoService} from "./account-info.service";
+import {Router} from "@angular/router";
 
 declare const gapi: any;
 @Component({
@@ -27,7 +28,8 @@ export class AccountInfoComponent implements OnInit {
     ];
 
     constructor(private authenticationService: AuthenticationService,
-                private accountInfoService: AccountInfoService) { }
+                private accountInfoService: AccountInfoService,
+                private router: Router) { }
 
     changeEditState(): void {
         this.isEditing = !this.isEditing;
@@ -49,6 +51,11 @@ export class AccountInfoComponent implements OnInit {
 
     getShirtSize(): string {
         return this.user.ShirtSize.toUpperCase();
+    }
+
+    signOut(): void {
+        this.authenticationService.signOut();
+        this.router.navigate(['/']);
     }
 
     ngOnInit(): void {
