@@ -2,7 +2,7 @@
     <div class="account-info-header">
         <div class="account-info-header-container">
             <div class="profile-pic-wrapper">
-                <img class="profile-pic" [src]="profilePic">
+                <img class="profile-pic" alt="Profile picture" [src]="profilePic">
             </div>
             <div class="profile-details">
                 <h1 class="profile-name" *ngIf="user">{{getName()}}</h1>
@@ -22,5 +22,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="isMobile" class="sign-out-option">
+        <button mat-raised-button (click)="signOut()">Sign out</button>
     </div>
 </section>
