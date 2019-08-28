@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="sign-out-option">
+    <div *ngIf="isMobile" class="sign-out-option">
         <button mat-raised-button (click)="signOut()">Sign out</button>
     </div>
 </section>
