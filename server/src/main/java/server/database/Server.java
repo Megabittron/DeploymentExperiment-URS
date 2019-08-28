@@ -10,13 +10,23 @@ import server.database.abstracts.AbstractController;
 import server.database.abstracts.AbstractRequestHandler;
 import server.database.login.LoginController;
 import server.database.login.LoginRequestHandler;
+import server.database.utils.SystemProperties;
 import spark.Request;
 import spark.Response;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static spark.Spark.*;
 
 public class Server {
     private static final String databaseName = "dev";
     private static final int serverPort = 4567;
+    private static final Set<String> allowedOrigins = new HashSet<>(Arrays.asList(
+        "http://localhost:9000",
+        "https://urs.morris.umn.edu")
+    );
 
     public static void main(String[] args) {
 
@@ -40,6 +50,13 @@ public class Server {
         // Specify where assets like images will be "stored"
         staticFiles.location("/public");
 
+        String keyStoreLocation = "/home/deploy-user/urs.morris.umn.edu.jks";
+        String keyStorePassword = SystemProperties.getProperty("JKS_PASS");
+
+        if (!keyStorePassword.equals("null")) {
+            secure(keyStoreLocation, keyStorePassword, null, null);
+        }
+
         options("/*", (req, res) -> {
 
             String accessControlRequestHeaders = req.headers("Access-Control-Request-Headers");
@@ -58,14 +75,22 @@ public class Server {
         before((req, res) -> {
             String reqMethod = req.requestMethod();
             String reqURI = req.uri();
+            String origin;
             boolean authenticated;
 
-            res.header("Access-Control-Allow-Origin", "http://localhost:9000");
+            if (allowedOrigins.contains(req.headers("Origin"))) {
+                origin = req.headers("Origin");
+            } else {
+                origin = "https://urs.morris.umn.edu";
+            }
+
+            res.header("Access-Control-Allow-Origin", origin);
+            res.header("Vary", "Origin");
             res.header("Access-Control-Allow-Credentials", "true");
 
             if (!reqMethod.equals("OPTIONS") && !reqURI.equals("/api/login")) {
                 authenticated = req.session().attribute("isSignedIn") != null;
-                
+
                 if (!authenticated) {
                     halt(401, "You are not welcome here");
                 }

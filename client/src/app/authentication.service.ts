@@ -65,7 +65,7 @@ export class AuthenticationService implements OnInit{
         return new Promise((resolve, reject) => {
             this.zone.run(() => {
                 gapi.auth2.init({
-                    client_id: '824929985356-3gcba0bncv685jv4261kg0om7j54vqr2.apps.googleusercontent.com',
+                    client_id: '360518813721-mppgbakr2g1pk5q843nm533uvdhp1lk6.apps.googleusercontent.com',
                     fetch_basic_profile: true,
                     hosted_domain: 'morris.umn.edu'
                 }).then(googleAuth => {
