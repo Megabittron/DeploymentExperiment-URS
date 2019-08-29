@@ -57,6 +57,10 @@
     vertical-align: middle;
 }
 
+.profile-shirt-size > h3 {
+    padding-right: .7em;
+}
+
 .profile-shirt-size {
     margin-top: -4%;
 }
@@ -66,12 +70,8 @@
     cursor: pointer;
 }
 
-.edit-form {
-    margin-bottom: 1em;
-}
-
 mat-form-field {
-    width: 80%;
+    width: 100%;
 }
 
 .sign-out-option {
@@ -86,6 +86,16 @@ mat-form-field {
 
     .profile-pic-wrapper {
         margin: 1.25rem 1.25rem 1.25rem 1rem;
+        width: 35%;
+        max-width: 140px;
+    }
+
+    .profile-details {
+        width: calc(65% - 2.5rem);
+    }
+
+    mat-form-field {
+        width: 70%;
     }
 
     .profile-pic {
