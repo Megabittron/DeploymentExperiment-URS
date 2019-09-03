@@ -58,11 +58,6 @@ export class AccountInfoComponent implements OnInit {
         return this.user.ShirtSize.toUpperCase();
     }
 
-    signOut(): void {
-        this.authenticationService.signOut();
-        this.router.navigate(['/']);
-    }
-
     ngOnInit(): void {
        this.authenticationService.user$.subscribe(user => {
             this.user = user;

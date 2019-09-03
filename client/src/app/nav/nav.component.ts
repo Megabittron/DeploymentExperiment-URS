@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {Router} from "@angular/router";
-import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 import {Observable} from "rxjs/Rx";
 
 declare const gapi: any;
@@ -36,11 +36,6 @@ export class NavComponent implements OnInit{
 
     goToAccountInfo(): void {
         this.router.navigate(['accountInfo']);
-    }
-
-    signOut(): void {
-        this.authenticationService.signOut();
-        this.router.navigate(['/']);
     }
 
     ngOnInit() {
