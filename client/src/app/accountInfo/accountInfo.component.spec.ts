@@ -4,6 +4,7 @@ import {CustomModule} from '../custom.module';
 import {AccountInfoComponent} from "./accountInfo.component";
 import {AuthenticationService} from "../authentication.service";
 import {BehaviorSubject, Observable} from "rxjs";
+import 'rxjs/add/observable/of';
 import {User} from "../user";
 import {AccountInfoService} from "./account-info.service";
 import {RouterTestingModule} from "@angular/router/testing";
@@ -16,20 +17,16 @@ describe('AccountInfo', () => {
     let el: HTMLElement;
 
     let authenticationServiceStub: {
-        isLoggedIn$: BehaviorSubject<boolean>;
-        isLoaded$: BehaviorSubject<boolean>;
         user$: BehaviorSubject<User>;
     };
 
     let accountInfoServiceStub: {
-        saveShirtSize: (shirtSize: string, subjectId: string) => Observable<{ShirtSize: string}>
+        saveShirtSize: (newUser: User) => Observable<{ ShirtSize: string }>
     };
 
     beforeEach(() => {
 
         authenticationServiceStub = {
-            isLoggedIn$: new BehaviorSubject(true),
-            isLoaded$: new BehaviorSubject(true),
             user$: new BehaviorSubject({
                 _id: {
                     $oid: "5b3524ba715fad363abdc3cc"
@@ -43,15 +40,14 @@ describe('AccountInfo', () => {
         };
 
         accountInfoServiceStub = {
-            saveShirtSize: (shirtSize, subjectId) => Observable.of({ShirtSize: shirtSize})
+            saveShirtSize: (newUser: User) => Observable.of({ShirtSize: newUser.ShirtSize})
         };
-
 
         TestBed.configureTestingModule({
             imports: [CustomModule, RouterTestingModule],
             declarations: [AccountInfoComponent],
             providers: [{provide: AuthenticationService, useValue: authenticationServiceStub},
-                        {provide: AccountInfoService, useValue: accountInfoServiceStub}]
+                {provide: AccountInfoService, useValue: accountInfoServiceStub}]
         });
 
         fixture = TestBed.createComponent(AccountInfoComponent);
@@ -63,5 +59,30 @@ describe('AccountInfo', () => {
     it('should create AccountInfoComponent', function () {
         expect(component).toBeDefined();
     });
+
+    it('should initialize user on init', function () {
+        expect(component.user).toBeUndefined();
+        fixture.detectChanges();
+        expect(component.user).toBeDefined();
+        expect(component.user.FirstName).toBe("Bonita");
+    });
+
+    it('should change editing state', function () {
+        expect(component.isEditing).toBe(false);
+        component.changeEditState();
+        expect(component.isEditing).toBe(true);
+        component.changeEditState();
+        expect(component.isEditing).toBe(false);
+    });
+
+    it('should save user shirt size as medium', function () {
+        fixture.detectChanges();
+        component.changeEditState();
+        expect(component.user.ShirtSize).toBe("s");
+        component.saveUserShirtSize("m");
+        expect(component.user.ShirtSize).toBe("m");
+        expect(component.isEditing).toBe(false);
+    });
+
 
 });
