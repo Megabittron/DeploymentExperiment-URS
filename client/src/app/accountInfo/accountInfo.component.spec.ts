@@ -26,6 +26,8 @@ describe('AccountInfo', () => {
 
     beforeEach(() => {
 
+        window['gapi'] = null;
+
         authenticationServiceStub = {
             user$: new BehaviorSubject({
                 _id: {
