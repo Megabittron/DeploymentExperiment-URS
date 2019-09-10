@@ -12,7 +12,7 @@ export class AccountInfoService {
     constructor(private http: HttpClient) {
     }
 
-    saveShirtSize(newUser: User): Observable<{'$oid': string}> {
+    saveShirtSize(newUser: User): Observable<{ShirtSize: string}> {
         this.editUserUrl = this.baseUrl;
         const httpOptions = {
             headers: new HttpHeaders({
@@ -20,7 +20,7 @@ export class AccountInfoService {
             }),
         };
 
-        return this.http.put<{'$oid': string}>(this.editUserUrl + newUser.SubjectID, newUser, httpOptions);
+        return this.http.put<{ShirtSize: string}>(this.editUserUrl + newUser.SubjectID, newUser, httpOptions);
     }
 
 }
