@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {AppService} from "../app.service";
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home-component',
@@ -10,10 +9,7 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
 
-    constructor(private router: Router) {
-    }
-
-    newSubmission(): void{
+    constructor() {
 
     }
 }
