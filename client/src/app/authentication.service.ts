@@ -1,4 +1,4 @@
-import {Injectable, NgZone, OnInit} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from '../environments/environment';
@@ -6,8 +6,9 @@ import {User} from './user';
 import {Router} from "@angular/router";
 
 declare const gapi: any;
+
 @Injectable()
-export class AuthenticationService implements OnInit{
+export class AuthenticationService {
 
     public auth2: any;
     public user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -52,10 +53,16 @@ export class AuthenticationService implements OnInit{
         return new Promise((resolve, reject) => {
             this.zone.run(() => {
                 gapi.load('auth2', {
-                    callback: resolve,
-                    onerror: reject,
-                    timeout: 1000,
-                    ontimeout: reject
+                    callback: () => {
+                        this.isLoaded$.next(true);
+                        this.initAuth2().then(resolve, reject);
+                    },
+                    onerror: () => {
+                        this.isLoaded$.next(false);
+                        reject(new Error('Google library failed to load.'));
+                    },
+                    timeout: 5000,
+                    ontimeout: reject(new Error('Google library loading has timed out.'))
                 });
             });
         });
@@ -69,7 +76,6 @@ export class AuthenticationService implements OnInit{
                     fetch_basic_profile: true,
                     hosted_domain: 'morris.umn.edu'
                 }).then(googleAuth => {
-                    console.log(googleAuth);
                     this.auth2 = googleAuth;
                     resolve();
                 }, () => {
@@ -109,15 +115,4 @@ export class AuthenticationService implements OnInit{
         })
     }
 
-    ngOnInit(): void {
-        this.loadAuth2().then(() => {
-            return this.initAuth2();
-        },
-            () => {}).then(() => {
-                this.isLoaded$.next(true);
-        },
-            () => {
-                this.isLoaded$.next(false);
-            });
-    }
 }
