@@ -9,10 +9,10 @@ import {AuthenticationService} from "../authentication.service";
 
 export class LoginComponent implements OnInit {
 
-    constructor(private authenticationService: AuthenticationService) {
-    }
+    constructor(private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
+        this.authenticationService.loadAuth2();
         this.authenticationService.renderSignIn();
     }
 }

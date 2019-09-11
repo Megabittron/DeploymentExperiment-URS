@@ -62,7 +62,9 @@ export class AuthenticationService {
                         reject(new Error('Google library failed to load.'));
                     },
                     timeout: 5000,
-                    ontimeout: reject(new Error('Google library loading has timed out.'))
+                    ontimeout: () => {
+                        reject(new Error('Google library loading has timed out.'))
+                    }
                 });
             });
         });
@@ -75,8 +77,18 @@ export class AuthenticationService {
                     client_id: '360518813721-mppgbakr2g1pk5q843nm533uvdhp1lk6.apps.googleusercontent.com',
                     fetch_basic_profile: true,
                     hosted_domain: 'morris.umn.edu'
-                }).then(googleAuth => {
-                    this.auth2 = googleAuth;
+                }).then(GoogleAuth => {
+                    this.auth2 = GoogleAuth;
+                    let GoogleUser = GoogleAuth.currentUser.get();
+                    let isSignedIn = GoogleAuth.isSignedIn.get();
+
+                    if (isSignedIn) {
+                        this.updateCurrentUser(GoogleUser);
+                    }
+
+                    GoogleAuth.isSignedIn.listen(this.updateSignInStatus);
+                    GoogleAuth.currentUser.listen(this.updateCurrentUser);
+
                     resolve();
                 }, () => {
                     reject();
@@ -85,34 +97,45 @@ export class AuthenticationService {
         });
     }
 
+    updateSignInStatus = (status) => {
+        this.isLoggedIn$.next(status);
+    };
+
+    updateCurrentUser = (GoogleUser) => {
+        let id_token = GoogleUser.getAuthResponse().id_token;
+
+        if (id_token) {
+            this.validateToken(id_token).subscribe(user => {
+                    this.zone.run(() => {
+                        this.user$.next(user);
+                    });
+                },
+                (error) => {
+                    console.log(error);
+                });
+        }
+    };
+
     renderSignIn(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.zone.run(() => {
-                    gapi.signin2.render('my-signin2', {
-                        'scope': 'profile email',
-                        'width': 240,
-                        'height': 50,
-                        'longtitle': true,
-                        'theme': 'light',
-                        'onsuccess': user => {
-                            this.validateToken(user.getAuthResponse().id_token).subscribe(user => {
-                                    this.zone.run(() => {
-                                        this.user$.next(user);
-                                        this.isLoggedIn$.next(true);
-                                        resolve();
-                                    });
-                                },
-                                (err) => {
-                                    console.log(err);
-                                });
-                        },
-                        'onfailure': () => {
-                            console.log('FAILED TO SIGN IN!!!');
-                            reject();
-                        }
-                    });
-            })
-        })
+                gapi.signin2.render('my-signin2', {
+                    'scope': 'profile email',
+                    'width': 240,
+                    'height': 50,
+                    'longtitle': true,
+                    'theme': 'light',
+                    'onsuccess': user => {
+                        this.updateCurrentUser(user);
+                        resolve();
+                    },
+                    'onfailure': () => {
+                        console.log('FAILED TO SIGN IN!!!');
+                        reject();
+                    }
+                });
+            });
+        });
     }
 
 }
