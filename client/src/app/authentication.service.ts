@@ -90,8 +90,9 @@ export class AuthenticationService {
                     GoogleAuth.currentUser.listen(this.updateCurrentUser);
 
                     resolve();
-                }, () => {
-                    reject();
+                }, (e) => {
+                    console.error(e);
+                    reject(e);
                 });
             });
         });
@@ -120,18 +121,19 @@ export class AuthenticationService {
         return new Promise((resolve, reject) => {
             this.zone.run(() => {
                 gapi.signin2.render('my-signin2', {
-                    'scope': 'profile email',
-                    'width': 240,
-                    'height': 50,
-                    'longtitle': true,
-                    'theme': 'light',
-                    'onsuccess': user => {
+                    scope: 'profile email',
+                    width: 240,
+                    height: 50,
+                    longtitle: true,
+                    theme: 'light',
+                    prompt: 'select_account',
+                    onsuccess: user => {
                         this.updateCurrentUser(user);
                         resolve();
                     },
-                    'onfailure': () => {
-                        console.log('FAILED TO SIGN IN!!!');
-                        reject();
+                    onfailure: (e) => {
+                        console.error(e);
+                        reject(e);
                     }
                 });
             });
