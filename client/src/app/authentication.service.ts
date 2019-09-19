@@ -49,29 +49,26 @@ export class AuthenticationService {
             });
     }
 
-    loadAuth2(): Promise<any> {
-        return new Promise((resolve, reject) => {
+    loadAuth2(): void {
             this.zone.run(() => {
                 gapi.load('auth2', {
                     callback: () => {
                         this.isLoaded$.next(true);
-                        this.initAuth2().then(resolve, reject);
+                        this.initAuth2();
                     },
                     onerror: () => {
                         this.isLoaded$.next(false);
-                        reject(new Error('Google library failed to load.'));
+                        console.error('Google library failed to load.');
                     },
                     timeout: 5000,
                     ontimeout: () => {
-                        reject(new Error('Google library loading has timed out.'))
+                        console.error('Google library loading has timed out.');
                     }
                 });
             });
-        });
     }
 
-    initAuth2(): Promise<any> {
-        return new Promise((resolve, reject) => {
+    initAuth2(): void {
             this.zone.run(() => {
                 gapi.auth2.init({
                     client_id: '360518813721-mppgbakr2g1pk5q843nm533uvdhp1lk6.apps.googleusercontent.com',
@@ -89,13 +86,10 @@ export class AuthenticationService {
                     GoogleAuth.isSignedIn.listen(this.updateSignInStatus);
                     GoogleAuth.currentUser.listen(this.updateCurrentUser);
 
-                    resolve();
-                }, (e) => {
-                    console.error(e);
-                    reject(e);
+                }, (err) => {
+                    console.error(err);
                 });
             });
-        });
     }
 
     updateSignInStatus = (status) => {
@@ -111,14 +105,13 @@ export class AuthenticationService {
                         this.user$.next(user);
                     });
                 },
-                (error) => {
-                    console.log(error);
+                (err) => {
+                    console.error(err);
                 });
         }
     };
 
-    renderSignIn(): Promise<any> {
-        return new Promise((resolve, reject) => {
+    renderSignIn(): void {
             this.zone.run(() => {
                 gapi.signin2.render('my-signin2', {
                     scope: 'profile email',
@@ -129,15 +122,12 @@ export class AuthenticationService {
                     prompt: 'select_account',
                     onsuccess: user => {
                         this.updateCurrentUser(user);
-                        resolve();
                     },
-                    onfailure: (e) => {
-                        console.error(e);
-                        reject(e);
+                    onfailure: (err) => {
+                        console.error(err);
                     }
                 });
             });
-        });
     }
 
 }
