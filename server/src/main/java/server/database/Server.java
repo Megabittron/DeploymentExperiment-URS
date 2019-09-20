@@ -109,6 +109,8 @@ public class Server {
         post("api/logout", loginRequestHandler::logoutUser);
 
         get("api/system-information", systemRequestHandler::getSystemInformation);
+        get("api/review-groups", systemRequestHandler::getReviewGroups);
+        post("api/review-groups/editReviewGroups", systemRequestHandler::editReviewGroups);
 
 
         after("*", Server::addGzipHeader);
