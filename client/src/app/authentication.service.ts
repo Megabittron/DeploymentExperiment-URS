@@ -1,4 +1,4 @@
-import {Injectable, NgZone, OnInit} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from '../environments/environment';
@@ -6,8 +6,9 @@ import {User} from './user';
 import {Router} from "@angular/router";
 
 declare const gapi: any;
+
 @Injectable()
-export class AuthenticationService implements OnInit{
+export class AuthenticationService {
 
     public auth2: any;
     public user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -48,76 +49,85 @@ export class AuthenticationService implements OnInit{
             });
     }
 
-    loadAuth2(): Promise<any> {
-        return new Promise((resolve, reject) => {
+    loadAuth2(): void {
             this.zone.run(() => {
                 gapi.load('auth2', {
-                    callback: resolve,
-                    onerror: reject,
-                    timeout: 1000,
-                    ontimeout: reject
+                    callback: () => {
+                        this.isLoaded$.next(true);
+                        this.initAuth2();
+                    },
+                    onerror: () => {
+                        this.isLoaded$.next(false);
+                        console.error('Google library failed to load.');
+                    },
+                    timeout: 5000,
+                    ontimeout: () => {
+                        console.error('Google library loading has timed out.');
+                    }
                 });
             });
-        });
     }
 
-    initAuth2(): Promise<any> {
-        return new Promise((resolve, reject) => {
+    initAuth2(): void {
             this.zone.run(() => {
                 gapi.auth2.init({
                     client_id: '360518813721-mppgbakr2g1pk5q843nm533uvdhp1lk6.apps.googleusercontent.com',
                     fetch_basic_profile: true,
                     hosted_domain: 'morris.umn.edu'
-                }).then(googleAuth => {
-                    console.log(googleAuth);
-                    this.auth2 = googleAuth;
-                    resolve();
-                }, () => {
-                    reject();
+                }).then(GoogleAuth => {
+                    this.auth2 = GoogleAuth;
+                    let GoogleUser = GoogleAuth.currentUser.get();
+                    let isSignedIn = GoogleAuth.isSignedIn.get();
+
+                    if (isSignedIn) {
+                        this.updateCurrentUser(GoogleUser);
+                    }
+
+                    GoogleAuth.isSignedIn.listen(this.updateSignInStatus);
+                    GoogleAuth.currentUser.listen(this.updateCurrentUser);
+
+                }, (err) => {
+                    console.error(err);
                 });
             });
-        });
     }
 
-    renderSignIn(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.zone.run(() => {
-                    gapi.signin2.render('my-signin2', {
-                        'scope': 'profile email',
-                        'width': 240,
-                        'height': 50,
-                        'longtitle': true,
-                        'theme': 'light',
-                        'onsuccess': user => {
-                            this.validateToken(user.getAuthResponse().id_token).subscribe(user => {
-                                    this.zone.run(() => {
-                                        this.user$.next(user);
-                                        this.isLoggedIn$.next(true);
-                                        resolve();
-                                    });
-                                },
-                                (err) => {
-                                    console.log(err);
-                                });
-                        },
-                        'onfailure': () => {
-                            console.log('FAILED TO SIGN IN!!!');
-                            reject();
-                        }
+    updateSignInStatus = (status) => {
+        this.isLoggedIn$.next(status);
+    };
+
+    updateCurrentUser = (GoogleUser) => {
+        let id_token = GoogleUser.getAuthResponse().id_token;
+
+        if (id_token) {
+            this.validateToken(id_token).subscribe(user => {
+                    this.zone.run(() => {
+                        this.user$.next(user);
                     });
-            })
-        })
-    }
+                },
+                (err) => {
+                    console.error(err);
+                });
+        }
+    };
 
-    ngOnInit(): void {
-        this.loadAuth2().then(() => {
-            return this.initAuth2();
-        },
-            () => {}).then(() => {
-                this.isLoaded$.next(true);
-        },
-            () => {
-                this.isLoaded$.next(false);
+    renderSignIn(): void {
+            this.zone.run(() => {
+                gapi.signin2.render('my-signin2', {
+                    scope: 'profile email',
+                    width: 240,
+                    height: 50,
+                    longtitle: true,
+                    theme: 'light',
+                    prompt: 'select_account',
+                    onsuccess: user => {
+                        this.updateCurrentUser(user);
+                    },
+                    onfailure: (err) => {
+                        console.error(err);
+                    }
+                });
             });
     }
+
 }
