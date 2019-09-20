@@ -1,22 +1,16 @@
 .login-page {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     height: calc(100vh - 64px); /* Set login screen to take up full height of page,
-                                   minus the height of the header */
-}
-
-.main {
+                                      minus the height of the header */
     background-image: linear-gradient(rgba(122, 0, 25, 0.61), rgba(122, 118, 10, 0.5)),
-                        url("../../assets/research.png");
+    url("../../assets/research.png");
 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-color: #7a0019;
-    flex-direction: column;
-    display: flex;
-    height: 100%;
-    justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     overflow-y: auto;
@@ -24,6 +18,11 @@
 
 .content {
     text-align: center;
+    margin: 0 0 10%;
+}
+
+.main {
+    padding: 0 15px;
 }
 
 .sign-in {
@@ -32,4 +31,31 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+@media only screen and ('max-width': 450px){
+
+    .login-page {
+        font-size: 1rem;
+    }
+
+    .welcome {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 0 0 50px;
+    }
+
+    .sign-in {
+        padding: 0 0 50px;
+    }
+
+}
+
+@media only screen and ('max-height': 550px) and ('orientation': landscape) {
+    .welcome-explanation, .sign-in-request {
+        display: none;
+    }
+
 }

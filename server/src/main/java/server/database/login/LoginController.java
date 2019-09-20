@@ -7,21 +7,23 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import server.database.users.UserController;
+import server.database.utils.SystemProperties;
 
-import java.io.FileReader;
+import java.io.StringReader;
 import java.util.Collections;
 
 public class LoginController {
 
     private final UserController userController;
 
-    public LoginController(UserController userController){
+    public LoginController(UserController userController) {
         this.userController = userController;
     }
 
 
     String verifyIdToken(String idTokenString) {
-        String CLIENT_SECRET_FILE = "./src/main/java/server/database/server_files/client_secret.json";
+
+        String CLIENT_SECRET = SystemProperties.getProperty("CLIENT_SECRET");
 
         NetHttpTransport transport = new NetHttpTransport();
         JsonFactory jsonFactory = new JacksonFactory();
@@ -29,7 +31,7 @@ public class LoginController {
         try {
             GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(
-                    JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+                    JacksonFactory.getDefaultInstance(), new StringReader(CLIENT_SECRET));
 
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
                 .setAudience(Collections.singletonList(clientSecrets.getDetails().getClientId()))

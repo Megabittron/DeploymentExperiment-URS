@@ -3,6 +3,9 @@ import {AppService} from "../app.service";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {AccountInfoService} from "./account-info.service";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 
 declare const gapi: any;
 @Component({
@@ -16,6 +19,8 @@ export class AccountInfoComponent implements OnInit {
     public user: User;
     public profilePic: string;
     public isEditing: boolean = false;
+    public breakPointState: Observable<BreakpointState> = this.breakPointObserver.observe('(max-width: 960px)');
+    public isMobile: boolean;
 
     shirtSizes = [
         {value: 'xs', viewValue: 'Extra Small'},
@@ -27,7 +32,9 @@ export class AccountInfoComponent implements OnInit {
     ];
 
     constructor(private authenticationService: AuthenticationService,
-                private accountInfoService: AccountInfoService) { }
+                private accountInfoService: AccountInfoService,
+                private router: Router,
+                private breakPointObserver: BreakpointObserver) { }
 
     changeEditState(): void {
         this.isEditing = !this.isEditing;
@@ -39,18 +46,6 @@ export class AccountInfoComponent implements OnInit {
         this.changeEditState();
     }
 
-    getName(): string {
-        return this.user.FirstName + ' ' + this.user.LastName;
-    }
-
-    getRole(): string {
-        return this.user.Role.toUpperCase();
-    }
-
-    getShirtSize(): string {
-        return this.user.ShirtSize.toUpperCase();
-    }
-
     ngOnInit(): void {
        this.authenticationService.user$.subscribe(user => {
             this.user = user;
@@ -58,6 +53,10 @@ export class AccountInfoComponent implements OnInit {
            if (gapi) {
                this.profilePic = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getImageUrl();
            }
+        });
+
+        this.breakPointState.subscribe(result => {
+            this.isMobile = result.matches;
         });
     }
 }

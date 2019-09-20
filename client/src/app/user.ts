@@ -1,5 +1,7 @@
 export interface User {
-    _id: string;
+    _id: {
+        $oid: string
+    };
     SubjectID: string;
     FirstName: string;
     LastName: string;

@@ -9,13 +9,13 @@
     </a>
     <a *ngIf="isAdmin()" color="primary"  routerLink="/admin" routerLinkActive="nav-active"><b>Admin</b></a>
     <a color="primary"  routerLink="/submissionList" routerLinkActive="nav-active"><b>Submission List</b></a>
-    <img class="profile-pic" [src]="profilePic" (click)="goToAccountInfo()">
+    <img class="profile-pic" alt="Profile picture" [src]="profilePic" (click)="goToAccountInfo()">
     <div class="account-options">
         <div class="options">
             <div class="profile-option" (click)="goToAccountInfo()">
                 <p class="option">Profile</p>
             </div>
-            <div class="sign-out-option" (click)="signOut()">
+            <div class="sign-out-option" (click)="authenticationService.signOut()">
                 <p class="option">Sign Out</p>
             </div>
         </div>
