@@ -12,8 +12,10 @@ import {
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const FLEX_LAYOUT_MODULES: any[] = [
     FlexLayoutModule,
@@ -22,6 +24,8 @@ const FLEX_LAYOUT_MODULES: any[] = [
 const ANGULAR_MODULES: any[] = [
     BrowserAnimationsModule,
     FormsModule,
+    DragDropModule
+
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -57,6 +61,8 @@ const COVALENT_MODULES: any[] = [
         MATERIAL_MODULES,
         COVALENT_MODULES,
         FLEX_LAYOUT_MODULES,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
 

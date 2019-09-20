@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
-import {AdminComponent} from './admin/admin.component';
+import {AdminComponent, SaveReviewGroupsDialog} from './admin/admin.component';
 import {SubmissionListComponent} from './submissionList/submissionList.component';
 import {SubmissionListService} from './submissionList/submissionList.service';
 import {AccountInfoComponent} from './accountInfo/accountInfo.component';
@@ -21,6 +21,7 @@ import { RoleGuard } from './role.guard';
 import {AccountInfoService} from "./accountInfo/account-info.service";
 import {AdminService} from "./admin/admin.service";
 import {CredentialInterceptor} from "./interceptors/credential-interceptor";
+import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 
 @NgModule({
@@ -38,6 +39,9 @@ import {SubmissionViewComponent} from "./submissionView/submissionView.component
         SubmissionListComponent,
         NewSubmissionComponent,
         NavComponent,
+        LoginComponent,
+        RandomizeReviewGroupsComponent,
+        SaveReviewGroupsDialog,
         LoginComponent,
         SubmissionViewComponent
     ],
@@ -60,7 +64,7 @@ import {SubmissionViewComponent} from "./submissionView/submissionView.component
             useValue: '/'
         }
     ],
-    entryComponents: [],
+    entryComponents: [RandomizeReviewGroupsComponent, SaveReviewGroupsDialog],
     bootstrap: [AppComponent]
 })
 
