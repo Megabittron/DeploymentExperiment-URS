@@ -1,3 +1,3 @@
-rootProject.name = 'mongo-lab'
+rootProject.name = 'URS'
 
 include 'client', 'server'

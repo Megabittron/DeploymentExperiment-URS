@@ -1,12 +1,14 @@
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
-import {DebugElement} from '@angular/core';
 import {CustomModule} from '../custom.module';
+import {DebugElement} from "@angular/core";
 
 describe('Home', () => {
 
     let component: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
+    let de: DebugElement;
+    let el: HTMLElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -15,9 +17,13 @@ describe('Home', () => {
         });
 
         fixture = TestBed.createComponent(HomeComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
+        el = de.nativeElement;
+    });
 
-        component = fixture.componentInstance; // BannerComponent test instance
-        // query for the title <h1> by CSS element selector
+    it('should create HomeComponent', () => {
+        expect(component).toBeDefined();
     });
 
 });

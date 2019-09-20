@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {AdminComponent, SaveReviewGroupsDialog} from './admin/admin.component';
@@ -20,6 +20,7 @@ import { UserIsLoggedInGuard } from './user-is-logged-in.guard';
 import { RoleGuard } from './role.guard';
 import {AccountInfoService} from "./accountInfo/account-info.service";
 import {AdminService} from "./admin/admin.service";
+import {CredentialInterceptor} from "./interceptors/credential-interceptor";
 import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 
 @NgModule({
@@ -49,7 +50,15 @@ import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.co
         UserIsLoggedInGuard,
         RoleGuard,
         AdminService,
-        {provide: APP_BASE_HREF, useValue: '/'}
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CredentialInterceptor,
+            multi: true
+        },
+        {
+            provide: APP_BASE_HREF,
+            useValue: '/'
+        }
     ],
     entryComponents: [RandomizeReviewGroupsComponent, SaveReviewGroupsDialog],
     bootstrap: [AppComponent]

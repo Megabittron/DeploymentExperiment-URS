@@ -23,7 +23,9 @@ describe('LoginComponent', () => {
             isLoggedIn$: new BehaviorSubject<boolean>(false),
             isLoaded$: new BehaviorSubject<boolean>(false),
             user$: new BehaviorSubject<User>({
-                _id: '',
+                _id: {
+                    $oid: ''
+                },
                 SubjectID: '',
                 FirstName: '',
                 LastName: '',
