@@ -52,10 +52,7 @@ export class AdminComponent implements OnInit {
     }
 
     changeReviewGroups(): void {
-        console.log("All review groups: " + JSON.stringify(this.systemInformation.reviewGroups));
         this.adminService.updateReviewGroups(this.systemInformation.reviewGroups).subscribe(info => {
-            // console.log("All review groups: " + JSON.stringify(this.systemInformation.reviewGroups));
-            console.log("Groups updated!");
         });
     }
 
@@ -93,7 +90,6 @@ export class AdminComponent implements OnInit {
 
         this.adminService.getSystemInformation().subscribe(info => {
             this.systemInformation = info;
-            console.log(this.systemInformation);
         });
     }
 }
