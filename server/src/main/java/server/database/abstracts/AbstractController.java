@@ -7,7 +7,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -42,13 +43,13 @@ public class AbstractController {
      */
     String getSingleAbstract(String id) {
         Document filterDoc = new Document();
-        filterDoc.append("_id", id);
+        filterDoc.append("_id", new ObjectId(id));
 
         FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
 
         String abstractJSON = "";
 
-        for (Document doc: single_abstract) {
+        for (Document doc : single_abstract) {
             abstractJSON = doc.toJson();
         }
 
@@ -371,7 +372,6 @@ public class AbstractController {
 
     /**
      * Helper method called by addNewAbstract(..)
-     *
      */
     String addNewAbstract(String userID,
                           String presentationTitle,
@@ -639,13 +639,8 @@ public class AbstractController {
      * @return Array of abstracts as a JSON formatted string
      */
     private String newAbstractArray(FindIterable<Document> abstracts) {
-        JSONArray abstractsArr = new JSONArray();
-
-        for (Document _abstract : abstracts) {
-            abstractsArr.put(_abstract);
-        }
-
-        return abstractsArr.toString();
+        //noinspection NullableProblems - This comment disables inspection for Document::toJson
+        return abstracts.map(Document::toJson).into(new ArrayList<>()).toString();
     }
 
 }
