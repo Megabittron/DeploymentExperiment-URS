@@ -1,6 +1,8 @@
 [
     {
-        "_id": "5c367458a3249441cebe2c23",
+        "_id": {
+            "$oid": "5c367458a3249441cebe2c23"
+        },
         "userID": "110073864477046231189",
         "presentationTitle": "UMM Energy Consumption and Prediction Software System",
         "abstractContent": "Wind turbines are great for generating energy. However, knowing when it's a good time transfer and use this energy is difficult. This is where monitoring systems can help address some of these issues.",
