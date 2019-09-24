@@ -61,7 +61,9 @@ export class NewSubmissionComponent implements OnInit{
 
     saveSubmission(): void {
         const newSubmission: Submission = {
-            _id: '',
+            _id: {
+                $oid: ''
+            },
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
             abstractContent: this.abstractContent,

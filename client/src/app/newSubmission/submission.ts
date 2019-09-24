@@ -1,6 +1,8 @@
 
 export interface Submission {
-    _id: string;
+    _id: {
+        $oid: string
+    };
     userID: string;
     presentationTitle: string;
     abstractContent: string;
