@@ -1,6 +1,6 @@
 
 export interface Submission {
-    _id: {
+    _id?: {
         $oid: string
     };
     userID: string;
