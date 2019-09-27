@@ -2,7 +2,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
-import {MatSnackBar} from '@angular/material';
+import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 
@@ -27,7 +27,7 @@ export class NewSubmissionComponent implements OnInit{
     public abstractContent = "";
     public submissionFormat = "";
     public presentationType = "";
-    public changePresentationFormat = "";
+    public willingToChangePresentationFormat = "undecided";
     public firstPresenterFirstName = "";
     public firstPresenterLastName = "";
     public firstPresenterEmail = "";
@@ -40,7 +40,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
     public academicDiscipline = "";
-    public featurePresenter = "";
+    public willingToBeFeaturePresenter = "undecided";
     public sponOrganization = "";
     public firstAdvisorFirstName = "";
     public firstAdvisorLastName = "";
@@ -54,19 +54,19 @@ export class NewSubmissionComponent implements OnInit{
     public thirdAdvisorLastName = "";
     public thirdAdvisorEmail = "";
     public additionalMediaEquipment = "";
-    public additionalInfo = "";
+    public additionalRequirements = "";
     public other: boolean;
     public timestamp = "";
+    public approval = null;
 
     saveSubmission(): void {
         const newSubmission: Submission = {
-            _id: '',
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
             abstractContent: this.abstractContent,
             submissionFormat: this.submissionFormat,
             presentationType: this.presentationType,
-            changePresentationFormat: this.changePresentationFormat,
+            willingToChangePresentationFormat: this.willingToChangePresentationFormat,
             firstPresenterFirstName: this.firstPresenterFirstName,
             firstPresenterLastName: this.firstPresenterLastName,
             firstPresenterEmail: this.firstPresenterEmail,
@@ -77,7 +77,7 @@ export class NewSubmissionComponent implements OnInit{
             thirdPresenterLastName: this.thirdPresenterLastName,
             thirdPresenterEmail: this.thirdPresenterEmail,
             academicDiscipline: this.academicDiscipline,
-            featurePresenter: this.featurePresenter,
+            willingToBeFeaturePresenter: this.willingToBeFeaturePresenter,
             sponOrganization: this.sponOrganization,
             firstAdvisorFirstName: this.firstAdvisorFirstName,
             firstAdvisorLastName: this.firstAdvisorLastName,
@@ -89,9 +89,10 @@ export class NewSubmissionComponent implements OnInit{
             thirdAdvisorLastName: this.thirdAdvisorLastName,
             thirdAdvisorEmail: this.thirdAdvisorEmail,
             additionalMediaEquipment: this.additionalMediaEquipment,
-            additionalInfo: this.additionalInfo,
+            additionalRequirements: this.additionalRequirements,
             other: this.other,
-            timestamp: this.timestamp
+            timestamp: this.timestamp,
+            approval: this.approval
         };
 
         console.log(newSubmission);
@@ -105,15 +106,22 @@ export class NewSubmissionComponent implements OnInit{
         )
     }
 
+    onFeaturePresentationChange(change: MatRadioChange): void {
+        this.willingToBeFeaturePresenter = change.value;
+    }
+
+    onFormatChange(change: MatRadioChange): void {
+        this.willingToChangePresentationFormat = change.value;
+    }
+
     sectionOneComplete() {
         return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
-            || this.presentationType == "" || this.changePresentationFormat == "";
-
+            || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
     sectionTwoComplete() {
         return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.academicDiscipline == "" || this.featurePresenter == "";
+        || this.academicDiscipline == "" || this.willingToBeFeaturePresenter == "undecided";
     }
 
     sectionFourComplete() {

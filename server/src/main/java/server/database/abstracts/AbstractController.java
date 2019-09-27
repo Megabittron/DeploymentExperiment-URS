@@ -7,7 +7,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,13 +26,34 @@ public class AbstractController {
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    String getAbstractsForUser(String id) {
+    String getAbstractsForUser(String id) {//https://github.com/Megabittron/DeploymentExperiment-URS/blob/master/server/src/main/java/server/database/users/UserController.java#L30
         Document filterDoc = new Document();
         filterDoc.append("userID", id);
 
         FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
         return newAbstractArray(abstracts);
+    }
+
+    /**
+     * Helper method called by getAbstractJSON(..)
+     *
+     * @param id Users SubjectID
+     * @return Array of abstracts by userID as a JSON formatted string
+     */
+    String getSingleAbstract(String id) {
+        Document filterDoc = new Document();
+        filterDoc.append("_id", new ObjectId(id));
+
+        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
+
+        String abstractJSON = "";
+
+        for (Document doc : single_abstract) {
+            abstractJSON = doc.toJson();
+        }
+
+        return abstractJSON;
     }
 
     /**
@@ -60,12 +82,12 @@ public class AbstractController {
             filterDoc = filterDoc.append("title", contentRegQuery);
         }
 
-        if (queryParams.containsKey("format")) {
-            String targetContent = (queryParams.get("format")[0]);
+        if (queryParams.containsKey("submissionFormat")) {
+            String targetContent = (queryParams.get("submissionFormat")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("format", contentRegQuery);
+            filterDoc = filterDoc.append("submissionFormat", contentRegQuery);
 
         }
 
@@ -93,29 +115,29 @@ public class AbstractController {
             filterDoc = filterDoc.append("formatChange", contentRegQuery);
         }
 
-        if (queryParams.containsKey("discipline")) {
-            String targetContent = (queryParams.get("discipline")[0]);
+        if (queryParams.containsKey("academicDiscipline")) {
+            String targetContent = (queryParams.get("academicDiscipline")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("discipline", contentRegQuery);
+            filterDoc = filterDoc.append("academicDiscipline", contentRegQuery);
         }
 
 
-        if (queryParams.containsKey("featured")) {
-            String targetContent = (queryParams.get("featured")[0]);
+        if (queryParams.containsKey("willingToBeFeaturePresenter")) {
+            String targetContent = (queryParams.get("willingToBeFeaturePresenter")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("featured", contentRegQuery);
+            filterDoc = filterDoc.append("willingToBeFeaturePresenter", contentRegQuery);
         }
 
-        if (queryParams.containsKey("mediaServicesEquipment")) {
-            String targetContent = (queryParams.get("mediaServicesEquipment")[0]);
+        if (queryParams.containsKey("additionalMediaEquipment")) {
+            String targetContent = (queryParams.get("additionalMediaEquipment")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("mediaServicesEquipment", contentRegQuery);
+            filterDoc = filterDoc.append("additionalMediaEquipment", contentRegQuery);
         }
         if (queryParams.containsKey("specialRequirements")) {
             String targetContent = (queryParams.get("specialRequirements")[0]);
@@ -124,12 +146,12 @@ public class AbstractController {
             contentRegQuery.append("$options", "i");
             filterDoc = filterDoc.append("specialRequirements", contentRegQuery);
         }
-        if (queryParams.containsKey("otherInfo")) {
-            String targetContent = (queryParams.get("otherInfo")[0]);
+        if (queryParams.containsKey("additionalRequirements")) {
+            String targetContent = (queryParams.get("additionalRequirements")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("otherInfo", contentRegQuery);
+            filterDoc = filterDoc.append("additionalRequirements", contentRegQuery);
         }
         if (queryParams.containsKey("approval")) {
             String targetContent = (queryParams.get("approval")[0]);
@@ -350,14 +372,13 @@ public class AbstractController {
 
     /**
      * Helper method called by addNewAbstract(..)
-     *
      */
     String addNewAbstract(String userID,
                           String presentationTitle,
                           String abstractContent,
                           String submissionFormat,
                           String presentationType,
-                          String changePresentationFormat,
+                          String willingToChangePresentationFormat,
                           String firstPresenterFirstName,
                           String firstPresenterLastName,
                           String firstPresenterEmail,
@@ -368,7 +389,7 @@ public class AbstractController {
                           String thirdPresenterLastName,
                           String thirdPresenterEmail,
                           String academicDiscipline,
-                          String featurePresenter,
+                          String willingToBeFeaturePresenter,
                           String sponOrganization,
                           String firstAdvisorFirstName,
                           String firstAdvisorLastName,
@@ -380,7 +401,7 @@ public class AbstractController {
                           String thirdAdvisorLastName,
                           String thirdAdvisorEmail,
                           String additionalMediaEquipment,
-                          String additionalInfo,
+                          String additionalRequirements,
                           String other,
                           String approval,
                           String cc,
@@ -403,7 +424,7 @@ public class AbstractController {
         newAbstract.append("abstractContent", abstractContent);
         newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("presentationType", presentationType);
-        newAbstract.append("changePresentationFormat", changePresentationFormat);
+        newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
         newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
         newAbstract.append("firstPresenterLastName", firstPresenterLastName);
         newAbstract.append("firstPresenterEmail", firstPresenterEmail);
@@ -414,7 +435,7 @@ public class AbstractController {
         newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
         newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
         newAbstract.append("academicDiscipline", academicDiscipline);
-        newAbstract.append("featurePresenter", featurePresenter);
+        newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("sponOrganization", sponOrganization);
         newAbstract.append("firstAdvisorFirstName", firstAdvisorFirstName);
         newAbstract.append("firstAdvisorLastName", firstAdvisorLastName);
@@ -426,7 +447,7 @@ public class AbstractController {
         newAbstract.append("thirdAdvisorLastName", thirdAdvisorLastName);
         newAbstract.append("thirdAdvisorEmail", thirdAdvisorEmail);
         newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
-        newAbstract.append("additionalInfo", additionalInfo);
+        newAbstract.append("additionalRequirements", additionalRequirements);
         newAbstract.append("other", other);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
@@ -450,14 +471,14 @@ public class AbstractController {
             System.err.println("Successfully added new abstract " +
                 "[userID " + userID +
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", changePresentationFormat=" + changePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", featurePresenter="
-                + featurePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
+                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
+                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
-                + additionalMediaEquipment + ", " + "additionalInfo=" + additionalInfo + ", other=" + other
+                + additionalMediaEquipment + ", " + "additionalRequirements=" + additionalRequirements + ", other=" + other
                 + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
@@ -484,15 +505,15 @@ public class AbstractController {
 
     String editAbstract(String id,
                         String title,
-                        String format,
+                        String submissionFormat,
                         String abstracts,
                         String presentationType,
-                        String formatChange,
-                        String discipline,
-                        String featured,
-                        String mediaServicesEquipment,
+                        String willingToChangePresentationFormat,
+                        String academicDiscipline,
+                        String willingToBeFeaturePresenter,
+                        String additionalMediaEquipment,
                         String specialRequirements,
-                        String otherInfo,
+                        String additionalRequirements,
                         String approval,
                         String cc,
                         String rejection,
@@ -524,15 +545,15 @@ public class AbstractController {
         Document newAbstract = new Document();
 
         newAbstract.append("title", title);
-        newAbstract.append("format", format);
+        newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("abstracts", abstracts);
         newAbstract.append("presentationType", presentationType);
-        newAbstract.append("formatChange", formatChange);
-        newAbstract.append("discipline", discipline);
-        newAbstract.append("featured", featured);
-        newAbstract.append("mediaServicesEquipment", mediaServicesEquipment);
+        newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
+        newAbstract.append("academicDiscipline", academicDiscipline);
+        newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
+        newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
         newAbstract.append("specialRequirements", specialRequirements);
-        newAbstract.append("otherInfo", otherInfo);
+        newAbstract.append("additionalRequirements", additionalRequirements);
         newAbstract.append("approval", approval);
         newAbstract.append("cc", cc);
         newAbstract.append("rejection", rejection);
@@ -571,9 +592,9 @@ public class AbstractController {
             System.out.println(abstractCollection.find());
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
-                "[_id=" + id1 + ", title=" + title + ", format=" + format + ", abstracts=" + abstracts + ", " +
-                "presentationType=" + presentationType + ", formatChange=" + formatChange + ", discipline=" + discipline + ", featured=" + featured + ", " +
-                "mediaServicesEquipment=" + mediaServicesEquipment + ", specialRequirements=" + specialRequirements + ", otherInfo=" + otherInfo + ", " +
+                "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter + ", " +
+                "additionalMediaEquipment=" + additionalMediaEquipment + ", specialRequirements=" + specialRequirements + ", additionalRequirements=" + additionalRequirements + ", " +
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
@@ -618,13 +639,8 @@ public class AbstractController {
      * @return Array of abstracts as a JSON formatted string
      */
     private String newAbstractArray(FindIterable<Document> abstracts) {
-        JSONArray abstractsArr = new JSONArray();
-
-        for (Document _abstract : abstracts) {
-            abstractsArr.put(_abstract);
-        }
-
-        return abstractsArr.toString();
+        //noinspection NullableProblems - This comment disables inspection for Document::toJson
+        return abstracts.map(Document::toJson).into(new ArrayList<>()).toString();
     }
 
 }

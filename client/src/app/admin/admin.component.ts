@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SystemInformation} from "./systemInformation";
 import {AdminService} from "./admin.service";
-import {RandomizeReviewGroupsComponent} from "./randomize-review-groups.component";
 import {MatDialog} from "@angular/material";
 
 import {CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';

@@ -1,0 +1,53 @@
+.submission-container {
+    padding: 2% 5% 2% 5%;
+}
+
+.submission-content {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 70%;
+    float: left;
+    padding: 0.5rem;
+}
+
+// comments
+.submission-comments {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 30%;
+    float: left;
+    padding: 0.5rem;
+}
+
+.comment {
+    background-color: lightblue;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.new-comment-btn {
+    background-color: cadetblue;
+}
+
+// buttons
+.button-container {
+    border: 1px solid red;  //for debugging
+}
+
+// individual buttons
+.back-to-list {
+    background-color: gray;
+    margin-bottom: 0.5rem;
+}
+
+.approve {
+    background-color: lightgreen;
+}
+
+.reject {
+    background-color: indianred;
+}
+
+.flag {
+    background-color: lightblue;
+}

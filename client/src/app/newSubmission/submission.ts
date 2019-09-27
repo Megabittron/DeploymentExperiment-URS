@@ -1,12 +1,14 @@
 
 export interface Submission {
-    _id: string;
+    _id?: {
+        $oid: string
+    };
     userID: string;
     presentationTitle: string;
     abstractContent: string;
     submissionFormat: string;
     presentationType: string;
-    changePresentationFormat: string;
+    willingToChangePresentationFormat: string;
     firstPresenterFirstName: string;
     firstPresenterLastName: string;
     firstPresenterEmail: string;
@@ -17,7 +19,7 @@ export interface Submission {
     thirdPresenterLastName: string;
     thirdPresenterEmail: string;
     academicDiscipline: string;
-    featurePresenter: string;
+    willingToBeFeaturePresenter: string;
     sponOrganization: string;
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
@@ -29,7 +31,9 @@ export interface Submission {
     thirdAdvisorLastName: string;
     thirdAdvisorEmail: string;
     additionalMediaEquipment: string;
-    additionalInfo: string;
+    additionalRequirements: string;
     other: boolean;
     timestamp: string;
+    comments?: string;
+    approval: boolean;
 }

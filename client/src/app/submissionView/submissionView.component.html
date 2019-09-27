@@ -1,0 +1,85 @@
+<div class="submission-container" *ngIf="submission">
+
+    <div class="submission-content">
+
+        <!-- TODO: Style in the theme instead of in component's scss -->
+        <div class="button-container">
+            <button mat-button class="back-to-list" routerLink="/submissionList">
+                <mat-icon>arrow_back</mat-icon> Back to Submission List
+            </button>
+
+            <br>
+
+            <div class="submission-judgement-btns">
+                <button mat-button class="approve">
+                    <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
+                </button>
+
+                <button mat-button class="reject">
+                    <mat-icon>thumb_down</mat-icon> Reject Submission [W]
+                </button>
+
+                <button mat-button class="flag">
+                    <mat-icon>flag</mat-icon> Flag for Re-Submission [W]
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <h1>{{submission.presentationTitle}}</h1>
+            <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+            <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
+            <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s):
+                {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}
+                <!-- TODO: Add condition for third adviser -->
+            </p>
+        </div>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    More Details
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <p>Presenter Email: {{submission.firstPresenterEmail}}</p>
+            <p>Adviser Email: {{submission.firstAdvisorEmail}}</p>
+            <p *ngIf="submission.secondAdvisorEmail">CoAdviser(s) email:
+                {{submission.secondAdvisorEmail}} {{submission.thirdAdvisorEmail}}
+                <!-- TODO: Add condition for third adviser -->
+            </p>
+            <p *ngIf="submission.academicDiscipline">Discipline: {{submission.academicDiscipline}}</p>
+            <p>Type: {{submission.presentationType}}</p>
+            <p>Format: {{submission.submissionFormat}}</p>
+            <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
+            <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
+            <p>Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
+            <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
+            <p>Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
+            <p>Additional Information: </p> <!-- TODO: Add field  -->
+            <p>Date of Submission: {{submission.timestamp}}</p>
+        </mat-expansion-panel>
+
+        <div class="abstract">
+            <h1>Abstract</h1>
+            <p>{{submission.abstractContent}}</p>
+        </div>
+
+        <div>
+            <p>You are seeing this submission because you are a(n): </p>
+        </div>
+
+    </div>
+
+    <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
+        <h2>Comments</h2>
+
+        <button mat-button class="new-comment-btn">
+            <mat-icon>edit</mat-icon> New Comment [W]
+        </button>
+
+        <div class="comment" *ngIf="submission.comments">{{submission.comments}}</div>
+    </div>
+
+</div>
+

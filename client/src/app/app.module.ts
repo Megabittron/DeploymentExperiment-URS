@@ -22,6 +22,7 @@ import {AccountInfoService} from "./accountInfo/account-info.service";
 import {AdminService} from "./admin/admin.service";
 import {CredentialInterceptor} from "./interceptors/credential-interceptor";
 import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
+import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 
 @NgModule({
     imports: [
@@ -40,7 +41,9 @@ import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.co
         NavComponent,
         LoginComponent,
         RandomizeReviewGroupsComponent,
-        SaveReviewGroupsDialog
+        SaveReviewGroupsDialog,
+        LoginComponent,
+        SubmissionViewComponent
     ],
     providers: [
         AuthenticationService,
@@ -50,6 +53,7 @@ import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.co
         UserIsLoggedInGuard,
         RoleGuard,
         AdminService,
+        SubmissionListService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CredentialInterceptor,
