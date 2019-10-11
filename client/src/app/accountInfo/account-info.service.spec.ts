@@ -3,10 +3,12 @@ import {TestBed} from '@angular/core/testing';
 import {AccountInfoService} from './account-info.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {Observable} from "rxjs";
+import {AuthenticationService} from "../authentication.service";
 
 describe('AccountInfoService', () => {
 
     let httpClientSpy: { put: jasmine.Spy };
+    let authServiceSpy: { put: jasmine.Spy };
     let service: AccountInfoService;
 
     const user = {
@@ -27,7 +29,8 @@ describe('AccountInfoService', () => {
         });
 
         httpClientSpy = jasmine.createSpyObj('HttpClient', ['put']);
-        service = new AccountInfoService(<any>httpClientSpy);
+        authServiceSpy = jasmine.createSpyObj('AuthenticationService', ['put']);
+        service = new AccountInfoService(<any>httpClientSpy, <any> authServiceSpy);
     });
 
     it('should be created', () => {

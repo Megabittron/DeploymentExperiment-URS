@@ -4,6 +4,8 @@ import {User} from "../user";
 import {Router} from "@angular/router";
 import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 import {Observable} from "rxjs/Rx";
+import {AccountInfoService} from "../accountInfo/account-info.service";
+import {BehaviorSubject} from "rxjs";
 
 declare const gapi: any;
 @Component({
@@ -21,17 +23,13 @@ export class NavComponent implements OnInit{
     public breakPointState: Observable<BreakpointState> = this.breakPointObserver.observe('(max-width: 960px)');
     public isMobile: boolean;
 
+    public isAdmin: boolean;
+
     constructor(private authenticationService: AuthenticationService,
                 private router: Router,
-                private breakPointObserver: BreakpointObserver) {
+                private breakPointObserver: BreakpointObserver,
+                private accountInfoService: AccountInfoService) {
         this.text = 'Nav';
-
-    }
-
-    isAdmin(): boolean {
-        if (this.user) {
-            return this.user.Role.includes('admin');
-        }
     }
 
     goToAccountInfo(): void {
@@ -58,6 +56,10 @@ export class NavComponent implements OnInit{
 
         this.breakPointState.subscribe(result => {
             this.isMobile = result.matches;
+        });
+
+        this.accountInfoService.isAdmin$.subscribe( value => {
+            this.isAdmin = value;
         });
     }
 
