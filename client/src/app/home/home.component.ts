@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from "../app.service";
+import {AccountInfoService} from "../accountInfo/account-info.service";
 
 @Component({
     selector: 'app-home-component',
@@ -7,9 +8,15 @@ import {AppService} from "../app.service";
     styleUrls: ['./home.component.scss'],
     providers: [AppService]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
-    constructor() {
+    public isAdmin: boolean;
 
+    constructor(private accountInfoService: AccountInfoService) {}
+
+    ngOnInit() {
+        this.accountInfoService.isAdmin$.subscribe( value => {
+            this.isAdmin = value;
+        });
     }
 }

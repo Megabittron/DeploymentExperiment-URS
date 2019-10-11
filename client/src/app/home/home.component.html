@@ -6,6 +6,7 @@
             <mat-divider></mat-divider>
             <mat-card-content>
                 <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
+                <button class="admin-button" *ngIf="isAdmin" mat-raised-button routerLink="/admin">Admin Controls</button>
             </mat-card-content>
         </mat-card>
     </div>
