@@ -5,7 +5,7 @@
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-horizontal-stepper #stepper>
-                    <mat-step>
+                    <mat-step label="Application Info">
                         All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
                         The faculty mentor should indicate:<br>
                         * Confidence that the student's work will be ready to present by the URS date.<br>
@@ -39,7 +39,7 @@
                         </div>
                     </mat-step>
 
-                    <mat-step>
+                    <mat-step label="Title/Abstract/Format">
                         <div class="presentationTitle" >
                             <form #newAbstractForm="ngForm">
                                 <mat-form-field class="presentationTitleBox">
@@ -90,7 +90,7 @@
                             </form>
                         </div>
                     </mat-step>
-                    <mat-step>
+                    <mat-step label="Presenter(s)/Discipline/Featured">
                         <div class="presenterForm">
 
                             Who will be presenting? Please add their name(s) and their university email below. If there are more than one presenter, click the plus button
@@ -236,7 +236,7 @@
                             <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step>
+                    <mat-step label="Sponsor(s)">
                         <div class="sponOrganization">
                             Sponsoring Organization or Fund
                             <br>
@@ -266,7 +266,7 @@
                             <button mat-raised-button matStepperNext color="primary">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step>
+                    <mat-step label="Advisor(s)">
                         <div class="adviserForm">
                             Who is the advisor(s)? Please add their name(s) and their university email below.
                             If there are more than one presenter, click the plus button for more rows.
@@ -345,7 +345,7 @@
                             <button mat-raised-button matStepperNext color="primary" [disabled]="sectionFourComplete()">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step>
+                    <mat-step label="Misc Info/Submit">
                         <div class="additionalInfoPage">
                             Each presentation room will have available an overhead projector and a
                             Macintosh or PC computer with video projection capabilities.
