@@ -1,10 +1,10 @@
-
 import {Component, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
 import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-newSubmission-component',
@@ -16,10 +16,15 @@ export class NewSubmissionComponent implements OnInit{
 
     constructor(public snackBar: MatSnackBar,
                 public newSubmissionService: NewSubmissionService,
-                private authenticationService: AuthenticationService) {
+                private authenticationService: AuthenticationService,
+                private _formBuilder: FormBuilder) {
     }
 
     public user: User;
+
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    thirdFormGroup: FormGroup;
 
     private highlightedID: { '$oid': string } = {'$oid': ''};
 
@@ -132,6 +137,31 @@ export class NewSubmissionComponent implements OnInit{
     ngOnInit(): void {
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
+        });
+
+        // STEP TWO: Title/Abstract/Format step
+        this.firstFormGroup = this._formBuilder.group({
+            firstCtrlOne: ['', Validators.required],
+            firstCtrlTwo: ['', Validators.required],
+            firstCtrlThree: ['', Validators.required],
+            firstCtrlFour: ['', Validators.required],
+            firstCtrlFive: ['', Validators.required]
+        });
+
+        // STEP THREE: Presenter(s)/Discipline/Featured step
+        this.secondFormGroup = this._formBuilder.group({
+            secondCtrlOne: ['', Validators.required],
+            secondCtrlTwo: ['', Validators.required],
+            secondCtrlThree: ['', Validators.required],
+            secondCtrlFour: ['', Validators.required],
+            secondCtrlFive: ['', Validators.required]
+        });
+
+        // STEP 5: Advisor(s)
+        this.thirdFormGroup = this._formBuilder.group({
+            thirdCtrlOne: ['', Validators.required],
+            thirdCtrlTwo: ['', Validators.required],
+            thirdCtrlThree: ['', Validators.required]
         });
     }
 }
