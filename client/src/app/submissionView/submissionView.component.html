@@ -77,7 +77,7 @@
         <p>To leave a comment, either highlight the part of the abstract you want to quote or click "New Comment."</p>
 
         <button mat-button class="new-comment-btn" (click)="makeNewComment()">
-            <mat-icon>edit</mat-icon> New Comment [W]
+            <mat-icon>edit</mat-icon> Comment on Thread [W]
         </button>
 
         <div class="top-level-comment">
@@ -87,6 +87,9 @@
             <i class="quote">"Denim was-- denim was invented, so that like, cows, when they bit you, it didn't hurt very bad."</i>
             <p>Please formalize your prose... why is it so conversational? You should also add that that used to be the
                 tagline underneath Levi's: "So it doesn't hurt so bad when cows bite you."</p>
+            <button mat-button class="respond-comment-btn" (click)="makeSubcomment()">
+                <mat-icon>edit</mat-icon> Comment on Comment [W]
+            </button>
         </div>
         <div class="sub-comment">
             <i class="material-icons">person</i>
@@ -100,6 +103,25 @@
             <br>
             <p>Looks good for the most part. Though you could condense the two sentences about the Levi's tagline
                 into one.</p>
+        </div>
+        <div class="sub-comment" *ngIf="!createSubcomment">
+            <i class="material-icons">person_outline</i>
+            <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
+            <br>
+            <p>{{subComment}}</p>
+        </div>
+
+        <div class="debug-comment" *ngIf="createSubcomment">
+            <u>Leave a comment on this comment:</u>
+            <br><br>
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment"
+                          (input)="subComment= $event.target.value"></textarea>
+            </mat-form-field>
+
+            <button mat-button class="leave-comment-btn" (click)="saveSubcomment()">
+                <mat-icon>edit</mat-icon> Submit Comment of Comment [W]
+            </button>
         </div>
 
         <div class="debug-comment" *ngIf="newComment">
@@ -117,7 +139,7 @@
         <div class="debug-comment" *ngIf="selectedText">
             <u>Leave a comment that quotes & highlights the abstract:</u>
             <br><br>
-            <i>"{{selectedText}}"</i>
+            <i class="quote">"{{selectedText}}"</i>
             <br><br>
 
             <mat-form-field class="leave-a-comment">

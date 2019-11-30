@@ -38,12 +38,27 @@ export class SubmissionViewComponent implements OnInit {
         }
         this.selectedText = text;
         this.newComment = false;
+        this.createSubcomment = false;
         console.log(text);
     }
 
     newComment: boolean = false;
     makeNewComment() {
         this.newComment = true;
+        this.selectedText = '';
+        this.createSubcomment = false;
+    }
+
+    createSubcomment: boolean = false;
+    makeSubcomment() {
+        this.createSubcomment = true;
+        this.newComment = false;
+        this.selectedText = '';
+    }
+
+    subComment: string = "";
+    saveSubcomment() {
+        this.createSubcomment = false;
         this.selectedText = '';
     }
 
