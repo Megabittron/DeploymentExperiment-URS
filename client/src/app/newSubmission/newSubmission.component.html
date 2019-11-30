@@ -432,6 +432,54 @@
                             </mat-form-field>
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </mat-step>
+
+                    <mat-step label="Review/Submit">
+                        <div class="reviewAndSubmitPage">
+                            Please review the following information before submitting:
+
+                            <p>Presentation Title: {{presentationTitle}}</p>
+                            <p>Abstract: {{abstractContent}}</p>
+                            <p>Submission Format: {{submissionFormat}}</p>
+                            <p>Presentation Type: {{presentationType}}</p>
+                            <p>Willing to Change Format: {{willingToChangePresentationFormat}}</p>
+                            <p>Presenter: {{firstPresenterFirstName}} {{firstPresenterLastName}}</p>
+                            <p>Presenter Email: {{firstPresenterEmail}}</p>
+
+                            <div *ngIf="secondPresenterFirstName">
+                                <p>Second Presenter Name: {{secondPresenterFirstName}} {{secondPresenterLastName}}</p>
+                                <p>Second Presenter Email: {{secondPresenterEmail}}</p>
+                            </div>
+
+                            <div *ngIf="thirdPresenterFirstName">
+                                <p>Third Presenter Name: {{thirdPresenterFirstName}} {{thirdPresenterLastName}}</p>
+                                <p>Third Presenter Email: {{thirdPresenterEmail}}</p>
+                            </div>
+
+                            <p>Discipline: {{academicDiscipline}}</p>
+                            <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
+                            <p *ngIf="sponOrganization">Sponsoring Organization: {{sponOrganization}}</p>
+                            <p>Advisor Name: {{firstAdvisorFirstName}} {{firstAdvisorLastName}}</p>
+                            <p>Advisor Email: {{firstAdvisorEmail}}</p>
+
+                            <div *ngIf="secondAdvisorFirstName">
+                                <p>Second Advisor: {{secondAdvisorFirstName}} {{secondAdvisorLastName}}</p>
+                                <p>Second Advisor Email: {{secondAdvisorEmail}}</p>
+                            </div>
+
+                            <div *ngIf="thirdAdvisorFirstName">
+                                <p>Third Advisor: {{thirdAdvisorFirstName}} {{thirdAdvisorLastName}}</p>
+                                <p>Third Advisor Email: {{thirdAdvisorEmail}}</p>
+                            </div>
+
+                            <p *ngIf="additionalMediaEquipment">Media Services Equipment: {{additionalMediaEquipment}}</p>
+                            <p *ngIf="additionalRequirements">Special Requirements: {{additionalRequirements}}</p>
+                            <p *ngIf="other">Other: {{other}}</p>
+
+                            <br><br>
+                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                             <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/">Submit</button>
                         </div>
                     </mat-step>
