@@ -37,7 +37,14 @@ export class SubmissionViewComponent implements OnInit {
             text = window.getSelection().toString();
         }
         this.selectedText = text;
+        this.newComment = false;
         console.log(text);
+    }
+
+    newComment: boolean = false;
+    makeNewComment() {
+        this.newComment = true;
+        this.selectedText = '';
     }
 
     ngOnInit() {

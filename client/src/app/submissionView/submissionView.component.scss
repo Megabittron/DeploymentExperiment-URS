@@ -3,18 +3,19 @@
 }
 
 .submission-content {
-    border: 1px solid red;  //for debugging
+    //border: 1px solid red;  //for debugging
+    background-color: lightgrey;
     display: inline-block;
-    width: 70%;
+    width: 60%;
     float: left;
     padding: 0.5rem;
 }
 
 // comments
 .submission-comments {
-    border: 1px solid red;  //for debugging
+    border: 1px solid black;  //for debugging
     display: inline-block;
-    width: 30%;
+    width: 40%;
     float: left;
     padding: 0.5rem;
 }
@@ -26,19 +27,34 @@
 }
 
 .top-level-comment {
-    border: 1px solid red;  //for debugging
+    //border: 1px solid red;  //for debugging
     display: inline-block;
     width: 100%;
     float: left;
-    padding: 0.5rem;
+    padding: 0.2rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    margin-bottom: 0.2rem;
+    border-left: 3px solid red;
+    font-size: 0.8rem;
+}
+
+.quote {
+    background-color: lightgrey;
+    font-size: 0.8rem;
 }
 
 .sub-comment {
-    border: 1px solid red;  //for debugging
+    //border: 1px solid red;  //for debugging
     display: inline-block;
     width: 95%;
     float: right;
-    padding: 0.5rem;
+    padding: 0.2rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    margin-bottom: 0.2rem;
+    border-left: 3px solid blue;
+    font-size: 0.8rem;
 }
 
 .leave-a-comment {
@@ -65,7 +81,7 @@
 
 // buttons
 .button-container {
-    border: 1px solid red;  //for debugging
+    //border: 1px solid red;  //for debugging
 }
 
 // individual buttons
