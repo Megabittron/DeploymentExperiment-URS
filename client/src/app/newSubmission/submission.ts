@@ -1,4 +1,3 @@
-
 export interface Submission {
     _id?: {
         $oid: string
