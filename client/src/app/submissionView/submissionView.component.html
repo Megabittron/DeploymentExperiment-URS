@@ -72,13 +72,31 @@
     </div>
 
     <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
-        <h2>Comments</h2>
+        <h2 style="text-align: center">Comments</h2>
+
+        <p>To leave a comment, either highlight the part of the abstract you want to quote or click "New Comment."</p>
 
         <button mat-button class="new-comment-btn">
             <mat-icon>edit</mat-icon> New Comment [W]
         </button>
 
-        <p *ngIf="selectedText" class="debug-comment">"{{selectedText}}"</p>
+        <div class="top-level-comment">Test 123</div>
+        <div class="sub-comment">321 Test</div>
+
+        <div class="debug-comment" *ngIf="selectedText">
+            <u>You are commenting/highlighting:</u>
+            <br><br>
+            <i>"{{selectedText}}"</i>
+            <br><br>
+
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+
+            <button mat-button class="leave-comment-btn">
+                <mat-icon>edit</mat-icon> New Comment [W]
+            </button>
+        </div>
 
         <div class="comment" *ngIf="submission.comments">{{submission.comments}}</div>
     </div>

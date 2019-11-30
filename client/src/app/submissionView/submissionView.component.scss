@@ -25,13 +25,42 @@
     margin-top: 0.5rem;
 }
 
+.top-level-comment {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 100%;
+    float: left;
+    padding: 0.5rem;
+}
+
+.sub-comment {
+    border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 95%;
+    float: right;
+    padding: 0.5rem;
+}
+
+.leave-a-comment {
+    width: 100%;
+}
+
+.leave-comment-btn {
+    background-color: green;
+    margin: 0.5rem;
+}
+
 .new-comment-btn {
     background-color: cadetblue;
+    margin: 0.5rem;
 }
 
 .debug-comment { //for debugging
     border: 1px solid black;
-    padding: 0.2rem;
+    display: inline-block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
 }
 
 // buttons
