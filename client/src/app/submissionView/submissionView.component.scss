@@ -29,6 +29,11 @@
     background-color: cadetblue;
 }
 
+.debug-comment { //for debugging
+    border: 1px solid black;
+    padding: 0.2rem;
+}
+
 // buttons
 .button-container {
     border: 1px solid red;  //for debugging

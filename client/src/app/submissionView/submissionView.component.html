@@ -62,7 +62,7 @@
 
         <div class="abstract">
             <h1>Abstract</h1>
-            <p>{{submission.abstractContent}}</p>
+            <p (mouseup)="highlightAbstractToCommentOn()">{{submission.abstractContent}}</p>
         </div>
 
         <div>
@@ -77,6 +77,8 @@
         <button mat-button class="new-comment-btn">
             <mat-icon>edit</mat-icon> New Comment [W]
         </button>
+
+        <p *ngIf="selectedText" class="debug-comment">"{{selectedText}}"</p>
 
         <div class="comment" *ngIf="submission.comments">{{submission.comments}}</div>
     </div>

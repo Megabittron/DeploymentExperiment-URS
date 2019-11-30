@@ -28,6 +28,18 @@ export class SubmissionViewComponent implements OnInit {
         );
     }
 
+    // Dasari Srinivas, Tuesday, 11 October 2016, "Get the Highlighted/Selected text using Angular 2"
+    // http://blog.sodhanalibrary.com/2016/10/get-highlightedselected-text-using.html
+    selectedText: string = '';
+    highlightAbstractToCommentOn() {
+        let text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        }
+        this.selectedText = text;
+        console.log(text);
+    }
+
     ngOnInit() {
         this.getSubmission();
     }
