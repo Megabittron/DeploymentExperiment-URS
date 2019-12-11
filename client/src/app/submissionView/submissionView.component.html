@@ -104,7 +104,7 @@
             <p>Looks good for the most part. Though you could condense the two sentences about the Levi's tagline
                 into one.</p>
         </div>
-        <div class="sub-comment" *ngIf="!createSubcomment">
+        <div class="sub-comment" *ngIf="createSubcomment">
             <i class="material-icons">person_outline</i>
             <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
             <br>
@@ -124,7 +124,7 @@
             </button>
         </div>
 
-        <div class="debug-comment" *ngIf="newComment">
+        <div class="debug-comment" *ngIf="createNewComment">
             <u>Leave a comment without quoting & highlighting:</u>
             <br><br>
             <mat-form-field class="leave-a-comment">
@@ -136,7 +136,7 @@
             </button>
         </div>
 
-        <div class="debug-comment" *ngIf="selectedText">
+        <div class="debug-comment" *ngIf="createHightingComment">
             <u>Leave a comment that quotes & highlights the abstract:</u>
             <br><br>
             <i class="quote">"{{selectedText}}"</i>
