@@ -13,6 +13,46 @@
             "ShirtSize": "m",
             "Role": "reviewer"
         },
+        "subComments":
+        [
+            {
+                "_id": {
+                    "$oid": "5b3524ba76bdf718e137b482"
+                },
+                "commenter":
+                    {
+                        "_id": {
+                            "$oid": "5b4fafaa7ff1d34e9da88ccb"
+                        },
+                        "SubjectID": "910073864477046231181",
+                        "FirstName": "Griffin",
+                        "LastName": "McElroy",
+                        "ShirtSize": "m",
+                        "Role": "user"
+                    },
+                "commenterInput": "I just formalized and followed up about Levi's. Look good?",
+                "resolved": false,
+                "timestamp": "Wed Feb 15 16:23:20 CST 2020"
+            },
+            {
+                "_id": {
+                    "$oid": "4d4424ba76bdf718e1374444"
+                },
+                "commenter":
+                    {
+                        "_id": {
+                            "$oid": "6b4fafaa7ff1d34e9da88cca"
+                        },
+                        "SubjectID": "110073864477046231189",
+                        "FirstName": "Travis",
+                        "LastName": "McElroy",
+                        "ShirtSize": "m",
+                        "Role": "reviewer"
+                    },
+                "commenterInput": "Looks good for the most part. Though you could condense the two sentences about the Levi's tagline into one.",
+                "timestamp": "Wed Feb 15 17:23:20 CST 2020"
+            }
+        ],
         "quotedSnippet": "Denim was-- denim was invented, so that like, cows, when they bit you, it didn't hurt very bad.",
         "commenterInput": "Please formalize your prose... why is it so conversational? You should also add that that used to be the tagline underneath Levi's: \"So it doesn't hurt so bad when cows bite you.\"",
         "resolved": false,

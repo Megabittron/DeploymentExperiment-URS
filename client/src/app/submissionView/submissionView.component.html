@@ -71,7 +71,7 @@
 
     </div>
 
-    <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
+    <div class="submission-comments" *ngFor="let comment of submission.topComments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
         <h2 style="text-align: center">Comments</h2>
 
         <p>To leave a comment, either highlight the part of the abstract you want to quote or click "New Comment."</p>
@@ -80,7 +80,7 @@
             <mat-icon>edit</mat-icon> Comment on Thread [W]
         </button>
 
-        <div class="top-level-comment" *ngFor="let comment of submission.topComments">
+        <div class="top-level-comment">
             <i class="material-icons">person_outline</i>
             <b>Submitted by {{comment.commenter.Role | uppercase}} on {{comment.timestamp}}</b>
             <br><br>
@@ -90,21 +90,30 @@
                 <mat-icon>edit</mat-icon> Comment on Comment [W]
             </button>
         </div>
-        <div class="sub-comment">
-            <p class="debug-tag">HARDCODED</p><br>
+
+        <div class="sub-comment" *ngFor="let subcomment of comment.subComments">
             <i class="material-icons">person</i>
-            <b>Submitted by STUDENT on Feb 21, 1:35PM</b>
+            <b>Submitted by {{subcomment.commenter.FirstName}} {{subcomment.commenter.LastName}}
+                on {{subcomment.timestamp | date:'MMM d'}} at {{subcomment.timestamp | date:'h:mm a'}}</b>
             <br>
-            <p>I just formalized and followed up about Levi's. Look good?</p>
+            <p>{{subcomment.commenterInput}}</p>
         </div>
-        <div class="sub-comment">
-            <p class="debug-tag">HARDCODED</p><br>
-            <i class="material-icons">person_outline</i>
-            <b>Submitted by REVIEWER on Feb 21, 2:05PM</b>
-            <br>
-            <p>Looks good for the most part. Though you could condense the two sentences about the Levi's tagline
-                into one.</p>
-        </div>
+
+<!--        <div class="sub-comment" >-->
+<!--            <p class="debug-tag">HARDCODED</p><br>-->
+<!--            <i class="material-icons">person</i>-->
+<!--            <b>Submitted by STUDENT on Feb 21, 1:35PM</b>-->
+<!--            <br>-->
+<!--            <p>I just formalized and followed up about Levi's. Look good?</p>-->
+<!--        </div>-->
+<!--        <div class="sub-comment">-->
+<!--            <p class="debug-tag">HARDCODED</p><br>-->
+<!--            <i class="material-icons">person_outline</i>-->
+<!--            <b>Submitted by REVIEWER on Feb 21, 2:05PM</b>-->
+<!--            <br>-->
+<!--            <p>Looks good for the most part. Though you could condense the two sentences about the Levi's tagline-->
+<!--                into one.</p>-->
+<!--        </div>-->
         <div class="sub-comment" *ngIf="createSubcomment">
             <i class="material-icons">person_outline</i>
             <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
