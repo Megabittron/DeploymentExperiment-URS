@@ -12,5 +12,5 @@ export interface SubComment {
 }
 
 export interface TopComment extends SubComment {
-    subComments: Array<SubComment>;
+    subComments?: Array<SubComment>;
 }

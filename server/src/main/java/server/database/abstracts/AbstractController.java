@@ -2,13 +2,16 @@ package server.database.abstracts;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -35,26 +38,38 @@ public class AbstractController {
         return newAbstractArray(abstracts);
     }
 
+    //TODO: Merge into single abstract
+    public String getSingleAbstract(String id){
+        AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
+            Aggregates.match(new Document("_id", new ObjectId(id))),
+            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
+        ));
+
+        System.out.println(singleAbstract.first().toJson());
+
+        return singleAbstract.first().toJson();
+    }
+
     /**
      * Helper method called by getAbstractJSON(..)
      *
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    String getSingleAbstract(String id) {
-        Document filterDoc = new Document();
-        filterDoc.append("_id", new ObjectId(id));
-
-        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
-
-        String abstractJSON = "";
-
-        for (Document doc : single_abstract) {
-            abstractJSON = doc.toJson();
-        }
-
-        return abstractJSON;
-    }
+//    String getSingleAbstract(String id) {
+//        Document filterDoc = new Document();
+//        filterDoc.append("_id", new ObjectId(id));
+//
+//        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
+//
+//        String abstractJSON = "";
+//
+//        for (Document doc : single_abstract) {
+//            abstractJSON = doc.toJson();
+//        }
+//
+//        return abstractJSON;
+//    }
 
     /**
      * Helper method called by getAbstracts(..)

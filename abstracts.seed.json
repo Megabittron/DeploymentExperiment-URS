@@ -34,7 +34,11 @@
         "additionalRequirements": "NA",
         "other": "NA",
         "timestamp": "Wed Jan 25 16:23:20 CST 2020",
-        "comments": null,
+        "topComments": [
+            {
+                "$oid": "59dac7b147c9429bff9ba9b3"
+            }
+        ],
         "approval": false,
         "rejection": false,
         "resubmitFlag": false,

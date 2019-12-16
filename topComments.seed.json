@@ -1,22 +1,18 @@
 [
     {
         "_id": {
-            "$oid": "5b3524ba76bdf718e137b493"
+            "$oid": "59dac7b147c9429bff9ba9b3"
         },
-        "commenter":
-        [
-            {
-                "_id": {
-                    "$oid": "6b4fafaa7ff1d34e9da88cca"
-                },
-                "SubjectID": "110073864477046231189",
-                "FirstName": "Travis",
-                "LastName": "McElroy",
-                "ShirtSize": "m",
-                "Role": "reviewer"
-            }
-        ],
-        "subComments": "REFACTOR SEED, THIS WILL BE AN ARRAY OF SUBCOMMENTS",
+        "commenter": {
+            "_id": {
+                "$oid": "6b4fafaa7ff1d34e9da78cca"
+            },
+            "SubjectID": "110073864477046231189",
+            "FirstName": "Travis",
+            "LastName": "McElroy",
+            "ShirtSize": "m",
+            "Role": "reviewer"
+        },
         "quotedSnippet": "Denim was-- denim was invented, so that like, cows, when they bit you, it didn't hurt very bad.",
         "commenterInput": "Please formalize your prose... why is it so conversational? You should also add that that used to be the tagline underneath Levi's: \"So it doesn't hurt so bad when cows bite you.\"",
         "resolved": false,

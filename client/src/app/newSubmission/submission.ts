@@ -1,3 +1,5 @@
+import {TopComment} from "../submissionView/comment";
+
 export interface Submission {
     _id?: {
         $oid: string
@@ -33,6 +35,6 @@ export interface Submission {
     additionalRequirements: string;
     other: boolean;
     timestamp: string;
-    comments?: string;
+    topComments?: Array<TopComment>;
     approval: boolean;
 }
