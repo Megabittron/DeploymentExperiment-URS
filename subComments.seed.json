@@ -4,18 +4,16 @@
                 "$oid": "5b3524ba76bdf718e137b482"
             },
             "commenter":
-            [
                 {
                     "_id": {
                         "$oid": "5b4fafaa7ff1d34e9da88ccb"
                     },
                     "SubjectID": "910073864477046231181",
-                    "FirstName": "Griffin",
-                    "LastName": "McElroy",
+                    "FirstName": "COMMMMMMMMMMMENTER",
+                    "LastName": "McCOMMMMMMMMMMMMMMMMMMMMMMMMM",
                     "ShirtSize": "m",
                     "Role": "user"
-                }
-            ],
+                },
             "commenterInput": "I just formalized and followed up about Levi's. Look good?",
             "resolved": false,
             "timestamp": "Wed Feb 15 16:23:20 CST 2020"
@@ -25,7 +23,6 @@
                 "$oid": "4d4424ba76bdf718e1374444"
             },
             "commenter":
-            [
                 {
                     "_id": {
                         "$oid": "6b4fafaa7ff1d34e9da88cca"
@@ -35,8 +32,7 @@
                     "LastName": "McElroy",
                     "ShirtSize": "m",
                     "Role": "reviewer"
-                }
-            ],
+                },
             "commenterInput": "Looks good for the most part. Though you could condense the two sentences about the Levi's tagline into one.",
             "timestamp": "Wed Feb 15 17:23:20 CST 2020"
         }

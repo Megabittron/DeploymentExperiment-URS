@@ -29,6 +29,11 @@ task seedTopLevelComments(type: Exec) {
     args = ["-d", "dev", "-c", "topComments", "--file", "topComments.seed.json", "--jsonArray"]
 }
 
+task seedSubComments(type: Exec) {
+    executable = "mongoimport"
+    args = ["-d", "dev", "-c", "subComments", "--file", "subComments.seed.json", "--jsonArray"]
+}
+
 task seedMongoDB {
     group = "application"
 }
@@ -37,3 +42,4 @@ seedMongoDB.dependsOn(seedUserData)
 seedMongoDB.dependsOn(seedAbstractData)
 seedMongoDB.dependsOn(seedReviewGroupData)
 seedMongoDB.dependsOn(seedTopLevelComments)
+seedMongoDB.dependsOn(seedSubComments)

@@ -4,14 +4,7 @@
             "$oid": "59dac7b147c9429bff9ba9b3"
         },
         "commenter": {
-            "_id": {
-                "$oid": "6b4fafaa7ff1d34e9da78cca"
-            },
-            "SubjectID": "110073864477046231189",
-            "FirstName": "Travis",
-            "LastName": "McElroy",
-            "ShirtSize": "m",
-            "Role": "reviewer"
+            "$oid": "6b4fafaa7ff1d34e9da78cca"
         },
         "subComments":
         [
@@ -39,6 +32,7 @@
                     "$oid": "4d4424ba76bdf718e1374444"
                 },
                 "commenter":
+
                     {
                         "_id": {
                             "$oid": "6b4fafaa7ff1d34e9da88cca"
@@ -48,7 +42,8 @@
                         "LastName": "McElroy",
                         "ShirtSize": "m",
                         "Role": "reviewer"
-                    },
+                    }
+                ,
                 "commenterInput": "Looks good for the most part. Though you could condense the two sentences about the Levi's tagline into one.",
                 "timestamp": "Wed Feb 15 17:23:20 CST 2020"
             }
@@ -57,5 +52,58 @@
         "commenterInput": "Please formalize your prose... why is it so conversational? You should also add that that used to be the tagline underneath Levi's: \"So it doesn't hurt so bad when cows bite you.\"",
         "resolved": false,
         "timestamp": "Wed Feb 14 16:23:20 CST 2020"
+    },
+    {
+        "_id": {
+            "$oid": "59dac7b147c9429bff9ba9b4"
+        },
+        "commenter": {
+            "$oid": "6b4fafaa7ff1d34e9da78cca"
+        },
+        "subComments":
+        [
+            {
+                "_id": {
+                    "$oid": "5b3524ba76bdf718e137b482"
+                },
+                "commenter":
+                {
+                    "_id": {
+                        "$oid": "5b4fafaa7ff1d34e9da88ccb"
+                    },
+                    "SubjectID": "910073864477046231181",
+                    "FirstName": "Griffin",
+                    "LastName": "McElroy",
+                    "ShirtSize": "m",
+                    "Role": "user"
+                },
+                "commenterInput": "Because I am...",
+                "resolved": false,
+                "timestamp": "Wed Feb 15 16:23:20 CST 2020"
+            },
+            {
+                "_id": {
+                    "$oid": "4d4424ba76bdf718e1374444"
+                },
+                "commenter":
+
+                {
+                    "_id": {
+                        "$oid": "6b4fafaa7ff1d34e9da88cca"
+                    },
+                    "SubjectID": "110073864477046231189",
+                    "FirstName": "Travis",
+                    "LastName": "McElroy",
+                    "ShirtSize": "m",
+                    "Role": "reviewer"
+                }
+            ,
+                "commenterInput": "Cool cool...",
+                "timestamp": "Wed Feb 15 17:23:20 CST 2020"
+            }
+        ],
+        "commenterInput": "Why are you even doing this topic?",
+        "resolved": false,
+        "timestamp": "Wed Feb 14 16:23:20 CST 2021"
     }
 ]

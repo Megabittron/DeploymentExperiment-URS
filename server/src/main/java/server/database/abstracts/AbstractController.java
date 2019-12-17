@@ -1,5 +1,10 @@
 package server.database.abstracts;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.AggregateIterable;
@@ -8,6 +13,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Aggregates;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -18,9 +24,11 @@ import java.util.Map;
 public class AbstractController {
 
     private final MongoCollection<Document> abstractCollection;
+    private final MongoCollection<Document> topCommentCollection;
 
     public AbstractController(MongoDatabase database) {
         abstractCollection = database.getCollection("abstracts");
+        topCommentCollection = database.getCollection("topComments");
     }
 
     /**
@@ -38,38 +46,35 @@ public class AbstractController {
         return newAbstractArray(abstracts);
     }
 
-    //TODO: Merge into single abstract
-    public String getSingleAbstract(String id){
-        AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
-            Aggregates.match(new Document("_id", new ObjectId(id))),
-            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
-        ));
-
-        System.out.println(singleAbstract.first().toJson());
-
-        return singleAbstract.first().toJson();
-    }
-
     /**
      * Helper method called by getAbstractJSON(..)
      *
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-//    String getSingleAbstract(String id) {
-//        Document filterDoc = new Document();
-//        filterDoc.append("_id", new ObjectId(id));
-//
-//        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
-//
-//        String abstractJSON = "";
-//
-//        for (Document doc : single_abstract) {
-//            abstractJSON = doc.toJson();
-//        }
-//
-//        return abstractJSON;
-//    }
+    public String getSingleAbstract(String id){
+        AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
+            Aggregates.match(new Document("_id", new ObjectId(id))),
+            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
+//            Aggregates.unwind("$topComments"),
+//            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
+//            Aggregates.unwind("$topComments.commenter")
+        ));
+
+        System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
+
+        return singleAbstract.first().toJson();
+    }
+
+    public static String toPrettyFormat(String jsonString) {
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(jsonString).getAsJsonObject();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJson = gson.toJson(json);
+
+        return prettyJson;
+    }
 
     /**
      * Helper method called by getAbstracts(..)

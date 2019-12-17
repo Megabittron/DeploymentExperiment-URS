@@ -37,6 +37,9 @@
         "topComments": [
             {
                 "$oid": "59dac7b147c9429bff9ba9b3"
+            },
+            {
+                "$oid": "59dac7b147c9429bff9ba9b4"
             }
         ],
         "approval": false,
