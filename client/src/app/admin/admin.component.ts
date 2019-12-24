@@ -7,6 +7,7 @@ import {CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem} from '@an
 import {User} from "../user";
 import {ReviewGroup} from "./reviewGroup";
 import {Observable} from "rxjs";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
     selector: 'app-admin-component',
@@ -33,7 +34,16 @@ export class AdminComponent implements OnInit {
     public reviewGroups: ReviewGroup[];
     public users: User[];
 
-    constructor(private adminService: AdminService, public dialog: MatDialog) {}
+    public user: User;
+
+    constructor(private adminService: AdminService, public dialog: MatDialog,
+                private authenticationService: AuthenticationService) {}
+
+    isAdmin(): boolean {
+        if (this.user) {
+            return this.user.Role.includes('admin');
+        }
+    }
 
     openDialog(): void {
         const dialogRef = this.dialog.open(SaveReviewGroupsDialog, {
@@ -85,6 +95,11 @@ export class AdminComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.authenticationService.user$.subscribe(value => {
+            this.user = value;
+        });
+
         this.refreshReviewGroups();
 
         this.adminService.getSystemInformation().subscribe(info => {

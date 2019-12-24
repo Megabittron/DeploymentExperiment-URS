@@ -1,5 +1,6 @@
 <section *ngIf="systemInformation" class="admin-section">
     <h1>System Information</h1>
+    <a *ngIf="isAdmin()" color="primary"  routerLink="/admin/editUserInfo"><b>Admin</b></a>
     <section>
         <h2><u>All Submission Statistics</u></h2>
         <p>Primary submissions: {{systemInformation.primarySubmissions}}</p>
