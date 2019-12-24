@@ -12,6 +12,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -20,6 +21,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
+
+import static com.mongodb.client.model.Accumulators.first;
+import static com.mongodb.client.model.Accumulators.push;
+import static com.mongodb.client.model.Sorts.*;
 
 public class AbstractController {
 
@@ -55,10 +60,15 @@ public class AbstractController {
     public String getSingleAbstract(String id){
         AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
             Aggregates.match(new Document("_id", new ObjectId(id))),
-            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
-//            Aggregates.unwind("$topComments"),
-//            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
-//            Aggregates.unwind("$topComments.commenter")
+            Aggregates.lookup("topComments", "topComments", "_id", "topComments"),
+            Aggregates.unwind("$topComments"),
+            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
+            Aggregates.unwind("$topComments.commenter"),
+            Aggregates.lookup("subComments", "topComments.subComments", "_id", "topComments.subComments"),
+//            Aggregates.lookup("users", "topComments.subComments.commenter", "_id", "topComments.subComments.commenter"),
+            Aggregates.group("$_id", first("userID","$userID"),
+                first("presentationTitle","$presentationTitle"),
+                push("topComments", "$topComments"))
         ));
 
         System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
