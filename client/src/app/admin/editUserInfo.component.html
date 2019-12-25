@@ -1,0 +1,29 @@
+<div *ngIf="systemInformation" class="user-info">
+    <p>Total users: {{systemInformation.totalUsers}}</p>
+    <p><span class="admin">Admins: {{systemInformation.admins}}</span>&nbsp;&nbsp;
+        <span class="chair">Chairs: {{systemInformation.chairs}}</span>&nbsp;&nbsp;
+        <span class="reviewer">Reviewers: {{systemInformation.reviewers}}</span>&nbsp;&nbsp;
+        <span class="user">Users: {{systemInformation.users}}</span></p>
+</div>
+
+<mat-grid-list cols="4" rowHeight="220px">
+    <mat-grid-tile *ngFor="let user of users">
+        <mat-card [ngClass]="{'admin': user.Role =='admin', 'user': user.Role == 'user',
+        'reviewer': user.Role == 'reviewer', 'chair': user.Role == 'chair'}">
+            <mat-card-title>
+                <b>{{user.FirstName}} {{user.LastName}}</b>
+            </mat-card-title>
+            <p>Role: {{user.Role}}</p>
+            <p>Shirt Size: {{user.ShirtSize | uppercase}}</p>
+            <mat-form-field>
+                <mat-label>Change user's role [W]</mat-label>
+                <mat-select [(value)]="user.Role">
+                    <mat-option value="user">User</mat-option>
+                    <mat-option value="reviewer">Reviewer</mat-option>
+                    <mat-option value="chair">Chair</mat-option>
+                    <mat-option value="admin">Admin</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

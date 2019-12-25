@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {SystemInformation} from "./systemInformation";
 import {ReviewGroup} from "./reviewGroup";
+import {User} from "../user";
 
 @Injectable()
 export class AdminService {
@@ -34,5 +35,9 @@ export class AdminService {
 
     getReviewGroups(): Observable<ReviewGroup[]> {
         return this.http.get<ReviewGroup[]>(this.env + 'review-groups');
+    }
+
+    getUserInfo(): Observable<User[]> {
+        return this.http.get<User[]>(this.env + 'users')
     }
 }
