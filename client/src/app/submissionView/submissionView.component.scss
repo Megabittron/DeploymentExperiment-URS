@@ -83,11 +83,12 @@
     font-size: 0.8rem;
 }
 
-.debug-comment { //for debugging
+.create-topComment {
     border: 1px solid black;
     display: inline-block;
+    background-color: ghostwhite;
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem 0 1rem 0;
     padding: 0.5rem;
 }
 

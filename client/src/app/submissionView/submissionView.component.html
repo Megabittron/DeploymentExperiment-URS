@@ -80,6 +80,33 @@
             <mat-icon>edit</mat-icon> Comment on Thread [W]
         </button>
 
+        <div class="create-topComment" *ngIf="createNewComment">
+            <u>Leave a comment without quoting & highlighting:</u>
+            <br><br>
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+
+            <button mat-button class="leave-comment-btn">
+                <mat-icon>edit</mat-icon> Submit Comment [W]
+            </button>
+        </div>
+
+        <div class="create-topComment" *ngIf="createHightingComment">
+            <u>Leave a comment that quotes & highlights the abstract:</u>
+            <br><br>
+            <i class="quote">"{{selectedText}}"</i>
+            <br><br>
+
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+
+            <button mat-button class="leave-comment-btn">
+                <mat-icon>edit</mat-icon> Submit Comment w/Quote [W]
+            </button>
+        </div>
+
         <!--TopComments-->
         <div *ngFor="let comment of submission.topComments">
             <div class="top-level-comment">
@@ -122,33 +149,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-
-        <div class="debug-comment" *ngIf="createNewComment">
-            <u>Leave a comment without quoting & highlighting:</u>
-            <br><br>
-            <mat-form-field class="leave-a-comment">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-            </mat-form-field>
-
-            <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment [W]
-            </button>
-        </div>
-
-        <div class="debug-comment" *ngIf="createHightingComment">
-            <u>Leave a comment that quotes & highlights the abstract:</u>
-            <br><br>
-            <i class="quote">"{{selectedText}}"</i>
-            <br><br>
-
-            <mat-form-field class="leave-a-comment">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-            </mat-form-field>
-
-            <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment w/Quote [W]
-            </button>
         </div>
     </div>
 
