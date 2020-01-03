@@ -8,26 +8,28 @@
     </p>
 </div>
 
-<mat-grid-list cols="4" rowHeight="220px">
-    <mat-grid-tile *ngFor="let user of users">
-        <mat-card [ngClass]="{'admin': user.Role =='admin', 'user': user.Role == 'user',
-        'reviewer': user.Role == 'reviewer', 'chair': user.Role == 'chair'}">
+<mat-grid-list cols="4" rowHeight="260px">
+    <mat-grid-tile *ngFor="let oneUser of users; let i = index">
+        <mat-card [ngClass]="{'admin': oneUser.Role =='admin', 'user': oneUser.Role == 'user',
+        'reviewer': oneUser.Role == 'reviewer', 'chair': oneUser.Role == 'chair'}">
             <mat-card-title>
-                <b>{{user.FirstName}} {{user.LastName}}</b>
+                <b>{{oneUser.FirstName}} {{oneUser.LastName}}</b>
             </mat-card-title>
-            <p>Role: {{user.Role}}</p>
-            <p>Shirt Size: {{user.ShirtSize | uppercase}}</p>
+            <p>Role: {{oneUser.Role}}</p>
+            <p>Shirt Size: {{oneUser.ShirtSize | uppercase}}</p>
             <mat-form-field>
                 <mat-label>Change role</mat-label>
 
                 <mat-select>
                     <mat-option *ngFor="let role of roles" [value]="role.value"
-                                (click)="saveUserRole(user, role.value)">
+                                (click)="changeUserRole(oneUser, role.value)">
                         {{role.viewValue}}
                     </mat-option>
                 </mat-select>
 
             </mat-form-field>
+
+            <button *ngIf="editingRole && (oneUser == this.user)" mat-raised-button (click)="saveUserRole()">Confirm Role Change</button>
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>

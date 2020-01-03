@@ -17,6 +17,7 @@ export class EditUserInfoComponent implements OnInit {
     public users: User[];
     public user: User;
     public systemInformation: SystemInformation;
+    private editingRole: boolean;
 
     roles = [
         {value: 'user', viewValue: 'User'},
@@ -27,11 +28,15 @@ export class EditUserInfoComponent implements OnInit {
 
     public role: string;
 
-    saveUserRole(use: User, role: string): void {
+    changeUserRole(use: User, role: string): void {
         this.adminService.grabUserObj(use);
         this.user = this.adminService.userObj;
         this.user.Role = role;
+        this.editingRole = true;
+    }
 
+    saveUserRole() {
+        this.editingRole = false;
         this.adminService.updateUserRole(this.user).subscribe();
     }
 

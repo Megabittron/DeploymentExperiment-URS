@@ -30,8 +30,6 @@ export class AdminComponent implements OnInit {
         }
     }
 
-    numbers = Array(3).fill(4); // [4,4,4]
-
     public systemInformation: SystemInformation;
     public reviewGroups: ReviewGroup[];
     public users: User[];
