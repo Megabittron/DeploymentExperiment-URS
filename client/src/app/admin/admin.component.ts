@@ -30,6 +30,8 @@ export class AdminComponent implements OnInit {
         }
     }
 
+    numbers = Array(3).fill(4); // [4,4,4]
+
     public systemInformation: SystemInformation;
     public reviewGroups: ReviewGroup[];
     public users: User[];
@@ -61,8 +63,7 @@ export class AdminComponent implements OnInit {
     }
 
     changeReviewGroups(): void {
-        this.adminService.updateReviewGroups(this.systemInformation.reviewGroups).subscribe(info => {
-        });
+        this.adminService.updateReviewGroups(this.systemInformation.reviewGroups).subscribe();
     }
 
     getPrimarySubmissionPercent(): string {
@@ -74,13 +75,6 @@ export class AdminComponent implements OnInit {
         return (this.systemInformation.primarySubmissions
             /this.systemInformation.submissionStored*100).toFixed(2);
     }
-
-    // openRandomizeDialog(): void {
-    //     console.log("openDeleteDialog");
-    //     const dialogRef = this.dialog.open(RandomizeReviewGroupsComponent, {
-    //         width: '500px'
-    //     });
-    // }
 
     refreshReviewGroups(): Observable<ReviewGroup[]> {
         const reviewGroups: Observable<ReviewGroup[]> = this.adminService.getReviewGroups();

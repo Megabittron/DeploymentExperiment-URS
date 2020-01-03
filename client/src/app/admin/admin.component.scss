@@ -6,10 +6,6 @@
     margin-left: 1em;
 }
 
-.reviewer {
-    border: 2px solid black;
-}
-
 .review-groups {
     display: flex;
     flex-direction: row;
@@ -21,15 +17,15 @@
     text-align: center;
 }
 
-.example-container {
+.review-group-container {
     width: 400px;
     max-width: 100%;
     margin: 0 25px 25px 0;
-    display: block;
+    display: inline-block;
     vertical-align: top;
 }
 
-.example-list {
+.list-of-reviewers {
     border: solid 1px #ccc;
     min-height: 60px;
     background: white;
@@ -38,7 +34,7 @@
     display: block;
 }
 
-.example-box {
+.reviewer {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
