@@ -1,30 +1,38 @@
 <section *ngIf="systemInformation" class="admin-section">
-    <h1>System Information</h1>
-    <a *ngIf="isAdmin()" routerLink="/admin/editUserInfo"><b>Admin</b></a>
 
-    <mat-grid-list cols="3" rowHeight="250px">
+    <h1>Admin Info & Controls</h1>
+
+    <button mat-raised-button *ngIf="isAdmin()" routerLink="/admin/editUserInfo" class="buttons">
+        Change User Roles
+    </button>
+
+    <h2>System Information</h2>
+    <mat-grid-list cols="3" rowHeight="250px" class="stats">
         <mat-grid-tile>
             <section>
-                <h2><u>All Submission Statistics</u></h2>
+                <h3><u>All Submission Statistics</u></h3>
                 <p>Primary submissions: {{systemInformation.primarySubmissions}}</p>
                 <p>Submissions stored: {{systemInformation.submissionStored}}</p>
                 <p>Percentage of stored submissions that are primary submissions: {{getPrimarySubmissionPercent()}}</p>
                 <p>Number of submissions currently flagged for re-submission: {{systemInformation.submissionsFlagged}}</p>
+                <br>
+                <br>
             </section>
         </mat-grid-tile>
         <mat-grid-tile>
             <section>
-                <h2><u>User Statistics</u></h2>
+                <h3><u>User Statistics</u></h3>
                 <p>Total users: {{systemInformation.totalUsers}}</p>
                 <p>Users: {{systemInformation.users}}</p>
                 <p>Reviewers: {{systemInformation.reviewers}}</p>
                 <p>Chairs: {{systemInformation.chairs}}</p>
                 <p>Admins: {{systemInformation.admins}}</p>
+                <br>
             </section>
         </mat-grid-tile>
         <mat-grid-tile>
             <section>
-                <h2><u>T-Shirt Statistics</u></h2>
+                <h3><u>T-Shirt Statistics</u></h3>
                 <p>XXL: {{systemInformation.xxl}}</p>
                 <p>XL: {{systemInformation.xl}}</p>
                 <p>L: {{systemInformation.l}}</p>
@@ -36,26 +44,24 @@
     </mat-grid-list>
 
     <h2><u>Review Groups</u></h2>
-    <button mat-raised-button (click)="openDialog()">Save Groups</button>
+    <button mat-raised-button (click)="openDialog()" class="buttons">Save Groups</button>
     <br>
 
+    <div class="review-group-container" *ngFor="let reviewGroup of systemInformation.reviewGroups">
+        <h3>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</h3>
 
-        <div class="review-group-container" *ngFor="let reviewGroup of systemInformation.reviewGroups">
-            <h3>Group {{reviewGroup.name}} has {{reviewGroup.reviewers.length}} reviewers:</h3>
-
-            <!-- https://www.freakyjolly.com/angular-7-drag-and-drop-across-multi-lists-in-angular-material-7/ -->
-            <div
-                cdkDropList
-                id="{{reviewGroup.name}}"
-                [cdkDropListData]="reviewGroup.reviewers"
-                [cdkDropListConnectedTo]="connectedTo"
-                class="list-of-reviewers"
-                (cdkDropListDropped)="drop($event)">
-                <div class="reviewer" *ngFor="let item of reviewGroup.reviewers"
-                     cdkDrag [cdkDragData]="reviewGroup" >
-                    {{item.FirstName}} {{item.LastName}}
-                </div>
+        <!-- https://www.freakyjolly.com/angular-7-drag-and-drop-across-multi-lists-in-angular-material-7/ -->
+        <div
+            cdkDropList
+            id="{{reviewGroup.name}}"
+            [cdkDropListData]="reviewGroup.reviewers"
+            [cdkDropListConnectedTo]="connectedTo"
+            class="list-of-reviewers"
+            (cdkDropListDropped)="drop($event)">
+            <div class="reviewer" *ngFor="let item of reviewGroup.reviewers"
+                 cdkDrag [cdkDragData]="reviewGroup" >
+                {{item.FirstName}} {{item.LastName}}
             </div>
         </div>
-
+    </div>
 </section>
