@@ -68,6 +68,7 @@ public class AbstractController {
 //            Aggregates.lookup("users", "topComments.subComments.commenter", "_id", "topComments.subComments.commenter"),
             Aggregates.group("$_id", first("userID","$userID"),
                 first("presentationTitle","$presentationTitle"),
+                first("abstractContent", "$abstractContent"),
                 push("topComments", "$topComments"))
         ));
 

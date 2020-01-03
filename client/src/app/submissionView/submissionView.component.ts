@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
+import {SubComment, TopComment} from "./comment";
 
 @Component({
     selector: 'submissionView.component',
@@ -20,6 +21,9 @@ export class SubmissionViewComponent implements OnInit {
     createHightingComment: boolean = false;
     createNewComment: boolean = false;
 
+    // topLevelComments: TopComment[];
+    // subComments: SubComment[];
+
     getSubmission() {
         let submissionObservable: Observable<Submission>;
         submissionObservable = this.submissionListService.getSingleSubmissionById(this.submissionListService.singleAbstractId);
@@ -30,6 +34,8 @@ export class SubmissionViewComponent implements OnInit {
                 }
             }
         );
+
+        // this.topLevelComments = this.submission.topComments;
     }
 
     // Dasari Srinivas, Tuesday, 11 October 2016, "Get the Highlighted/Selected text using Angular 2"
@@ -50,7 +56,10 @@ export class SubmissionViewComponent implements OnInit {
         this.hideOtherCommentSectionsExceptFor("newComment");
     }
 
-    makeSubcomment() {
+    public matchingTLC_id: string;
+
+    makeSubcomment(toplevelcomment: TopComment) {
+        this.matchingTLC_id = toplevelcomment._id.$oid;
         this.createSubcomment = true;
         this.hideOtherCommentSectionsExceptFor("subComment");
     }
