@@ -1,14 +1,20 @@
 package server.database.users;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import static com.mongodb.client.model.Filters.in;
 
 public class UserController {
 
@@ -70,13 +76,14 @@ public class UserController {
         }
 
         FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
-        JSONArray userArr = new JSONArray();
 
-        for (Document user: matchingUsers) {
-            userArr.put(user);
-        }
+        return serializeIterable(matchingUsers);
+    }
 
-        return userArr.toString();
+    public static String serializeIterable(Iterable<Document> documents) {
+        return StreamSupport.stream(documents.spliterator(), false)
+            .map(Document::toJson)
+            .collect(Collectors.joining(", ", "[", "]"));
     }
 
     public String addNewUser(String subjectID, String firstName, String lastName) {
@@ -105,18 +112,18 @@ public class UserController {
         Document newtShirtSize = new Document();
         newtShirtSize.append("ShirtSize", size);
 
-        return updateUserField(size, userID, newtShirtSize);
+        return updateUserField(size, userID, newtShirtSize, "ShirtSize");
     }
 
-    String editUserrole(String userID, String position) {
+    String editUserRole(String userID, String position) {
 
         Document newrole = new Document();
-        newrole.append("role", position);
+        newrole.append("Role", position);
 
-        return updateUserField(position, userID, newrole);
+        return updateUserField(position, userID, newrole, "Role");
     }
 
-    private String updateUserField(String field, String id, Document updateDoc) {
+    private String updateUserField(String field, String id, Document updateDoc, String fieldName) {
         Document setQuery = new Document();
         Document searchQuery = new Document();
 
@@ -126,7 +133,13 @@ public class UserController {
             searchQuery.append("_id", new ObjectId(id));
             userCollection.updateOne(searchQuery, setQuery);
 
-            return new BasicDBObject("ShirtSize",field).toJson();
+            if(fieldName.equals("Role")){
+                return new BasicDBObject("Role",field).toJson();
+            } else if (fieldName.equals("ShirtSize")) {
+                return new BasicDBObject("ShirtSize",field).toJson();
+            } else {
+                return "Unknown update to user field";
+            }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
 

@@ -9,12 +9,31 @@ import {SystemInformation} from "./systemInformation";
     styleUrls: ['./editUserInfo.component.scss'],
     providers: []
 })
+
 export class EditUserInfoComponent implements OnInit {
 
     constructor(private adminService: AdminService) {}
 
     public users: User[];
+    public user: User;
     public systemInformation: SystemInformation;
+
+    roles = [
+        {value: 'user', viewValue: 'User'},
+        {value: 'chair', viewValue: 'Chair'},
+        {value: 'reviewer', viewValue: 'Reviewer'},
+        {value: 'admin', viewValue: 'Admin'}
+    ];
+
+    public role: string;
+
+    saveUserRole(use: User, role: string): void {
+        this.adminService.grabUserObj(use);
+        this.user = this.adminService.userObj;
+        this.user.Role = role;
+
+        this.adminService.updateUserRole(this.user).subscribe();
+    }
 
     ngOnInit(): void {
         this.adminService.getSystemInformation().subscribe(info => {

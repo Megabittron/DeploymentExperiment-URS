@@ -11,9 +11,17 @@ export class AdminService {
     readonly baseUrl: string = environment.API_URL + 'system-information';
     readonly env: string = environment.API_URL;
 
+    private editUserUrl: string = environment.API_URL + 'users/roles/';
+
     private systemInformationUrl: string = this.baseUrl;
 
+    public userObj: User;
+
     constructor(private http: HttpClient) {
+    }
+
+    grabUserObj(user: User){
+        this.userObj = user;
     }
 
     getSystemInformation(): Observable<SystemInformation> {
@@ -39,5 +47,14 @@ export class AdminService {
 
     getUserInfo(): Observable<User[]> {
         return this.http.get<User[]>(this.env + 'users')
+    }
+
+    updateUserRole(newRoles: User): Observable<{Role: string}> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+        return this.http.put<{Role: string}>(this.editUserUrl + newRoles.SubjectID, newRoles, httpOptions);
     }
 }
