@@ -80,7 +80,7 @@
             <mat-icon>edit</mat-icon> Comment on Thread [W]
         </button>
 
-        <div class="create-topComment" *ngIf="createNewComment">
+        <div class="create-comment" *ngIf="createNewComment">
             <u>Leave a comment without quoting & highlighting:</u>
             <br><br>
             <mat-form-field class="leave-a-comment">
@@ -92,7 +92,7 @@
             </button>
         </div>
 
-        <div class="create-topComment" *ngIf="createHightingComment">
+        <div class="create-comment" *ngIf="createHightingComment">
             <u>Leave a comment that quotes & highlights the abstract:</u>
             <br><br>
             <i class="quote">"{{selectedText}}"</i>
@@ -136,7 +136,7 @@
                     <p>{{subComment}}</p>
                 </div>
 
-                <div class="debug-comment" *ngIf="createSubcomment && (matchingTLC_id == comment._id.$oid)">
+                <div class="create-comment" *ngIf="createSubcomment && (matchingTLC_id == comment._id.$oid)">
                     <u>Leave a comment on this comment:</u>
                     <br><br>
                     <mat-form-field class="leave-a-comment">
