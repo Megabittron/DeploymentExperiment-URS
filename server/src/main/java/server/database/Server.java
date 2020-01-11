@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import server.database.enums.Role;
 import server.database.system_information.SystemController;
 import server.database.system_information.SystemRequestHandler;
 import server.database.users.UserRequestHandler;
@@ -77,7 +78,7 @@ public class Server {
         before((req, res) -> {
             String reqMethod = req.requestMethod();
             String reqURI = req.uri();
-            String role;
+            Role role;
             String origin;
             boolean isAuthenticated;
 
@@ -97,7 +98,7 @@ public class Server {
 
                 if (!isAuthenticated)
                     halt(401, "You are not authenticated yet.");
-                if (!isAuthorized(role, reqURI, reqMethod))
+                if (!RoleAuthorization.isAuthorized(role, reqURI))
                     halt(403, "You are not authorized for this endpoint.");
             }
         });
@@ -125,24 +126,6 @@ public class Server {
             return "Sorry, we couldn't find that!!";
         });
 
-    }
-
-    private static boolean isAuthorized(String role, String reqURI, String reqMethod) {
-
-        Yaml yaml = new Yaml(new Constructor(RoleAuthorization.class));
-
-        InputStream inputStream = RoleAuthorization.class
-            .getResourceAsStream("/role_authorization.yaml");
-
-        RoleAuthorization roleAuth = yaml.load(inputStream);
-
-        List<String> httpVerbs = roleAuth.getRoles().get(role).get(reqURI);
-
-        if (httpVerbs != null) {
-            return httpVerbs.contains(reqMethod);
-        }
-
-        return false;
     }
 
     // Enable GZIP for all responses

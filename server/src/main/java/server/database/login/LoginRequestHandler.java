@@ -1,6 +1,7 @@
 package server.database.login;
 
 import com.mongodb.BasicDBObject;
+import server.database.enums.Role;
 import spark.Request;
 import spark.Response;
 
@@ -37,7 +38,7 @@ public class LoginRequestHandler {
                 BasicDBObject userObject = BasicDBObject.parse(verifyResponse);
 
                 req.session().attribute("isSignedIn", true);
-                req.session().attribute("Role", userObject.getString("Role"));
+                req.session().attribute("Role", Role.valueOfRole(userObject.getString("Role")));
                 req.session().attribute("SubjectID", userObject.getString("SubjectID"));
             }
 

@@ -1,43 +1,25 @@
 roles:
     user:
-        '/api/abstracts':
-            - 'GET'
-        '/api/abstracts/new':
-            - 'POST'
-        '/api/login':
-            - 'POST'
-        '/api/logout':
-            - 'POST'
+        - '/api/abstracts'
+        - '/api/abstracts/new'
+        - '/api/login'
+        - '/api/logout'
     reviewer:
-        '/api/abstracts':
-            - 'GET'
-        '/api/login':
-            - 'POST'
-        '/api/logout':
-            - 'POST'
+        - '/api/abstracts'
+        - '/api/users/'
+        - '/api/login'
+        - '/api/logout'
     admin:
-        '/api/users':
-            - 'GET'
-        '/api/abstracts':
-            - 'GET'
-        '/api/abstracts/new':
-            - 'POST'
-        '/api/login':
-            - 'POST'
-        '/api/logout':
-            - 'POST'
-        '/api/system-information':
-            - 'GET'
+        - '/api/users'
+        - '/api/abstracts'
+        - '/api/abstracts/new'
+        - '/api/login'
+        - '/api/logout'
+        - '/api/system-information'
     chair:
-        '/api/users':
-            - 'GET'
-        '/api/abstracts':
-            - 'GET'
-        '/api/abstracts/new':
-            - 'POST'
-        '/api/login':
-            - 'POST'
-        '/api/logout':
-            - 'POST'
-        '/api/system-information':
-            - 'GET'
+        - '/api/users'
+        - '/api/abstracts'
+        - '/api/abstracts/new'
+        - '/api/login'
+        - '/api/logout'
+        - '/api/system-information'
