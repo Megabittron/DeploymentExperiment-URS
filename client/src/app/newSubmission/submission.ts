@@ -20,7 +20,7 @@ export interface Submission {
     thirdPresenterEmail: string;
     academicDiscipline: string;
     willingToBeFeaturePresenter: string;
-    sponOrganization: string;
+    sponOrganization: string[];
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
     firstAdvisorEmail: string;

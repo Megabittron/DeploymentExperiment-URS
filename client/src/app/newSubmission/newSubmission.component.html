@@ -261,22 +261,32 @@
                             </form>
                         </div>
                     </mat-step>
-                    <mat-step label="Sponsor(s)">
-                        <div class="sponOrganization">
-                            Sponsoring Organization or Fund
-                            <br>
 
-                            Choose any applicable. If funded by faculty grant, specify under 'other'
-                            <br>
-                            <br>
+                    <mat-step label="Sponsor(s)/Category">
+                        <div class="sponOrganization">
+                            <p>Sponsoring Organization or Fund</p>
+                            <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', UROP'">UROP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor('UROP')">UROP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', MAP'">MAP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor('MAP')">MAP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', MMP'">MMP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor('MMP')">MMP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', LSAMP'">LSAMP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor('LSAMP')">LSAMP</mat-checkbox>
+                            </div>
+                            <br>
+                            <br>
+                            <p>Special Categories</p>
+                            <p>Choose any applicable.</p>
+                            <div class="checkboxes">
+                                <mat-checkbox (click)="newSponsor('LSAMP')">Work in Progress</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newSponsor('LSAMP')">Capstone</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newSponsor('LSAMP')">Submitted Panel</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newSponsor('LSAMP')">Sophomore Spotlight</mat-checkbox>
                             </div>
                             <br>
                             <mat-form-field>
@@ -460,7 +470,14 @@
 
                             <p>Discipline: {{academicDiscipline}}</p>
                             <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
-                            <p *ngIf="sponOrganization">Sponsoring Organization: {{sponOrganization}}</p>
+
+                            <p *ngIf="sponOrganization" class="sponsored">
+                                Sponsoring Organization: </p>
+                            <p *ngFor="let organization of sponOrganization; last as isLast" class="sponsored">
+                                <span *ngIf="!isLast">{{organization}}, </span>
+                                <span *ngIf="isLast">{{organization}}</span>
+                            </p>
+
                             <p>Advisor Name: {{firstAdvisorFirstName}} {{firstAdvisorLastName}}</p>
                             <p>Advisor Email: {{firstAdvisorEmail}}</p>
 

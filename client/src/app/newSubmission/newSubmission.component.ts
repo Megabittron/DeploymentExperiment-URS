@@ -46,7 +46,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterEmail = "";
     public academicDiscipline = "";
     public willingToBeFeaturePresenter = "undecided";
-    public sponOrganization = "";
+    public sponOrganization = [];
     public firstAdvisorFirstName = "";
     public firstAdvisorLastName = "";
     public firstAdvisorEmail = "";
@@ -109,6 +109,13 @@ export class NewSubmissionComponent implements OnInit{
                 })
             }
         )
+    }
+
+    newSponsor(sponsor: String){
+        if(!this.sponOrganization.includes(sponsor)) {
+            this.sponOrganization.push(sponsor);
+        }
+        console.log(this.sponOrganization);
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {

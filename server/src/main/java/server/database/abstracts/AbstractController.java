@@ -390,7 +390,7 @@ public class AbstractController {
                           String thirdPresenterEmail,
                           String academicDiscipline,
                           String willingToBeFeaturePresenter,
-                          String sponOrganization,
+                          String[] sponOrganization,
                           String firstAdvisorFirstName,
                           String firstAdvisorLastName,
                           String firstAdvisorEmail,
