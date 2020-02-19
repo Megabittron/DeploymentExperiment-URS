@@ -24,12 +24,16 @@ import {CredentialInterceptor} from "./interceptors/credential-interceptor";
 import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
         CustomModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
