@@ -472,11 +472,24 @@
                             <p>Discipline: {{academicDiscipline}}</p>
                             <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
 
-                            <p *ngIf="sponOrganization" class="sponsored">
-                                Sponsoring Organization: </p>
-                            <p *ngFor="let organization of sponOrganization; last as isLast" class="sponsored">
-                                <span *ngIf="!isLast">{{organization}}, </span>
-                                <span *ngIf="isLast">{{organization}}</span>
+                            <p *ngIf="sponOrganization">
+                                <span> Sponsoring Organization: </span>
+                                <span *ngIf="sponOrganization[0]">UROP </span>
+                                <span *ngIf="sponOrganization[1]">MAP </span>
+                                <span *ngIf="sponOrganization[2]">MMP </span>
+                                <span *ngIf="sponOrganization[3]">LSAMP </span>
+                            </p>
+
+                            <p *ngIf="miscSponOrganization">
+                                <span> OTHER Organizations: {{miscSponOrganization}}</span>
+                            </p>
+
+                            <p *ngIf="category">
+                                <span> Categories: </span>
+                                <span *ngIf="category[0]">Works in Progress </span>
+                                <span *ngIf="category[1]">Capstone </span>
+                                <span *ngIf="category[2]">Submitted Panel </span>
+                                <span *ngIf="category[3]">Sophomore Spotlight </span>
                             </p>
 
                             <p>Advisor Name: {{firstAdvisorFirstName}} {{firstAdvisorLastName}}</p>
