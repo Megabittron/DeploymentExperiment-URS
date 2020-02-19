@@ -124,6 +124,7 @@ public class AbstractRequestHandler {
             String academicDiscipline = dbO.getString("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             Object sponOrganization = dbO.get("sponOrganization");
+            Object category = dbO.get("category");
             String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
             String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
             String firstAdvisorEmail = dbO.getString("firstAdvisorEmail");
@@ -165,13 +166,48 @@ public class AbstractRequestHandler {
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
                 + ", resubmitFlag=" + resubmitFlag + ']');
 
-            return abstractController.addNewAbstract(userID, presentationTitle, abstractContent, submissionFormat, presentationType,
-                willingToChangePresentationFormat, firstPresenterFirstName, firstPresenterLastName, firstPresenterEmail, secondPresenterFirstName,
-                secondPresenterLastName, secondPresenterEmail, thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, academicDiscipline,
-                willingToBeFeaturePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
-                secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,
-                additionalRequirements, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
-                comments, isPrimarySubmission, resubmitFlag);
+            return abstractController.addNewAbstract(userID,                           presentationTitle,
+                 abstractContent,
+                 submissionFormat,
+                 presentationType,
+                 willingToChangePresentationFormat,
+                 firstPresenterFirstName,
+                 firstPresenterLastName,
+                 firstPresenterEmail,
+                 secondPresenterFirstName,
+                 secondPresenterLastName,
+                 secondPresenterEmail,
+                 thirdPresenterFirstName,
+                 thirdPresenterLastName,
+                 thirdPresenterEmail,
+                 academicDiscipline,
+                 willingToBeFeaturePresenter,
+                sponOrganization,
+                category,
+                 firstAdvisorFirstName,
+                 firstAdvisorLastName,
+                 firstAdvisorEmail,
+                 secondAdvisorFirstName,
+                 secondAdvisorLastName,
+                 secondAdvisorEmail,
+                 thirdAdvisorFirstName,
+                 thirdAdvisorLastName,
+                 thirdAdvisorEmail,
+                 additionalMediaEquipment,
+                 additionalRequirements,
+                 other,
+                 approval,
+                 cc,
+                 rejection,
+                 group,
+                 roomAssignment,
+                 totalRewriteVotes,
+                 majorRewriteVotes,
+                 minorRewriteVotes,
+                 acceptedVotes,
+                 comments,
+                 isPrimarySubmission,
+                 resubmitFlag);
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
             return null;
@@ -226,6 +262,7 @@ public class AbstractRequestHandler {
             String secondAdviserFirstName = dbO.getString("secondAdviserFirstName");
             String secondAdviserLastName = dbO.getString("secondAdviserLastName");
             String secondAdviserEmail = dbO.getString("secondAdviserEmail");
+            String category = dbO.getString("category");
 
             System.err.println("Editing abstract" +
                 "[_id=" + id + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +

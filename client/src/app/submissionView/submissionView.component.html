@@ -67,6 +67,14 @@
                 <span *ngIf="submission.sponOrganization[3]">LSAMP </span>
             </div>
 
+            <div *ngIf="submission.category" class="sponsored">
+                <span> Sponsoring Organization: </span>
+                <span *ngIf="submission.category[0]">Works in Progress </span>
+                <span *ngIf="submission.category[1]">Capstone </span>
+                <span *ngIf="submission.category[2]">Submitted Panel </span>
+                <span *ngIf="submission.category[3]">Sophomore Spotlight </span>
+            </div>
+
         </mat-expansion-panel>
 
         <div class="abstract">

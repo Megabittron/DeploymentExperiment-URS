@@ -21,6 +21,7 @@
         "academicDiscipline": "art history",
         "willingToBeFeaturePresenter": "yes",
         "sponOrganization": [true, true, true, false],
+        "category": [true, true, true, false],
         "firstAdvisorFirstName": "Charles",
         "firstAdvisorLastName": "Menne",
         "firstAdvisorEmail": "menne019@morris.umn.edu",

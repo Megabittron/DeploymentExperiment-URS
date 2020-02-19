@@ -265,6 +265,7 @@
                     <mat-step label="Sponsor(s)/Category">
                         <div class="sponOrganization">
                             <p>Sponsoring Organization or Fund</p>
+<!--                            TODO: Add 'other' org-->
                             <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
                                 <mat-checkbox (click)="newSponsor(0)">UROP</mat-checkbox>
@@ -276,26 +277,27 @@
                                 <mat-checkbox (click)="newSponsor(3)">LSAMP</mat-checkbox>
                             </div>
                             <br>
+
+<!--                            <mat-form-field>-->
+<!--                                <textarea matInput placeholder="Other" -->
+<!--                                          (input) = "sponOrganization = sponOrganization + ', ' + $event.target.value" rows="1" cols="1">-->
+<!--                                </textarea>-->
+<!--                            </mat-form-field>-->
+
                             <br>
                             <p>Special Categories</p>
                             <p>Choose any applicable.</p>
-<!--                            <div class="checkboxes">-->
-<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Work in Progress</mat-checkbox>-->
-<!--                                <br>-->
-<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Capstone</mat-checkbox>-->
-<!--                                <br>-->
-<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Submitted Panel</mat-checkbox>-->
-<!--                                <br>-->
-<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Sophomore Spotlight</mat-checkbox>-->
-<!--                            </div>-->
+                            <div class="checkboxes">
+                                <mat-checkbox (click)="newCategory(0)">Works in Progress</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newCategory(1)">Capstone</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newCategory(2)">Submitted Panel</mat-checkbox>
+                                <br>
+                                <mat-checkbox (click)="newCategory(3)">Sophomore Spotlight</mat-checkbox>
+                            </div>
                             <br>
-<!--                            <mat-form-field>-->
-<!--                                <textarea matInput-->
-<!--                                          placeholder="Other"-->
-<!--                                          (input) = "sponOrganization = sponOrganization + ', ' + $event.target.value"-->
-<!--                                          rows="1"-->
-<!--                                          cols="1"></textarea>-->
-<!--                            </mat-form-field>-->
+
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                             <button mat-raised-button matStepperNext color="primary">Next</button>

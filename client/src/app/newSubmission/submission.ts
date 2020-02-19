@@ -21,6 +21,7 @@ export interface Submission {
     academicDiscipline: string;
     willingToBeFeaturePresenter: string;
     sponOrganization: boolean[];
+    category: boolean[];
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
     firstAdvisorEmail: string;

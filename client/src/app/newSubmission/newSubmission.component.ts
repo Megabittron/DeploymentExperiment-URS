@@ -63,6 +63,7 @@ export class NewSubmissionComponent implements OnInit{
     public other: boolean;
     public timestamp = "";
     public approval = null;
+    public category = [false, false, false, false];
 
     saveSubmission(): void {
         const newSubmission: Submission = {
@@ -97,7 +98,8 @@ export class NewSubmissionComponent implements OnInit{
             additionalRequirements: this.additionalRequirements,
             other: this.other,
             timestamp: this.timestamp,
-            approval: this.approval
+            approval: this.approval,
+            category: this.category
         };
 
         console.log(newSubmission);
@@ -114,6 +116,11 @@ export class NewSubmissionComponent implements OnInit{
     newSponsor(sponsor: number){
         this.sponOrganization[sponsor] = !this.sponOrganization[sponsor];
         console.log(this.sponOrganization);
+    }
+
+    newCategory(category: number){
+        this.category[category] = !this.category[category];
+        console.log(this.category);
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {
