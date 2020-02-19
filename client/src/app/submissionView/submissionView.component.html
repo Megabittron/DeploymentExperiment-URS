@@ -67,8 +67,12 @@
                 <span *ngIf="submission.sponOrganization[3]">LSAMP </span>
             </div>
 
+            <div *ngIf="submission.miscSponOrganization" class="sponsored">
+                <span> OTHER Organizations: {{submission.miscSponOrganization}}</span>
+            </div>
+
             <div *ngIf="submission.category" class="sponsored">
-                <span> Sponsoring Organization: </span>
+                <span> Categories: </span>
                 <span *ngIf="submission.category[0]">Works in Progress </span>
                 <span *ngIf="submission.category[1]">Capstone </span>
                 <span *ngIf="submission.category[2]">Submitted Panel </span>

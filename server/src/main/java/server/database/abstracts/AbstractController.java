@@ -391,6 +391,7 @@ public class AbstractController {
                           String academicDiscipline,
                           String willingToBeFeaturePresenter,
                           Object sponOrganization,
+                          String miscSponOrganization,
                           Object category,
                           String firstAdvisorFirstName,
                           String firstAdvisorLastName,
@@ -438,6 +439,7 @@ public class AbstractController {
         newAbstract.append("academicDiscipline", academicDiscipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("sponOrganization", sponOrganization);
+        newAbstract.append("miscSponOrganization", miscSponOrganization);
         newAbstract.append("category", category);
         newAbstract.append("firstAdvisorFirstName", firstAdvisorFirstName);
         newAbstract.append("firstAdvisorLastName", firstAdvisorLastName);
@@ -476,7 +478,7 @@ public class AbstractController {
                 "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
                 "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
                 "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
-                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", category=" + category +", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
+                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", miscSponOrganization=" + miscSponOrganization + ", category=" + category +", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
                 "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="

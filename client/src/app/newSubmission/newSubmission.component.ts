@@ -64,6 +64,7 @@ export class NewSubmissionComponent implements OnInit{
     public timestamp = "";
     public approval = null;
     public category = [false, false, false, false];
+    public miscSponOrganization = "";
 
     saveSubmission(): void {
         const newSubmission: Submission = {
@@ -85,6 +86,8 @@ export class NewSubmissionComponent implements OnInit{
             academicDiscipline: this.academicDiscipline,
             willingToBeFeaturePresenter: this.willingToBeFeaturePresenter,
             sponOrganization: this.sponOrganization,
+            category: this.category,
+            miscSponOrganization: this.miscSponOrganization,
             firstAdvisorFirstName: this.firstAdvisorFirstName,
             firstAdvisorLastName: this.firstAdvisorLastName,
             firstAdvisorEmail: this.firstAdvisorEmail,
@@ -98,8 +101,7 @@ export class NewSubmissionComponent implements OnInit{
             additionalRequirements: this.additionalRequirements,
             other: this.other,
             timestamp: this.timestamp,
-            approval: this.approval,
-            category: this.category
+            approval: this.approval
         };
 
         console.log(newSubmission);

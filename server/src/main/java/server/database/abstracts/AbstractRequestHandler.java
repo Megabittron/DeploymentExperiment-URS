@@ -124,6 +124,7 @@ public class AbstractRequestHandler {
             String academicDiscipline = dbO.getString("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             Object sponOrganization = dbO.get("sponOrganization");
+            String miscSponOrganization = dbO.getString("miscSponOrganization");
             Object category = dbO.get("category");
             String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
             String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
@@ -183,6 +184,7 @@ public class AbstractRequestHandler {
                  academicDiscipline,
                  willingToBeFeaturePresenter,
                 sponOrganization,
+                miscSponOrganization,
                 category,
                  firstAdvisorFirstName,
                  firstAdvisorLastName,
