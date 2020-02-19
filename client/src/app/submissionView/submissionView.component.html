@@ -59,13 +59,13 @@
             <p>Additional Information: </p> <!-- TODO: Add field  -->
             <p>Date of Submission: {{submission.timestamp}}</p>
 
-            <p *ngIf="submission.sponOrganization" class="sponsored">
-                Sponsoring Organization: </p>
-            <p *ngFor="let organization of submission.sponOrganization; last as isLast" class="sponsored">
-                <span *ngIf="!isLast">{{organization}}, </span>
-                <span *ngIf="isLast">{{organization}}</span>
-            </p>
-
+            <div *ngIf="submission.sponOrganization" class="sponsored">
+                <span> Sponsoring Organization: </span>
+                <span *ngIf="submission.sponOrganization[0]">UROP </span>
+                <span *ngIf="submission.sponOrganization[1]">MAP </span>
+                <span *ngIf="submission.sponOrganization[2]">MMP </span>
+                <span *ngIf="submission.sponOrganization[3]">LSAMP </span>
+            </div>
 
         </mat-expansion-panel>
 

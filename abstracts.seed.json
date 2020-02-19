@@ -20,7 +20,7 @@
         "thirdPresenterEmail": "yasin011@morris.umn.edu",
         "academicDiscipline": "art history",
         "willingToBeFeaturePresenter": "yes",
-        "sponOrganization": ["MAP", "UROP"],
+        "sponOrganization": [true, true, true, false],
         "firstAdvisorFirstName": "Charles",
         "firstAdvisorLastName": "Menne",
         "firstAdvisorEmail": "menne019@morris.umn.edu",

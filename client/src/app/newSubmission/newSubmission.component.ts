@@ -46,7 +46,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterEmail = "";
     public academicDiscipline = "";
     public willingToBeFeaturePresenter = "undecided";
-    public sponOrganization = [];
+    public sponOrganization = [false, false, false, false]; //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     public firstAdvisorFirstName = "";
     public firstAdvisorLastName = "";
     public firstAdvisorEmail = "";
@@ -111,10 +111,8 @@ export class NewSubmissionComponent implements OnInit{
         )
     }
 
-    newSponsor(sponsor: String){
-        if(!this.sponOrganization.includes(sponsor)) {
-            this.sponOrganization.push(sponsor);
-        }
+    newSponsor(sponsor: number){
+        this.sponOrganization[sponsor] = !this.sponOrganization[sponsor];
         console.log(this.sponOrganization);
     }
 

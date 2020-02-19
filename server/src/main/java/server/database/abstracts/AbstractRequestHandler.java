@@ -123,7 +123,7 @@ public class AbstractRequestHandler {
             String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
             String academicDiscipline = dbO.getString("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
-            String[] sponOrganization = dbO.getString("sponOrganization");
+            Object sponOrganization = dbO.get("sponOrganization");
             String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
             String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
             String firstAdvisorEmail = dbO.getString("firstAdvisorEmail");

@@ -267,35 +267,35 @@
                             <p>Sponsoring Organization or Fund</p>
                             <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
-                                <mat-checkbox (click)="newSponsor('UROP')">UROP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor(0)">UROP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click)="newSponsor('MAP')">MAP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor(1)">MAP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click)="newSponsor('MMP')">MMP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor(2)">MMP</mat-checkbox>
                                 <br>
-                                <mat-checkbox (click)="newSponsor('LSAMP')">LSAMP</mat-checkbox>
+                                <mat-checkbox (click)="newSponsor(3)">LSAMP</mat-checkbox>
                             </div>
                             <br>
                             <br>
                             <p>Special Categories</p>
                             <p>Choose any applicable.</p>
-                            <div class="checkboxes">
-                                <mat-checkbox (click)="newSponsor('LSAMP')">Work in Progress</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor('LSAMP')">Capstone</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor('LSAMP')">Submitted Panel</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor('LSAMP')">Sophomore Spotlight</mat-checkbox>
-                            </div>
+<!--                            <div class="checkboxes">-->
+<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Work in Progress</mat-checkbox>-->
+<!--                                <br>-->
+<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Capstone</mat-checkbox>-->
+<!--                                <br>-->
+<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Submitted Panel</mat-checkbox>-->
+<!--                                <br>-->
+<!--                                <mat-checkbox (click)="newSponsor('LSAMP')">Sophomore Spotlight</mat-checkbox>-->
+<!--                            </div>-->
                             <br>
-                            <mat-form-field>
-                                <textarea matInput
-                                          placeholder="Other"
-                                          (input) = "sponOrganization = sponOrganization + ', ' + $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
+<!--                            <mat-form-field>-->
+<!--                                <textarea matInput-->
+<!--                                          placeholder="Other"-->
+<!--                                          (input) = "sponOrganization = sponOrganization + ', ' + $event.target.value"-->
+<!--                                          rows="1"-->
+<!--                                          cols="1"></textarea>-->
+<!--                            </mat-form-field>-->
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                             <button mat-raised-button matStepperNext color="primary">Next</button>
