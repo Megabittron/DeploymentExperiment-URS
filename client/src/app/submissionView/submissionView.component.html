@@ -26,6 +26,13 @@
         </div>
 
         <div>
+            <button mat-button routerLink="/editAbstract/{{submission._id['$oid']}}">
+                <mat-icon>help</mat-icon>
+                Edit Abstract
+            </button>
+        </div>
+
+        <div>
             <h1>{{submission.presentationTitle}}</h1>
             <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
             <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>

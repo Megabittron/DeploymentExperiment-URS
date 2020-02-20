@@ -24,6 +24,7 @@ import {CredentialInterceptor} from "./interceptors/credential-interceptor";
 import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 import {EditUserInfoComponent} from "./admin/editUserInfo.component";
+import {EditAbstractComponent} from "./editAbstract/editAbstract.component";
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -50,7 +51,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         SaveReviewGroupsDialog,
         LoginComponent,
         SubmissionViewComponent,
-        EditUserInfoComponent
+        EditUserInfoComponent,
+        EditAbstractComponent
     ],
     providers: [
         AuthenticationService,
