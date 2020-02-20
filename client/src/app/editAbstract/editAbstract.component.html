@@ -2,30 +2,7 @@
 
     <h2>This form is not about adding items. Any items changed are all that will show up.</h2>
 
-    <div>
-        <span><b>Submission Format: </b></span>
-        <mat-select placeholder="{{submission.submissionFormat}}">
-            <mat-option
-                #input value="artist statement"
-                (click) = "submission.submissionFormat = 'artist statement'">
-                Artist Statement
-            </mat-option>
-
-            <mat-option
-                #input value="humanities proposal"
-                (click) = "submission.submissionFormat = 'humanities proposal'">
-                Humanities Proposal
-            </mat-option>
-
-            <mat-option
-                #input value="science or social science abstract"
-                (click) = "submission.submissionFormat = 'science or social science abstract'">
-                Science or Social Science Abstract
-            </mat-option>
-        </mat-select>
-    </div>
-
-    <div>
+    <div class="category">
         <span><b>Presentation Title: </b> {{submission.presentationTitle}}</span>
         <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
             <textarea matInput #input
@@ -36,112 +13,18 @@
         </mat-form-field>
     </div>
 
-    <div>
+    <div class="category">
         <span><b>Abstract: </b> {{submission.abstractContent}}</span>
-        <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
+        <mat-form-field style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New Abstract"
                       (input)="submission.abstractContent"
                       rows="1"
-                      cols="1"></textarea>
+                      cols="1" class="presentationAbstractBox"></textarea>
         </mat-form-field>
     </div>
 
-    <div>
-        <span><b>Need Media Services Equiptment: </b> {{submission.additionalMediaEquipment}}</span>
-        <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
-            <textarea matInput #input
-                      placeholder="New Media Services Equiptment Need"
-                      (input)="submission.presentationTitle"
-                      rows="1"
-                      cols="1"></textarea>
-        </mat-form-field>
-    </div>
-
-    <div>
-        <span><b>Special Requirements: </b> {{submission.additionalRequirements}}</span>
-        <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
-            <textarea matInput #input
-                      placeholder="New Special Requirements Request:"
-                      (input)="submission.additionalRequirements"
-                      rows="1"
-                      cols="1"></textarea>
-        </mat-form-field>
-    </div>
-
-    <div>
-        <span><b>OTHER Organization(s): </b> {{submission.miscSponOrganization}}</span>
-        <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
-            <textarea matInput #input
-                      placeholder="New OTHER Organization(s):"
-                      (input)="submission.miscSponOrganization"
-                      rows="1"
-                      cols="1"></textarea>
-        </mat-form-field>
-    </div>
-
-    <div id="sponsored-orgs">
-        <p>Sponsoring Organization or Fund</p>
-        <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
-        <div class="checkboxes">
-            <mat-checkbox (click)="newSponsor(0)" [checked]="this.submission.sponOrganization[0]">UROP</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newSponsor(1)" [checked]="this.submission.sponOrganization[1]">MAP</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newSponsor(2)" [checked]="this.submission.sponOrganization[2]">MMP</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newSponsor(3)" [checked]="this.submission.sponOrganization[3]">LSAMP</mat-checkbox>
-        </div>
-        <br>
-
-        <mat-form-field>
-        <textarea matInput placeholder="Other"
-                  (input) = "submission.miscSponOrganization = $event.target.value" rows="1" cols="1">
-        </textarea>
-        </mat-form-field>
-
-        <br>
-        <p>Special Categories</p>
-        <p>Choose any applicable.</p>
-        <div class="checkboxes">
-            <mat-checkbox (click)="newCategory(0)" [checked]="this.submission.category[0]">Works in Progress</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newCategory(1)" [checked]="this.submission.category[1]">Capstone</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newCategory(2)" [checked]="this.submission.category[2]">Submitted Panel</mat-checkbox>
-            <br>
-            <mat-checkbox (click)="newCategory(3)" [checked]="this.submission.category[3]">Sophomore Spotlight</mat-checkbox>
-        </div>
-    </div>
-
-    <div id="format-change">
-        <span><b>Willing to Change Format: </b>{{submission.willingToChangePresentationFormat}}</span>
-        <br>
-        <mat-radio-group (change)="onFormatChange($event)">
-            <mat-radio-button value="yes" color="primary">Yes</mat-radio-button>&nbsp;&nbsp;
-            <mat-radio-button value="no" color="primary">No</mat-radio-button>
-        </mat-radio-group>
-    </div>
-
-    <div id="feature-presenter">
-        <span><b>Willing to be Feature Presentation: </b>{{submission.willingToBeFeaturePresenter}}</span>
-        <br>
-        <mat-radio-group (change)="onFeaturePresentationChange($event)">
-            <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
-            <mat-radio-button color="primary" value="no">No</mat-radio-button>
-        </mat-radio-group>
-    </div>
-
-    <div id="presentation-type">
-        <span><b>Type of Presentation: </b>{{submission.presentationType}}</span>
-        <mat-select placeholder="Type of Presentation">
-            <mat-option #input value="poster or visual display" (click) = "submission.presentationType = 'poster or visual display'">Poster or Visual Display</mat-option>
-            <mat-option #input value="oral presentation" (click) = "submission.presentationType = 'oral presentation'">Oral Presentation</mat-option>
-            <mat-option #input value="performance" (click) = "submission.presentationType = 'performance'">Performance</mat-option>
-        </mat-select>
-    </div>
-
-    <div id="academic-discipline">
+    <div id="academic-discipline" class="category">
         <div>
             <span><b>Discipline:</b> {{submission.academicDiscipline}}</span>
             <mat-select placeholder="New Academic Discipline">
@@ -195,9 +78,134 @@
                           cols="1"></textarea>
             </mat-form-field>
         </div>
-
-        <button mat-button style="background-color: lightskyblue">SAVE</button>
     </div>
+
+    <div class="category">
+        <div id="presentation-type">
+            <span><b>Type of Presentation: </b>{{submission.presentationType}}</span>
+            <mat-select placeholder="New Type of Presentation">
+                <mat-option #input value="poster or visual display" (click) = "submission.presentationType = 'poster or visual display'">Poster or Visual Display</mat-option>
+                <mat-option #input value="oral presentation" (click) = "submission.presentationType = 'oral presentation'">Oral Presentation</mat-option>
+                <mat-option #input value="performance" (click) = "submission.presentationType = 'performance'">Performance</mat-option>
+            </mat-select>
+        </div>
+
+        <div id="feature-presenter">
+            <span><b>Willing to be Feature Presentation: </b>{{submission.willingToBeFeaturePresenter}}</span>
+            <br>
+            <mat-radio-group (change)="onFeaturePresentationChange($event)">
+                <mat-radio-button color="primary" value="yes" [checked]='this.submission.willingToBeFeaturePresenter == "yes"'>Yes</mat-radio-button>&nbsp;&nbsp;
+                <mat-radio-button color="primary" value="no" [checked]='this.submission.willingToBeFeaturePresenter == "no"'>No</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="category">
+        <div id="format">
+            <span><b>Submission Format: </b> {{submission.submissionFormat}}</span>
+            <mat-select placeholder="New Submission Format">
+                <mat-option
+                    #input value="artist statement"
+                    (click) = "submission.submissionFormat = 'artist statement'">
+                    Artist Statement
+                </mat-option>
+
+                <mat-option
+                    #input value="humanities proposal"
+                    (click) = "submission.submissionFormat = 'humanities proposal'">
+                    Humanities Proposal
+                </mat-option>
+
+                <mat-option
+                    #input value="science or social science abstract"
+                    (click) = "submission.submissionFormat = 'science or social science abstract'">
+                    Science or Social Science Abstract
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div id="format-change">
+            <span><b>Willing to Change Format: </b>{{submission.willingToChangePresentationFormat}}</span>
+            <br>
+            <mat-radio-group (change)="onFormatChange($event)">
+                <mat-radio-button value="yes" color="primary" [checked]='this.submission.willingToChangePresentationFormat == "yes"'>Yes</mat-radio-button>&nbsp;&nbsp;
+                <mat-radio-button value="no" color="primary" [checked]='this.submission.willingToChangePresentationFormat == "no"'>No</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div id="sponsored-orgs" class="category">
+        <p>Sponsoring Organization or Fund</p>
+        <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
+        <div class="checkboxes">
+            <mat-checkbox (click)="newSponsor(0)" [checked]="this.submission.sponOrganization[0]">UROP</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newSponsor(1)" [checked]="this.submission.sponOrganization[1]">MAP</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newSponsor(2)" [checked]="this.submission.sponOrganization[2]">MMP</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newSponsor(3)" [checked]="this.submission.sponOrganization[3]">LSAMP</mat-checkbox>
+        </div>
+        <br>
+
+        <mat-form-field>
+        <textarea matInput placeholder="Other"
+                  (input) = "submission.miscSponOrganization = $event.target.value" rows="1" cols="1">
+        </textarea>
+        </mat-form-field>
+
+        <div id="other-orgs">
+            <span><b>OTHER Organization(s): </b> {{submission.miscSponOrganization}}</span>
+            <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
+            <textarea matInput #input
+                      placeholder="New OTHER Organization(s):"
+                      (input)="submission.miscSponOrganization"
+                      rows="1"
+                      cols="1"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="category">
+        <p>Special Categories</p>
+        <p>Choose any applicable.</p>
+        <div class="checkboxes">
+            <mat-checkbox (click)="newCategory(0)" [checked]="this.submission.category[0]">Works in Progress</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newCategory(1)" [checked]="this.submission.category[1]">Capstone</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newCategory(2)" [checked]="this.submission.category[2]">Submitted Panel</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newCategory(3)" [checked]="this.submission.category[3]">Sophomore Spotlight</mat-checkbox>
+        </div>
+    </div>
+
+    <div class="category">
+        <div id="media-equipment">
+            <span><b>Need Media Services Equipment: </b> {{submission.additionalMediaEquipment}}</span>
+            <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
+            <textarea matInput #input
+                      placeholder="New Media Services Equiptment Need"
+                      (input)="submission.presentationTitle"
+                      rows="1"
+                      cols="1"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div id="special-requirements">
+            <span><b>Special Requirements: </b> {{submission.additionalRequirements}}</span>
+            <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
+            <textarea matInput #input
+                      placeholder="New Special Requirements Request:"
+                      (input)="submission.additionalRequirements"
+                      rows="1"
+                      cols="1"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <button mat-raised-button class="buttons" id="save-button">SAVE</button>
 </div>
 
 

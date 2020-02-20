@@ -2,3 +2,26 @@
     margin: 1rem;
     padding: 1rem;
 }
+
+.category {
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.2rem;
+    background-color: lightblue;
+    border: 1px solid;
+    border-radius: 0.5rem;
+}
+
+.buttons {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.presentationAbstractBox {
+    height: 9rem;
+}
+
+#format, #format-change, #presentation-type, #feature-presenter, #media-equipment, #special-requirements, #other-orgs {
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.2rem;
+}
