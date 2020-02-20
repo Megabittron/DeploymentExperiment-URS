@@ -20,7 +20,9 @@ export interface Submission {
     thirdPresenterEmail: string;
     academicDiscipline: string;
     willingToBeFeaturePresenter: string;
-    sponOrganization: string;
+    sponOrganization: boolean[];
+    miscSponOrganization: string;
+    category: boolean[];
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
     firstAdvisorEmail: string;
@@ -37,3 +39,5 @@ export interface Submission {
     comments?: string;
     approval: boolean;
 }
+
+
