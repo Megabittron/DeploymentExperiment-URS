@@ -7,6 +7,7 @@ import {CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem} from '@an
 import {User} from "../user";
 import {ReviewGroup} from "./reviewGroup";
 import {Observable} from "rxjs";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
     selector: 'app-admin-component',
@@ -33,7 +34,16 @@ export class AdminComponent implements OnInit {
     public reviewGroups: ReviewGroup[];
     public users: User[];
 
-    constructor(private adminService: AdminService, public dialog: MatDialog) {}
+    public user: User;
+
+    constructor(private adminService: AdminService, public dialog: MatDialog,
+                private authenticationService: AuthenticationService) {}
+
+    isAdmin(): boolean {
+        if (this.user) {
+            return this.user.Role.includes('admin');
+        }
+    }
 
     openDialog(): void {
         const dialogRef = this.dialog.open(SaveReviewGroupsDialog, {
@@ -51,8 +61,7 @@ export class AdminComponent implements OnInit {
     }
 
     changeReviewGroups(): void {
-        this.adminService.updateReviewGroups(this.systemInformation.reviewGroups).subscribe(info => {
-        });
+        this.adminService.updateReviewGroups(this.systemInformation.reviewGroups).subscribe();
     }
 
     getPrimarySubmissionPercent(): string {
@@ -64,13 +73,6 @@ export class AdminComponent implements OnInit {
         return (this.systemInformation.primarySubmissions
             /this.systemInformation.submissionStored*100).toFixed(2);
     }
-
-    // openRandomizeDialog(): void {
-    //     console.log("openDeleteDialog");
-    //     const dialogRef = this.dialog.open(RandomizeReviewGroupsComponent, {
-    //         width: '500px'
-    //     });
-    // }
 
     refreshReviewGroups(): Observable<ReviewGroup[]> {
         const reviewGroups: Observable<ReviewGroup[]> = this.adminService.getReviewGroups();
@@ -85,6 +87,11 @@ export class AdminComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.authenticationService.user$.subscribe(value => {
+            this.user = value;
+        });
+
         this.refreshReviewGroups();
 
         this.adminService.getSystemInformation().subscribe(info => {

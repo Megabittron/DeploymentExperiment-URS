@@ -97,9 +97,9 @@ public class Server {
             }
         });
 
-
         get("api/users", userRequestHandler::getUsers);
         put("api/users/:_id", userRequestHandler::editUsertShirtSize);
+        put("api/users/roles/:_id", userRequestHandler::editUserRole);
 
         get("api/abstract/:id", abstractRequestHandler::getSingleAbstractJSON);
         get("api/abstracts", abstractRequestHandler::getAbstracts);
