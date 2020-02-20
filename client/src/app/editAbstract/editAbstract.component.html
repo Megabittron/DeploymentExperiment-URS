@@ -1,3 +1,16 @@
 <div *ngIf="submission">
-    this is for editing abstracts, not much here right now
+    <div>
+        <p>Title: {{submission.presentationTitle}}</p>
+        <p>Abstract: {{submission.abstractContent}}</p>
+        <p>Discipline: {{submission.academicDiscipline}}</p>
+        <p>Type: {{submission.presentationType}}</p>
+        <p>Format: {{submission.submissionFormat}}</p>
+        <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
+        <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
+        <p>Need Media Services Equiptment: {{submission.additionalMediaEquipment}}</p>
+        <p>Special Requirements: {{submission.additionalRequirements}}</p>
+        <p>Sponsoring Organization(s): {{submission.sponOrganization}}</p>
+        <p>OTHER Organization(s): {{submission.miscSponOrganization}}</p>
+        <p>Categories: {{submission.category}}</p>
+    </div>
 </div>
