@@ -54,6 +54,10 @@ export class EditAbstractComponent implements OnInit {
         console.log(this.submission);
     }
 
+    debugChecked() {
+        console.log("Checked status: " + this.submission.category);
+    }
+
     ngOnInit() {
         this.getSubmission();
     }

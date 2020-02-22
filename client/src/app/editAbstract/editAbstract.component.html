@@ -138,15 +138,15 @@
         <p>Sponsoring Organization or Fund</p>
         <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
         <div class="checkboxes">
-            <mat-checkbox (click)="newSponsor(0)" [checked]="this.submission.sponOrganization[0]">UROP</mat-checkbox>
+            <mat-checkbox (change)="newSponsor(0)" [checked]="this.submission.sponOrganization[0] === true">UROP</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newSponsor(1)" [checked]="this.submission.sponOrganization[1]">MAP</mat-checkbox>
+            <mat-checkbox (change)="newSponsor(1)" [checked]="this.submission.sponOrganization[1] === true">MAP</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newSponsor(2)" [checked]="this.submission.sponOrganization[2]">MMP</mat-checkbox>
+            <mat-checkbox (change)="newSponsor(2)" [checked]="this.submission.sponOrganization[2] === true">MMP</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newSponsor(3)" [checked]="this.submission.sponOrganization[3]">LSAMP</mat-checkbox>
+            <mat-checkbox (change)="newSponsor(3)" [checked]="this.submission.sponOrganization[3] === true">LSAMP</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newSponsor(4)" [checked]="this.submission.sponOrganization[4]">McNair</mat-checkbox>
+            <mat-checkbox (change)="newSponsor(4)" [checked]="this.submission.sponOrganization[4] === true">McNair</mat-checkbox>
         </div>
         <br>
 
@@ -163,16 +163,17 @@
     </div>
 
     <div class="category">
+        <button mat-raised-button (click)="debugChecked()">check checking</button>
         <p>Special Categories</p>
         <p>Choose any applicable.</p>
         <div class="checkboxes">
-            <mat-checkbox (click)="newCategory(0)" [checked]="this.submission.category[0]">Works in Progress</mat-checkbox>
+            <mat-checkbox (change)="newCategory(0)" [checked]="this.submission.category[0] === true">Works in Progress</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newCategory(1)" [checked]="this.submission.category[1]">Capstone</mat-checkbox>
+            <mat-checkbox (change)="newCategory(1)" [checked]="this.submission.category[1] === true">Capstone</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newCategory(2)" [checked]="this.submission.category[2]">Submitted Panel</mat-checkbox>
+            <mat-checkbox (change)="newCategory(2)" [checked]="this.submission.category[2] === true">Submitted Panel</mat-checkbox>
             <br>
-            <mat-checkbox (click)="newCategory(3)" [checked]="this.submission.category[3]">Sophomore Spotlight</mat-checkbox>
+            <mat-checkbox (change)="newCategory(3)" [checked]="this.submission.category[3] === true">Sophomore Spotlight</mat-checkbox>
         </div>
     </div>
 
