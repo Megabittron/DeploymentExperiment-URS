@@ -7,7 +7,7 @@
         <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New Presentation Title"
-                      (input)="submission.presentationTitle"
+                      (input)="submission.presentationTitle = $event.target.value"
                       rows="1"
                       cols="1"></textarea>
         </mat-form-field>
@@ -18,7 +18,7 @@
         <mat-form-field style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New Abstract"
-                      (input)="submission.abstractContent"
+                      (input)="submission.abstractContent = $event.target.value"
                       rows="1"
                       cols="1" class="presentationAbstractBox"></textarea>
         </mat-form-field>
@@ -145,21 +145,17 @@
             <mat-checkbox (click)="newSponsor(2)" [checked]="this.submission.sponOrganization[2]">MMP</mat-checkbox>
             <br>
             <mat-checkbox (click)="newSponsor(3)" [checked]="this.submission.sponOrganization[3]">LSAMP</mat-checkbox>
+            <br>
+            <mat-checkbox (click)="newSponsor(4)" [checked]="this.submission.sponOrganization[4]">McNair</mat-checkbox>
         </div>
         <br>
-
-        <mat-form-field>
-        <textarea matInput placeholder="Other"
-                  (input) = "submission.miscSponOrganization = $event.target.value" rows="1" cols="1">
-        </textarea>
-        </mat-form-field>
 
         <div id="other-orgs">
             <span><b>OTHER Organization(s): </b> {{submission.miscSponOrganization}}</span>
             <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New OTHER Organization(s):"
-                      (input)="submission.miscSponOrganization"
+                      (input)="submission.miscSponOrganization = $event.target.value"
                       rows="1"
                       cols="1"></textarea>
             </mat-form-field>
@@ -186,7 +182,7 @@
             <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New Media Services Equiptment Need"
-                      (input)="submission.presentationTitle"
+                      (input)="submission.additionalMediaEquipment = $event.target.value"
                       rows="1"
                       cols="1"></textarea>
             </mat-form-field>
@@ -197,7 +193,7 @@
             <mat-form-field class="presentationTitleBox" style="display: inline-block; width: 100%">
             <textarea matInput #input
                       placeholder="New Special Requirements Request:"
-                      (input)="submission.additionalRequirements"
+                      (input)="submission.additionalRequirements = $event.target.value"
                       rows="1"
                       cols="1"></textarea>
             </mat-form-field>
@@ -205,7 +201,7 @@
     </div>
 
 
-    <button mat-raised-button class="buttons" id="save-button">SAVE</button>
+    <button mat-raised-button class="buttons" id="save-button" (click)="saveAbstractEdit()">SAVE</button>
 </div>
 
 

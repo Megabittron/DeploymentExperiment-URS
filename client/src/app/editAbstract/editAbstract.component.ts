@@ -50,6 +50,10 @@ export class EditAbstractComponent implements OnInit {
         );
     }
 
+    saveAbstractEdit() {
+        console.log(this.submission);
+    }
+
     ngOnInit() {
         this.getSubmission();
     }
