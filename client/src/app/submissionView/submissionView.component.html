@@ -60,11 +60,13 @@
             <p>Format: {{submission.submissionFormat}}</p>
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
             <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
-            <p>Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
+            <p>Adviser Approved: {{submission.approval ? "yes" : "no"}}</p>
             <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
             <p>Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
             <p>Additional Information: </p> <!-- TODO: Add field  -->
-            <p>Date of Submission: {{submission.timestamp}}</p>
+            <p>Date of Submission: {{submission.timestamp | date: 'longDate'}}
+                                at {{submission.timestamp | date: 'shortTime'}}
+            </p>
 
             <div *ngIf="submission.sponOrganization" class="sponsored">
                 <span> Sponsoring Organization: </span>
