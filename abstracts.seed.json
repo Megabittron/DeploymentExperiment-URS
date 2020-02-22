@@ -20,7 +20,7 @@
         "thirdPresenterEmail": "yasin011@morris.umn.edu",
         "academicDiscipline": "art history",
         "willingToBeFeaturePresenter": "yes",
-        "sponOrganization": [true, true, true, false],
+        "sponOrganization": [true, true, true, false, true],
         "miscSponOrganization": "CSci Club",
         "category": [true, true, true, false],
         "firstAdvisorFirstName": "Charles",

@@ -63,7 +63,7 @@ export class NewSubmissionComponent implements OnInit{
     public other: boolean;
     public timestamp = "";
     public approval = null;
-    public category = [false, false, false, false];
+    public category = [false, false, false, false, false];
     public miscSponOrganization = "";
 
     saveSubmission(): void {
