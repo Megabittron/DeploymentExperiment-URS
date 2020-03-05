@@ -2,11 +2,43 @@
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
             <mat-card-title>Undergraduate Research Symposium</mat-card-title>
-            <mat-card-subtitle>URS submission and event management tool</mat-card-subtitle>
+            <mat-card-subtitle>URS submission <span *ngIf="user.Role != 'user'">and event management</span> tool</mat-card-subtitle>
             <mat-divider></mat-divider>
             <mat-card-content *ngIf="user.Role!='user'">
 
-                <p>The Undergraduate Research Symposium (URS) offers and opportunity to present your research and
+                <h2>Hello {{user.FirstName}}, you are seeing this because you are an: {{user.Role.toUpperCase()}}</h2>
+
+                <h3>You have higher level access, including abilities such as: </h3>
+                <ul>
+                    <li>example 1</li>
+                    <li>example 2</li>
+                </ul>
+
+                <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
+                <button mat-raised-button routerLink="/admin" *ngIf="user.Role == 'admin'">Admin Page</button>
+
+                <h2 class="studentPOV">The Student Point of View</h2>
+                <p>If a student has a question about the submission interface, not to fear! You can step through the
+                submission form on your own and see exactly what they see. <b>However, you cannot submit an abstract
+                        yourself.</b>
+                </p>
+                <p class="studentPOV">The following is what a student sees upon logging into the site:</p>
+            </mat-card-content>
+
+            <hr>
+
+            <mat-card-content>
+                <h2>Welcome to the new URS submission website!</h2>
+
+                <div class="wrongRole">
+                    <h3>Supposed to be co-presenter but not seeing your abstract?
+                        <span *ngIf="date > weekOutFromAbstractsDue">An advisor, chair or admin? </span>
+                    <a routerLink="/wrongRole">Click here for help.</a></h3>
+                </div>
+
+
+                <p>
+                    The Undergraduate Research Symposium (URS) offers and opportunity to present your research and
                     scholarly and creative work.
                 </p>
                 <p>
@@ -19,13 +51,14 @@
                     quality of original student research, creative, and scholarly work from all academic areas of the
                     Morris campus.
                 </p>
+
                 <h3>Types of presentations include</h3>
                 <ul>
                     <li>posters</li>
                     <li>oral presentations</li>
-                    <li>hort or abbreviated theatrical,
-                        dance, or musical performances</li>
+                    <li>short or abbreviated theatrical, dance, or musical performances</li>
                 </ul>
+
                 <h3>In 2019 we introduced a few new categories:</h3>
                 <ul>
                     <li>"works in progress" option for projects and papers not-yet-finished, but "far along"</li>
@@ -61,18 +94,6 @@
                         Morris's ACE Office website</a> for more information. Resources like: talk tips, example and
                     archived abstracts, guidelines, contact information and more.</p>
 
-                <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
-
-                <h2 id="studentPOV">A Student Point of View</h2>
-                <p>If a student has a question about the submission interface, not to fear! You can step through the
-                submission form on your own and see exactly what they see. However, you cannot submit an abstract
-                    yourself.
-                </p>
-                <b>The following is what a student sees upon logging into the site:</b>
-            </mat-card-content>
-
-            <mat-card-content>
-                <h2>Welcome to the new URS website!</h2>
                 <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
                 <button mat-raised-button routerLink="/submissionList">
                     View Your Submissions
