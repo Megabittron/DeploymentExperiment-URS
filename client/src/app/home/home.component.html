@@ -4,14 +4,15 @@
             <mat-card-title>Undergraduate Research Symposium</mat-card-title>
             <mat-card-subtitle>URS submission <span *ngIf="user.Role != 'user'">and event management</span> tool</mat-card-subtitle>
             <mat-divider></mat-divider>
-            <mat-card-content *ngIf="user.Role!='user'">
+            <mat-card-content *ngIf="user.Role!='user'" class="higherRoleCard">
 
                 <h2>Hello {{user.FirstName}}, you are seeing this because you are an: {{user.Role.toUpperCase()}}</h2>
 
                 <h3>You have higher level access, including abilities such as: </h3>
                 <ul>
-                    <li>example 1</li>
-                    <li>example 2</li>
+                    <li>(depends on advisor or chair or admin)</li>
+                    <li>(depends on advisor or chair or admin)</li>
+                    <li>(etc etc etc)</li>
                 </ul>
 
                 <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
@@ -22,12 +23,11 @@
                 submission form on your own and see exactly what they see. <b>However, you cannot submit an abstract
                         yourself.</b>
                 </p>
-                <p class="studentPOV">The following is what a student sees upon logging into the site:</p>
+                <p>The following is what a student sees upon logging into the site. You may also
+                find the information like the timeline, submission tips, or related links helpful.</p>
             </mat-card-content>
 
-            <hr>
-
-            <mat-card-content>
+            <mat-card-content class="studentCard">
                 <h2>Welcome to the new URS submission website!</h2>
 
                 <div class="wrongRole">

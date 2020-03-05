@@ -6,6 +6,9 @@
             <mat-card-content>
                 <mat-horizontal-stepper [linear]="true" #stepper>
                     <mat-step label="Application Info">
+                        <h1 id="non-student-disclaimer">Warning: As a non-student you can preview the form, but not
+                        submit an abstract. If you or your students are having issues or or questions regarding the form,
+                        contact &lt;insert_admin_email&gt;.</h1>
                         All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
                         The faculty mentor should indicate:<br>
                         * Confidence that the student's work will be ready to present by the URS date.<br>
@@ -511,7 +514,11 @@
 
                             <br><br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                            <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/">Submit</button>
+                            <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/"
+                                    *ngIf="user.Role=='user'; else notStudent">Submit</button>
+                            <ng-template #notStudent>
+                                <button mat-raised-button color="primary">Submit (non-students cannot submit)</button>
+                            </ng-template>
                         </div>
                     </mat-step>
                 </mat-horizontal-stepper>
