@@ -10,7 +10,7 @@
 
             <br>
 
-            <div class="submission-judgement-btns">
+            <div class="submission-judgement-btns" *ngIf="user.Role!='user'">
                 <button mat-button class="approve">
                     <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
                 </button>
@@ -53,7 +53,7 @@
             <p>Format: {{submission.submissionFormat}}</p>
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
             <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
-            <p>Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
+            <p *ngIf="user.Role!='user'">Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
             <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
             <p>Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
             <p>Additional Information: </p> <!-- TODO: Add field  -->
@@ -86,7 +86,7 @@
             <p>{{submission.abstractContent}}</p>
         </div>
 
-        <div>
+        <div *ngIf="user.Role!='user'">
             <p>You are seeing this submission because you are a(n): </p>
         </div>
 
