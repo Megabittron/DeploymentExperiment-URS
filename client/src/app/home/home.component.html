@@ -1,12 +1,23 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title>URSA Major</mat-card-title>
+            <mat-card-title>Undergraduate Research Symposium</mat-card-title>
             <mat-card-subtitle>URS submission and event management tool</mat-card-subtitle>
             <mat-divider></mat-divider>
-            <mat-card-content>
+            <mat-card-content *ngIf="user.Role!='user'; else isUser">
+                <div>
+                    <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
+                </div>
                 <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
             </mat-card-content>
+
+            <ng-template #isUser>
+                <mat-card-content>
+                    <button mat-raised-button routerLink="/submissionList">
+                        View Your Submissions
+                    </button>
+                </mat-card-content>
+            </ng-template>
         </mat-card>
     </div>
 </div>

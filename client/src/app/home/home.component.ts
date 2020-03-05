@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {AppService} from "../app.service";
+import {AuthenticationService} from "../authentication.service";
+import {User} from "../user";
 
 @Component({
     selector: 'app-home-component',
@@ -9,7 +11,14 @@ import {AppService} from "../app.service";
 })
 export class HomeComponent {
 
-    constructor() {
+    constructor(public authenticationService: AuthenticationService) {
+    }
 
+    public user: User;
+
+    ngOnInit() {
+        this.authenticationService.user$.subscribe(user => {
+            this.user = user;
+        });
     }
 }
