@@ -4,20 +4,74 @@
             <mat-card-title>Undergraduate Research Symposium</mat-card-title>
             <mat-card-subtitle>URS submission and event management tool</mat-card-subtitle>
             <mat-divider></mat-divider>
-            <mat-card-content *ngIf="user.Role!='user'; else isUser">
-                <div>
-                    <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
-                </div>
-                <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
+            <mat-card-content *ngIf="user.Role!='user'">
+
+                <p>The Undergraduate Research Symposium (URS) offers and opportunity to present your research and
+                    scholarly and creative work.
+                </p>
+                <p>
+                    Your audience not only includes your peers, your faculty, and your family but also reaches far
+                    beyond the campus community.
+                </p>
+                <p>
+                    April 25th, 2020 will mark the 20th annual UMN Morris Undergraduate Research Symposium, which
+                    celebrates student scholarly achievement and informs the campus community about the variety and
+                    quality of original student research, creative, and scholarly work from all academic areas of the
+                    Morris campus.
+                </p>
+                <h3>Types of presentations include</h3>
+                <ul>
+                    <li>posters</li>
+                    <li>oral presentations</li>
+                    <li>hort or abbreviated theatrical,
+                        dance, or musical performances</li>
+                </ul>
+                <h3>In 2019 we introduced a few new categories:</h3>
+                <ul>
+                    <li>"works in progress" option for projects and papers not-yet-finished, but "far along"</li>
+                    <li>"capstone" category for those kinds of particular works that function to fulfill degree
+                        requirements but may be presentable to a general audience</li>
+                    <li>"submitted panel" option, which could include several projects related to a tightly-defined
+                        topic or theme</li>
+                    <li>"sophomore spotlight" to highlight the work of younger scholar-students.</li>
+                </ul>
+
+                <h3>Timeline</h3>
+                <ul>
+                    <li *ngIf="date < abstractsDueMarch28th2020atNoon">
+                        March 27th: Abstracts Due
+                    <li *ngIf="date > abstractsDueMarch28th2020atNoon"><s>March 27th: Abstracts Due</s></li>
+
+                    <li *ngIf="date < reviewerFeedbackDueApril10th2020atTBD">
+                        April 10th: Reviewer Feedback Due</li>
+                    <li *ngIf="date > reviewerFeedbackDueApril10th2020atTBD"><s>April 10th: Reviewer Feedback Due</s></li>
+
+                    <li *ngIf="date < finalStudentRevisionsDueApril17th2020atTBD">
+                        April 17th: Final Student Revisions Due</li>
+                    <li *ngIf="date > finalStudentRevisionsDueApril17th2020atTBD"><s>April 17th: Final Student Revisions Due</s></li>
+
+                    <li *ngIf="date < ursOnApril25th2020atTBD">
+                        April 25th: 20th Annual URS</li>
+                    <li *ngIf="date > ursOnApril25th2020atTBD"><s>April 25th: 20th Annual URS</s></li>
+                </ul>
+
+                <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
+
+                <h2>A Student Point of View</h2>
+                <p>If a student has a question about the submission interface, not to fear! You can step through the
+                submission form on your own and see exactly what they see. However, you cannot submit an abstract
+                    yourself.
+                </p>
+                <b>The following is what a student sees upon logging into the site:</b>
             </mat-card-content>
 
-            <ng-template #isUser>
-                <mat-card-content>
-                    <button mat-raised-button routerLink="/submissionList">
-                        View Your Submissions
-                    </button>
-                </mat-card-content>
-            </ng-template>
+            <mat-card-content>
+                <h2>Welcome to the new URS website!</h2>
+                <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
+                <button mat-raised-button routerLink="/submissionList">
+                    View Your Submissions
+                </button>
+            </mat-card-content>
         </mat-card>
     </div>
 </div>
