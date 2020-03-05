@@ -36,7 +36,7 @@
                     <li>"sophomore spotlight" to highlight the work of younger scholar-students.</li>
                 </ul>
 
-                <h3>Timeline</h3>
+                <h2>Timeline</h2>
                 <ul>
                     <li *ngIf="date < abstractsDueMarch28th2020atNoon">
                         March 27th: Abstracts Due
@@ -55,9 +55,15 @@
                     <li *ngIf="date > ursOnApril25th2020atTBD"><s>April 25th: 20th Annual URS</s></li>
                 </ul>
 
+                <h3>Additional Details & Resources</h3>
+                <p>Visit the URS website on
+                    <a href="https://academics.morris.umn.edu/opportunities/undergraduate-research-symposium">
+                        Morris's ACE Office website</a> for more information. Resources like: talk tips, example and
+                    archived abstracts, guidelines, contact information and more.</p>
+
                 <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
 
-                <h2>A Student Point of View</h2>
+                <h2 id="studentPOV">A Student Point of View</h2>
                 <p>If a student has a question about the submission interface, not to fear! You can step through the
                 submission form on your own and see exactly what they see. However, you cannot submit an abstract
                     yourself.
