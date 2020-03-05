@@ -87,7 +87,11 @@
         </div>
 
         <div *ngIf="user.Role!='user'">
-            <p>You are seeing this submission because you are a(n): </p>
+            <p>You are seeing this submission because you are:
+                <b *ngIf="user.Role=='reviewer'">an Advisor</b>
+                <b *ngIf="user.Role=='chair'">a Chair</b>
+                <b *ngIf="user.Role=='admin'">an admin</b>
+            </p>
         </div>
 
     </div>
