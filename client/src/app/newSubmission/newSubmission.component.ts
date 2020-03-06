@@ -6,6 +6,11 @@ import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+interface Discipline {
+    value: string;
+    viewValue: string;
+}
+
 @Component({
     selector: 'app-newSubmission-component',
     templateUrl: 'newSubmission.component.html',
@@ -66,6 +71,45 @@ export class NewSubmissionComponent implements OnInit{
     public category = [false, false, false, false];
     public miscSponOrganization = "";
 
+    disciplines: Discipline[] = [
+        {value: 'african and black american studies', viewValue: 'African and Black American Studies'},
+        {value: 'anthropology', viewValue: 'Anthropology'},
+        {value: 'art history', viewValue: 'Art History'},
+        {value: 'biology', viewValue: 'Biology'},
+        {value: 'chemistry & biochemistry', viewValue: 'Chemistry and Biochemistry'},
+        {value: 'communication, media, & rhetoric', viewValue: 'Communication, Media, & Rhetoric'},
+        {value: 'computer science', viewValue: 'Computer Science'},
+        {value: 'economics', viewValue: 'Economics'},
+        {value: 'education', viewValue: 'Education'},
+        {value: 'elementary education', viewValue: 'Elementary Education'},
+        {value: 'english/creative writing', viewValue: 'English/Creative Writing'},
+        {value: 'environmental science', viewValue: 'Environmental Science'},
+        {value: 'environmental studies', viewValue: 'Environmental Studies'},
+        {value: 'french', viewValue: 'French'},
+        {value: 'gender, women, and sexuality studies', viewValue: 'Gender, Women, and Sexuality Studies'},
+        {value: 'geology', viewValue: 'Geology'},
+        {value: 'german studies', viewValue: 'German Studies'},
+        {value: 'history', viewValue: 'History'},
+        {value: 'human services/general/criminal justice/social justice/human development', viewValue: 'Human Services/General/Criminal Justice/Social Justice/Human Development'},
+        {value: 'latin american area studies', viewValue: 'Latin American Area Studies'},
+        {value: 'management', viewValue: 'Management'},
+        {value: 'medieval studies', viewValue: 'Medieval Studies'},
+        {value: 'music', viewValue: 'Music'},
+        {value: 'native american and indigenous studies', viewValue: 'Native American and Indigenous Studies'},
+        {value: 'philosophy', viewValue: 'Philosophy'},
+        {value: 'german studies', viewValue: 'Physics'},
+        {value: 'political science', viewValue: 'Political Science'},
+        {value: 'psychology', viewValue: 'Psychology'},
+        {value: 'secondary education', viewValue: 'Secondary Education'},
+        {value: 'social science', viewValue: 'Social Science'},
+        {value: 'sociology', viewValue: 'Sociology'},
+        {value: 'spanish', viewValue: 'Spanish'},
+        {value: 'sport management', viewValue: 'Sport Management'},
+        {value: 'statistics', viewValue: 'Statistics'},
+        {value: 'studio art', viewValue: 'Studio Art'},
+        {value: 'theatre arts', viewValue: 'Theatre Arts'}
+    ];
+
     saveSubmission(): void {
         const newSubmission: Submission = {
             userID: this.user.SubjectID,
@@ -123,6 +167,10 @@ export class NewSubmissionComponent implements OnInit{
     newCategory(category: number){
         this.category[category] = !this.category[category];
         console.log(this.category);
+    }
+
+    multiDiscipline(change: MatRadioChange): void {
+        console.log(change.value);
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {
