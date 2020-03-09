@@ -9,7 +9,8 @@
 
 .submission-content {
     //border: 1px solid red;  //for debugging
-    background-color: lightgrey;
+    border: 6px solid #7a0019;
+    //background-color: lightgrey;
     display: inline-block;
     width: 60%;
     float: left;
@@ -18,7 +19,7 @@
 
 // comments
 .submission-comments {
-    border: 1px solid black;  //for debugging
+    border: 6px solid #ffcc33;
     display: inline-block;
     width: 40%;
     float: left;
