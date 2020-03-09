@@ -26,6 +26,7 @@ import {SubmissionViewComponent} from "./submissionView/submissionView.component
 import {EditUserInfoComponent} from "./admin/editUserInfo.component";
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {WrongRoleComponent} from "./accountInfo/wrong-role.component";
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         SaveReviewGroupsDialog,
         LoginComponent,
         SubmissionViewComponent,
-        EditUserInfoComponent
+        EditUserInfoComponent,
+        WrongRoleComponent
     ],
     providers: [
         AuthenticationService,

@@ -20,11 +20,11 @@
         "thirdPresenterEmail": "yasin011@morris.umn.edu",
         "academicDiscipline": [
             {
-            "_id": {
-                "$oid": "7c832bec26622a20be5ec19a"
-            },
-            "key": "spanish",
-            "value": "Spanish"
+                "_id": {
+                    "$oid": "7c832bec26622a20be5ec19a"
+                },
+                "key": "spanish",
+                "value": "Spanish"
             },
             {
                 "_id": {
@@ -35,9 +35,208 @@
             }
         ],
         "willingToBeFeaturePresenter": "yes",
-        "sponOrganization": [true, true, true, false],
+        "sponOrganization": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19a"
+                },
+                "key": "curf",
+                "value": "CURF"
+            },
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19b"
+                },
+                "key": "lsamp",
+                "value": "LSAMP"
+            }
+        ],
         "miscSponOrganization": "CSci Club",
-        "category": [true, true, true, false],
+        "category": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19d"
+                },
+                "key": "sophomoreSpotlight",
+                "value": "Sophomore Spotlight"
+            }
+        ],
+        "firstAdvisorFirstName": "Charles",
+        "firstAdvisorLastName": "Menne",
+        "firstAdvisorEmail": "menne019@morris.umn.edu",
+        "secondAdvisorFirstName": "",
+        "secondAdvisorLastName": "",
+        "secondAdvisorEmail": "",
+        "thirdAdvisorFirstName": "",
+        "thirdAdvisorLastName": "",
+        "thirdAdvisorEmail": "",
+        "additionalMediaEquipment": "no",
+        "additionalRequirements": "NA",
+        "other": "NA",
+        "timestamp": "Wed Jan 09 16:23:20 CST 2019",
+        "comments": null,
+        "approval": false,
+        "rejection": false,
+        "resubmitFlag": false,
+        "totalRewriteVotes": 0,
+        "majorRewriteVotes": 0,
+        "minorRewriteVotes": 0,
+        "acceptedVotes": 0,
+        "cc": null,
+        "group": null,
+        "roomAssignment": null,
+        "isPrimarySubmission": true
+    },
+    {
+        "_id": {
+            "$oid": "5c367458a3249441cebe2c24"
+        },
+        "userID": "109020570512537057671",
+        "presentationTitle": "Michael, as a user",
+        "abstractContent": "Wind turbines are great for generating energy. However, knowing when it's a good time transfer and use this energy is difficult. This is where monitoring systems can help address some of these issues.",
+        "submissionFormat": "humanities proposal",
+        "presentationType": "oral presentation",
+        "willingToChangePresentationFormat": "yes",
+        "firstPresenterFirstName": "Michael",
+        "firstPresenterLastName": "Small",
+        "firstPresenterEmail": "small203@morris.umn.edu",
+        "secondPresenterFirstName": "Travis",
+        "secondPresenterLastName": "Warling",
+        "secondPresenterEmail": "warli010@morris.umn.edu",
+        "thirdPresenterFirstName": "Ahnaf",
+        "thirdPresenterLastName": "Yasin",
+        "thirdPresenterEmail": "yasin011@morris.umn.edu",
+        "academicDiscipline": [
+            {
+                "_id": {
+                    "$oid": "7c222bec26656a20be5ec19b"
+                },
+                "key": "psychology",
+                "value": "Psychology"
+            },
+            {
+                "_id": {
+                    "$oid": "7c832bec22656a20be5ec19c"
+                },
+                "key": "secondaryEducation",
+                "value": "Secondary Education"
+            }
+        ],
+        "willingToBeFeaturePresenter": "yes",
+        "sponOrganization": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19c"
+                },
+                "key": "map",
+                "value": "MAP"
+            },
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19d"
+                },
+                "key": "mcnair",
+                "value": "McNair"
+            }
+        ],
+        "miscSponOrganization": "CSci Club",
+        "category": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19b"
+                },
+                "key": "capstone",
+                "value": "Capstone"
+            },
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19c"
+                },
+                "key": "submittedPanel",
+                "value": "Submitted Panel"
+            }
+        ],
+        "firstAdvisorFirstName": "Charles",
+        "firstAdvisorLastName": "Menne",
+        "firstAdvisorEmail": "menne019@morris.umn.edu",
+        "secondAdvisorFirstName": "",
+        "secondAdvisorLastName": "",
+        "secondAdvisorEmail": "",
+        "thirdAdvisorFirstName": "",
+        "thirdAdvisorLastName": "",
+        "thirdAdvisorEmail": "",
+        "additionalMediaEquipment": "no",
+        "additionalRequirements": "NA",
+        "other": "NA",
+        "timestamp": "Wed Jan 09 16:23:20 CST 2019",
+        "comments": null,
+        "approval": false,
+        "rejection": false,
+        "resubmitFlag": false,
+        "totalRewriteVotes": 0,
+        "majorRewriteVotes": 0,
+        "minorRewriteVotes": 0,
+        "acceptedVotes": 0,
+        "cc": null,
+        "group": null,
+        "roomAssignment": null,
+        "isPrimarySubmission": true
+    },
+    {
+        "_id": {
+            "$oid": "5c367458a3249441cebe2c25"
+        },
+        "userID": "109020570512537057671",
+        "presentationTitle": "Michael, as a user, with another submission",
+        "abstractContent": "Wind turbines are great for generating energy. However, knowing when it's a good time transfer and use this energy is difficult. This is where monitoring systems can help address some of these issues.",
+        "submissionFormat": "humanities proposal",
+        "presentationType": "oral presentation",
+        "willingToChangePresentationFormat": "yes",
+        "firstPresenterFirstName": "Michael",
+        "firstPresenterLastName": "Small",
+        "firstPresenterEmail": "small203@morris.umn.edu",
+        "secondPresenterFirstName": "Travis",
+        "secondPresenterLastName": "Warling",
+        "secondPresenterEmail": "warli010@morris.umn.edu",
+        "thirdPresenterFirstName": "Ahnaf",
+        "thirdPresenterLastName": "Yasin",
+        "thirdPresenterEmail": "yasin011@morris.umn.edu",
+        "academicDiscipline": [
+            {
+                "_id": {
+                    "$oid": "7c832bec26622a20be5ec19e"
+                },
+                "key": "theatreArts",
+                "value": "Theatre Arts"
+            }
+        ],
+        "willingToBeFeaturePresenter": "yes",
+        "sponOrganization": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19b"
+                },
+                "key": "lsamp",
+                "value": "LSAMP"
+            },
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19c"
+                },
+                "key": "map",
+                "value": "MAP"
+            }
+        ],
+        "miscSponOrganization": "CSci Club",
+        "category": [
+            {
+                "_id": {
+                    "$oid": "6c832bec26656a20be5ec19a"
+                },
+                "key": "worksInProgress",
+                "value": "Works in Progress"
+            }
+        ],
         "firstAdvisorFirstName": "Charles",
         "firstAdvisorLastName": "Menne",
         "firstAdvisorEmail": "menne019@morris.umn.edu",

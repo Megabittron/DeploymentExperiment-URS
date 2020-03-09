@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
+import {AuthenticationService} from "../authentication.service";
+import {User} from "../user";
 
 @Component({
     selector: 'submissionView.component',
@@ -12,10 +14,12 @@ import {Observable} from "rxjs";
 
 export class SubmissionViewComponent implements OnInit {
 
-    constructor(public submissionListService: SubmissionListService) {}
+    constructor(public submissionListService: SubmissionListService,
+                public authenticationService: AuthenticationService) {}
 
     public submission: Submission;
     public otherDiscipline: string;
+    public user: User;
 
     getSubmission() {
         let submissionObservable: Observable<Submission>;
@@ -31,6 +35,10 @@ export class SubmissionViewComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.authenticationService.user$.subscribe(user => {
+            this.user = user;
+        });
+
         this.getSubmission();
     }
 
