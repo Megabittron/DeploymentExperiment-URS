@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: 'submissionList', component: SubmissionListComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'newSubmission', component: NewSubmissionComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'abstract/:id', component: SubmissionViewComponent, canActivate: [UserIsLoggedInGuard]},
-    {path: 'admin/editUserInfo', component: EditUserInfoComponent, canActivate: [UserIsLoggedInGuard]},
+    {path: 'admin/editUserInfo', component: EditUserInfoComponent, canActivate: [UserIsLoggedInGuard, RoleGuard]},
     {path: 'wrongRole', component: WrongRoleComponent, canActivate: [UserIsLoggedInGuard]}
 ];
 
