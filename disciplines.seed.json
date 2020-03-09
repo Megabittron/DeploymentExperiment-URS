@@ -1,0 +1,254 @@
+[
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19a"
+        },
+        "key": "africanAndBlackAmericanStudies",
+        "value": "African and Black American Studies"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19b"
+        },
+        "key": "anthropology",
+        "value": "Anthropology"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19c"
+        },
+        "key": "artHistory",
+        "value": "Art History"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19d"
+        },
+        "key": "biology",
+        "value": "Biology"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19e"
+        },
+        "key": "chemistryAndBiochemistry",
+        "value": "Chemistry and Biochemistry"
+    },
+    {
+        "_id": {
+            "$oid": "7e832bec26656a20be5ec19a"
+        },
+        "key": "communicationMediaRhetoric",
+        "value": "Communication, Media, & Rhetoric"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26656a20be5ec19a"
+        },
+        "key": "computerScience",
+        "value": "Computer Science"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26656a20be5ec19b"
+        },
+        "key": "economics",
+        "value": "Economics"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26656a20be5ec19c"
+        },
+        "key": "education",
+        "value": "Education"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26656a20be5ec19d"
+        },
+        "key": "elementaryEducation",
+        "value": "Elementary Education"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26656a20be5ec19e"
+        },
+        "key": "englishCreativeWriting",
+        "value": "English/Creative Writing"
+    },
+    {
+        "_id": {
+            "$oid": "8c832bec26656a20be5ec19a"
+        },
+        "key": "environmentalScience",
+        "value": "Environmental Science"
+    },
+    {
+        "_id": {
+            "$oid": "8c832bec26656a20be5ec19b"
+        },
+        "key": "environmentalStudies",
+        "value": "Environmental Studies"
+    },
+    {
+        "_id": {
+            "$oid": "8c832bec26656a20be5ec19c"
+        },
+        "key": "french",
+        "value": "French"
+    },
+    {
+        "_id": {
+            "$oid": "8c832bec26656a20be5ec19d"
+        },
+        "key": "genderWomenSexualityStudies",
+        "value": "Gender, Women, and Sexuality Studies"
+    },
+    {
+        "_id": {
+            "$oid": "8c832bec26656a20be5ec19e"
+        },
+        "key": "geology",
+        "value": "Geology"
+    },
+    {
+        "_id": {
+            "$oid": "9c832bec26656a20be5ec19a"
+        },
+        "key": "germanStudies",
+        "value": "German Studies"
+    },
+    {
+        "_id": {
+            "$oid": "9c832bec26656a20be5ec19b"
+        },
+        "key": "history",
+        "value": "History"
+    },
+    {
+        "_id": {
+            "$oid": "9c832bec26656a20be5ec19c"
+        },
+        "key": "humanServicesGeneralCriminalJusticeSocialJusticeHumanDevelopment",
+        "value": "Human Services/General/Criminal Justice/Social Justice/Human Development"
+    },
+    {
+        "_id": {
+            "$oid": "9c832bec26656a20be5ec19d"
+        },
+        "key": "latinAmericanAreaStudies",
+        "value": "Latin American Area Studies"
+    },
+    {
+        "_id": {
+            "$oid": "9c832bec26656a20be5ec19e"
+        },
+        "key": "management",
+        "value": "Management"
+    },
+    {
+        "_id": {
+            "$oid": "9c132bec26656a20be5ec19a"
+        },
+        "key": "medievalStudies",
+        "value": "Medieval Studies"
+    },
+    {
+        "_id": {
+            "$oid": "9c132bec26656a20be5ec19b"
+        },
+        "key": "music",
+        "value": "Music"
+    },
+    {
+        "_id": {
+            "$oid": "9c132bec26656a20be5ec19c"
+        },
+        "key": "nativeAmericanIndigenousStudies",
+        "value": "Native American and Indigenous Studies"
+    },
+    {
+        "_id": {
+            "$oid": "9c132bec26656a20be5ec19d"
+        },
+        "key": "philosophy",
+        "value": "Philosophy"
+    },
+    {
+        "_id": {
+            "$oid": "9c132bec26656a20be5ec19e"
+        },
+        "key": "physics",
+        "value": "Physics"
+    },
+    {
+        "_id": {
+            "$oid": "7c822bec26656a20be5ec19a"
+        },
+        "key": "politicalScience",
+        "value": "Political Science"
+    },
+    {
+        "_id": {
+            "$oid": "7c222bec26656a20be5ec19b"
+        },
+        "key": "psychology",
+        "value": "Psychology"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec22656a20be5ec19c"
+        },
+        "key": "secondaryEducation",
+        "value": "Secondary Education"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec22656a20be5ec19d"
+        },
+        "key": "socialScience",
+        "value": "Social Science"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec22656a20be5ec19e"
+        },
+        "key": "sociology",
+        "value": "Sociology"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26622a20be5ec19a"
+        },
+        "key": "spanish",
+        "value": "Spanish"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26622a20be5ec19b"
+        },
+        "key": "sportManagement",
+        "value": "Sport Management"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26622a20be5ec19c"
+        },
+        "key": "statistics",
+        "value": "Statistics"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26622a20be5ec19d"
+        },
+        "key": "studioArt",
+        "value": "Studio Art"
+    },
+    {
+        "_id": {
+            "$oid": "7c832bec26622a20be5ec19e"
+        },
+        "key": "theatreArts",
+        "value": "Theatre Arts"
+    }
+]

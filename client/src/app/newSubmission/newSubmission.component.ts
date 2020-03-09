@@ -5,6 +5,14 @@ import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Disciplines} from "./disciplines";
+import {Categories} from "./categories";
+import {SponsoredOrganizations} from "./sponsoredOrganizations";
+
+export interface Discipline {
+    value: string;
+    viewValue: string;
+}
 
 @Component({
     selector: 'app-newSubmission-component',
@@ -21,6 +29,9 @@ export class NewSubmissionComponent implements OnInit{
     }
 
     public user: User;
+    public disciplines: Disciplines[] = [];
+    public categories: Categories[] = [];
+    public sponsoredOrganizations: SponsoredOrganizations[] = [];
 
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
@@ -44,9 +55,9 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterFirstName = "";
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
-    public academicDiscipline = "";
+    public academicDiscipline = [];
     public willingToBeFeaturePresenter = "undecided";
-    public sponOrganization = [false, false, false, false]; //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    public sponOrganization = [];
     public firstAdvisorFirstName = "";
     public firstAdvisorLastName = "";
     public firstAdvisorEmail = "";
@@ -63,10 +74,23 @@ export class NewSubmissionComponent implements OnInit{
     public other: boolean;
     public timestamp = "";
     public approval = null;
-    public category = [false, false, false, false];
+    public category = [];
     public miscSponOrganization = "";
 
+    public otherAcedemicDiscipline = "";
+    public otherAcademic = false;
+
     saveSubmission(): void {
+
+        //trims 'other' categories that were removed and subsequently empty strings
+        this.academicDiscipline.filter(function (el) {
+            return el != null;
+        });
+
+        if(this.otherAcedemicDiscipline !== "" && this.otherAcademic) {
+            this.academicDiscipline.push("other" + this.otherAcedemicDiscipline);
+        }
+
         const newSubmission: Submission = {
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
@@ -115,14 +139,28 @@ export class NewSubmissionComponent implements OnInit{
         )
     }
 
-    newSponsor(sponsor: number){
-        this.sponOrganization[sponsor] = !this.sponOrganization[sponsor];
-        console.log(this.sponOrganization);
+    addOrRemoveDiscipline(discipline: Disciplines): void {
+        if(!this.academicDiscipline.includes(discipline)) {
+            this.academicDiscipline.push(discipline);
+        } else {
+            this.academicDiscipline.splice(this.academicDiscipline.indexOf(discipline));
+        }
     }
 
-    newCategory(category: number){
-        this.category[category] = !this.category[category];
-        console.log(this.category);
+    addOrRemoveCategory(category: Categories): void {
+        if(!this.category.includes(category)) {
+            this.category.push(category);
+        } else {
+            this.category.splice(this.category.indexOf(category));
+        }
+    }
+
+    addOrRemoveSponsoredOrganization(sponsor: SponsoredOrganizations): void {
+        if(!this.sponOrganization.includes(sponsor)) {
+            this.sponOrganization.push(sponsor);
+        } else {
+            this.sponOrganization.splice(this.sponOrganization.indexOf(sponsor));
+        }
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {
@@ -138,9 +176,10 @@ export class NewSubmissionComponent implements OnInit{
             || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
+    //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
         return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.academicDiscipline == "" || this.willingToBeFeaturePresenter == "undecided";
+        || this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
     }
 
     sectionFourComplete() {
@@ -152,6 +191,23 @@ export class NewSubmissionComponent implements OnInit{
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
         });
+
+        this.newSubmissionService.getDisciplines().subscribe(
+            disciplines => {
+                this.disciplines = disciplines;
+            });
+
+        this.newSubmissionService.getCategories().subscribe(
+            categories => {
+                this.categories = categories;
+                console.log('cats: ' + this.categories);
+            });
+
+        this.newSubmissionService.getSponsoredOrganizations().subscribe(
+            sponsoredOrganizations => {
+                this.sponsoredOrganizations = sponsoredOrganizations;
+                console.log('spons: ' + this.sponsoredOrganizations);
+            });
 
         // STEP TWO: Title/Abstract/Format step
         this.firstFormGroup = this._formBuilder.group({

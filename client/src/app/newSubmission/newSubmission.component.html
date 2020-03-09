@@ -195,57 +195,35 @@
                                 </mat-form-field>
                                 <br>
 
-                                <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour">
-                                    <mat-option #input value="african and black american studies" (click) = "academicDiscipline = 'african and black american studies'">African and Black American Studies</mat-option>
-                                    <mat-option #input value="anthropology" (click) = "academicDiscipline = 'anthropology'">Anthropology</mat-option>
-                                    <mat-option #input value="art history" (click) = "academicDiscipline = 'art history'">Art History</mat-option>
-                                    <mat-option #input value="biology" (click) = "academicDiscipline = 'biology'">Biology</mat-option>
-                                    <mat-option #input value="chemistry & biochemistry" (click) = "academicDiscipline = 'chemistry and biochemistry'">Chemistry and Biochemistry</mat-option>
-                                    <mat-option #input value="communication, media, & rhetoric" (click) = "academicDiscipline = 'communication/media/rhetoric'">Communication, Media, & Rhetoric</mat-option>
-                                    <mat-option #input value="computer science" (click) = "academicDiscipline = 'computer science'">Computer Science</mat-option>
-                                    <mat-option #input value="economics" (click) = "academicDiscipline = 'economics'">Economics</mat-option>
-                                    <mat-option #input value="education" (click) = "academicDiscipline = 'education'">Education</mat-option>
-                                    <mat-option #input value="elementary education" (click) = "academicDiscipline = 'elementary education'">Elementary Education</mat-option>
-                                    <mat-option #input value="english/creative writing" (click) = "academicDiscipline = 'english/creative writing'">English/Creative Writing</mat-option>
-                                    <mat-option #input value="environmental science" (click) = "academicDiscipline = 'environmental science'">Environmental Science</mat-option>
-                                    <mat-option #input value="environmental studies" (click) = "academicDiscipline = 'environmental studies'">Environmental Studies</mat-option>
-                                    <mat-option #input value="french" (click) = "academicDiscipline = 'french'">French</mat-option>
-                                    <mat-option #input value="gender, women, and sexuality studies" (click) = "academicDiscipline = 'gender, women, and sexuality studies'">Gender, Women, and Sexuality Studies</mat-option>
-                                    <mat-option #input value="geology" (click) = "academicDiscipline = 'geology'">Geology</mat-option>
-                                    <mat-option #input value="german studies" (click) = "academicDiscipline = 'german studies'">German Studies</mat-option>
-                                    <mat-option #input value="history" (click) = "academicDiscipline = 'history'">History</mat-option>
-                                    <mat-option #input value="human services/general/criminal justice/social justice/human development" (click) = "academicDiscipline = 'human services/ general/ criminal justice/ social justice/ human development'">
-                                        Human Services/General/Criminal Justice/Social Justice/Human Development</mat-option>
+                                <h3>Discipline(s)</h3>
 
-                                    <mat-option #input value="latin american area studies" (click) = "academicDiscipline = 'latin american area studies'">Latin American Area Studies</mat-option>
-                                    <mat-option #input value="management" (click) = "academicDiscipline = 'management'">Management</mat-option>
-                                    <mat-option #input value="medieval studies" (click) = "academicDiscipline = 'medieval studies'">Medieval Studies</mat-option>
-                                    <mat-option #input value="music" (click) = "academicDiscipline = 'music'">Music</mat-option>
-                                    <mat-option #input value="native american and indigenous studies" (click) = "academicDiscipline = 'native american and indigenous studies'">Native American and Indigenous Studies</mat-option>
-                                    <mat-option #input value="philosophy" (click) = "academicDiscipline = 'philosophy'">Philosophy</mat-option>
-                                    <mat-option #input value="german studies" (click) = "academicDiscipline = 'physics'">Physics</mat-option>
-                                    <mat-option #input value="political science" (click) = "academicDiscipline = 'political science'">Political Science</mat-option>
-                                    <mat-option #input value="psychology" (click) = "academicDiscipline = 'psychology'">Psychology</mat-option>
-                                    <mat-option #input value="secondary education" (click) = "academicDiscipline = 'secondary education'">Secondary Education</mat-option>
-                                    <mat-option #input value="social science" (click) = "academicDiscipline = 'social science'">Social Science</mat-option>
-                                    <mat-option #input value="sociology" (click) = "academicDiscipline = 'sociology'">Sociology</mat-option>
-                                    <mat-option #input value="spanish" (click) = "academicDiscipline = 'spanish'">Spanish</mat-option>
-                                    <mat-option #input value="sport management" (click) = "academicDiscipline = 'sport management'">Sport Management</mat-option>
-                                    <mat-option #input value="statistics" (click) = "academicDiscipline = 'statistics'">Statistics</mat-option>
-                                    <mat-option #input value="studio art" (click) = "academicDiscipline = 'studio art'">Studio Art</mat-option>
-                                    <mat-option #input value="theatre arts" (click) = "academicDiscipline = 'theatre arts'">Theatre Arts</mat-option>
-                                    <mat-option #input value="other" (click)="this.other = true">Other</mat-option>
-                                </mat-select>
+                                <mat-form-field>
+                                    <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour" multiple>
+                                        <mat-option *ngFor="let discipline of disciplines" [value]="discipline.key" (click)="addOrRemoveDiscipline(discipline)">
+                                            {{discipline.value}}
+                                        </mat-option>
+                                        <mat-option #input value="other" (click)="this.otherAcademic = !this.otherAcademic">Other</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
                                 <br><br>
 
-                                <mat-form-field *ngIf="this.other">
+                                <mat-form-field *ngIf="this.otherAcademic">
                                 <textarea matInput
                                           required
                                           placeholder="Please specify"
-                                          (input) = "academicDiscipline = $event.target.value"
+                                          (input) = "otherAcedemicDiscipline = $event.target.value"
                                           rows="1"
                                           cols="1"></textarea>
                                 </mat-form-field>
+
+                                <br>
+
+<!--                                <button mat-raised-button (click)="addDiscipline()">-->
+<!--                                    <mat-icon>add_circle</mat-icon>-->
+<!--                                    Add a Discipline-->
+<!--                                </button>-->
+
                                 <br><br>
                                 The URS features one presentation in the opening ceremony. This presentation
                                 should have broader appeal with interdisciplinary components, and may easily
@@ -261,6 +239,7 @@
                                 <br>
                                 <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                                 <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
+
                             </form>
                         </div>
                     </mat-step>
@@ -270,13 +249,9 @@
                             <p>Sponsoring Organization or Fund</p>
                             <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
-                                <mat-checkbox (click)="newSponsor(0)">UROP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor(1)">MAP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor(2)">MMP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newSponsor(3)">LSAMP</mat-checkbox>
+                                <mat-checkbox *ngFor="let sponsor of sponsoredOrganizations" [value]="sponsor.key" (click)="addOrRemoveSponsoredOrganization(sponsor)">
+                                    {{sponsor.value}}
+                                </mat-checkbox>
                             </div>
                             <br>
 
@@ -290,13 +265,9 @@
                             <p>Special Categories</p>
                             <p>Choose any applicable.</p>
                             <div class="checkboxes">
-                                <mat-checkbox (click)="newCategory(0)">Works in Progress</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newCategory(1)">Capstone</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newCategory(2)">Submitted Panel</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click)="newCategory(3)">Sophomore Spotlight</mat-checkbox>
+                                <mat-checkbox *ngFor="let category of categories" [value]="category.key" (click)="addOrRemoveCategory(category)">
+                                    {{category.value}}
+                                </mat-checkbox>
                             </div>
                             <br>
 
@@ -472,27 +443,17 @@
                                 <p>Third Presenter Email: {{thirdPresenterEmail}}</p>
                             </div>
 
-                            <p>Discipline: {{academicDiscipline}}</p>
+                            <p>Discipline: <span *ngFor="let discipline of academicDiscipline">{{discipline.value}} </span><span *ngIf="otherAcedemicDiscipline && this.otherAcademic">{{otherAcedemicDiscipline}}</span></p>
                             <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
 
                             <p *ngIf="sponOrganization">
                                 <span> Sponsoring Organization: </span>
-                                <span *ngIf="sponOrganization[0]">UROP </span>
-                                <span *ngIf="sponOrganization[1]">MAP </span>
-                                <span *ngIf="sponOrganization[2]">MMP </span>
-                                <span *ngIf="sponOrganization[3]">LSAMP </span>
-                            </p>
-
-                            <p *ngIf="miscSponOrganization">
-                                <span> OTHER Organizations: {{miscSponOrganization}}</span>
+                                <span *ngFor="let sponsOrg of sponOrganization">{{sponsOrg.value}} </span><span *ngIf="miscSponOrganization">{{miscSponOrganization}}</span>
                             </p>
 
                             <p *ngIf="category">
                                 <span> Categories: </span>
-                                <span *ngIf="category[0]">Works in Progress </span>
-                                <span *ngIf="category[1]">Capstone </span>
-                                <span *ngIf="category[2]">Submitted Panel </span>
-                                <span *ngIf="category[3]">Sophomore Spotlight </span>
+                                <span *ngFor="let category of category">{{category.value}} </span>
                             </p>
 
                             <p>Advisor Name: {{firstAdvisorFirstName}} {{firstAdvisorLastName}}</p>

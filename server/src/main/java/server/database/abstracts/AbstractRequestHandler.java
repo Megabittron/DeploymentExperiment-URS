@@ -94,6 +94,21 @@ public class AbstractRequestHandler {
         return abstractController.getAbstracts(req.queryMap().toMap());
     }
 
+    public String getDisciplines(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getDisciplines(req.queryMap().toMap());
+    }
+
+    public String getCategories(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getCategories(req.queryMap().toMap());
+    }
+
+    public String getSponsoredOrganizations(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getSpongsoredOrganizations(req.queryMap().toMap());
+    }
+
     /**
      * Method called by 'api/abstracts/new' endpoint
      *
@@ -121,7 +136,7 @@ public class AbstractRequestHandler {
             String thirdPresenterFirstName = dbO.getString("thirdPresenterFirstName");
             String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
             String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
-            String academicDiscipline = dbO.getString("academicDiscipline");
+            Object academicDiscipline = dbO.get("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             Object sponOrganization = dbO.get("sponOrganization");
             String miscSponOrganization = dbO.getString("miscSponOrganization");
@@ -216,6 +231,7 @@ public class AbstractRequestHandler {
         }
     }
 
+    //TODO: Change types of objects, like fields that are now object arrays and not strings
     /**
      * @param req HTTP request
      * @param res HTTP response

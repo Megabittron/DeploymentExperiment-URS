@@ -1,0 +1,31 @@
+[
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19a"
+        },
+        "key": "worksInProgress",
+        "value": "Works in Progress"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19b"
+        },
+        "key": "capstone",
+        "value": "Capstone"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19c"
+        },
+        "key": "submittedPanel",
+        "value": "Submitted Panel"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19d"
+        },
+        "key": "sophomoreSpotlight",
+        "value": "Sophomore Spotlight"
+    }
+]
+

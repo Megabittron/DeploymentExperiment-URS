@@ -48,7 +48,12 @@
                 {{submission.secondAdvisorEmail}} {{submission.thirdAdvisorEmail}}
                 <!-- TODO: Add condition for third adviser -->
             </p>
-            <p *ngIf="submission.academicDiscipline">Discipline: {{submission.academicDiscipline}}</p>
+            <p *ngIf="submission.academicDiscipline">Discipline:
+                <span *ngFor="let discipline of submission.academicDiscipline">
+                    {{discipline.value}}
+                </span>
+                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline}}</span>
+            </p>
             <p>Type: {{submission.presentationType}}</p>
             <p>Format: {{submission.submissionFormat}}</p>
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
@@ -59,25 +64,15 @@
             <p>Additional Information: </p> <!-- TODO: Add field  -->
             <p>Date of Submission: {{submission.timestamp}}</p>
 
-            <div *ngIf="submission.sponOrganization" class="sponsored">
+            <p *ngIf="submission.sponOrganization">
                 <span> Sponsoring Organization: </span>
-                <span *ngIf="submission.sponOrganization[0]">UROP </span>
-                <span *ngIf="submission.sponOrganization[1]">MAP </span>
-                <span *ngIf="submission.sponOrganization[2]">MMP </span>
-                <span *ngIf="submission.sponOrganization[3]">LSAMP </span>
-            </div>
+                <span *ngFor="let sponsOrg of submission.sponOrganization">{{sponsOrg.value}} </span><span *ngIf="submission.miscSponOrganization">{{submission.miscSponOrganization}}</span>
+            </p>
 
-            <div *ngIf="submission.miscSponOrganization" class="sponsored">
-                <span> OTHER Organizations: {{submission.miscSponOrganization}}</span>
-            </div>
-
-            <div *ngIf="submission.category" class="sponsored">
+            <p *ngIf="submission.category">
                 <span> Categories: </span>
-                <span *ngIf="submission.category[0]">Works in Progress </span>
-                <span *ngIf="submission.category[1]">Capstone </span>
-                <span *ngIf="submission.category[2]">Submitted Panel </span>
-                <span *ngIf="submission.category[3]">Sophomore Spotlight </span>
-            </div>
+                <span *ngFor="let category of submission.category">{{category.value}} </span>
+            </p>
 
         </mat-expansion-panel>
 

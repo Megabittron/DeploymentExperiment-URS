@@ -18,6 +18,7 @@ export class SubmissionViewComponent implements OnInit {
                 public authenticationService: AuthenticationService) {}
 
     public submission: Submission;
+    public otherDiscipline: string;
     public user: User;
 
     getSubmission() {
@@ -27,6 +28,7 @@ export class SubmissionViewComponent implements OnInit {
             submission => {
                 if (submission != null) {
                     this.submission = submission;
+                    this.otherDiscipline = this.submission.academicDiscipline.slice(-1).toString();
                 }
             }
         );

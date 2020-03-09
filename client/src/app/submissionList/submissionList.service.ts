@@ -4,9 +4,6 @@ import {Observable} from 'rxjs';
 import {Submission} from '../newSubmission/submission';
 import {environment} from '../../environments/environment';
 
-
-
-
 @Injectable()
 export class SubmissionListService {
     readonly baseUrl: string = environment.API_URL + 'abstracts';

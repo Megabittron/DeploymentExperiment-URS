@@ -11,13 +11,21 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class AbstractController {
 
     private final MongoCollection<Document> abstractCollection;
+    private final MongoCollection<Document> disciplinesCollection;
+    private final MongoCollection<Document> categoriesCollection;
+    private final MongoCollection<Document> sponsoredOrganizationsCollection;
 
     public AbstractController(MongoDatabase database) {
         abstractCollection = database.getCollection("abstracts");
+        disciplinesCollection = database.getCollection("disciplines");
+        categoriesCollection = database.getCollection("categories");
+        sponsoredOrganizationsCollection = database.getCollection("sponsoredOrganizations");
     }
 
     /**
@@ -54,6 +62,84 @@ public class AbstractController {
         }
 
         return abstractJSON;
+    }
+
+    String getDisciplines(Map<String, String[]> queryParams) {
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("key")) {
+            String targetContent = (queryParams.get("key")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("key", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("value")) {
+            String targetContent = (queryParams.get("value")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("value", contentRegQuery);
+        }
+
+        FindIterable<Document> matchingDisciplines = disciplinesCollection.find(filterDoc);
+
+        return serializeIterable(matchingDisciplines);
+    }
+
+    String getCategories(Map<String, String[]> queryParams) {
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("key")) {
+            String targetContent = (queryParams.get("key")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("key", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("value")) {
+            String targetContent = (queryParams.get("value")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("value", contentRegQuery);
+        }
+
+        FindIterable<Document> matchingDisciplines = categoriesCollection.find(filterDoc);
+
+        return serializeIterable(matchingDisciplines);
+    }
+
+    String getSpongsoredOrganizations(Map<String, String[]> queryParams) {
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("key")) {
+            String targetContent = (queryParams.get("key")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("key", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("value")) {
+            String targetContent = (queryParams.get("value")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("value", contentRegQuery);
+        }
+
+        FindIterable<Document> matchingDisciplines = sponsoredOrganizationsCollection.find(filterDoc);
+
+        return serializeIterable(matchingDisciplines);
+    }
+
+    public static String serializeIterable(Iterable<Document> documents) {
+        return StreamSupport.stream(documents.spliterator(), false)
+            .map(Document::toJson)
+            .collect(Collectors.joining(", ", "[", "]"));
     }
 
     /**
@@ -366,6 +452,8 @@ public class AbstractController {
 
         FindIterable<Document> matchingAbstracts = abstractCollection.find(filterDoc);
 
+        System.out.println(matchingAbstracts);
+
         return newAbstractArray(matchingAbstracts);
 
     }
@@ -388,7 +476,7 @@ public class AbstractController {
                           String thirdPresenterFirstName,
                           String thirdPresenterLastName,
                           String thirdPresenterEmail,
-                          String academicDiscipline,
+                          Object academicDiscipline,
                           String willingToBeFeaturePresenter,
                           Object sponOrganization,
                           String miscSponOrganization,
