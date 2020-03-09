@@ -48,7 +48,12 @@
                 {{submission.secondAdvisorEmail}} {{submission.thirdAdvisorEmail}}
                 <!-- TODO: Add condition for third adviser -->
             </p>
-            <p *ngIf="submission.academicDiscipline">Discipline: {{submission.academicDiscipline}}</p>
+            <p *ngIf="submission.academicDiscipline">Discipline:
+                <span *ngFor="let discipline of submission.academicDiscipline">
+                    {{discipline.value}}
+                </span>
+                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline}}</span>
+            </p>
             <p>Type: {{submission.presentationType}}</p>
             <p>Format: {{submission.submissionFormat}}</p>
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>

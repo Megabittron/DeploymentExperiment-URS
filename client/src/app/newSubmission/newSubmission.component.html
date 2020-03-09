@@ -192,31 +192,35 @@
                                 </mat-form-field>
                                 <br>
 
-                                <br><br>
-                                <p>How many disciplines </p>
-                                <br><br>
+                                <h3>Discipline(s)</h3>
 
-                                <mat-radio-group (change)="multiDiscipline($event)" formControlName="secondCtrlFive">
-                                    <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
-                                    <mat-radio-button color="primary" value="no">No</mat-radio-button>
-                                </mat-radio-group>
+                                <mat-form-field>
+                                    <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour" multiple>
+                                        <mat-option *ngFor="let discipline of disciplines" [value]="discipline.key" (click)="addOrRemoveDiscipline(discipline)">
+                                            {{discipline.value}}
+                                        </mat-option>
+                                        <mat-option #input value="other" (click)="this.otherAcademic = !this.otherAcademic">Other</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                                <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour">
-                                    <mat-option *ngFor="let discipline of disciplines" value="discipline.value">
-                                        {{discipline.viewValue}}
-                                    </mat-option>
-                                    <mat-option #input value="other" (click)="this.other = true">Other</mat-option>
-                                </mat-select>
                                 <br><br>
 
-                                <mat-form-field *ngIf="this.other">
+                                <mat-form-field *ngIf="this.otherAcademic">
                                 <textarea matInput
                                           required
                                           placeholder="Please specify"
-                                          (input) = "academicDiscipline = $event.target.value"
+                                          (input) = "otherAcedemicDiscipline = $event.target.value"
                                           rows="1"
                                           cols="1"></textarea>
                                 </mat-form-field>
+
+                                <br>
+
+<!--                                <button mat-raised-button (click)="addDiscipline()">-->
+<!--                                    <mat-icon>add_circle</mat-icon>-->
+<!--                                    Add a Discipline-->
+<!--                                </button>-->
+
                                 <br><br>
                                 The URS features one presentation in the opening ceremony. This presentation
                                 should have broader appeal with interdisciplinary components, and may easily
@@ -232,6 +236,8 @@
                                 <br>
                                 <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                                 <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
+
+                                <button (click)="doesItExist()">acedemics exist</button>
                             </form>
                         </div>
                     </mat-step>
@@ -443,7 +449,7 @@
                                 <p>Third Presenter Email: {{thirdPresenterEmail}}</p>
                             </div>
 
-                            <p>Discipline: {{academicDiscipline}}</p>
+                            <p>Discipline: <span *ngFor="let discipline of academicDiscipline">{{discipline.value}} </span><span *ngIf="otherAcedemicDiscipline && this.otherAcademic">{{otherAcedemicDiscipline}}</span></p>
                             <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
 
                             <p *ngIf="sponOrganization">

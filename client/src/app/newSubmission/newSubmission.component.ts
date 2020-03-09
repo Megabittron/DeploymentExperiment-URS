@@ -5,8 +5,9 @@ import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Disciplines} from "./disciplines";
 
-interface Discipline {
+export interface Discipline {
     value: string;
     viewValue: string;
 }
@@ -26,6 +27,7 @@ export class NewSubmissionComponent implements OnInit{
     }
 
     public user: User;
+    public disciplines: Disciplines[] = [];
 
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
@@ -49,7 +51,11 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterFirstName = "";
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
-    public academicDiscipline = "";
+    // Note: I'm 99% sure that initializing these 35 booleans, each representing a discipline, is super busted.
+    // On a deadline here... I just refactored disciplines from hardcoded HTML fields to the `disciplines` array, which
+    // was a good move. For each improvement a student project makes, an equal and opposite bad choice is made.
+    // That is law. -MS, 3/6/20 @ 12:19 AM
+    public academicDiscipline = [];
     public willingToBeFeaturePresenter = "undecided";
     public sponOrganization = [false, false, false, false]; //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     public firstAdvisorFirstName = "";
@@ -71,46 +77,26 @@ export class NewSubmissionComponent implements OnInit{
     public category = [false, false, false, false];
     public miscSponOrganization = "";
 
-    disciplines: Discipline[] = [
-        {value: 'african and black american studies', viewValue: 'African and Black American Studies'},
-        {value: 'anthropology', viewValue: 'Anthropology'},
-        {value: 'art history', viewValue: 'Art History'},
-        {value: 'biology', viewValue: 'Biology'},
-        {value: 'chemistry & biochemistry', viewValue: 'Chemistry and Biochemistry'},
-        {value: 'communication, media, & rhetoric', viewValue: 'Communication, Media, & Rhetoric'},
-        {value: 'computer science', viewValue: 'Computer Science'},
-        {value: 'economics', viewValue: 'Economics'},
-        {value: 'education', viewValue: 'Education'},
-        {value: 'elementary education', viewValue: 'Elementary Education'},
-        {value: 'english/creative writing', viewValue: 'English/Creative Writing'},
-        {value: 'environmental science', viewValue: 'Environmental Science'},
-        {value: 'environmental studies', viewValue: 'Environmental Studies'},
-        {value: 'french', viewValue: 'French'},
-        {value: 'gender, women, and sexuality studies', viewValue: 'Gender, Women, and Sexuality Studies'},
-        {value: 'geology', viewValue: 'Geology'},
-        {value: 'german studies', viewValue: 'German Studies'},
-        {value: 'history', viewValue: 'History'},
-        {value: 'human services/general/criminal justice/social justice/human development', viewValue: 'Human Services/General/Criminal Justice/Social Justice/Human Development'},
-        {value: 'latin american area studies', viewValue: 'Latin American Area Studies'},
-        {value: 'management', viewValue: 'Management'},
-        {value: 'medieval studies', viewValue: 'Medieval Studies'},
-        {value: 'music', viewValue: 'Music'},
-        {value: 'native american and indigenous studies', viewValue: 'Native American and Indigenous Studies'},
-        {value: 'philosophy', viewValue: 'Philosophy'},
-        {value: 'german studies', viewValue: 'Physics'},
-        {value: 'political science', viewValue: 'Political Science'},
-        {value: 'psychology', viewValue: 'Psychology'},
-        {value: 'secondary education', viewValue: 'Secondary Education'},
-        {value: 'social science', viewValue: 'Social Science'},
-        {value: 'sociology', viewValue: 'Sociology'},
-        {value: 'spanish', viewValue: 'Spanish'},
-        {value: 'sport management', viewValue: 'Sport Management'},
-        {value: 'statistics', viewValue: 'Statistics'},
-        {value: 'studio art', viewValue: 'Studio Art'},
-        {value: 'theatre arts', viewValue: 'Theatre Arts'}
-    ];
+    public otherAcedemicDiscipline = "";
+    public otherAcademic = false;
+
+    doesItExist() {
+        console.log("~~~~~~~~~~~~~");
+        console.log("other: " + this.otherAcedemicDiscipline);
+        console.log("aceDisc: " + this.academicDiscipline);
+    }
 
     saveSubmission(): void {
+
+        //trims 'other' categories that were removed and subsequently empty strings
+        this.academicDiscipline.filter(function (el) {
+            return el != null;
+        });
+
+        if(this.otherAcedemicDiscipline !== "" && this.otherAcademic) {
+            this.academicDiscipline.push("other" + this.otherAcedemicDiscipline);
+        }
+
         const newSubmission: Submission = {
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
@@ -161,16 +147,18 @@ export class NewSubmissionComponent implements OnInit{
 
     newSponsor(sponsor: number){
         this.sponOrganization[sponsor] = !this.sponOrganization[sponsor];
-        console.log(this.sponOrganization);
     }
 
     newCategory(category: number){
         this.category[category] = !this.category[category];
-        console.log(this.category);
     }
 
-    multiDiscipline(change: MatRadioChange): void {
-        console.log(change.value);
+    addOrRemoveDiscipline(discipline: Disciplines): void {
+        if(!this.academicDiscipline.includes(discipline)) {
+            this.academicDiscipline.push(discipline);
+        } else {
+            this.academicDiscipline.splice(this.academicDiscipline.indexOf(discipline));
+        }
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {
@@ -186,9 +174,10 @@ export class NewSubmissionComponent implements OnInit{
             || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
+    //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
         return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.academicDiscipline == "" || this.willingToBeFeaturePresenter == "undecided";
+        || this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
     }
 
     sectionFourComplete() {
@@ -200,6 +189,12 @@ export class NewSubmissionComponent implements OnInit{
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
         });
+
+        this.newSubmissionService.getDisciplines().subscribe(
+            disciplines => {
+                this.disciplines = disciplines;
+                console.log('discs: ' + this.disciplines);
+            });
 
         // STEP TWO: Title/Abstract/Format step
         this.firstFormGroup = this._formBuilder.group({
