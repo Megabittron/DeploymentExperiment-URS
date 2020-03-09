@@ -1,3 +1,4 @@
+import {Disciplines} from "./disciplines";
 
 export interface Submission {
     _id?: {
@@ -18,7 +19,7 @@ export interface Submission {
     thirdPresenterFirstName: string;
     thirdPresenterLastName: string;
     thirdPresenterEmail: string;
-    academicDiscipline: string;
+    academicDiscipline: Disciplines[];
     willingToBeFeaturePresenter: string;
     sponOrganization: boolean[];
     miscSponOrganization: string;

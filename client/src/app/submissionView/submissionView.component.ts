@@ -15,6 +15,7 @@ export class SubmissionViewComponent implements OnInit {
     constructor(public submissionListService: SubmissionListService) {}
 
     public submission: Submission;
+    public otherDiscipline: string;
 
     getSubmission() {
         let submissionObservable: Observable<Submission>;
@@ -23,6 +24,7 @@ export class SubmissionViewComponent implements OnInit {
             submission => {
                 if (submission != null) {
                     this.submission = submission;
+                    this.otherDiscipline = this.submission.academicDiscipline.slice(-1).toString();
                 }
             }
         );

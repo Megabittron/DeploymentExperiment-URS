@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Submission} from './submission';
 import {environment} from '../../environments/environment';
+import {Disciplines} from "./disciplines";
 
 
 
@@ -35,5 +36,11 @@ export class NewSubmissionService {
         }
 
         return this.http.post<{'$oid': string}>(this.submissionUrl + '/new', newSubmission, httpOptions);
+    }
+
+    getDisciplines(): Observable<Disciplines[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<Disciplines[]>(this.submissionUrl + '/disciplines');
     }
 }

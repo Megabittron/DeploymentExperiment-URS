@@ -5,6 +5,12 @@ import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Disciplines} from "./disciplines";
+
+export interface Discipline {
+    value: string;
+    viewValue: string;
+}
 
 @Component({
     selector: 'app-newSubmission-component',
@@ -21,6 +27,7 @@ export class NewSubmissionComponent implements OnInit{
     }
 
     public user: User;
+    public disciplines: Disciplines[] = [];
 
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
@@ -44,7 +51,11 @@ export class NewSubmissionComponent implements OnInit{
     public thirdPresenterFirstName = "";
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
-    public academicDiscipline = "";
+    // Note: I'm 99% sure that initializing these 35 booleans, each representing a discipline, is super busted.
+    // On a deadline here... I just refactored disciplines from hardcoded HTML fields to the `disciplines` array, which
+    // was a good move. For each improvement a student project makes, an equal and opposite bad choice is made.
+    // That is law. -MS, 3/6/20 @ 12:19 AM
+    public academicDiscipline = [];
     public willingToBeFeaturePresenter = "undecided";
     public sponOrganization = [false, false, false, false]; //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     public firstAdvisorFirstName = "";
@@ -66,7 +77,26 @@ export class NewSubmissionComponent implements OnInit{
     public category = [false, false, false, false];
     public miscSponOrganization = "";
 
+    public otherAcedemicDiscipline = "";
+    public otherAcademic = false;
+
+    doesItExist() {
+        console.log("~~~~~~~~~~~~~");
+        console.log("other: " + this.otherAcedemicDiscipline);
+        console.log("aceDisc: " + this.academicDiscipline);
+    }
+
     saveSubmission(): void {
+
+        //trims 'other' categories that were removed and subsequently empty strings
+        this.academicDiscipline.filter(function (el) {
+            return el != null;
+        });
+
+        if(this.otherAcedemicDiscipline !== "" && this.otherAcademic) {
+            this.academicDiscipline.push("other" + this.otherAcedemicDiscipline);
+        }
+
         const newSubmission: Submission = {
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
@@ -117,12 +147,18 @@ export class NewSubmissionComponent implements OnInit{
 
     newSponsor(sponsor: number){
         this.sponOrganization[sponsor] = !this.sponOrganization[sponsor];
-        console.log(this.sponOrganization);
     }
 
     newCategory(category: number){
         this.category[category] = !this.category[category];
-        console.log(this.category);
+    }
+
+    addOrRemoveDiscipline(discipline: Disciplines): void {
+        if(!this.academicDiscipline.includes(discipline)) {
+            this.academicDiscipline.push(discipline);
+        } else {
+            this.academicDiscipline.splice(this.academicDiscipline.indexOf(discipline));
+        }
     }
 
     onFeaturePresentationChange(change: MatRadioChange): void {
@@ -138,9 +174,10 @@ export class NewSubmissionComponent implements OnInit{
             || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
+    //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
         return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.academicDiscipline == "" || this.willingToBeFeaturePresenter == "undecided";
+        || this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
     }
 
     sectionFourComplete() {
@@ -152,6 +189,12 @@ export class NewSubmissionComponent implements OnInit{
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
         });
+
+        this.newSubmissionService.getDisciplines().subscribe(
+            disciplines => {
+                this.disciplines = disciplines;
+                console.log('discs: ' + this.disciplines);
+            });
 
         // STEP TWO: Title/Abstract/Format step
         this.firstFormGroup = this._formBuilder.group({

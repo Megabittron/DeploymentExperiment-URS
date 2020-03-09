@@ -18,7 +18,22 @@
         "thirdPresenterFirstName": "Ahnaf",
         "thirdPresenterLastName": "Yasin",
         "thirdPresenterEmail": "yasin011@morris.umn.edu",
-        "academicDiscipline": "art history",
+        "academicDiscipline": [
+            {
+            "_id": {
+                "$oid": "7c832bec26622a20be5ec19a"
+            },
+            "key": "spanish",
+            "value": "Spanish"
+            },
+            {
+                "_id": {
+                    "$oid": "7c832bec26622a20be5ec19b"
+                },
+                "key": "sportManagement",
+                "value": "Sport Management"
+            }
+        ],
         "willingToBeFeaturePresenter": "yes",
         "sponOrganization": [true, true, true, false],
         "miscSponOrganization": "CSci Club",
