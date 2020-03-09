@@ -99,6 +99,16 @@ public class AbstractRequestHandler {
         return abstractController.getDisciplines(req.queryMap().toMap());
     }
 
+    public String getCategories(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getCategories(req.queryMap().toMap());
+    }
+
+    public String getSponsoredOrganizations(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getSpongsoredOrganizations(req.queryMap().toMap());
+    }
+
     /**
      * Method called by 'api/abstracts/new' endpoint
      *

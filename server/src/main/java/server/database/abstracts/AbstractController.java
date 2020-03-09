@@ -18,10 +18,14 @@ public class AbstractController {
 
     private final MongoCollection<Document> abstractCollection;
     private final MongoCollection<Document> disciplinesCollection;
+    private final MongoCollection<Document> categoriesCollection;
+    private final MongoCollection<Document> sponsoredOrganizationsCollection;
 
     public AbstractController(MongoDatabase database) {
         abstractCollection = database.getCollection("abstracts");
         disciplinesCollection = database.getCollection("disciplines");
+        categoriesCollection = database.getCollection("categories");
+        sponsoredOrganizationsCollection = database.getCollection("sponsoredOrganizations");
     }
 
     /**
@@ -80,6 +84,54 @@ public class AbstractController {
         }
 
         FindIterable<Document> matchingDisciplines = disciplinesCollection.find(filterDoc);
+
+        return serializeIterable(matchingDisciplines);
+    }
+
+    String getCategories(Map<String, String[]> queryParams) {
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("key")) {
+            String targetContent = (queryParams.get("key")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("key", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("value")) {
+            String targetContent = (queryParams.get("value")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("value", contentRegQuery);
+        }
+
+        FindIterable<Document> matchingDisciplines = categoriesCollection.find(filterDoc);
+
+        return serializeIterable(matchingDisciplines);
+    }
+
+    String getSpongsoredOrganizations(Map<String, String[]> queryParams) {
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("key")) {
+            String targetContent = (queryParams.get("key")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("key", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("value")) {
+            String targetContent = (queryParams.get("value")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("value", contentRegQuery);
+        }
+
+        FindIterable<Document> matchingDisciplines = sponsoredOrganizationsCollection.find(filterDoc);
 
         return serializeIterable(matchingDisciplines);
     }
