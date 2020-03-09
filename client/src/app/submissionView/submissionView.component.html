@@ -77,7 +77,7 @@
         <p>To leave a comment, either highlight the part of the abstract you want to quote or click "New Comment."</p>
 
         <button mat-button class="new-comment-btn" (click)="makeNewComment()">
-            <mat-icon>edit</mat-icon> Comment on Thread [W]
+            <mat-icon>edit</mat-icon> Comment on Thread
         </button>
 
         <div class="create-comment" *ngIf="createNewComment">
@@ -88,7 +88,7 @@
             </mat-form-field>
 
             <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment [W]
+                <mat-icon>edit</mat-icon> Submit Comment
             </button>
         </div>
 
@@ -103,40 +103,39 @@
             </mat-form-field>
 
             <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment w/Quote [W]
+                <mat-icon>edit</mat-icon> Submit Comment w/Quote
             </button>
         </div>
 
         <!--TopComments-->
-        <div *ngFor="let comment of submission.topComments">
+        <div>
             <div class="top-level-comment">
                 <i class="material-icons">person_outline</i>
-                <b>Submitted by {{comment.commenter.Role | uppercase}} on {{comment.timestamp | date:'MMM d'}}</b>
+                <b>Submitted by REVIEWER on 3/9/20 at 3:30PM</b>
                 <br><br>
-                <i class="quote">{{comment.quotedSnippet}}</i>
-                <p>{{comment.commenterInput}}</p>
-                <button mat-button class="respond-comment-btn" (click)="makeSubcomment(comment)">
-                    <mat-icon>edit</mat-icon> Comment on Comment [W]
+                <i class="quote">*long and winding sentence*</i>
+                <p>This sentence goes on and on without saying much. Either condense the idea or break it into a few sentences.</p>
+                <button mat-button class="respond-comment-btn">
+                    <mat-icon>edit</mat-icon> Comment on Comment
                 </button>
             </div>
         <!--SubComments-->
-            <div class="sub-comment" *ngFor="let subcomment of comment.subComments">
+            <div class="sub-comment">
                 <i class="material-icons">person</i>
-                <b>Submitted by {{subcomment.commenter.FirstName}} {{subcomment.commenter.LastName}}
-                    on {{subcomment.timestamp | date:'MMM d'}} at {{subcomment.timestamp | date:'h:mm a'}}</b>
+                <b>Submitted by STUDENT on 3/9/20 at 4:00PM</b>
                 <br>
-                <p>{{subcomment.commenterInput}}</p>
+                <p>Thinking of breaking it up into a few sentences. Will do, thank you.</p>
             </div>
 
             <div class="create-comments">
-                <div class="sub-comment" *ngIf="createSubcomment && (matchingTLC_id == comment._id.$oid)">
+                <div class="sub-comment" *ngIf="createSubcomment">
                     <i class="material-icons">person_outline</i>
                     <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
                     <br>
-                    <p>{{subComment}}</p>
+                    <p>subcomment</p>
                 </div>
 
-                <div class="create-comment" *ngIf="createSubcomment && (matchingTLC_id == comment._id.$oid)">
+                <div class="create-comment" *ngIf="createSubcomment">
                     <u>Leave a comment on this comment:</u>
                     <br><br>
                     <mat-form-field class="leave-a-comment">

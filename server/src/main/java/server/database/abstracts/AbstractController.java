@@ -60,16 +60,16 @@ public class AbstractController {
     public String getSingleAbstract(String id){
         AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
             Aggregates.match(new Document("_id", new ObjectId(id))),
-            Aggregates.lookup("topComments", "topComments", "_id", "topComments"),
-            Aggregates.unwind("$topComments"),
-            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
-            Aggregates.unwind("$topComments.commenter"),
-            Aggregates.lookup("subComments", "topComments.subComments", "_id", "topComments.subComments"),
-//            Aggregates.lookup("users", "topComments.subComments.commenter", "_id", "topComments.subComments.commenter"),
-            Aggregates.group("$_id", first("userID","$userID"),
-                first("presentationTitle","$presentationTitle"),
-                first("abstractContent", "$abstractContent"),
-                push("topComments", "$topComments"))
+            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
+//            Aggregates.unwind("$topComments")
+//            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
+//            Aggregates.unwind("$topComments.commenter"),
+//            Aggregates.lookup("subComments", "topComments.subComments", "_id", "topComments.subComments"),
+////            Aggregates.lookup("users", "topComments.subComments.commenter", "_id", "topComments.subComments.commenter"),
+//            Aggregates.group("$_id", first("userID","$userID"),
+//                first("presentationTitle","$presentationTitle"),
+//                first("abstractContent", "$abstractContent"),
+//                push("topComments", "$topComments"))
         ));
 
         System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
