@@ -59,10 +59,10 @@
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
             <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
             <p *ngIf="user.Role!='user'">Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
-            <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
-            <p>Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
-            <p>Additional Information: </p> <!-- TODO: Add field  -->
-            <p>Date of Submission: {{submission.timestamp}}</p>
+            <p *ngIf="submission.additionalMediaEquipment">Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
+            <p *ngIf="submission.additionalRequirements">Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
+            <p *ngIf="submission.other">Additional Information: {{submission.other}}</p> <!-- TODO: Add field  -->
+            <p>Date of Submission: {{submission.timestamp | date: 'EEEE, MMMM d'}} at {{submission.timestamp | date: 'h:mm a'}}</p>
 
             <p *ngIf="submission.sponOrganization">
                 <span> Sponsoring Organization: </span>

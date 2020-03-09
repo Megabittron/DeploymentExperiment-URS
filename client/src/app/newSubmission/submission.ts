@@ -38,7 +38,7 @@ export interface Submission {
     thirdAdvisorEmail: string;
     additionalMediaEquipment: string;
     additionalRequirements: string;
-    other: boolean;
+    other: string;
     timestamp: string;
     topComments?: Array<TopComment>;
     approval: boolean;

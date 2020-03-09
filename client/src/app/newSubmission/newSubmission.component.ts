@@ -71,7 +71,7 @@ export class NewSubmissionComponent implements OnInit{
     public thirdAdvisorEmail = "";
     public additionalMediaEquipment = "";
     public additionalRequirements = "";
-    public other: boolean;
+    public other: "";
     public timestamp = "";
     public approval = null;
     public category = [];
