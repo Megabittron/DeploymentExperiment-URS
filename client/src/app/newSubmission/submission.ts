@@ -1,6 +1,7 @@
 import {Disciplines} from "./disciplines";
 import {SponsoredOrganizations} from "./sponsoredOrganizations";
 import {Categories} from "./categories";
+import {TopComment} from "../submissionView/comment";
 
 export interface Submission {
     _id?: {
@@ -37,9 +38,9 @@ export interface Submission {
     thirdAdvisorEmail: string;
     additionalMediaEquipment: string;
     additionalRequirements: string;
-    other: boolean;
+    other: string;
     timestamp: string;
-    comments?: string;
+    topComments?: Array<TopComment>;
     approval: boolean;
 }
 

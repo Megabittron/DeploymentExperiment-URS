@@ -59,10 +59,10 @@
             <p>Willing to Change Format: {{submission.willingToChangePresentationFormat}}</p>
             <p>Willing to be Feature Presentation: {{submission.willingToBeFeaturePresenter}}</p>
             <p *ngIf="user.Role!='user'">Adviser Approved: {{submission.approval}}</p> <!-- TODO: Change boolean display -->
-            <p>Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
-            <p>Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
-            <p>Additional Information: </p> <!-- TODO: Add field  -->
-            <p>Date of Submission: {{submission.timestamp}}</p>
+            <p *ngIf="submission.additionalMediaEquipment">Media Services Equipment: {{submission.additionalMediaEquipment}}</p>
+            <p *ngIf="submission.additionalRequirements">Special Requirements: {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
+            <p *ngIf="submission.other">Additional Information: {{submission.other}}</p> <!-- TODO: Add field  -->
+            <p>Date of Submission: {{submission.timestamp | date: 'EEEE, MMMM d'}} at {{submission.timestamp | date: 'h:mm a'}}</p>
 
             <p *ngIf="submission.sponOrganization">
                 <span> Sponsoring Organization: </span>
@@ -78,7 +78,7 @@
 
         <div class="abstract">
             <h1>Abstract</h1>
-            <p>{{submission.abstractContent}}</p>
+            <p (mouseup)="highlightAbstractToCommentOn()">{{submission.abstractContent}}</p>
         </div>
 
         <div *ngIf="user.Role!='user'">
@@ -92,13 +92,83 @@
     </div>
 
     <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
-        <h2>Comments</h2>
+        <h2 style="text-align: center">Comments</h2>
 
-        <button mat-button class="new-comment-btn">
-            <mat-icon>edit</mat-icon> New Comment [W]
-        </button>
+        <p>The comment section will open up when reviewing begins.</p>
 
-        <div class="comment" *ngIf="submission.comments">{{submission.comments}}</div>
+<!--        <button mat-button class="new-comment-btn" (click)="makeNewComment()">-->
+<!--            <mat-icon>edit</mat-icon> Comment on Thread (coming soon)-->
+<!--        </button>-->
+
+<!--        <div class="create-comment" *ngIf="createNewComment">-->
+<!--            <u>Leave a comment without quoting & highlighting:</u>-->
+<!--            <br><br>-->
+<!--            <mat-form-field class="leave-a-comment">-->
+<!--                <textarea matInput placeholder="Leave a comment"></textarea>-->
+<!--            </mat-form-field>-->
+
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment (coming soon)-->
+<!--            </button>-->
+<!--        </div>-->
+
+        <div class="create-comment" *ngIf="createHightingComment">
+            <u>Leave a comment that quotes & highlights the abstract:</u>
+            <br><br>
+            <i class="quote">"{{selectedText}}"</i>
+            <br><br>
+
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment (coming soon)"></textarea>
+            </mat-form-field>
+
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment w/Quote-->
+<!--            </button>-->
+        </div>
+
+        <!--TopComments-->
+        <div>
+            <div class="top-level-comment">
+                <i class="material-icons">person_outline</i>
+                <b>Submitted by REVIEWER on 3/9/20 at 3:30PM</b>
+                <br><br>
+                <i class="quote">*long and winding sentence*</i>
+                <p>This sentence goes on and on without saying much. Either condense the idea or break it into a few sentences.</p>
+<!--                <button mat-button class="respond-comment-btn">-->
+<!--                    <mat-icon>edit</mat-icon> Comment on Comment-->
+<!--                </button>-->
+            </div>
+        <!--SubComments-->
+            <div class="sub-comment">
+                <i class="material-icons">person</i>
+                <b>Submitted by STUDENT on 3/9/20 at 4:00PM</b>
+                <br>
+                <p>Thinking of breaking it up into a few sentences. Will do, thank you.</p>
+            </div>
+
+            <div class="create-comments">
+                <div class="sub-comment" *ngIf="createSubcomment">
+                    <i class="material-icons">person_outline</i>
+                    <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
+                    <br>
+                    <p>subcomment</p>
+                </div>
+
+                <div class="create-comment" *ngIf="createSubcomment">
+                    <u>Leave a comment on this comment:</u>
+                    <br><br>
+                    <mat-form-field class="leave-a-comment">
+                        <textarea matInput placeholder="Leave a comment"
+                                  (input)="subComment= $event.target.value"></textarea>
+                    </mat-form-field>
+
+                    <button mat-button class="leave-comment-btn" (click)="saveSubcomment()">
+                        <mat-icon>edit</mat-icon> Submit Comment of Comment [W]
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

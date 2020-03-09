@@ -249,8 +249,15 @@
         "additionalMediaEquipment": "no",
         "additionalRequirements": "NA",
         "other": "NA",
-        "timestamp": "Wed Jan 09 16:23:20 CST 2019",
-        "comments": null,
+        "timestamp": "Wed Jan 25 16:23:20 CST 2020",
+        "topComments": [
+            {
+                "$oid": "59dac7b147c9429bff9ba9b3"
+            },
+            {
+                "$oid": "59dac7b147c9429bff9ba9b4"
+            }
+        ],
         "approval": false,
         "rejection": false,
         "resubmitFlag": false,

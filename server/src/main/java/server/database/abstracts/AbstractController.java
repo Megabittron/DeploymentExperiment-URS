@@ -1,28 +1,44 @@
 package server.database.abstracts;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static com.mongodb.client.model.Accumulators.first;
+import static com.mongodb.client.model.Accumulators.push;
+import static com.mongodb.client.model.Sorts.*;
+
 public class AbstractController {
 
     private final MongoCollection<Document> abstractCollection;
+    private final MongoCollection<Document> topCommentCollection;
     private final MongoCollection<Document> disciplinesCollection;
     private final MongoCollection<Document> categoriesCollection;
     private final MongoCollection<Document> sponsoredOrganizationsCollection;
 
     public AbstractController(MongoDatabase database) {
         abstractCollection = database.getCollection("abstracts");
+        topCommentCollection = database.getCollection("topComments");
         disciplinesCollection = database.getCollection("disciplines");
         categoriesCollection = database.getCollection("categories");
         sponsoredOrganizationsCollection = database.getCollection("sponsoredOrganizations");
@@ -49,19 +65,34 @@ public class AbstractController {
      * @param id Users SubjectID
      * @return Array of abstracts by userID as a JSON formatted string
      */
-    String getSingleAbstract(String id) {
-        Document filterDoc = new Document();
-        filterDoc.append("_id", new ObjectId(id));
+    public String getSingleAbstract(String id){
+        AggregateIterable<Document> singleAbstract = abstractCollection.aggregate(Arrays.asList(
+            Aggregates.match(new Document("_id", new ObjectId(id))),
+            Aggregates.lookup("topComments", "topComments", "_id", "topComments")
+//            Aggregates.unwind("$topComments")
+//            Aggregates.lookup("users","topComments.commenter","_id","topComments.commenter"),
+//            Aggregates.unwind("$topComments.commenter"),
+//            Aggregates.lookup("subComments", "topComments.subComments", "_id", "topComments.subComments"),
+////            Aggregates.lookup("users", "topComments.subComments.commenter", "_id", "topComments.subComments.commenter"),
+//            Aggregates.group("$_id", first("userID","$userID"),
+//                first("presentationTitle","$presentationTitle"),
+//                first("abstractContent", "$abstractContent"),
+//                push("topComments", "$topComments"))
+        ));
 
-        FindIterable<Document> single_abstract = abstractCollection.find(filterDoc).limit(1);
+        System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
 
-        String abstractJSON = "";
+        return singleAbstract.first().toJson();
+    }
 
-        for (Document doc : single_abstract) {
-            abstractJSON = doc.toJson();
-        }
+    public static String toPrettyFormat(String jsonString) {
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(jsonString).getAsJsonObject();
 
-        return abstractJSON;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJson = gson.toJson(json);
+
+        return prettyJson;
     }
 
     String getDisciplines(Map<String, String[]> queryParams) {

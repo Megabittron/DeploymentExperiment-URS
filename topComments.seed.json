@@ -1,0 +1,43 @@
+[
+    {
+        "_id": {
+            "$oid": "59dac7b147c9429bff9ba9b3"
+        },
+        "commenter": {
+            "$oid": "6b4fafaa7ff1d34e9da78cca"
+        },
+        "subComments":
+        [
+            {
+                "$oid": "5b3524ba76bdf718e137b491"
+            },
+            {
+                "$oid": "4d4424ba76bdf718e1374492"
+            }
+        ],
+        "quotedSnippet": "Denim was-- denim was invented, so that like, cows, when they bit you, it didn't hurt very bad.",
+        "commenterInput": "Please formalize your prose... why is it so conversational? You should also add that that used to be the tagline underneath Levi's: \"So it doesn't hurt so bad when cows bite you.\"",
+        "resolved": false,
+        "timestamp": "Wed Feb 14 16:23:20 CST 2020"
+    },
+    {
+        "_id": {
+            "$oid": "59dac7b147c9429bff9ba9b4"
+        },
+        "commenter": {
+            "$oid": "6b4fafaa7ff1d34e9da78cca"
+        },
+        "subComments":
+        [
+            {
+                "$oid": "5b3524ba76bdf718e137b493"
+            },
+            {
+                "$oid": "4d4424ba76bdf718e1374494"
+            }
+        ],
+        "commenterInput": "Why are you even doing this topic?",
+        "resolved": false,
+        "timestamp": "Wed Feb 14 16:23:20 CST 2021"
+    }
+]
