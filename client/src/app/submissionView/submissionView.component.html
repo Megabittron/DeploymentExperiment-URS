@@ -94,23 +94,23 @@
     <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
         <h2 style="text-align: center">Comments</h2>
 
-        <p>To leave a comment, either highlight the part of the abstract you want to quote or click "New Comment."</p>
+        <p>The comment section will open up when reviewing begins.</p>
 
-        <button mat-button class="new-comment-btn" (click)="makeNewComment()">
-            <mat-icon>edit</mat-icon> Comment on Thread
-        </button>
+<!--        <button mat-button class="new-comment-btn" (click)="makeNewComment()">-->
+<!--            <mat-icon>edit</mat-icon> Comment on Thread (coming soon)-->
+<!--        </button>-->
 
-        <div class="create-comment" *ngIf="createNewComment">
-            <u>Leave a comment without quoting & highlighting:</u>
-            <br><br>
-            <mat-form-field class="leave-a-comment">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-            </mat-form-field>
+<!--        <div class="create-comment" *ngIf="createNewComment">-->
+<!--            <u>Leave a comment without quoting & highlighting:</u>-->
+<!--            <br><br>-->
+<!--            <mat-form-field class="leave-a-comment">-->
+<!--                <textarea matInput placeholder="Leave a comment"></textarea>-->
+<!--            </mat-form-field>-->
 
-            <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment
-            </button>
-        </div>
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment (coming soon)-->
+<!--            </button>-->
+<!--        </div>-->
 
         <div class="create-comment" *ngIf="createHightingComment">
             <u>Leave a comment that quotes & highlights the abstract:</u>
@@ -119,12 +119,12 @@
             <br><br>
 
             <mat-form-field class="leave-a-comment">
-                <textarea matInput placeholder="Leave a comment"></textarea>
+                <textarea matInput placeholder="Leave a comment (coming soon)"></textarea>
             </mat-form-field>
 
-            <button mat-button class="leave-comment-btn">
-                <mat-icon>edit</mat-icon> Submit Comment w/Quote
-            </button>
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment w/Quote-->
+<!--            </button>-->
         </div>
 
         <!--TopComments-->
@@ -135,9 +135,9 @@
                 <br><br>
                 <i class="quote">*long and winding sentence*</i>
                 <p>This sentence goes on and on without saying much. Either condense the idea or break it into a few sentences.</p>
-                <button mat-button class="respond-comment-btn">
-                    <mat-icon>edit</mat-icon> Comment on Comment
-                </button>
+<!--                <button mat-button class="respond-comment-btn">-->
+<!--                    <mat-icon>edit</mat-icon> Comment on Comment-->
+<!--                </button>-->
             </div>
         <!--SubComments-->
             <div class="sub-comment">
