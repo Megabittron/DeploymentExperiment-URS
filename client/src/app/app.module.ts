@@ -23,6 +23,10 @@ import {AdminService} from "./admin/admin.service";
 import {CredentialInterceptor} from "./interceptors/credential-interceptor";
 import {RandomizeReviewGroupsComponent} from "./admin/randomize-review-groups.component";
 import {SubmissionViewComponent} from "./submissionView/submissionView.component";
+import {EditUserInfoComponent} from "./admin/editUserInfo.component";
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {WrongRoleComponent} from "./accountInfo/wrong-role.component";
 
 @NgModule({
     imports: [
@@ -30,6 +34,9 @@ import {SubmissionViewComponent} from "./submissionView/submissionView.component
         HttpClientModule,
         Routing,
         CustomModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule
     ],
     declarations: [
         AppComponent,
@@ -43,7 +50,9 @@ import {SubmissionViewComponent} from "./submissionView/submissionView.component
         RandomizeReviewGroupsComponent,
         SaveReviewGroupsDialog,
         LoginComponent,
-        SubmissionViewComponent
+        SubmissionViewComponent,
+        EditUserInfoComponent,
+        WrongRoleComponent
     ],
     providers: [
         AuthenticationService,

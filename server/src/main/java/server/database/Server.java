@@ -97,12 +97,15 @@ public class Server {
             }
         });
 
-
         get("api/users", userRequestHandler::getUsers);
         put("api/users/:_id", userRequestHandler::editUsertShirtSize);
+        put("api/users/roles/:_id", userRequestHandler::editUserRole);
 
         get("api/abstract/:id", abstractRequestHandler::getSingleAbstractJSON);
         get("api/abstracts", abstractRequestHandler::getAbstracts);
+        get("api/abstracts/disciplines", abstractRequestHandler::getDisciplines);
+        get("api/abstracts/categories", abstractRequestHandler::getCategories);
+        get("api/abstracts/sponsoredOrganizations", abstractRequestHandler::getSponsoredOrganizations);
         get("api/abstracts/:id", abstractRequestHandler::getAbstractsJSON);
         post("api/abstracts/new", abstractRequestHandler::addNewAbstract);
 

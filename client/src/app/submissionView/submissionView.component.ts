@@ -3,6 +3,8 @@ import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
 import {SubComment, TopComment} from "./comment";
+import {AuthenticationService} from "../authentication.service";
+import {User} from "../user";
 
 @Component({
     selector: 'submissionView.component',
@@ -13,9 +15,12 @@ import {SubComment, TopComment} from "./comment";
 
 export class SubmissionViewComponent implements OnInit {
 
-    constructor(public submissionListService: SubmissionListService) {}
+    constructor(public submissionListService: SubmissionListService,
+                public authenticationService: AuthenticationService) {}
 
     public submission: Submission;
+    public otherDiscipline: string;
+    public user: User;
 
     createSubcomment: boolean = false;
     createHightingComment: boolean = false;
@@ -31,6 +36,7 @@ export class SubmissionViewComponent implements OnInit {
             submission => {
                 if (submission != null) {
                     this.submission = submission;
+                    this.otherDiscipline = this.submission.academicDiscipline.slice(-1).toString();
                 }
             }
         );
@@ -86,6 +92,10 @@ export class SubmissionViewComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.authenticationService.user$.subscribe(user => {
+            this.user = user;
+        });
+
         this.getSubmission();
     }
 

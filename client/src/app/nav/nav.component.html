@@ -1,6 +1,6 @@
 
 <mat-toolbar *ngIf="!isMobile" color="accent" class="navigation">
-    <a class="urs" color="primary"  routerLink="/"><b>UNDERGRAD REASEARCH SYMPOSIUM</b></a>
+    <a class="urs" color="primary"  routerLink="/"><b>UNDERGRAD RESEARCH SYMPOSIUM</b></a>
     <span class="spacer"></span>
     <a color="primary"  routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">
         <b>
@@ -8,7 +8,15 @@
         </b>
     </a>
     <a *ngIf="isAdmin()" color="primary"  routerLink="/admin" routerLinkActive="nav-active"><b>Admin</b></a>
-    <a color="primary"  routerLink="/submissionList" routerLinkActive="nav-active"><b>Submission List</b></a>
+
+    <a color="primary"  routerLink="/submissionList" routerLinkActive="nav-active">
+        <b *ngIf="user.Role!='user'; else isUser">Submission List</b>
+
+        <ng-template #isUser>
+            <b>Your Submissions</b>
+        </ng-template>
+    </a>
+
     <img class="profile-pic" alt="Profile picture" [src]="profilePic" (click)="goToAccountInfo()">
     <div class="account-options">
         <div class="options">

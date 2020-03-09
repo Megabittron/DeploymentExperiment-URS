@@ -94,6 +94,21 @@ public class AbstractRequestHandler {
         return abstractController.getAbstracts(req.queryMap().toMap());
     }
 
+    public String getDisciplines(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getDisciplines(req.queryMap().toMap());
+    }
+
+    public String getCategories(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getCategories(req.queryMap().toMap());
+    }
+
+    public String getSponsoredOrganizations(Request req, Response res) {
+        res.type("application/json");
+        return abstractController.getSpongsoredOrganizations(req.queryMap().toMap());
+    }
+
     /**
      * Method called by 'api/abstracts/new' endpoint
      *
@@ -121,9 +136,11 @@ public class AbstractRequestHandler {
             String thirdPresenterFirstName = dbO.getString("thirdPresenterFirstName");
             String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
             String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
-            String academicDiscipline = dbO.getString("academicDiscipline");
+            Object academicDiscipline = dbO.get("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
-            String sponOrganization = dbO.getString("sponOrganization");
+            Object sponOrganization = dbO.get("sponOrganization");
+            String miscSponOrganization = dbO.getString("miscSponOrganization");
+            Object category = dbO.get("category");
             String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
             String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
             String firstAdvisorEmail = dbO.getString("firstAdvisorEmail");
@@ -165,19 +182,56 @@ public class AbstractRequestHandler {
                 + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
                 + ", resubmitFlag=" + resubmitFlag + ']');
 
-            return abstractController.addNewAbstract(userID, presentationTitle, abstractContent, submissionFormat, presentationType,
-                willingToChangePresentationFormat, firstPresenterFirstName, firstPresenterLastName, firstPresenterEmail, secondPresenterFirstName,
-                secondPresenterLastName, secondPresenterEmail, thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, academicDiscipline,
-                willingToBeFeaturePresenter, sponOrganization, firstAdvisorFirstName, firstAdvisorLastName, firstAdvisorEmail, secondAdvisorFirstName,
-                secondAdvisorLastName, secondAdvisorEmail, thirdAdvisorFirstName, thirdAdvisorLastName, thirdAdvisorEmail, additionalMediaEquipment,
-                additionalRequirements, other, approval, cc, rejection, group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes,
-                comments, isPrimarySubmission, resubmitFlag);
+            return abstractController.addNewAbstract(userID,                           presentationTitle,
+                 abstractContent,
+                 submissionFormat,
+                 presentationType,
+                 willingToChangePresentationFormat,
+                 firstPresenterFirstName,
+                 firstPresenterLastName,
+                 firstPresenterEmail,
+                 secondPresenterFirstName,
+                 secondPresenterLastName,
+                 secondPresenterEmail,
+                 thirdPresenterFirstName,
+                 thirdPresenterLastName,
+                 thirdPresenterEmail,
+                 academicDiscipline,
+                 willingToBeFeaturePresenter,
+                sponOrganization,
+                miscSponOrganization,
+                category,
+                 firstAdvisorFirstName,
+                 firstAdvisorLastName,
+                 firstAdvisorEmail,
+                 secondAdvisorFirstName,
+                 secondAdvisorLastName,
+                 secondAdvisorEmail,
+                 thirdAdvisorFirstName,
+                 thirdAdvisorLastName,
+                 thirdAdvisorEmail,
+                 additionalMediaEquipment,
+                 additionalRequirements,
+                 other,
+                 approval,
+                 cc,
+                 rejection,
+                 group,
+                 roomAssignment,
+                 totalRewriteVotes,
+                 majorRewriteVotes,
+                 minorRewriteVotes,
+                 acceptedVotes,
+                 comments,
+                 isPrimarySubmission,
+                 resubmitFlag);
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
             return null;
         }
     }
 
+    //TODO: Change types of objects, like fields that are now object arrays and not strings
     /**
      * @param req HTTP request
      * @param res HTTP response
@@ -226,6 +280,7 @@ public class AbstractRequestHandler {
             String secondAdviserFirstName = dbO.getString("secondAdviserFirstName");
             String secondAdviserLastName = dbO.getString("secondAdviserLastName");
             String secondAdviserEmail = dbO.getString("secondAdviserEmail");
+            String category = dbO.getString("category");
 
             System.err.println("Editing abstract" +
                 "[_id=" + id + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +

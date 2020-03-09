@@ -83,6 +83,8 @@ export class AuthenticationService {
                         this.updateCurrentUser(GoogleUser);
                     }
 
+                    console.log("user email: " + GoogleUser.getBasicProfile().getEmail());
+
                     GoogleAuth.isSignedIn.listen(this.updateSignInStatus);
                     GoogleAuth.currentUser.listen(this.updateCurrentUser);
 

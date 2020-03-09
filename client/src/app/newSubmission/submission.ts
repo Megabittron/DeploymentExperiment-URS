@@ -1,3 +1,6 @@
+import {Disciplines} from "./disciplines";
+import {SponsoredOrganizations} from "./sponsoredOrganizations";
+import {Categories} from "./categories";
 import {TopComment} from "../submissionView/comment";
 
 export interface Submission {
@@ -19,9 +22,11 @@ export interface Submission {
     thirdPresenterFirstName: string;
     thirdPresenterLastName: string;
     thirdPresenterEmail: string;
-    academicDiscipline: string;
+    academicDiscipline: Disciplines[];
     willingToBeFeaturePresenter: string;
-    sponOrganization: string;
+    sponOrganization: SponsoredOrganizations[];
+    miscSponOrganization: string;
+    category: Categories[];
     firstAdvisorFirstName: string;
     firstAdvisorLastName: string;
     firstAdvisorEmail: string;
@@ -38,3 +43,5 @@ export interface Submission {
     topComments?: Array<TopComment>;
     approval: boolean;
 }
+
+

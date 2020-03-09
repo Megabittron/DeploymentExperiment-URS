@@ -3,6 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Submission} from './submission';
 import {environment} from '../../environments/environment';
+import {Disciplines} from "./disciplines";
+import {SponsoredOrganizations} from "./sponsoredOrganizations";
+import {Categories} from "./categories";
 
 
 
@@ -35,5 +38,23 @@ export class NewSubmissionService {
         }
 
         return this.http.post<{'$oid': string}>(this.submissionUrl + '/new', newSubmission, httpOptions);
+    }
+
+    getDisciplines(): Observable<Disciplines[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<Disciplines[]>(this.submissionUrl + '/disciplines');
+    }
+
+    getSponsoredOrganizations(): Observable<SponsoredOrganizations[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<SponsoredOrganizations[]>(this.submissionUrl + '/sponsoredOrganizations');
+    }
+
+    getCategories(): Observable<Categories[]> {
+        this.submissionUrl = this.baseUrl;
+
+        return this.http.get<Categories[]>(this.submissionUrl + '/categories');
     }
 }

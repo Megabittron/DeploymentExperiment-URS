@@ -41,10 +41,26 @@
     text-align: center;
 }
 
+.reviewAndSubmitPage{
+    text-align: center;
+}
+
 .additionalInfoBoxes{
     width: 50%;
 }
 
 .mat-radio-button-inner-circle{
     background-color: red;
+}
+
+button {
+    margin: 0.5rem;
+}
+
+#non-student-disclaimer {
+    text-align: center;
+}
+
+.sponsored {
+    //display: inline;
 }

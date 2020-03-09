@@ -1,0 +1,38 @@
+.mat-card {
+    width: 100%;
+    //float: left;
+    padding: 0.2rem;
+    border: 1px solid black;
+}
+
+.mat-grid-tile {
+    margin-bottom: 0.2rem;
+}
+
+.mat-card-title {
+    text-align: center;
+}
+
+.admin {
+    background-color: lightgreen;
+}
+
+.user {
+    background: lightgrey;
+}
+
+.reviewer {
+    background: lightblue;
+}
+
+.chair {
+    background: lightgoldenrodyellow;
+}
+
+.user-info {
+    text-align: center;
+}
+
+button {
+    float: right;
+}

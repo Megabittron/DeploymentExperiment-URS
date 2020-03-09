@@ -2,12 +2,22 @@
     text-align: center;
 }
 
-.admin-section {
-    margin-left: 1em;
+.admin-section > h2{
+    text-align: center;
 }
 
-.reviewer {
-    border: 2px solid black;
+.stats {
+    margin-bottom: 3rem;
+}
+
+.buttons {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-section {
+    margin-left: 1em;
 }
 
 .review-groups {
@@ -21,15 +31,15 @@
     text-align: center;
 }
 
-.example-container {
+.review-group-container {
     width: 400px;
     max-width: 100%;
     margin: 0 25px 25px 0;
-    display: block;
+    display: inline-block;
     vertical-align: top;
 }
 
-.example-list {
+.list-of-reviewers {
     border: solid 1px #ccc;
     min-height: 60px;
     background: white;
@@ -38,7 +48,7 @@
     display: block;
 }
 
-.example-box {
+.reviewer {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);

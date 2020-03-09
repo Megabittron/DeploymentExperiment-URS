@@ -1,0 +1,44 @@
+[
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19a"
+        },
+        "key": "curf",
+        "value": "CURF"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19b"
+        },
+        "key": "lsamp",
+        "value": "LSAMP"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19c"
+        },
+        "key": "map",
+        "value": "MAP"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19d"
+        },
+        "key": "mcnair",
+        "value": "McNair"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19e"
+        },
+        "key": "mmp",
+        "value": "MMP"
+    },
+    {
+        "_id": {
+            "$oid": "6c832bec26656a20be5ec19f"
+        },
+        "key": "urop",
+        "value": "UROP"
+    }
+]
