@@ -9,15 +9,13 @@
         "submissionFormat": "humanities proposal",
         "presentationType": "oral presentation",
         "willingToChangePresentationFormat": "yes",
-        "firstPresenterFirstName": "Charles",
-        "firstPresenterLastName": "Menne",
-        "firstPresenterEmail": "menne019@morris.umn.edu",
-        "secondPresenterFirstName": "Travis",
-        "secondPresenterLastName": "Warling",
-        "secondPresenterEmail": "warli010@morris.umn.edu",
-        "thirdPresenterFirstName": "Ahnaf",
-        "thirdPresenterLastName": "Yasin",
-        "thirdPresenterEmail": "yasin011@morris.umn.edu",
+        "presenters": [
+            {
+                "presenterFirstName": "John",
+                "presenterLastName": "Barton",
+                "presenterEmail": "bart025@morris.umn.edu"
+            }
+        ],
         "academicDiscipline": [
             {
                 "_id": {
@@ -97,15 +95,13 @@
         "submissionFormat": "humanities proposal",
         "presentationType": "oral presentation",
         "willingToChangePresentationFormat": "yes",
-        "firstPresenterFirstName": "Michael",
-        "firstPresenterLastName": "Small",
-        "firstPresenterEmail": "small203@morris.umn.edu",
-        "secondPresenterFirstName": "Travis",
-        "secondPresenterLastName": "Warling",
-        "secondPresenterEmail": "warli010@morris.umn.edu",
-        "thirdPresenterFirstName": "Ahnaf",
-        "thirdPresenterLastName": "Yasin",
-        "thirdPresenterEmail": "yasin011@morris.umn.edu",
+        "presenters": [
+            {
+                "presenterFirstName": "Johny",
+                "presenterLastName": "Bartona",
+                "presenterEmail": "bart555@morris.umn.edu"
+            }
+        ],
         "academicDiscipline": [
             {
                 "_id": {
@@ -192,15 +188,18 @@
         "submissionFormat": "humanities proposal",
         "presentationType": "oral presentation",
         "willingToChangePresentationFormat": "yes",
-        "firstPresenterFirstName": "Michael",
-        "firstPresenterLastName": "Small",
-        "firstPresenterEmail": "small203@morris.umn.edu",
-        "secondPresenterFirstName": "Travis",
-        "secondPresenterLastName": "Warling",
-        "secondPresenterEmail": "warli010@morris.umn.edu",
-        "thirdPresenterFirstName": "Ahnaf",
-        "thirdPresenterLastName": "Yasin",
-        "thirdPresenterEmail": "yasin011@morris.umn.edu",
+        "presenters": [
+            {
+                "presenterFirstName": "John",
+                "presenterLastName": "Barton",
+                "presenterEmail": "bart025@morris.umn.edu"
+            },
+            {
+                "presenterFirstName": "Jane",
+                "presenterLastName": "Rhubarba",
+                "presenterEmail": "rhub025@morris.umn.edu"
+            }
+        ],
         "academicDiscipline": [
             {
                 "_id": {

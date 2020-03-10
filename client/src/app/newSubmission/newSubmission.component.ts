@@ -1,18 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
 import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Disciplines} from "./disciplines";
 import {Categories} from "./categories";
 import {SponsoredOrganizations} from "./sponsoredOrganizations";
+import {Presenters} from "./presenters";
+import {ArrayType} from "@angular/compiler";
 
 export interface Discipline {
     value: string;
     viewValue: string;
 }
+
+declare const gapi: any;
 
 @Component({
     selector: 'app-newSubmission-component',
@@ -25,7 +29,9 @@ export class NewSubmissionComponent implements OnInit{
     constructor(public snackBar: MatSnackBar,
                 public newSubmissionService: NewSubmissionService,
                 private authenticationService: AuthenticationService,
-                private _formBuilder: FormBuilder) {
+                private _formBuilder: FormBuilder,
+                private fb: FormBuilder,
+                private formBuilder: FormBuilder) {
     }
 
     public user: User;
@@ -44,14 +50,9 @@ export class NewSubmissionComponent implements OnInit{
     public submissionFormat = "";
     public presentationType = "";
     public willingToChangePresentationFormat = "undecided";
-    public firstPresenterFirstName = "";
-    public firstPresenterLastName = "";
-    public firstPresenterEmail = "";
-    public secondPresenter = false;
     public secondPresenterFirstName = "";
     public secondPresenterLastName = "";
     public secondPresenterEmail = "";
-    public thirdPresenter = false;
     public thirdPresenterFirstName = "";
     public thirdPresenterLastName = "";
     public thirdPresenterEmail = "";
@@ -77,10 +78,28 @@ export class NewSubmissionComponent implements OnInit{
     public category = [];
     public miscSponOrganization = "";
 
+    public userEmail = "";
+
     public otherAcedemicDiscipline = "";
     public otherAcademic = false;
 
+    presenterWhoIsSubmitting: Presenters = {
+        presenterFirstName: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getGivenName(),
+        presenterLastName: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getFamilyName(),
+        presenterEmail: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getEmail()
+    };
+
     saveSubmission(): void {
+
+        if(!this.firstPresenterAdded) {  //adds the submitting users as the first user on the FormArray, hidden from user
+            const firstPresenter = new FormGroup({
+                presenterFirstName: new FormControl(this.presenterWhoIsSubmitting.presenterFirstName),
+                presenterLastName: new FormControl(this.presenterWhoIsSubmitting.presenterLastName),
+                presenterEmail: new FormControl(this.presenterWhoIsSubmitting.presenterEmail)
+            });
+            this.presenters.push(firstPresenter);
+            this.firstPresenterAdded = !this.firstPresenterAdded;
+        }
 
         //trims 'other' categories that were removed and subsequently empty strings
         this.academicDiscipline.filter(function (el) {
@@ -98,15 +117,7 @@ export class NewSubmissionComponent implements OnInit{
             submissionFormat: this.submissionFormat,
             presentationType: this.presentationType,
             willingToChangePresentationFormat: this.willingToChangePresentationFormat,
-            firstPresenterFirstName: this.firstPresenterFirstName,
-            firstPresenterLastName: this.firstPresenterLastName,
-            firstPresenterEmail: this.firstPresenterEmail,
-            secondPresenterFirstName: this.secondPresenterFirstName,
-            secondPresenterLastName: this.secondPresenterLastName,
-            secondPresenterEmail: this.secondPresenterEmail,
-            thirdPresenterFirstName: this.thirdPresenterFirstName,
-            thirdPresenterLastName: this.thirdPresenterLastName,
-            thirdPresenterEmail: this.thirdPresenterEmail,
+            presenters: this.presenters.value,
             academicDiscipline: this.academicDiscipline,
             willingToBeFeaturePresenter: this.willingToBeFeaturePresenter,
             sponOrganization: this.sponOrganization,
@@ -178,14 +189,51 @@ export class NewSubmissionComponent implements OnInit{
 
     //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
-        return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
+        return this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
     }
 
     sectionFourComplete() {
         return this.firstAdvisorFirstName == "" || this.firstAdvisorLastName == "" ||
             this.firstAdvisorEmail == "";
     }
+
+    presenters = new FormArray([]);
+    public firstPresenterAdded = false;
+    public peopleAdded = 0;
+    addPresenter() {
+        // Look, I was on a deadline
+        this.peopleAdded += 1;
+        if(this.peopleAdded > 10) { //stops from adding more than 10 people
+            return;
+        }
+        if(!this.firstPresenterAdded) {  //adds the submitting users as the first user on the FormArray, hidden from user
+            const firstPresenter = new FormGroup({
+                presenterFirstName: new FormControl(this.presenterWhoIsSubmitting.presenterFirstName),
+                presenterLastName: new FormControl(this.presenterWhoIsSubmitting.presenterLastName),
+                presenterEmail: new FormControl(this.presenterWhoIsSubmitting.presenterEmail)
+            });
+            this.presenters.push(firstPresenter);
+            this.firstPresenterAdded = !this.firstPresenterAdded;
+        }
+
+        const group = new FormGroup({
+            presenterFirstName: new FormControl('', Validators.required),
+            presenterLastName: new FormControl('', Validators.required),
+            presenterEmail: new FormControl('', Validators.email)
+        });
+
+        this.presenters.push(group);
+    }
+
+    removePresenter(index: number) {
+        this.presenters.removeAt(index);
+    }
+
+    form = new FormGroup({
+        presenterFirstName: new FormControl('', Validators.required),
+        presenterLastName: new FormControl('', Validators.required),
+        presenterEmail: new FormControl('', Validators.required)
+    });
 
     ngOnInit(): void {
         this.authenticationService.user$.subscribe(user => {
@@ -200,13 +248,11 @@ export class NewSubmissionComponent implements OnInit{
         this.newSubmissionService.getCategories().subscribe(
             categories => {
                 this.categories = categories;
-                console.log('cats: ' + this.categories);
             });
 
         this.newSubmissionService.getSponsoredOrganizations().subscribe(
             sponsoredOrganizations => {
                 this.sponsoredOrganizations = sponsoredOrganizations;
-                console.log('spons: ' + this.sponsoredOrganizations);
             });
 
         // STEP TWO: Title/Abstract/Format step
@@ -220,9 +266,6 @@ export class NewSubmissionComponent implements OnInit{
 
         // STEP THREE: Presenter(s)/Discipline/Featured step
         this.secondFormGroup = this._formBuilder.group({
-            secondCtrlOne: ['', Validators.required],
-            secondCtrlTwo: ['', Validators.required],
-            secondCtrlThree: ['', Validators.required],
             secondCtrlFour: ['', Validators.required],
             secondCtrlFive: ['', Validators.required]
         });

@@ -498,15 +498,7 @@ public class AbstractController {
                           String submissionFormat,
                           String presentationType,
                           String willingToChangePresentationFormat,
-                          String firstPresenterFirstName,
-                          String firstPresenterLastName,
-                          String firstPresenterEmail,
-                          String secondPresenterFirstName,
-                          String secondPresenterLastName,
-                          String secondPresenterEmail,
-                          String thirdPresenterFirstName,
-                          String thirdPresenterLastName,
-                          String thirdPresenterEmail,
+                          Object presenters,
                           Object academicDiscipline,
                           String willingToBeFeaturePresenter,
                           Object sponOrganization,
@@ -546,15 +538,7 @@ public class AbstractController {
         newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("presentationType", presentationType);
         newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
-        newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
-        newAbstract.append("firstPresenterLastName", firstPresenterLastName);
-        newAbstract.append("firstPresenterEmail", firstPresenterEmail);
-        newAbstract.append("secondPresenterFirstName", secondPresenterFirstName);
-        newAbstract.append("secondPresenterLastName", secondPresenterLastName);
-        newAbstract.append("secondPresenterEmail", secondPresenterEmail);
-        newAbstract.append("thirdPresenterFirstName", thirdPresenterFirstName);
-        newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
-        newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
+        newAbstract.append("presenters", presenters);
         newAbstract.append("academicDiscipline", academicDiscipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("sponOrganization", sponOrganization);
@@ -594,9 +578,7 @@ public class AbstractController {
             System.err.println("Successfully added new abstract " +
                 "[userID " + userID +
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
-                "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", presenters=" + presenters + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
                 + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", miscSponOrganization=" + miscSponOrganization + ", category=" + category +", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +

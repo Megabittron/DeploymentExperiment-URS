@@ -27,7 +27,10 @@
 
         <div>
             <h1>{{submission.presentationTitle}}</h1>
-            <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
+            <p>Presenter(s): </p>
+            <ul>
+                <li *ngFor="let pres of submission.presenters">{{pres.presenterFirstName}} {{pres.presenterLastName}} ({{pres.presenterEmail}})</li>
+            </ul>
             <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
             <p *ngIf="submission.secondAdvisorFirstName">CoAdviser(s):
                 {{submission.secondAdvisorFirstName}} {{submission.secondAdvisorLastName}}
@@ -42,7 +45,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <p>Presenter Email: {{submission.firstPresenterEmail}}</p>
+<!--            <p>Presenter Email: {{submission.firstPresenterEmail}}</p>-->
             <p>Adviser Email: {{submission.firstAdvisorEmail}}</p>
             <p *ngIf="submission.secondAdvisorEmail">CoAdviser(s) email:
                 {{submission.secondAdvisorEmail}} {{submission.thirdAdvisorEmail}}
@@ -52,7 +55,7 @@
                 <span *ngFor="let discipline of submission.academicDiscipline">
                     {{discipline.value}}
                 </span>
-                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline}}</span>
+                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline.slice(5, otherDiscipline.length)}}</span>
             </p>
             <p>Type: {{submission.presentationType}}</p>
             <p>Format: {{submission.submissionFormat}}</p>
@@ -64,12 +67,12 @@
             <p *ngIf="submission.other">Additional Information: {{submission.other}}</p> <!-- TODO: Add field  -->
             <p>Date of Submission: {{submission.timestamp | date: 'EEEE, MMMM d'}} at {{submission.timestamp | date: 'h:mm a'}}</p>
 
-            <p *ngIf="submission.sponOrganization">
+            <p *ngIf="submission.sponOrganization.length != 0">
                 <span> Sponsoring Organization: </span>
                 <span *ngFor="let sponsOrg of submission.sponOrganization">{{sponsOrg.value}} </span><span *ngIf="submission.miscSponOrganization">{{submission.miscSponOrganization}}</span>
             </p>
 
-            <p *ngIf="submission.category">
+            <p *ngIf="submission.category.length != 0">
                 <span> Categories: </span>
                 <span *ngFor="let category of submission.category">{{category.value}} </span>
             </p>

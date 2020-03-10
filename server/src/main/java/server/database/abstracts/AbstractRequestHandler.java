@@ -127,15 +127,7 @@ public class AbstractRequestHandler {
             String submissionFormat = dbO.getString("submissionFormat");
             String presentationType = dbO.getString("presentationType");
             String willingToChangePresentationFormat = dbO.getString("willingToChangePresentationFormat");
-            String firstPresenterFirstName = dbO.getString("firstPresenterFirstName");
-            String firstPresenterLastName = dbO.getString("firstPresenterLastName");
-            String firstPresenterEmail = dbO.getString("firstPresenterEmail");
-            String secondPresenterFirstName = dbO.getString("secondPresenterFirstName");
-            String secondPresenterLastName = dbO.getString("secondPresenterLastName");
-            String secondPresenterEmail = dbO.getString("secondPresenterEmail");
-            String thirdPresenterFirstName = dbO.getString("thirdPresenterFirstName");
-            String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
-            String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
+            Object presenters = dbO.get("presenters");
             Object academicDiscipline = dbO.get("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             Object sponOrganization = dbO.get("sponOrganization");
@@ -168,9 +160,7 @@ public class AbstractRequestHandler {
 
             System.err.println("Adding new Abstract for a specific userID " + userID +
                 ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
-                "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
+                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", presenters=" + presenters + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
                 + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
                 "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
                 + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
@@ -187,15 +177,7 @@ public class AbstractRequestHandler {
                  submissionFormat,
                  presentationType,
                  willingToChangePresentationFormat,
-                 firstPresenterFirstName,
-                 firstPresenterLastName,
-                 firstPresenterEmail,
-                 secondPresenterFirstName,
-                 secondPresenterLastName,
-                 secondPresenterEmail,
-                 thirdPresenterFirstName,
-                 thirdPresenterLastName,
-                 thirdPresenterEmail,
+                 presenters,
                  academicDiscipline,
                  willingToBeFeaturePresenter,
                 sponOrganization,

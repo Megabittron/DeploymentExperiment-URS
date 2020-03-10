@@ -10,6 +10,7 @@ import {RoleGuard} from "./role.guard";
 import {SubmissionViewComponent} from "./submissionView/submissionView.component";
 import {EditUserInfoComponent} from "./admin/editUserInfo.component";
 import {WrongRoleComponent} from "./accountInfo/wrong-role.component";
+import {MyFormComponent} from "./newSubmission/my-form-component";
 
 // Route Configuration
 export const routes: Routes = [
@@ -20,7 +21,8 @@ export const routes: Routes = [
     {path: 'newSubmission', component: NewSubmissionComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'abstract/:id', component: SubmissionViewComponent, canActivate: [UserIsLoggedInGuard]},
     {path: 'admin/editUserInfo', component: EditUserInfoComponent, canActivate: [UserIsLoggedInGuard, RoleGuard]},
-    {path: 'wrongRole', component: WrongRoleComponent, canActivate: [UserIsLoggedInGuard]}
+    {path: 'wrongRole', component: WrongRoleComponent, canActivate: [UserIsLoggedInGuard]},
+    {path: 'tut', component: MyFormComponent, canActivate: [UserIsLoggedInGuard]} //tut
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(routes);
