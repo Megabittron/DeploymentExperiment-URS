@@ -65,7 +65,7 @@
             </p>
 
             <p *ngIf="submission.category.length > 0">
-                <b>Categories:</b>
+                <b>Categories: </b>
                 <span *ngFor="let category of submission.category; let isLast = last">{{category.value}}{{isLast ? '' : ', '}}</span>
             </p>
 

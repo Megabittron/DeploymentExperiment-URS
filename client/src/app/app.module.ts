@@ -27,8 +27,6 @@ import {EditUserInfoComponent} from "./admin/editUserInfo.component";
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WrongRoleComponent} from "./accountInfo/wrong-role.component";
-import {MyFormSubComponent} from "./newSubmission/my-form-sub.component";
-import {MyFormComponent} from "./newSubmission/my-form-component";
 
 @NgModule({
     imports: [
@@ -55,9 +53,6 @@ import {MyFormComponent} from "./newSubmission/my-form-component";
         SubmissionViewComponent,
         EditUserInfoComponent,
         WrongRoleComponent,
-
-        MyFormSubComponent, //tut
-        MyFormComponent     //tut
     ],
     providers: [
         AuthenticationService,
