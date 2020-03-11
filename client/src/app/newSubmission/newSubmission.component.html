@@ -3,10 +3,10 @@
         <mat-card>
             <mat-card-title>2020 URS Submission Form</mat-card-title>
             <mat-divider></mat-divider>
-            <mat-card-content>
+            <mat-card-content [formGroup]="formGroup">
                 <mat-horizontal-stepper [linear]="true" #stepper>
                     <mat-step label="Application Info">
-                        <h1 id="non-student-disclaimer">Warning: As a non-student you can preview the form, but not
+                        <h1 id="non-student-disclaimer" *ngIf="user.Role!='user'">Warning: As a non-student you can preview the form, but not
                         submit an abstract. If you or your students are having issues or or questions regarding the form,
                         contact &lt;insert_admin_email&gt;.</h1>
                         All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
@@ -96,37 +96,9 @@
                         </div>
                     </mat-step>
 
-                    <mat-step label="Presenter(s)/Discipline/Featured" [stepControl]="secondFormGroup">
+                    <mat-step label="Discipline(s)/Featured" [stepControl]="secondFormGroup">
                         <div class="presenterForm">
-
                             <form [formGroup]="secondFormGroup">
-                                Who else will be presenting? Please add their name(s) and their university email below. If there are more than one presenter, click the plus button
-                                for more rows.
-                                <br>
-
-                                <p>You will be the entered as: {{user.FirstName}} {{user.LastName}} ({{userEmail}})</p>
-
-                                <div *ngFor="let presenter of presenters.controls; index as i">
-                                    <div *ngIf="i <= 10">
-                                        <ng-container [formGroup]="presenter" *ngIf="i >= 1">
-                                            <mat-form-field>
-                                            <textarea matInput formControlName="presenterFirstName">
-                                            </textarea>
-                                            </mat-form-field>
-                                            <mat-form-field>
-                                            <textarea matInput formControlName="presenterLastName">
-                                            </textarea>
-                                            </mat-form-field>
-                                            <mat-form-field>
-                                            <textarea matInput formControlName="presenterEmail">
-                                            </textarea>
-                                            </mat-form-field>
-                                        </ng-container>
-                                        <button mat-raised-button (click)="removePresenter(i)" *ngIf="i >= 1"><mat-icon>remove_circle</mat-icon></button>
-                                    </div>
-                                </div>
-                                <button mat-raised-button (click)="addPresenter()"><mat-icon>add_circle</mat-icon></button>
-
                                 <h3>Discipline(s)</h3>
 
                                 <mat-form-field>
@@ -141,21 +113,15 @@
                                 <br><br>
 
                                 <mat-form-field *ngIf="this.otherAcademic">
-                                    <textarea matInput
-                                              #input
-                                              required
-                                              placeholder="Please specify"
-                                              (input)="otherAcedemicDiscipline = $event.target.value"
-                                              rows="1"
-                                              cols="1"></textarea>
+                                        <textarea matInput
+                                                  #input
+                                                  required
+                                                  placeholder="Please specify"
+                                                  (input)="otherAcedemicDiscipline = $event.target.value"
+                                                  rows="1"
+                                                  cols="1"></textarea>
                                 </mat-form-field>
-
                                 <br>
-
-<!--                                <button mat-raised-button (click)="addDiscipline()">-->
-<!--                                    <mat-icon>add_circle</mat-icon>-->
-<!--                                    Add a Discipline-->
-<!--                                </button>-->
 
                                 <br><br>
                                 The URS abstract review committee selects one submission to be the Feature Presentation. This presentation
@@ -172,7 +138,43 @@
                                 <br>
                                 <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                                 <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
+                            </form>
+                        </div>
+                    </mat-step>
 
+                    <mat-step label="Presenter(s)" [stepControl]="presenters">
+                        <div class="presenterForm">
+
+                            <form [formGroup]="presenters">
+                                Who else will be presenting? Please add their name(s) and their university email below.
+                                If there are more than one presenter, click the plus button for more rows.
+                                <br>
+
+                                <p>You will be automatically entered as: {{user.FirstName}} {{user.LastName}} ({{userEmail}})</p>
+
+                                <button mat-raised-button (click)="addPresenter()" *ngIf="presenters.length <= 10"><mat-icon>add_circle</mat-icon>Add Presenter</button>
+
+                                <div *ngFor="let presenter of presenters.controls; index as i">
+                                    <div>
+                                        <ng-container [formGroup]="presenter">
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterFirstName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterLastName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterEmail">
+                                            </textarea>
+                                            </mat-form-field>
+                                        </ng-container>
+                                        <button mat-raised-button (click)="removePresenter(i)" *ngIf="presenters.length > 0"><mat-icon>remove_circle</mat-icon>Remove Presenter</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <button mat-raised-button matStepperNext color="primary" [disabled]="presentersComplete()">Next</button>
                             </form>
                         </div>
                     </mat-step>
@@ -212,105 +214,39 @@
                         </div>
                     </mat-step>
 
-                    <mat-step label="Advisor(s)" [stepControl]="thirdFormGroup">
+                    <mat-step label="Advisor(s)" [stepControl]="advisors">
                         <div class="adviserForm">
-                            <form [formGroup]="thirdFormGroup">
+                            <form [formGroup]="advisors">
                                 Who is the advisor(s)? Please add their name(s) and their university email below.
                                 If there are more than one presenter, click the plus button for more rows.
                                 <br>
-                                <mat-form-field>
-                                    <textarea matInput formControlName="thirdCtrlOne"
-                                              placeholder="First Name"
-                                              (input) = "firstAdvisorFirstName = $event.target.value"
-                                              rows="1"
-                                              cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field>
-                                    <textarea matInput formControlName="thirdCtrlTwo"
-                                            placeholder="Last Name"
-                                            (input) = "firstAdvisorLastName = $event.target.value"
-                                            rows="1"
-                                            cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field>
-                                    <textarea matInput formControlName="thirdCtrlThree"
-                                              placeholder="Full Email Address"
-                                              (input) = "firstAdvisorEmail = $event.target.value"
-                                              rows="1"
-                                              col="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <button mat-raised-button (click)="this.secondAdvisor = true"
-                                        *ngIf="!this.secondAdvisor"><mat-icon>add_circle</mat-icon></button>
-                                <br>
-                                <mat-form-field *ngIf="this.secondAdvisor">
-                                    <textarea matInput
-                                              placeholder="First Name"
-                                              (input) = "secondAdvisorFirstName = $event.target.value"
-                                              rows="1"
-                                              cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field *ngIf="this.secondAdvisor">
-                                    <textarea matInput
-                                              placeholder="Last Name"
-                                              (input) = "secondAdvisorLastName = $event.target.value"
-                                              rows="1"
-                                              cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field *ngIf="this.secondAdvisor">
-                                    <textarea matInput
-                                              placeholder="Full Email Address"
-                                              (input) = "secondAdvisorEmail = $event.target.value"
-                                              rows="1"
-                                              col="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <button mat-raised-button (click)="this.thirdAdvisor = true"
-                                        *ngIf="this.secondAdvisor && !this.thirdAdvisor"><mat-icon>add_circle</mat-icon></button>
-                                <br>
-                                <mat-form-field *ngIf="this.thirdAdvisor">
-                                    <textarea matInput
-                                              placeholder="First Name"
-                                              (input) = "thirdAdvisorFirstName = $event.target.value"
-                                              rows="1"
-                                              cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field *ngIf="this.thirdAdvisor">
-                                    <textarea matInput
-                                              placeholder="Last Name"
-                                              (input) = "thirdAdvisorLastName = $event.target.value"
-                                              rows="1"
-                                              cols="1">
-                                    </textarea>
-                                </mat-form-field>
-
-                                <mat-form-field *ngIf="this.thirdAdvisor">
-                                    <textarea matInput
-                                              placeholder="Full Email Address"
-                                              (input) = "thirdAdvisorEmail = $event.target.value"
-                                              rows="1"
-                                              col="1">
-                                    </textarea>
-                                </mat-form-field>
-
+                                <button mat-raised-button (click)="addAdvisor()"><mat-icon>add_circle</mat-icon>Add Advisor</button>
+                                <div *ngFor="let advisor of advisors.controls; index as i">
+                                    <div>
+                                        <ng-container [formGroup]="advisor">
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorFirstName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorLastName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorEmail">
+                                            </textarea>
+                                            </mat-form-field>
+                                        </ng-container>
+                                        <button *ngIf="i > 0" mat-raised-button (click)="removeAdvisor(i)"><mat-icon>remove_circle</mat-icon>Remove Advisor</button>
+                                    </div>
+                                </div>
                             </form>
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                            <button mat-raised-button matStepperNext color="primary" [disabled]="sectionFourComplete()">Next</button>
+                            <button mat-raised-button matStepperNext color="primary" [disabled]="sectionThreeComplete()">Next</button>
                         </div>
                     </mat-step>
+
                     <mat-step label="Misc Info/Submit">
                         <div class="additionalInfoPage">
                             Each presentation room will have available an overhead projector and a
@@ -368,34 +304,54 @@
 
                                 <p>Presenter(s): </p>
                                 <ul>
-                                    <li *ngFor="let pres of presenters.value">{{pres.presenterFirstName}} {{pres.presenterLastName}} ({{pres.presenterEmail}})</li>
+                                    <li>{{presenterWhoIsSubmitting.presenterFirstName}}
+                                        {{presenterWhoIsSubmitting.presenterLastName}}
+                                        ({{presenterWhoIsSubmitting.presenterEmail}})
+                                    </li>
+                                    <li *ngFor="let pres of presenters.value">
+                                        {{pres.presenterFirstName}}
+                                        {{pres.presenterLastName}}
+                                        ({{pres.presenterEmail}})
+                                    </li>
                                 </ul>
 
-                                <p>Discipline: <span *ngFor="let discipline of academicDiscipline">{{discipline.value}} </span><span *ngIf="otherAcedemicDiscipline && this.otherAcademic">{{otherAcedemicDiscipline}}</span></p>
+                                <p>Discipline:
+                                    <span *ngFor="let discipline of academicDiscipline; let isLast = last">
+                                        {{discipline.value}}{{isLast ? '' : ', '}}</span>
+                                    <span *ngIf="otherAcedemicDiscipline">
+                                        <span *ngIf="academicDiscipline.length > 0; else standalone">, {{otherAcedemicDiscipline}}
+                                        </span>
+                                        <ng-template #standalone>
+                                            {{otherAcedemicDiscipline}}
+                                        </ng-template>
+                                    </span>
+                                </p>
+
                                 <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
 
                                 <p *ngIf="sponOrganization">
-                                    <span> Sponsoring Organization: </span>
-                                    <span *ngFor="let sponsOrg of sponOrganization">{{sponsOrg.value}} </span><span *ngIf="miscSponOrganization">{{miscSponOrganization}}</span>
+                                    Sponsoring Organization:
+                                    <span *ngFor="let sponsOrg of sponOrganization; let isLast = last">
+                                        {{sponsOrg.value}}{{isLast ? '' : ', '}}</span>
+                                    <span *ngIf="miscSponOrganization">
+                                        <span *ngIf="sponOrganization.length > 0; else standalone">, {{miscSponOrganization}}
+                                        </span>
+                                        <ng-template #standalone>
+                                            {{miscSponOrganization}}
+                                        </ng-template>
+                                    </span>
+
                                 </p>
 
                                 <p *ngIf="category">
-                                    <span> Categories: </span>
-                                    <span *ngFor="let category of category">{{category.value}} </span>
+                                    Categories:
+                                    <span *ngFor="let category of category; let isLast = last">{{category.value}}{{isLast ? '' : ', '}}</span>
                                 </p>
 
-                                <p>Advisor Name: {{firstAdvisorFirstName}} {{firstAdvisorLastName}}</p>
-                                <p>Advisor Email: {{firstAdvisorEmail}}</p>
-
-                                <div *ngIf="secondAdvisorFirstName">
-                                    <p>Second Advisor: {{secondAdvisorFirstName}} {{secondAdvisorLastName}}</p>
-                                    <p>Second Advisor Email: {{secondAdvisorEmail}}</p>
-                                </div>
-
-                                <div *ngIf="thirdAdvisorFirstName">
-                                    <p>Third Advisor: {{thirdAdvisorFirstName}} {{thirdAdvisorLastName}}</p>
-                                    <p>Third Advisor Email: {{thirdAdvisorEmail}}</p>
-                                </div>
+                                <p>Advisors(s): </p>
+                                <ul>
+                                    <li *ngFor="let adv of advisors.value">{{adv.advisorFirstName}} {{adv.advisorLastName}} ({{adv.advisorEmail}})</li>
+                                </ul>
 
                                 <p *ngIf="additionalMediaEquipment">Media Services Equipment: {{additionalMediaEquipment}}</p>
                                 <p *ngIf="additionalRequirements">Special Requirements: {{additionalRequirements}}</p>
