@@ -59,15 +59,13 @@
                 "value": "Sophomore Spotlight"
             }
         ],
-        "firstAdvisorFirstName": "Charles",
-        "firstAdvisorLastName": "Menne",
-        "firstAdvisorEmail": "menne019@morris.umn.edu",
-        "secondAdvisorFirstName": "",
-        "secondAdvisorLastName": "",
-        "secondAdvisorEmail": "",
-        "thirdAdvisorFirstName": "",
-        "thirdAdvisorLastName": "",
-        "thirdAdvisorEmail": "",
+        "advisors": [
+            {
+                "advisorFirstName": "John",
+                "advisorLastName": "Barton",
+                "advisorEmail": "bart025@morris.umn.edu"
+            }
+        ],
         "additionalMediaEquipment": "no",
         "additionalRequirements": "NA",
         "other": "NA",
@@ -152,15 +150,13 @@
                 "value": "Submitted Panel"
             }
         ],
-        "firstAdvisorFirstName": "Charles",
-        "firstAdvisorLastName": "Menne",
-        "firstAdvisorEmail": "menne019@morris.umn.edu",
-        "secondAdvisorFirstName": "",
-        "secondAdvisorLastName": "",
-        "secondAdvisorEmail": "",
-        "thirdAdvisorFirstName": "",
-        "thirdAdvisorLastName": "",
-        "thirdAdvisorEmail": "",
+        "advisors": [
+            {
+                "advisorFirstName": "John",
+                "advisorLastName": "Barton",
+                "advisorEmail": "bart025@morris.umn.edu"
+            }
+        ],
         "additionalMediaEquipment": "no",
         "additionalRequirements": "NA",
         "other": "NA",
@@ -236,15 +232,13 @@
                 "value": "Works in Progress"
             }
         ],
-        "firstAdvisorFirstName": "Charles",
-        "firstAdvisorLastName": "Menne",
-        "firstAdvisorEmail": "menne019@morris.umn.edu",
-        "secondAdvisorFirstName": "",
-        "secondAdvisorLastName": "",
-        "secondAdvisorEmail": "",
-        "thirdAdvisorFirstName": "",
-        "thirdAdvisorLastName": "",
-        "thirdAdvisorEmail": "",
+        "advisors": [
+            {
+                "advisorFirstName": "John",
+                "advisorLastName": "Barton",
+                "advisorEmail": "bart025@morris.umn.edu"
+            }
+        ],
         "additionalMediaEquipment": "no",
         "additionalRequirements": "NA",
         "other": "NA",
