@@ -1,6 +1,12 @@
 package server.database.users;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
+import com.mongodb.util.JSON;
 import spark.Request;
 import spark.Response;
 
@@ -39,23 +45,19 @@ public class UserRequestHandler {
         }
     }
 
-
-    public String editUserrole(Request req, Response res) {
+    public String editUserRole(Request req, Response res) {
         res.type("application/json");
         BasicDBObject dbO = BasicDBObject.parse(req.body());
 
         try {
-            String userID = dbO.getString("userID");
-            String role = dbO.getString("position");
+            String userID = dbO.getString("_id");
+            String role = dbO.getString("Role");
 
-            System.out.println("userID: " + userID);
-            System.out.println("position: " + role);
-
-            return userController.editUserrole(userID, role);
+            return userController.editUserRole(userID, role);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
+
 }

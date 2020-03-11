@@ -1,11 +1,103 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title>URSA Major</mat-card-title>
-            <mat-card-subtitle>URS submission and event management tool</mat-card-subtitle>
+            <mat-card-title>Undergraduate Research Symposium</mat-card-title>
+            <mat-card-subtitle>URS submission <span *ngIf="user.Role != 'user'">and event management</span> tool</mat-card-subtitle>
             <mat-divider></mat-divider>
-            <mat-card-content>
+            <mat-card-content *ngIf="user.Role!='user'" class="higherRoleCard">
+
+                <h2>Hello {{user.FirstName}}, you are seeing this because you are an: {{user.Role.toUpperCase()}}</h2>
+
+                <h3>You have higher level access, including abilities such as: </h3>
+                <ul>
+                    <li>(depends on advisor or chair or admin)</li>
+                    <li>(depends on advisor or chair or admin)</li>
+                    <li>(etc etc etc)</li>
+                </ul>
+
+                <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
+                <button mat-raised-button routerLink="/admin" *ngIf="user.Role == 'admin'">Admin Page</button>
+
+                <h2 class="studentPOV">The Student Point of View</h2>
+                <p>If a student has a question about the submission interface, not to fear! You can step through the
+                submission form on your own and see exactly what they see. <b>However, you cannot submit an abstract
+                        yourself.</b>
+                </p>
+                <p>The following is what a student sees upon logging into the site. You may also
+                find the information like the timeline, submission tips, or related links helpful.</p>
+            </mat-card-content>
+
+            <mat-card-content class="studentCard">
+                <h2>Welcome to the new URS submission website!</h2>
+
+                <div class="wrongRole">
+                    <h3>Supposed to be co-presenter but not seeing your abstract?
+                        <span *ngIf="date > weekOutFromAbstractsDue">An advisor, chair or admin? </span>
+                    <a routerLink="/wrongRole">Click here for help.</a></h3>
+                </div>
+
+
+                <p>
+                    The Undergraduate Research Symposium (URS) offers and opportunity to present your research and
+                    scholarly and creative work.
+                </p>
+                <p>
+                    Your audience not only includes your peers, your faculty, and your family but also reaches far
+                    beyond the campus community.
+                </p>
+                <p>
+                    April 25th, 2020 will mark the 20th annual UMN Morris Undergraduate Research Symposium, which
+                    celebrates student scholarly achievement and informs the campus community about the variety and
+                    quality of original student research, creative, and scholarly work from all academic areas of the
+                    Morris campus.
+                </p>
+
+                <h3>Types of presentations include</h3>
+                <ul>
+                    <li>posters</li>
+                    <li>oral presentations</li>
+                    <li>short or abbreviated theatrical, dance, or musical performances</li>
+                </ul>
+
+                <h3>In 2019 we introduced a few new categories:</h3>
+                <ul>
+                    <li>"works in progress" option for projects and papers not-yet-finished, but "far along"</li>
+                    <li>"capstone" category for those kinds of particular works that function to fulfill degree
+                        requirements but may be presentable to a general audience</li>
+                    <li>"submitted panel" option, which could include several projects related to a tightly-defined
+                        topic or theme</li>
+                    <li>"sophomore spotlight" to highlight the work of younger scholar-students.</li>
+                </ul>
+
+                <h2>Timeline</h2>
+                <ul>
+                    <li *ngIf="date < abstractsDueMarch28th2020atNoon">
+                        March 27th: Abstracts Due
+                    <li *ngIf="date > abstractsDueMarch28th2020atNoon"><s>March 27th: Abstracts Due</s></li>
+
+                    <li *ngIf="date < reviewerFeedbackDueApril10th2020atTBD">
+                        April 10th: Reviewer Feedback Due</li>
+                    <li *ngIf="date > reviewerFeedbackDueApril10th2020atTBD"><s>April 10th: Reviewer Feedback Due</s></li>
+
+                    <li *ngIf="date < finalStudentRevisionsDueApril17th2020atTBD">
+                        April 17th: Final Student Revisions Due</li>
+                    <li *ngIf="date > finalStudentRevisionsDueApril17th2020atTBD"><s>April 17th: Final Student Revisions Due</s></li>
+
+                    <li *ngIf="date < ursOnApril25th2020atTBD">
+                        April 25th: 20th Annual URS</li>
+                    <li *ngIf="date > ursOnApril25th2020atTBD"><s>April 25th: 20th Annual URS</s></li>
+                </ul>
+
+                <h3>Additional Details & Resources</h3>
+                <p>Visit the URS website on
+                    <a href="https://academics.morris.umn.edu/opportunities/undergraduate-research-symposium">
+                        Morris's ACE Office website</a> for more information. Resources like: talk tips, example and
+                    archived abstracts, guidelines, contact information and more.</p>
+
                 <button mat-raised-button routerLink="/newSubmission">Create a Submission</button>
+                <button mat-raised-button routerLink="/submissionList">
+                    View Your Submissions
+                </button>
             </mat-card-content>
         </mat-card>
     </div>

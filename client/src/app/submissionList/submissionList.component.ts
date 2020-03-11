@@ -39,9 +39,8 @@ export class SubmissionListComponent implements OnInit {
         return this.submissions;
     }
 
-    fixDate(date: string): string {
-        let d = new Date(date);
-        return d.toDateString();
+    grabSubmissionId(id) {
+        this.submissionListService.grabAbstractId(id);
     }
 
     /**

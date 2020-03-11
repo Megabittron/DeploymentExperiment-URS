@@ -1,0 +1,171 @@
+<div class="submission-container" *ngIf="submission">
+
+    <div class="submission-content">
+
+        <!-- TODO: Style in the theme instead of in component's scss -->
+        <div class="button-container">
+            <button mat-button class="back-to-list" routerLink="/submissionList">
+                <mat-icon>arrow_back</mat-icon> Back to Submission List
+            </button>
+
+            <br>
+
+            <div class="submission-judgement-btns" *ngIf="user.Role!='user'">
+                <button mat-button class="approve">
+                    <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
+                </button>
+
+                <button mat-button class="reject">
+                    <mat-icon>thumb_down</mat-icon> Reject Submission [W]
+                </button>
+
+                <button mat-button class="flag">
+                    <mat-icon>flag</mat-icon> Flag for Re-Submission [W]
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <h1>{{submission.presentationTitle}}</h1>
+            <p><b>Presenter(s):</b> </p>
+            <ul>
+                <li *ngFor="let pres of submission.presenters">{{pres.presenterFirstName}} {{pres.presenterLastName}} ({{pres.presenterEmail}})</li>
+            </ul>
+            <p><b>Advisors(s):</b> </p>
+            <ul>
+                <li *ngFor="let adv of submission.advisors">{{adv.advisorFirstName}} {{adv.advisorLastName}} ({{adv.advisorEmail}})</li>
+            </ul>
+        </div>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    More Details
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <p *ngIf="submission.academicDiscipline"><b>Discipline:</b>
+                <span *ngFor="let discipline of submission.academicDiscipline; let isLast = last">
+                    {{discipline.value}}{{isLast ? '' : ', '}}</span>
+                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline.slice(5, otherDiscipline.length)}}</span>
+            </p>
+            <p><b>Type:</b> {{submission.presentationType}}</p>
+            <p><b>Format:</b> {{submission.submissionFormat}}</p>
+            <p><b>Willing to Change Format:</b> {{submission.willingToChangePresentationFormat}}</p>
+            <p><b>Willing to be Feature Presentation:</b> {{submission.willingToBeFeaturePresenter}}</p>
+            <p *ngIf="user.Role!='user'"><b>Adviser Approved:</b> {{submission.approval}}</p> <!-- TODO: Change boolean display -->
+            <p *ngIf="submission.additionalMediaEquipment"><b>Media Services Equipment:</b> {{submission.additionalMediaEquipment}}</p>
+            <p *ngIf="submission.additionalRequirements"><b>Special Requirements:</b> {{submission.additionalRequirements}}</p> <!-- TODO: Recognize field in interface  -->
+            <p *ngIf="submission.other"><b>Additional Information:</b> {{submission.other}}</p> <!-- TODO: Add field  -->
+            <p><b>Date of Submission:</b> {{submission.timestamp | date: 'EEEE, MMMM d'}} at {{submission.timestamp | date: 'h:mm a'}}</p>
+
+            <p *ngIf="submission.sponOrganization.length != 0">
+                <span><b>Sponsoring Organization: </b> </span>
+                <span *ngFor="let sponsOrg of submission.sponOrganization; let isLast = last">{{sponsOrg.value}}{{isLast ? '' : ', '}}</span>
+                <span *ngIf="otherOrg.includes('other')">{{otherOrg.slice(5, otherDiscipline.length)}}</span>
+            </p>
+
+            <p *ngIf="submission.category.length > 0">
+                <b>Categories: </b>
+                <span *ngFor="let category of submission.category; let isLast = last">{{category.value}}{{isLast ? '' : ', '}}</span>
+            </p>
+
+        </mat-expansion-panel>
+
+        <div class="abstract">
+            <h1>Abstract</h1>
+            <p (mouseup)="highlightAbstractToCommentOn()">{{submission.abstractContent}}</p>
+        </div>
+
+        <div *ngIf="user.Role!='user'">
+            <p>You are seeing this submission because you are:
+                <b *ngIf="user.Role=='reviewer'">an Advisor</b>
+                <b *ngIf="user.Role=='chair'">a Chair</b>
+                <b *ngIf="user.Role=='admin'">an admin</b>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="submission-comments"> <!-- TODO: Add *ngIf="submission.comments" for comment area -->
+        <h2 style="text-align: center">Comments</h2>
+
+        <p>The comment section will open up when reviewing begins. Here is an example of what a comment would look like: </p>
+
+<!--        <button mat-button class="new-comment-btn" (click)="makeNewComment()">-->
+<!--            <mat-icon>edit</mat-icon> Comment on Thread (coming soon)-->
+<!--        </button>-->
+
+<!--        <div class="create-comment" *ngIf="createNewComment">-->
+<!--            <u>Leave a comment without quoting & highlighting:</u>-->
+<!--            <br><br>-->
+<!--            <mat-form-field class="leave-a-comment">-->
+<!--                <textarea matInput placeholder="Leave a comment"></textarea>-->
+<!--            </mat-form-field>-->
+
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment (coming soon)-->
+<!--            </button>-->
+<!--        </div>-->
+
+        <div class="create-comment" *ngIf="createHightingComment">
+            <u>Leave a comment that quotes & highlights the abstract:</u>
+            <br><br>
+            <i class="quote">"{{selectedText}}"</i>
+            <br><br>
+
+            <mat-form-field class="leave-a-comment">
+                <textarea matInput placeholder="Leave a comment (coming soon)"></textarea>
+            </mat-form-field>
+
+<!--            <button mat-button class="leave-comment-btn">-->
+<!--                <mat-icon>edit</mat-icon> Submit Comment w/Quote-->
+<!--            </button>-->
+        </div>
+
+        <!--TopComments-->
+        <div>
+            <div class="top-level-comment">
+                <i class="material-icons">person_outline</i>
+                <b>Submitted by REVIEWER on 3/9/20 at 3:30PM</b>
+                <br><br>
+                <i class="quote">*long and winding sentence*</i>
+                <p>This sentence goes on and on without saying much. Either condense the idea or break it into a few sentences.</p>
+<!--                <button mat-button class="respond-comment-btn">-->
+<!--                    <mat-icon>edit</mat-icon> Comment on Comment-->
+<!--                </button>-->
+            </div>
+        <!--SubComments-->
+            <div class="sub-comment">
+                <i class="material-icons">person</i>
+                <b>Submitted by STUDENT on 3/9/20 at 4:00PM</b>
+                <br>
+                <p>Thinking of breaking it up into a few sentences. Will do, thank you.</p>
+            </div>
+
+            <div class="create-comments">
+                <div class="sub-comment" *ngIf="createSubcomment">
+                    <i class="material-icons">person_outline</i>
+                    <b>Submitted by REVIEWER on Feb 21, 2:08PM</b>
+                    <br>
+                    <p>subcomment</p>
+                </div>
+
+                <div class="create-comment" *ngIf="createSubcomment">
+                    <u>Leave a comment on this comment:</u>
+                    <br><br>
+                    <mat-form-field class="leave-a-comment">
+                        <textarea matInput placeholder="Leave a comment"
+                                  (input)="subComment= $event.target.value"></textarea>
+                    </mat-form-field>
+
+                    <button mat-button class="leave-comment-btn" (click)="saveSubcomment()">
+                        <mat-icon>edit</mat-icon> Submit Comment of Comment [W]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

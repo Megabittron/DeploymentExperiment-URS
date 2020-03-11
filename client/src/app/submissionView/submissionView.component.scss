@@ -1,0 +1,117 @@
+.debug-tag {
+    border: 1px solid red;
+    display: inline-block;
+}
+
+.submission-container {
+    padding: 2% 5% 2% 5%;
+}
+
+.submission-content {
+    //border: 1px solid red;  //for debugging
+    border: 6px solid #7a0019;
+    //background-color: lightgrey;
+    display: inline-block;
+    width: 60%;
+    float: left;
+    padding: 0.5rem;
+}
+
+// comments
+.submission-comments {
+    border: 6px solid #ffcc33;
+    display: inline-block;
+    width: 40%;
+    float: left;
+    padding: 0.5rem;
+}
+
+.comment {
+    background-color: lightblue;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.top-level-comment {
+    //border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 100%;
+    float: left;
+    padding: 0.2rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    margin-bottom: 0.2rem;
+    border-left: 3px solid red;
+    font-size: 0.8rem;
+}
+
+.quote {
+    background-color: lightgrey;
+    font-size: 0.8rem;
+}
+
+.sub-comment {
+    //border: 1px solid red;  //for debugging
+    display: inline-block;
+    width: 95%;
+    float: right;
+    padding: 0.2rem;
+    background-color: white;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    margin-bottom: 0.2rem;
+    border-left: 3px solid blue;
+    font-size: 0.8rem;
+}
+
+.leave-a-comment {
+    width: 100%;
+}
+
+.leave-comment-btn {
+    background-color: green;
+    margin: 0.5rem;
+}
+
+.new-comment-btn {
+    background-color: cadetblue;
+    margin: 0.5rem;
+}
+
+.respond-comment-btn {
+    background-color: cadetblue;
+    margin: 0.5rem;
+    float: right;
+    font-size: 0.8rem;
+}
+
+.create-comment {
+    border: 1px solid black;
+    display: inline-block;
+    background-color: ghostwhite;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 0.5rem;
+}
+
+// buttons
+.button-container {
+    //border: 1px solid red;  //for debugging
+}
+
+// individual buttons
+.back-to-list {
+    background-color: gray;
+    margin-bottom: 0.5rem;
+}
+
+.approve {
+    background-color: lightgreen;
+}
+
+.reject {
+    background-color: indianred;
+}
+
+.flag {
+    background-color: lightblue;
+}

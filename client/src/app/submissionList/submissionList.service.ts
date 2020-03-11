@@ -4,13 +4,14 @@ import {Observable} from 'rxjs';
 import {Submission} from '../newSubmission/submission';
 import {environment} from '../../environments/environment';
 
-
-
-
 @Injectable()
 export class SubmissionListService {
     readonly baseUrl: string = environment.API_URL + 'abstracts';
+    readonly baseUrlSingleAbstract: string = environment.API_URL + 'abstract';
     private submissionUrl: string = this.baseUrl;
+    private singleSubmissionUrl: string = this.baseUrlSingleAbstract;
+
+    public singleAbstractId = "";
 
     constructor(
         private http: HttpClient) {
@@ -35,9 +36,18 @@ export class SubmissionListService {
         return this.http.get<Submission[]>(this.submissionUrl + '/' + userID);
     }
 
-    getSubmissionById(id: string): Observable<Submission> {
+    getUsersSubmissionsById(id: string): Observable<Submission> {
         this.submissionUrl = this.baseUrl;
         return this.http.get<Submission>(this.submissionUrl + '/' + id);
+    }
+
+    getSingleSubmissionById(id: string): Observable<Submission> {
+        this.submissionUrl = this.baseUrl;
+        return this.http.get<Submission>( this.singleSubmissionUrl + '/' + id);
+    }
+
+    grabAbstractId(id) {
+        this.singleAbstractId = id;
     }
 
     /*// sets the submissionUrl to the serachParam

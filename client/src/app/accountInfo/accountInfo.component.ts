@@ -46,23 +46,6 @@ export class AccountInfoComponent implements OnInit {
         this.changeEditState();
     }
 
-    getName(): string {
-        return this.user.FirstName + ' ' + this.user.LastName;
-    }
-
-    getRole(): string {
-        return this.user.Role.toUpperCase();
-    }
-
-    getShirtSize(): string {
-        return this.user.ShirtSize.toUpperCase();
-    }
-
-    signOut(): void {
-        this.authenticationService.signOut();
-        this.router.navigate(['/']);
-    }
-
     ngOnInit(): void {
        this.authenticationService.user$.subscribe(user => {
             this.user = user;

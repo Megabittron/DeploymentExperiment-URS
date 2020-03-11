@@ -3,9 +3,12 @@
         <mat-card>
             <mat-card-title>2020 URS Submission Form</mat-card-title>
             <mat-divider></mat-divider>
-            <mat-card-content>
-                <mat-horizontal-stepper #stepper>
-                    <mat-step>
+            <mat-card-content [formGroup]="formGroup">
+                <mat-horizontal-stepper [linear]="true" #stepper>
+                    <mat-step label="Application Info">
+                        <h1 id="non-student-disclaimer" *ngIf="user.Role!='user'">Warning: As a non-student you can preview the form, but not
+                        submit an abstract. If you or your students are having issues or or questions regarding the form,
+                        contact &lt;insert_admin_email&gt;.</h1>
                         All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
                         The faculty mentor should indicate:<br>
                         * Confidence that the student's work will be ready to present by the URS date.<br>
@@ -39,11 +42,11 @@
                         </div>
                     </mat-step>
 
-                    <mat-step>
-                        <div class="presentationTitle" >
-                            <form #newAbstractForm="ngForm">
+                    <mat-step label="Title/Abstract/Format" [stepControl]="firstFormGroup">
+                        <div class="presentationTitle">
+                            <form [formGroup]="firstFormGroup">
                                 <mat-form-field class="presentationTitleBox">
-                                    <textarea matInput #input
+                                    <textarea matInput #input formControlName="firstCtrlOne"
                                            required
                                            placeholder="Presentation Title"
                                            (input)="presentationTitle = $event.target.value"
@@ -52,25 +55,28 @@
                                 </mat-form-field>
 
                                 <mat-form-field class="abstractBox">
-                                <textarea matInput #input
-                                          required
-                                          placeholder="Artist Statement/ Proposal/ Abstract"
-                                          (input)="abstractContent = $event.target.value"
-                                          rows="10"
-                                          cols="1"></textarea>
+                                    <textarea matInput #input formControlName="firstCtrlTwo"
+                                              required
+                                              placeholder="Artist Statement/ Proposal/ Abstract"
+                                              (input)="abstractContent = $event.target.value"
+                                              rows="10"
+                                              cols="1"></textarea>
                                 </mat-form-field>
+
                                 <br><br>
-                                <mat-select placeholder="Format for Submission" required>
+
+                                <mat-select placeholder="Format for Submission" required formControlName="firstCtrlThree">
                                     <mat-option #input value="artist statement" (click) = "submissionFormat = 'artist statement'">Artist Statement</mat-option>
                                     <mat-option #input value="humanities proposal" (click) = "submissionFormat = 'humanities proposal'">Humanities Proposal</mat-option>
                                     <mat-option #input value="science or social science abstract" (click) = "submissionFormat = 'science or social science abstract'">Science or Social Science Abstract</mat-option>
                                 </mat-select>
 
-                                <mat-select placeholder="Type of Presentation" required>
+                                <mat-select placeholder="Type of Presentation" required formControlName="firstCtrlFour">
                                     <mat-option #input value="poster or visual display" (click) = "presentationType = 'poster or visual display'">Poster or Visual Display</mat-option>
                                     <mat-option #input value="oral presentation" (click) = "presentationType = 'oral presentation'">Oral Presentation</mat-option>
                                     <mat-option #input value="performance" (click) = "presentationType = 'performance'">Performance</mat-option>
                                 </mat-select>
+
                                 <br><br>
                                 Because of space constraints, we may not be able to have everyone do their preferred type of presentation.
                                 If necessary, would you be willing to give your presentation in another format?
@@ -78,274 +84,170 @@
                                 (No change in format will be made without first contacting the presenter first)
                                 <br><br>
 
-                                <mat-radio-group>
-                                    <mat-radio-button value="yes" color="primary" (click) = "changePresentationFormat = 'true'">Yes</mat-radio-button>&nbsp;&nbsp;
-                                    <mat-radio-button value="no" color="primary" (click) = "changePresentationFormat = 'false'">No</mat-radio-button>
+                                <mat-radio-group (change)="onFormatChange($event)" formControlName="firstCtrlFive">
+                                    <mat-radio-button value="yes" color="primary">Yes</mat-radio-button>&nbsp;&nbsp;
+                                    <mat-radio-button value="no" color="primary">No</mat-radio-button>
                                 </mat-radio-group>
                                 <br><br>
-
 
                                 <button mat-raised-button button matStepperPrevious color="warn">Previous</button>
                                 <button mat-raised-button matStepperNext color="primary" [disabled]="sectionOneComplete()">Next</button>
                             </form>
                         </div>
                     </mat-step>
-                    <mat-step>
+
+                    <mat-step label="Discipline(s)/Featured" [stepControl]="secondFormGroup">
                         <div class="presenterForm">
+                            <form [formGroup]="secondFormGroup">
+                                <h3>Discipline(s)</h3>
 
-                            Who will be presenting? Please add their name(s) and their university email below. If there are more than one presenter, click the plus button
-                            for more rows.
-                            <br>
-                            <mat-form-field required>
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "firstPresenterFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field required>
-                                <textarea matInput
-                                          placeholder="Last Name"
-                                          (input) = "firstPresenterLastName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field required>
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "firstPresenterEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
-                            <button mat-raised-button (click)="this.secondPresenter = true" *ngIf="!this.secondPresenter"><mat-icon>add_circle</mat-icon></button>
-                            <br>
-                            <mat-form-field *ngIf="this.secondPresenter">
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "secondPresenterFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.secondPresenter">
-                                <textarea matInput
-                                          placeholder="Last Name"
-                                          (input) = "secondPresenterLastName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.secondPresenter">
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "secondPresenterEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
-                            <button mat-raised-button (click)="this.thirdPresenter = true"
-                                    *ngIf="this.secondPresenter && !this.thirdPresenter"><mat-icon>add_circle</mat-icon></button>
-                            <br>
-                            <mat-form-field *ngIf="this.thirdPresenter">
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "thirdPresenterFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.thirdPresenter">
-                                <textarea matInput
-                                          placeholder="Last Name"
-                                          (input) = "thirdPresenterLastName = $event.taret.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.thirdPresenter">
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "thirdPresenterEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
-                            <br>
-                            <mat-select placeholder="Academic Discipline" class="academicDiscipline" required>
-                                <mat-option #input value="african and black american studies" (click) = "academicDiscipline = 'african and black american studies'">African and Black American Studies</mat-option>
-                                <mat-option #input value="anthropology" (click) = "academicDiscipline = 'anthropology'">Anthropology</mat-option>
-                                <mat-option #input value="art history" (click) = "academicDiscipline = 'art history'">Art History</mat-option>
-                                <mat-option #input value="biology" (click) = "academicDiscipline = 'biology'">Biology</mat-option>
-                                <mat-option #input value="chemistry & biochemistry" (click) = "academicDiscipline = 'chemistry and biochemistry'">Chemistry and Biochemistry</mat-option>
-                                <mat-option #input value="communication, media, & rhetoric" (click) = "academicDiscipline = 'communication/media/rhetoric'">Communication, Media, & Rhetoric</mat-option>
-                                <mat-option #input value="computer science" (click) = "academicDiscipline = 'computer science'">Computer Science</mat-option>
-                                <mat-option #input value="economics" (click) = "academicDiscipline = 'economics'">Economics</mat-option>
-                                <mat-option #input value="education" (click) = "academicDiscipline = 'education'">Education</mat-option>
-                                <mat-option #input value="elementary education" (click) = "academicDiscipline = 'elementary education'">Elementary Education</mat-option>
-                                <mat-option #input value="english/creative writing" (click) = "academicDiscipline = 'english/creative writing'">English/Creative Writing</mat-option>
-                                <mat-option #input value="environmental science" (click) = "academicDiscipline = 'environmental science'">Environmental Science</mat-option>
-                                <mat-option #input value="environmental studies" (click) = "academicDiscipline = 'environmental studies'">Environmental Studies</mat-option>
-                                <mat-option #input value="french" (click) = "academicDiscipline = 'french'">French</mat-option>
-                                <mat-option #input value="gender, women, and sexuality studies" (click) = "academicDiscipline = 'gender, women, and sexuality studies'">Gender, Women, and Sexuality Studies</mat-option>
-                                <mat-option #input value="geology" (click) = "academicDiscipline = 'geology'">Geology</mat-option>
-                                <mat-option #input value="german studies" (click) = "academicDiscipline = 'german studies'">German Studies</mat-option>
-                                <mat-option #input value="history" (click) = "academicDiscipline = 'history'">History</mat-option>
-                                <mat-option #input value="human services/general/criminal justice/social justice/human development" (click) = "academicDiscipline = 'human services/ general/ criminal justice/ social justice/ human development'">
-                                    Human Services/General/Criminal Justice/Social Justice/Human Development</mat-option>
+                                <mat-form-field>
+                                    <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour" multiple>
+                                        <mat-option *ngFor="let discipline of disciplines" [value]="discipline.key" (click)="addOrRemoveDiscipline(discipline)">
+                                            {{discipline.value}}
+                                        </mat-option>
+                                        <mat-option #input value="other" (click)="this.otherAcademic = !this.otherAcademic">Other</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                                <mat-option #input value="latin american area studies" (click) = "academicDiscipline = 'latin american area studies'">Latin American Area Studies</mat-option>
-                                <mat-option #input value="management" (click) = "academicDiscipline = 'management'">Management</mat-option>
-                                <mat-option #input value="medieval studies" (click) = "academicDiscipline = 'medieval studies'">Medieval Studies</mat-option>
-                                <mat-option #input value="music" (click) = "academicDiscipline = 'music'">Music</mat-option>
-                                <mat-option #input value="native american and indigenous studies" (click) = "academicDiscipline = 'native american and indigenous studies'">Native American and Indigenous Studies</mat-option>
-                                <mat-option #input value="philosophy" (click) = "academicDiscipline = 'philosophy'">Philosophy</mat-option>
-                                <mat-option #input value="german studies" (click) = "academicDiscipline = 'physics'">Physics</mat-option>
-                                <mat-option #input value="political science" (click) = "academicDiscipline = 'political science'">Political Science</mat-option>
-                                <mat-option #input value="psychology" (click) = "academicDiscipline = 'psychology'">Psychology</mat-option>
-                                <mat-option #input value="secondary education" (click) = "academicDiscipline = 'secondary education'">Secondary Education</mat-option>
-                                <mat-option #input value="social science" (click) = "academicDiscipline = 'social science'">Social Science</mat-option>
-                                <mat-option #input value="sociology" (click) = "academicDiscipline = 'sociology'">Sociology</mat-option>
-                                <mat-option #input value="spanish" (click) = "academicDiscipline = 'spanish'">Spanish</mat-option>
-                                <mat-option #input value="sport management" (click) = "academicDiscipline = 'sport management'">Sport Management</mat-option>
-                                <mat-option #input value="statistics" (click) = "academicDiscipline = 'statistics'">Statistics</mat-option>
-                                <mat-option #input value="studio art" (click) = "academicDiscipline = 'studio art'">Studio Art</mat-option>
-                                <mat-option #input value="theatre arts" (click) = "academicDiscipline = 'theatre arts'">Theatre Arts</mat-option>
-                                <mat-option #input value="other" (click)="this.other = true">Other</mat-option>
+                                <br><br>
 
-                            </mat-select>
-                            <br>
-                            <br>
-                            <mat-form-field *ngIf="this.other">
-                                <textarea matInput
-                                          required
-                                          placeholder="Please specify"
-                                          (input) = "academicDiscipline = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <br>
-                            <br>
-                            The URS features one presentation in the opening ceremony. This presentation
-                            should have broader appeal with interdisciplinary components, and may easily
-                            accommodate a performance component. The featured presenter will have more time,
-                            as well as a bigger room than regular presentations. Would you be interested in
-                            having your presentation featured during the opening ceremony?
-                            <br>
-                            <br>
-                            <mat-radio-group>
-                                <mat-radio-button color = "primary" value="yes" (click) = "featurePresenter = 'true'">Yes</mat-radio-button>&nbsp;&nbsp;
-                                <mat-radio-button color = "primary" value="no" (click) = "featurePresenter = 'false'">No</mat-radio-button>
-                            </mat-radio-group>
-                            <br>
-                            <br>
-                            <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                            <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
+                                <mat-form-field *ngIf="this.otherAcademic">
+                                        <textarea matInput
+                                                  #input
+                                                  required
+                                                  placeholder="Please specify"
+                                                  (input)="otherAcedemicDiscipline = $event.target.value"
+                                                  rows="1"
+                                                  cols="1"></textarea>
+                                </mat-form-field>
+                                <br>
+
+                                <br><br>
+                                The URS abstract review committee selects one submission to be the Feature Presentation. This presentation
+                                should have broader appeal with interdisciplinary components, and may easily
+                                accommodate a performance component. The featured presenter will have more time,
+                                as well as a bigger room than regular presentations. Would you be interested in
+                                having your presentation featured during the opening ceremony?
+                                <br><br>
+                                <mat-radio-group (change)="onFeaturePresentationChange($event)" formControlName="secondCtrlFive">
+                                    <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
+                                    <mat-radio-button color="primary" value="no">No</mat-radio-button>
+                                </mat-radio-group>
+                                <br>
+                                <br>
+                                <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                                <button mat-raised-button matStepperNext color="primary" [disabled]="sectionTwoComplete()">Next</button>
+                            </form>
                         </div>
                     </mat-step>
-                    <mat-step>
-                        <div class="sponOrganization">
-                            Sponsoring Organization or Fund
-                            <br>
 
-                            Choose any applicable. If funded by faculty grant, specify under 'other'
-                            <br>
-                            <br>
+                    <mat-step label="Presenter(s)" [stepControl]="presenters">
+                        <div class="presenterForm">
+
+                            <form [formGroup]="presenters">
+                                Who else will be presenting? Please add their name(s) and their university email below.
+                                If there are more than one presenter, click the plus button for more rows.
+                                <br>
+
+                                <p>You will be automatically entered as: {{user.FirstName}} {{user.LastName}} ({{userEmail}})</p>
+
+                                <button mat-raised-button (click)="addPresenter()" *ngIf="presenters.length <= 10"><mat-icon>add_circle</mat-icon>Add Presenter</button>
+
+                                <div *ngFor="let presenter of presenters.controls; index as i">
+                                    <div>
+                                        <ng-container [formGroup]="presenter">
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterFirstName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterLastName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="presenterEmail">
+                                            </textarea>
+                                            </mat-form-field>
+                                        </ng-container>
+                                        <button mat-raised-button (click)="removePresenter(i)" *ngIf="presenters.length > 0"><mat-icon>remove_circle</mat-icon>Remove Presenter</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <button mat-raised-button matStepperNext color="primary" [disabled]="presentersComplete()">Next</button>
+                            </form>
+                        </div>
+                    </mat-step>
+
+                    <mat-step label="Sponsor(s)/Category">
+                        <div class="sponOrganization">
+                            <p>Sponsoring Organization or Fund</p>
+                            <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', UROP'">UROP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', MAP'">MAP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', MMP'">MMP</mat-checkbox>
-                                <br>
-                                <mat-checkbox (click) = "sponOrganization = sponOrganization + ', LSAMP'">LSAMP</mat-checkbox>
+                                <mat-checkbox *ngFor="let sponsor of sponsoredOrganizations" [value]="sponsor.key" (click)="addOrRemoveSponsoredOrganization(sponsor)">
+                                    {{sponsor.value}}
+                                </mat-checkbox>
                             </div>
                             <br>
+
                             <mat-form-field>
-                                <textarea matInput
+                                <textarea matInput #input
                                           placeholder="Other"
-                                          (input) = "sponOrganization = sponOrganization + ', ' + $event.target.value"
+                                          (input)="miscSponOrganization = $event.target.value"
                                           rows="1"
                                           cols="1"></textarea>
                             </mat-form-field>
+
+                            <br>
+                            <p>Special Categories</p>
+                            <p>Choose any applicable.</p>
+                            <div class="checkboxes">
+                                <mat-checkbox *ngFor="let category of categories" [value]="category.key" (click)="addOrRemoveCategory(category)">
+                                    {{category.value}}
+                                </mat-checkbox>
+                            </div>
+                            <br>
+
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
                             <button mat-raised-button matStepperNext color="primary">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step>
+
+                    <mat-step label="Advisor(s)" [stepControl]="advisors">
                         <div class="adviserForm">
-                            Who is the advisor(s)? Please add their name(s) and their university email below.
-                            If there are more than one presenter, click the plus button for more rows.
-                            <br>
-                            <mat-form-field>
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "firstAdvisorFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field>
-                              <textarea matInput
-                                        placeholder="Last Name"
-                                        (input) = "firstAdvisorLastName = $event.target.value"
-                                        rows="1"
-                                        cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "firstAdvisorEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
-                            <button mat-raised-button (click)="this.secondAdvisor = true"
-                                    *ngIf="!this.secondAdvisor"><mat-icon>add_circle</mat-icon></button>
-                            <br>
-                            <mat-form-field *ngIf="this.secondAdvisor">
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "secondAdvisorFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.secondAdvisor">
-                                <textarea matInput
-                                          placeholder="Last Name"
-                                          (input) = "secondAdvisorLastName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.secondAdvisor">
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "secondAdvisorEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
-                            <button mat-raised-button (click)="this.thirdAdvisor = true"
-                                    *ngIf="this.secondAdvisor && !this.thirdAdvisor"><mat-icon>add_circle</mat-icon></button>
-                            <br>
-                            <mat-form-field *ngIf="this.thirdAdvisor">
-                                <textarea matInput
-                                          placeholder="First Name"
-                                          (input) = "thirdAdvisorFirstName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.thirdAdvisor">
-                                <textarea matInput
-                                          placeholder="Last Name"
-                                          (input) = "thirdAdvisorLastName = $event.target.value"
-                                          rows="1"
-                                          cols="1"></textarea>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="this.thirdAdvisor">
-                                <textarea matInput
-                                          placeholder="Full Email Address"
-                                          (input) = "thirdAdvisorEmail = $event.target.value"
-                                          rows="1"
-                                          col="1"></textarea>
-                            </mat-form-field>
+                            <form [formGroup]="advisors">
+                                Who is the advisor(s)? Please add their name(s) and their university email below.
+                                If there are more than one presenter, click the plus button for more rows.
+                                <br>
+                                <button mat-raised-button (click)="addAdvisor()"><mat-icon>add_circle</mat-icon>Add Advisor</button>
+                                <div *ngFor="let advisor of advisors.controls; index as i">
+                                    <div>
+                                        <ng-container [formGroup]="advisor">
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorFirstName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorLastName">
+                                            </textarea>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                            <textarea matInput formControlName="advisorEmail">
+                                            </textarea>
+                                            </mat-form-field>
+                                        </ng-container>
+                                        <button *ngIf="i > 0" mat-raised-button (click)="removeAdvisor(i)"><mat-icon>remove_circle</mat-icon>Remove Advisor</button>
+                                    </div>
+                                </div>
+                            </form>
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                            <button mat-raised-button matStepperNext color="primary" [disabled]="sectionFourComplete()">Next</button>
+                            <button mat-raised-button matStepperNext color="primary" [disabled]="sectionThreeComplete()">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step>
+
+                    <mat-step label="Misc Info/Submit">
                         <div class="additionalInfoPage">
                             Each presentation room will have available an overhead projector and a
                             Macintosh or PC computer with video projection capabilities.
@@ -369,7 +271,7 @@
                             <mat-form-field class="additionalInfoBoxes">
                                 <textarea matInput
                                           placeholder="Additional Info"
-                                          (input) = "additionalInfo = $event.target.value"
+                                          (input) = "additionalRequirements = $event.target.value"
                                           rows="3"
                                           cols="1"></textarea>
                             </mat-form-field>
@@ -386,8 +288,87 @@
                             </mat-form-field>
                             <br>
                             <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                            <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/">Submit</button>
+                            <button mat-raised-button matStepperNext color="primary">Next</button>
                         </div>
+                    </mat-step>
+
+                    <mat-step label="Review/Submit">
+                        <div>
+                            <p class="text-center">Please review the following information before submitting:</p>
+                            <div class="reviewAndSubmitPage">
+                                <p>Presentation Title: {{presentationTitle}}</p>
+                                <p>Abstract: {{abstractContent}}</p>
+                                <p>Submission Format: {{submissionFormat}}</p>
+                                <p>Presentation Type: {{presentationType}}</p>
+                                <p>Willing to Change Format: {{willingToChangePresentationFormat}}</p>
+
+                                <p>Presenter(s): </p>
+                                <ul>
+                                    <li>{{presenterWhoIsSubmitting.presenterFirstName}}
+                                        {{presenterWhoIsSubmitting.presenterLastName}}
+                                        ({{presenterWhoIsSubmitting.presenterEmail}})
+                                    </li>
+                                    <li *ngFor="let pres of presenters.value">
+                                        {{pres.presenterFirstName}}
+                                        {{pres.presenterLastName}}
+                                        ({{pres.presenterEmail}})
+                                    </li>
+                                </ul>
+
+                                <p>Discipline:
+                                    <span *ngFor="let discipline of academicDiscipline; let isLast = last">
+                                        {{discipline.value}}{{isLast ? '' : ', '}}</span>
+                                    <span *ngIf="otherAcedemicDiscipline">
+                                        <span *ngIf="academicDiscipline.length > 0; else standalone">, {{otherAcedemicDiscipline}}
+                                        </span>
+                                        <ng-template #standalone>
+                                            {{otherAcedemicDiscipline}}
+                                        </ng-template>
+                                    </span>
+                                </p>
+
+                                <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
+
+                                <p *ngIf="sponOrganization">
+                                    Sponsoring Organization:
+                                    <span *ngFor="let sponsOrg of sponOrganization; let isLast = last">
+                                        {{sponsOrg.value}}{{isLast ? '' : ', '}}</span>
+                                    <span *ngIf="miscSponOrganization">
+                                        <span *ngIf="sponOrganization.length > 0; else standalone">, {{miscSponOrganization}}
+                                        </span>
+                                        <ng-template #standalone>
+                                            {{miscSponOrganization}}
+                                        </ng-template>
+                                    </span>
+
+                                </p>
+
+                                <p *ngIf="category">
+                                    Categories:
+                                    <span *ngFor="let category of category; let isLast = last">{{category.value}}{{isLast ? '' : ', '}}</span>
+                                </p>
+
+                                <p>Advisors(s): </p>
+                                <ul>
+                                    <li *ngFor="let adv of advisors.value">{{adv.advisorFirstName}} {{adv.advisorLastName}} ({{adv.advisorEmail}})</li>
+                                </ul>
+
+                                <p *ngIf="additionalMediaEquipment">Media Services Equipment: {{additionalMediaEquipment}}</p>
+                                <p *ngIf="additionalRequirements">Special Requirements: {{additionalRequirements}}</p>
+                                <p *ngIf="other">Other: {{other}}</p>
+                            </div>
+                            <br><br>
+                            <div class="text-center">
+                                <button mat-raised-button matStepperPrevious color="warn">Previous</button>
+                                <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/"
+                                        *ngIf="user.Role=='user'; else notStudent">Submit</button>
+                                <ng-template #notStudent>
+                                    <button mat-raised-button color="primary">Submit (non-students cannot submit)</button>
+                                </ng-template>
+                            </div>
+
+                        </div>
+
                     </mat-step>
                 </mat-horizontal-stepper>
             </mat-card-content>
