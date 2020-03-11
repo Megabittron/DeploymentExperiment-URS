@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
-import {SubComment, TopComment} from "./comment";
+import {TopComment} from "./comment";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
-import {FormArray, FormControl} from "@angular/forms";
 import {Presenters} from "../newSubmission/presenters";
 
 @Component({
@@ -22,6 +21,7 @@ export class SubmissionViewComponent implements OnInit {
 
     public submission: Submission;
     public otherDiscipline: string;
+    public otherOrg: string;
     public user: User;
 
     createSubcomment: boolean = false;
@@ -41,6 +41,7 @@ export class SubmissionViewComponent implements OnInit {
                 if (submission != null) {
                     this.submission = submission;
                     this.otherDiscipline = this.submission.academicDiscipline.slice(-1).toString();
+                    this.otherOrg = this.submission.sponOrganization.slice(-1).toString();
                     // Was having a hard time accessing each presenter. Various guides that used indexes or `.at()`
                     // or `.control` accessing things didn't work for one reason or another, but it just works to
                     // effectively push all the stuff into presenter objects one by one.

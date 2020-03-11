@@ -47,7 +47,7 @@
             <p *ngIf="submission.academicDiscipline"><b>Discipline:</b>
                 <span *ngFor="let discipline of submission.academicDiscipline; let isLast = last">
                     {{discipline.value}}{{isLast ? '' : ', '}}</span>
-<!--                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline.slice(5, otherDiscipline.length)}}</span>-->
+                <span *ngIf="otherDiscipline.includes('other')">{{otherDiscipline.slice(5, otherDiscipline.length)}}</span>
             </p>
             <p><b>Type:</b> {{submission.presentationType}}</p>
             <p><b>Format:</b> {{submission.submissionFormat}}</p>
@@ -62,6 +62,7 @@
             <p *ngIf="submission.sponOrganization.length != 0">
                 <span><b>Sponsoring Organization: </b> </span>
                 <span *ngFor="let sponsOrg of submission.sponOrganization; let isLast = last">{{sponsOrg.value}}{{isLast ? '' : ', '}}</span>
+                <span *ngIf="otherOrg.includes('other')">{{otherOrg.slice(5, otherDiscipline.length)}}</span>
             </p>
 
             <p *ngIf="submission.category.length > 0">
