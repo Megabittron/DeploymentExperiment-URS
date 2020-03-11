@@ -2,6 +2,8 @@ import {Disciplines} from "./disciplines";
 import {SponsoredOrganizations} from "./sponsoredOrganizations";
 import {Categories} from "./categories";
 import {TopComment} from "../submissionView/comment";
+import {Presenters} from "./presenters";
+import {Advisors} from "./advisors";
 
 export interface Submission {
     _id?: {
@@ -13,29 +15,12 @@ export interface Submission {
     submissionFormat: string;
     presentationType: string;
     willingToChangePresentationFormat: string;
-    firstPresenterFirstName: string;
-    firstPresenterLastName: string;
-    firstPresenterEmail: string;
-    secondPresenterFirstName: string;
-    secondPresenterLastName: string;
-    secondPresenterEmail: string;
-    thirdPresenterFirstName: string;
-    thirdPresenterLastName: string;
-    thirdPresenterEmail: string;
+    presenters: Presenters[];
     academicDiscipline: Disciplines[];
     willingToBeFeaturePresenter: string;
     sponOrganization: SponsoredOrganizations[];
-    miscSponOrganization: string;
     category: Categories[];
-    firstAdvisorFirstName: string;
-    firstAdvisorLastName: string;
-    firstAdvisorEmail: string;
-    secondAdvisorFirstName: string;
-    secondAdvisorLastName: string;
-    secondAdvisorEmail: string;
-    thirdAdvisorFirstName: string;
-    thirdAdvisorLastName: string;
-    thirdAdvisorEmail: string;
+    advisors: Advisors[];
     additionalMediaEquipment: string;
     additionalRequirements: string;
     other: string;

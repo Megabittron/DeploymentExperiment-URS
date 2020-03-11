@@ -127,29 +127,12 @@ public class AbstractRequestHandler {
             String submissionFormat = dbO.getString("submissionFormat");
             String presentationType = dbO.getString("presentationType");
             String willingToChangePresentationFormat = dbO.getString("willingToChangePresentationFormat");
-            String firstPresenterFirstName = dbO.getString("firstPresenterFirstName");
-            String firstPresenterLastName = dbO.getString("firstPresenterLastName");
-            String firstPresenterEmail = dbO.getString("firstPresenterEmail");
-            String secondPresenterFirstName = dbO.getString("secondPresenterFirstName");
-            String secondPresenterLastName = dbO.getString("secondPresenterLastName");
-            String secondPresenterEmail = dbO.getString("secondPresenterEmail");
-            String thirdPresenterFirstName = dbO.getString("thirdPresenterFirstName");
-            String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
-            String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
+            Object presenters = dbO.get("presenters");
             Object academicDiscipline = dbO.get("academicDiscipline");
             String willingToBeFeaturePresenter = dbO.getString("willingToBeFeaturePresenter");
             Object sponOrganization = dbO.get("sponOrganization");
-            String miscSponOrganization = dbO.getString("miscSponOrganization");
             Object category = dbO.get("category");
-            String firstAdvisorFirstName = dbO.getString("firstAdvisorFirstName");
-            String firstAdvisorLastName = dbO.getString("firstAdvisorLastName");
-            String firstAdvisorEmail = dbO.getString("firstAdvisorEmail");
-            String secondAdvisorFirstName = dbO.getString("secondAdvisorFirstName");
-            String secondAdvisorLastName = dbO.getString("secondAdvisorLastName");
-            String secondAdvisorEmail = dbO.getString("secondAdvisorEmail");
-            String thirdAdvisorFirstName = dbO.getString("thirdAdvisorFirstName");
-            String thirdAdvisorLastName = dbO.getString("thirdAdvisorLastName");
-            String thirdAdvisorEmail = dbO.getString("thirdAdvisorEmail");
+            Object advisors = dbO.get("advisors");
             String additionalMediaEquipment = dbO.getString("additionalMediaEquipment");
             String additionalRequirements = dbO.getString("additionalRequirements");
             String other = dbO.getString("other");
@@ -166,50 +149,31 @@ public class AbstractRequestHandler {
             String isPrimarySubmission = dbO.getString("isPrimarySubmission");
             String resubmitFlag = dbO.getString("resubmitFlag");
 
-            System.err.println("Adding new Abstract for a specific userID " + userID +
-                ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
-                "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
-                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
-                "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
-                + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
-                "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
-                + additionalMediaEquipment + ", " + "additionalRequirements=" + additionalRequirements + ", other=" + other
-                + ", approval=" + approval + ", " + "cc=" + cc + ", " +
-                "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
-                + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
-                + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
-                + ", resubmitFlag=" + resubmitFlag + ']');
+            System.err.println("Adding new Abstract for " +
+                "[userID " + userID + ", title=" + presentationTitle + ", abstractContent=" + abstractContent +
+                ", submissionFormat=" + submissionFormat + ", " + "presentationType=" + presentationType +
+                ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", presenters=" + presenters +
+                ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter +
+                ", additionalMediaEquipment=" + additionalMediaEquipment + ", additionalRequirements=" + additionalRequirements +
+                ", other=" + other + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection +
+                ", group=" + group + ", " + "roomAssignment=" + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes +
+                ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes=" + minorRewriteVotes +
+                ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission +
+                ", resubmitFlag=" + resubmitFlag + ']');
 
-            return abstractController.addNewAbstract(userID,                           presentationTitle,
-                 abstractContent,
-                 submissionFormat,
-                 presentationType,
-                 willingToChangePresentationFormat,
-                 firstPresenterFirstName,
-                 firstPresenterLastName,
-                 firstPresenterEmail,
-                 secondPresenterFirstName,
-                 secondPresenterLastName,
-                 secondPresenterEmail,
-                 thirdPresenterFirstName,
-                 thirdPresenterLastName,
-                 thirdPresenterEmail,
-                 academicDiscipline,
-                 willingToBeFeaturePresenter,
+            return abstractController.addNewAbstract(
+                userID,
+                presentationTitle,
+                abstractContent,
+                submissionFormat,
+                presentationType,
+                willingToChangePresentationFormat,
+                presenters,
+                academicDiscipline,
+                willingToBeFeaturePresenter,
                 sponOrganization,
-                miscSponOrganization,
                 category,
-                 firstAdvisorFirstName,
-                 firstAdvisorLastName,
-                 firstAdvisorEmail,
-                 secondAdvisorFirstName,
-                 secondAdvisorLastName,
-                 secondAdvisorEmail,
-                 thirdAdvisorFirstName,
-                 thirdAdvisorLastName,
-                 thirdAdvisorEmail,
+                 advisors,
                  additionalMediaEquipment,
                  additionalRequirements,
                  other,
@@ -265,21 +229,6 @@ public class AbstractRequestHandler {
             String comments = dbO.getString("comments");
             String isPrimarySubmission = dbO.getString("isPrimarySubmission");
             String resubmitFlag = dbO.getString("resubmitFlag");
-            String firstPresenterFirstName = dbO.getString("firstPresenterFirstName");
-            String firstPresenterLastName = dbO.getString("firstPresenterLastName");
-            String firstPresenterEmail = dbO.getString("firstPresenterEmail");
-            String secondPresenterFirstName = dbO.getString("secondPresenterFirstName");
-            String secondPresenterLastName = dbO.getString("secondPresenterLastName");
-            String secondPresenterEmail = dbO.getString("secondPresenterEmail");
-            String thirdPresenterFirstName = dbO.getString("thirdPresenterFirstName");
-            String thirdPresenterLastName = dbO.getString("thirdPresenterLastName");
-            String thirdPresenterEmail = dbO.getString("thirdPresenterEmail");
-            String firstAdviserFirstName = dbO.getString("firstAdviserFirstName");
-            String firstAdviserLastName = dbO.getString("firstAdviserLastName");
-            String firstAdviserEmail = dbO.getString("firstAdviserEmail");
-            String secondAdviserFirstName = dbO.getString("secondAdviserFirstName");
-            String secondAdviserLastName = dbO.getString("secondAdviserLastName");
-            String secondAdviserEmail = dbO.getString("secondAdviserEmail");
             String category = dbO.getString("category");
 
             System.err.println("Editing abstract" +
@@ -289,22 +238,12 @@ public class AbstractRequestHandler {
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
-                + isPrimarySubmission + ", resubmitFlag=" + resubmitFlag + ", firstPresenterFirstName=" + firstPresenterFirstName + ", " +
-                "firstPresenterLastName=" + firstPresenterLastName + ", firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName="
-                + secondPresenterFirstName + ", " + "secondPresenterLastName=" + secondPresenterLastName + ", secondPresenterEmail=" + secondPresenterEmail
-                + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", " + "thirdPresenterLastName=" + thirdPresenterLastName + ", " +
-                "thirdPresenterEmail=" + thirdPresenterEmail + ", firstAdviserFirstName=" + firstAdviserFirstName + ", " + "firstAdviserLastName="
-                + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
-                + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
+                + isPrimarySubmission + ", resubmitFlag=" + resubmitFlag + ']');
 
             return abstractController.editAbstract(id, title, submissionFormat, abstracts, presentationType, formatChange
                 , academicDiscipline, willingToBeFeaturePresenter, additionalMediaEquipment, specialRequirements, additionalRequirements, approval, cc, rejection,
                 group, roomAssignment, totalRewriteVotes, majorRewriteVotes, minorRewriteVotes, acceptedVotes, comments,
-                isPrimarySubmission, resubmitFlag, firstPresenterFirstName, firstPresenterLastName,
-                firstPresenterEmail, secondPresenterFirstName, secondPresenterLastName, secondPresenterEmail
-                , thirdPresenterFirstName, thirdPresenterLastName, thirdPresenterEmail, firstAdviserFirstName,
-                firstAdviserLastName, firstAdviserEmail, secondAdviserFirstName, secondAdviserLastName, secondAdviserEmail
-            );
+                isPrimarySubmission, resubmitFlag);
         } catch (NullPointerException e) {
             System.err.println("A value was malformed or omitted, new abstract request failed.");
             return null;

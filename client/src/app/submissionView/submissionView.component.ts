@@ -1,10 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
 import {SubComment, TopComment} from "./comment";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
+import {FormArray, FormControl} from "@angular/forms";
+import {Presenters} from "../newSubmission/presenters";
 
 @Component({
     selector: 'submissionView.component',
@@ -29,6 +31,8 @@ export class SubmissionViewComponent implements OnInit {
     // topLevelComments: TopComment[];
     // subComments: SubComment[];
 
+    public presenterArray: Presenters[] = [];
+
     getSubmission() {
         let submissionObservable: Observable<Submission>;
         submissionObservable = this.submissionListService.getSingleSubmissionById(this.submissionListService.singleAbstractId);
@@ -37,6 +41,12 @@ export class SubmissionViewComponent implements OnInit {
                 if (submission != null) {
                     this.submission = submission;
                     this.otherDiscipline = this.submission.academicDiscipline.slice(-1).toString();
+                    // Was having a hard time accessing each presenter. Various guides that used indexes or `.at()`
+                    // or `.control` accessing things didn't work for one reason or another, but it just works to
+                    // effectively push all the stuff into presenter objects one by one.
+                    for(let i = 0; i < this.submission.presenters.length; i++) {
+                        this.presenterArray.push(this.submission.presenters[i]);
+                    }
                 }
             }
         );

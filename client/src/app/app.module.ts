@@ -52,7 +52,7 @@ import {WrongRoleComponent} from "./accountInfo/wrong-role.component";
         LoginComponent,
         SubmissionViewComponent,
         EditUserInfoComponent,
-        WrongRoleComponent
+        WrongRoleComponent,
     ],
     providers: [
         AuthenticationService,

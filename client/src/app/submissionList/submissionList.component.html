@@ -7,9 +7,15 @@
             <div class="status-bar"></div>
             <div class="submission-card-content">
                 <p><i>{{submission.presentationTitle}}</i></p>
-                <p>Presenter: {{submission.firstPresenterFirstName}} {{submission.firstPresenterLastName}}</p>
-                <p>Adviser: {{submission.firstAdvisorFirstName}} {{submission.firstAdvisorLastName}}</p>
-                <p>Submission Date: {{fixDate(submission.timestamp)}}</p>
+                <p><b>Presenter(s):</b> </p>
+                <ul>
+                    <li *ngFor="let pres of submission.presenters">{{pres.presenterFirstName}} {{pres.presenterLastName}} ({{pres.presenterEmail}})</li>
+                </ul>
+                <p><b>Advisors(s):</b> </p>
+                <ul>
+                    <li *ngFor="let adv of submission.advisors">{{adv.advisorFirstName}} {{adv.advisorLastName}} ({{adv.advisorEmail}})</li>
+                </ul>
+                <p><b>Submission Date:</b> {{submission.timestamp | date: 'EEEE, MMMM d'}}</p>
             </div>
         </div>
     </div>

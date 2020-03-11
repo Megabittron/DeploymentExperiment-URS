@@ -364,123 +364,6 @@ public class AbstractController {
             filterDoc = filterDoc.append("resubmitFlag", contentRegQuery);
         }
 
-        if (queryParams.containsKey("firstPresenterFirstName")) {
-            String targetContent = (queryParams.get("firstPresenterFirstName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstPresenterFirstName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("firstPresenterLastName")) {
-            String targetContent = (queryParams.get("firstPresenterLastName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstPresenterLastName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("firstPresenterEmail")) {
-            String targetContent = (queryParams.get("firstPresenterEmail")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstPresenterEmail", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("secondPresenterFirstName")) {
-            String targetContent = (queryParams.get("secondPresenterFirstName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondPresenterFirstName", contentRegQuery);
-        }
-        if (queryParams.containsKey("secondPresenterLastName")) {
-            String targetContent = (queryParams.get("secondPresenterLastName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondPresenterLastName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("secondPresenterEmail")) {
-            String targetContent = (queryParams.get("secondPresenterEmail")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondPresenterEmail", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("thirdPresenterFirstName")) {
-            String targetContent = (queryParams.get("thirdPresenterFirstName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("thirdPresenterFirstName", contentRegQuery);
-        }
-        if (queryParams.containsKey("thirdPresenterLastName")) {
-            String targetContent = (queryParams.get("thirdPresenterLastName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("thirdPresenterLastName", contentRegQuery);
-        }
-        if (queryParams.containsKey("thirdPresenterEmail")) {
-            String targetContent = (queryParams.get("thirdPresenterEmail")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("thirdPresenterEmail", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("firstAdviserFirstName")) {
-            String targetContent = (queryParams.get("firstAdviserFirstName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstAdviserFirstName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("firstAdviserLastName")) {
-            String targetContent = (queryParams.get("firstAdviserLastName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstAdviserLastName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("firstAdviserEmail")) {
-            String targetContent = (queryParams.get("firstAdviserEmail")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("firstAdviserEmail", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("secondAdviserFirstName")) {
-            String targetContent = (queryParams.get("secondAdviserFirstName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondAdviserFirstName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("secondAdviserLastName")) {
-            String targetContent = (queryParams.get("secondAdviserLastName")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondAdviserLastName", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("secondAdviserEmail")) {
-            String targetContent = (queryParams.get("secondAdviserEmail")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("secondAdviserEmail", contentRegQuery);
-        }
-
         FindIterable<Document> matchingAbstracts = abstractCollection.find(filterDoc);
 
         System.out.println(matchingAbstracts);
@@ -498,29 +381,12 @@ public class AbstractController {
                           String submissionFormat,
                           String presentationType,
                           String willingToChangePresentationFormat,
-                          String firstPresenterFirstName,
-                          String firstPresenterLastName,
-                          String firstPresenterEmail,
-                          String secondPresenterFirstName,
-                          String secondPresenterLastName,
-                          String secondPresenterEmail,
-                          String thirdPresenterFirstName,
-                          String thirdPresenterLastName,
-                          String thirdPresenterEmail,
+                          Object presenters,
                           Object academicDiscipline,
                           String willingToBeFeaturePresenter,
                           Object sponOrganization,
-                          String miscSponOrganization,
                           Object category,
-                          String firstAdvisorFirstName,
-                          String firstAdvisorLastName,
-                          String firstAdvisorEmail,
-                          String secondAdvisorFirstName,
-                          String secondAdvisorLastName,
-                          String secondAdvisorEmail,
-                          String thirdAdvisorFirstName,
-                          String thirdAdvisorLastName,
-                          String thirdAdvisorEmail,
+                          Object advisors,
                           String additionalMediaEquipment,
                           String additionalRequirements,
                           String other,
@@ -546,29 +412,12 @@ public class AbstractController {
         newAbstract.append("submissionFormat", submissionFormat);
         newAbstract.append("presentationType", presentationType);
         newAbstract.append("willingToChangePresentationFormat", willingToChangePresentationFormat);
-        newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
-        newAbstract.append("firstPresenterLastName", firstPresenterLastName);
-        newAbstract.append("firstPresenterEmail", firstPresenterEmail);
-        newAbstract.append("secondPresenterFirstName", secondPresenterFirstName);
-        newAbstract.append("secondPresenterLastName", secondPresenterLastName);
-        newAbstract.append("secondPresenterEmail", secondPresenterEmail);
-        newAbstract.append("thirdPresenterFirstName", thirdPresenterFirstName);
-        newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
-        newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
+        newAbstract.append("presenters", presenters);
         newAbstract.append("academicDiscipline", academicDiscipline);
         newAbstract.append("willingToBeFeaturePresenter", willingToBeFeaturePresenter);
         newAbstract.append("sponOrganization", sponOrganization);
-        newAbstract.append("miscSponOrganization", miscSponOrganization);
         newAbstract.append("category", category);
-        newAbstract.append("firstAdvisorFirstName", firstAdvisorFirstName);
-        newAbstract.append("firstAdvisorLastName", firstAdvisorLastName);
-        newAbstract.append("firstAdvisorEmail", firstAdvisorEmail);
-        newAbstract.append("secondAdvisorFirstName", secondAdvisorFirstName);
-        newAbstract.append("secondAdvisorLastName", secondAdvisorLastName);
-        newAbstract.append("secondAdvisorEmail", secondAdvisorEmail);
-        newAbstract.append("thirdAdvisorFirstName", thirdAdvisorFirstName);
-        newAbstract.append("thirdAdvisorLastName", thirdAdvisorLastName);
-        newAbstract.append("thirdAdvisorEmail", thirdAdvisorEmail);
+        newAbstract.append("advisors", advisors);
         newAbstract.append("additionalMediaEquipment", additionalMediaEquipment);
         newAbstract.append("additionalRequirements", additionalRequirements);
         newAbstract.append("other", other);
@@ -592,20 +441,16 @@ public class AbstractController {
             abstractCollection.insertOne(newAbstract);
             ObjectId id = newAbstract.getObjectId("_id");
             System.err.println("Successfully added new abstract " +
-                "[userID " + userID +
-                ", title=" + presentationTitle + ", abstractContent=" + abstractContent + ", submissionFormat=" + submissionFormat + ", " +
-                "presentationType=" + presentationType + ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", firstPresenterFirstName=" + firstPresenterFirstName + ", firstPresenterLastName=" + firstPresenterLastName + ", " +
-                "firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName=" + secondPresenterFirstName + ", secondPresenterLastName=" + secondPresenterLastName + ", " +
-                "secondPresenterEmail=" + secondPresenterEmail + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", thirdPresenterLastName=" + thirdPresenterEmail + ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter="
-                + willingToBeFeaturePresenter + ", sponOrganization=" + sponOrganization + ", miscSponOrganization=" + miscSponOrganization + ", category=" + category +", firstAdvisorFirstName=" + firstAdvisorFirstName + ", " +
-                "firstAdvisorLastName=" + firstAdvisorLastName + ", firstAdvisorEmail=" + firstAdvisorEmail + ", secondAdvisorFirstName=" + secondAdvisorFirstName + ", secondAdvisorLastName="
-                + secondAdvisorLastName + ", secondAdvisorEmail=" + secondAdvisorEmail + ", thirdAdvisorFirstName=" + thirdAdvisorFirstName + ", " +
-                "thirdAdvisorLastName=" + thirdAdvisorLastName + ", thirdAdvisorEmail=" + thirdAdvisorEmail + ", additionalMediaEquipment="
-                + additionalMediaEquipment + ", " + "additionalRequirements=" + additionalRequirements + ", other=" + other
-                + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection + ", group=" + group + ", " + "roomAssignment="
-                + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes="
-                + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission
-                + ", resubmitFlag=" + resubmitFlag + ']');
+                "[userID " + userID + ", title=" + presentationTitle + ", abstractContent=" + abstractContent +
+                ", submissionFormat=" + submissionFormat + ", " + "presentationType=" + presentationType +
+                ", willingToChangePresentationFormat=" + willingToChangePresentationFormat + ", presenters=" + presenters +
+                ", academicDiscipline=" + academicDiscipline + ", willingToBeFeaturePresenter=" + willingToBeFeaturePresenter +
+                ", additionalMediaEquipment=" + additionalMediaEquipment + ", additionalRequirements=" + additionalRequirements +
+                ", other=" + other + ", approval=" + approval + ", " + "cc=" + cc + ", " + "rejection=" + rejection +
+                ", group=" + group + ", " + "roomAssignment=" + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes +
+                ", majorRewriteVotes=" + majorRewriteVotes + ", " + "minorRewriteVotes=" + minorRewriteVotes +
+                ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission=" + isPrimarySubmission +
+                ", resubmitFlag=" + resubmitFlag + ']');
 
             return new BasicDBObject("_id", id).toJson();
 
@@ -648,22 +493,7 @@ public class AbstractController {
                         String acceptedVotes,
                         String comments,
                         String isPrimarySubmission,
-                        String resubmitFlag,
-                        String firstPresenterFirstName,
-                        String firstPresenterLastName,
-                        String firstPresenterEmail,
-                        String secondPresenterFirstName,
-                        String secondPresenterLastName,
-                        String secondPresenterEmail,
-                        String thirdPresenterFirstName,
-                        String thirdPresenterLastName,
-                        String thirdPresenterEmail,
-                        String firstAdviserFirstName,
-                        String firstAdviserLastName,
-                        String firstAdviserEmail,
-                        String secondAdviserFirstName,
-                        String secondAdviserLastName,
-                        String secondAdviserEmail) {
+                        String resubmitFlag) {
 
         Document newAbstract = new Document();
 
@@ -689,21 +519,6 @@ public class AbstractController {
         newAbstract.append("comments", comments);
         newAbstract.append("isPrimarySubmission", isPrimarySubmission);
         newAbstract.append("resubmitFlag", resubmitFlag);
-        newAbstract.append("firstPresenterFirstName", firstPresenterFirstName);
-        newAbstract.append("firstPresenterLastName", firstPresenterLastName);
-        newAbstract.append("firstPresenterEmail", firstPresenterEmail);
-        newAbstract.append("secondPresenterFirstName", secondPresenterFirstName);
-        newAbstract.append("secondPresenterLastName", secondPresenterLastName);
-        newAbstract.append("secondPresenterEmail", secondPresenterEmail);
-        newAbstract.append("thirdPresenterFirstName", thirdPresenterFirstName);
-        newAbstract.append("thirdPresenterLastName", thirdPresenterLastName);
-        newAbstract.append("thirdPresenterEmail", thirdPresenterEmail);
-        newAbstract.append("firstAdviserFirstName", firstAdviserFirstName);
-        newAbstract.append("firstAdviserLastName", firstAdviserLastName);
-        newAbstract.append("firstAdviserEmail", firstAdviserEmail);
-        newAbstract.append("secondAdviserFirstName", secondAdviserFirstName);
-        newAbstract.append("secondAdviserLastName", secondAdviserLastName);
-        newAbstract.append("secondAdviserEmail", secondAdviserEmail);
 
         Document setQuery = new Document();
         setQuery.append("$set", newAbstract);
@@ -721,13 +536,7 @@ public class AbstractController {
                 "approval=" + approval + ", cc=" + cc + ", rejection=" + rejection + ", group=" + group + ", roomAssignment="
                 + roomAssignment + ", totalRewriteVotes=" + totalRewriteVotes + ", majorRewriteVotes=" + majorRewriteVotes + ", " +
                 "minorRewriteVotes=" + minorRewriteVotes + ", acceptedVotes=" + acceptedVotes + ", comments=" + comments + ", isPrimarySubmission="
-                + isPrimarySubmission + ", resubmitFlag=" + resubmitFlag + ", firstPresenterFirstName=" + firstPresenterFirstName + ", " +
-                "firstPresenterLastName=" + firstPresenterLastName + ", firstPresenterEmail=" + firstPresenterEmail + ", secondPresenterFirstName="
-                + secondPresenterFirstName + ", " + "secondPresenterLastName=" + secondPresenterLastName + ", secondPresenterEmail=" + secondPresenterEmail
-                + ", thirdPresenterFirstName=" + thirdPresenterFirstName + ", " + "thirdPresenterLastName=" + thirdPresenterLastName + ", " +
-                "thirdPresenterEmail=" + thirdPresenterEmail + ", firstAdviserFirstName=" + firstAdviserFirstName + ", " + "firstAdviserLastName="
-                + firstAdviserLastName + ", firstAdviserEmail=" + firstAdviserEmail + ", secondAdviserFirstName=" + secondAdviserFirstName + ", " + "secondAdviserLastName="
-                + secondAdviserLastName + ", secondAdviserEmail=" + secondAdviserEmail + ']');
+                + isPrimarySubmission + ", resubmitFlag=" + resubmitFlag + ']');
 
             return new BasicDBObject("_id", id1).toJson();
         } catch (MongoException me) {

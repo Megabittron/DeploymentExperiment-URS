@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Submission} from "./submission";
 import {NewSubmissionService} from "./newSubmission.service";
 import {MatRadioChange, MatSnackBar} from '@angular/material';
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Disciplines} from "./disciplines";
 import {Categories} from "./categories";
 import {SponsoredOrganizations} from "./sponsoredOrganizations";
+import {Presenters} from "./presenters";
 
 export interface Discipline {
     value: string;
@@ -36,6 +37,8 @@ export class NewSubmissionComponent implements OnInit{
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     thirdFormGroup: FormGroup;
+    ninthFormGroup: FormGroup;
+    presenterFormGroup: FormGroup;
 
     private highlightedID: { '$oid': string } = {'$oid': ''};
 
@@ -44,31 +47,9 @@ export class NewSubmissionComponent implements OnInit{
     public submissionFormat = "";
     public presentationType = "";
     public willingToChangePresentationFormat = "undecided";
-    public firstPresenterFirstName = "";
-    public firstPresenterLastName = "";
-    public firstPresenterEmail = "";
-    public secondPresenter = false;
-    public secondPresenterFirstName = "";
-    public secondPresenterLastName = "";
-    public secondPresenterEmail = "";
-    public thirdPresenter = false;
-    public thirdPresenterFirstName = "";
-    public thirdPresenterLastName = "";
-    public thirdPresenterEmail = "";
     public academicDiscipline = [];
     public willingToBeFeaturePresenter = "undecided";
     public sponOrganization = [];
-    public firstAdvisorFirstName = "";
-    public firstAdvisorLastName = "";
-    public firstAdvisorEmail = "";
-    public secondAdvisor = false;
-    public secondAdvisorFirstName = "";
-    public secondAdvisorLastName = "";
-    public secondAdvisorEmail = "";
-    public thirdAdvisor = false;
-    public thirdAdvisorFirstName = "";
-    public thirdAdvisorLastName = "";
-    public thirdAdvisorEmail = "";
     public additionalMediaEquipment = "";
     public additionalRequirements = "";
     public other: "";
@@ -77,10 +58,28 @@ export class NewSubmissionComponent implements OnInit{
     public category = [];
     public miscSponOrganization = "";
 
+    public userEmail = "";
+
     public otherAcedemicDiscipline = "";
     public otherAcademic = false;
+    public otherOrg = false;
+
+    presenterWhoIsSubmitting: Presenters = {
+        presenterFirstName: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getGivenName(),
+        presenterLastName: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getFamilyName(),
+        presenterEmail: this.userEmail = this.authenticationService.auth2.currentUser.get().getBasicProfile().getEmail()
+    };
 
     saveSubmission(): void {
+
+        const firstPresenter = new FormGroup({
+            presenterFirstName: new FormControl(this.presenterWhoIsSubmitting.presenterFirstName),
+            presenterLastName: new FormControl(this.presenterWhoIsSubmitting.presenterLastName),
+            presenterEmail: new FormControl(this.presenterWhoIsSubmitting.presenterEmail)
+        });
+        this.presenters.push(firstPresenter);
+
+        console.log("presenter length: " + this.presenters.length);
 
         //trims 'other' categories that were removed and subsequently empty strings
         this.academicDiscipline.filter(function (el) {
@@ -91,6 +90,14 @@ export class NewSubmissionComponent implements OnInit{
             this.academicDiscipline.push("other" + this.otherAcedemicDiscipline);
         }
 
+        this.sponOrganization.filter(function (el) {
+            return el != null;
+        });
+
+        if(this.miscSponOrganization!== "") {
+            this.sponOrganization.push("other" + this.miscSponOrganization);
+        }
+
         const newSubmission: Submission = {
             userID: this.user.SubjectID,
             presentationTitle: this.presentationTitle,
@@ -98,29 +105,12 @@ export class NewSubmissionComponent implements OnInit{
             submissionFormat: this.submissionFormat,
             presentationType: this.presentationType,
             willingToChangePresentationFormat: this.willingToChangePresentationFormat,
-            firstPresenterFirstName: this.firstPresenterFirstName,
-            firstPresenterLastName: this.firstPresenterLastName,
-            firstPresenterEmail: this.firstPresenterEmail,
-            secondPresenterFirstName: this.secondPresenterFirstName,
-            secondPresenterLastName: this.secondPresenterLastName,
-            secondPresenterEmail: this.secondPresenterEmail,
-            thirdPresenterFirstName: this.thirdPresenterFirstName,
-            thirdPresenterLastName: this.thirdPresenterLastName,
-            thirdPresenterEmail: this.thirdPresenterEmail,
+            presenters: this.presenters.value,
             academicDiscipline: this.academicDiscipline,
             willingToBeFeaturePresenter: this.willingToBeFeaturePresenter,
             sponOrganization: this.sponOrganization,
             category: this.category,
-            miscSponOrganization: this.miscSponOrganization,
-            firstAdvisorFirstName: this.firstAdvisorFirstName,
-            firstAdvisorLastName: this.firstAdvisorLastName,
-            firstAdvisorEmail: this.firstAdvisorEmail,
-            secondAdvisorFirstName: this.secondAdvisorFirstName,
-            secondAdvisorLastName: this.secondAdvisorLastName,
-            secondAdvisorEmail: this.secondAdvisorEmail,
-            thirdAdvisorFirstName: this.thirdAdvisorFirstName,
-            thirdAdvisorLastName: this.thirdAdvisorLastName,
-            thirdAdvisorEmail: this.thirdAdvisorEmail,
+            advisors: this.advisors.value,
             additionalMediaEquipment: this.additionalMediaEquipment,
             additionalRequirements: this.additionalRequirements,
             other: this.other,
@@ -171,6 +161,10 @@ export class NewSubmissionComponent implements OnInit{
         this.willingToChangePresentationFormat = change.value;
     }
 
+    presentersComplete() {
+        return !this.presenters.valid;
+    }
+
     sectionOneComplete() {
         return this.presentationTitle == ""  || this.abstractContent == "" || this.submissionFormat == ""
             || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
@@ -178,16 +172,76 @@ export class NewSubmissionComponent implements OnInit{
 
     //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
-        return this.firstPresenterFirstName == "" || this.firstPresenterLastName == "" || this.firstPresenterEmail == ""
-        || this.willingToBeFeaturePresenter == "undecided" || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "");
+        return this.willingToBeFeaturePresenter == "undecided"
+            || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "")
+            || !(this.presenters.valid);
     }
 
-    sectionFourComplete() {
-        return this.firstAdvisorFirstName == "" || this.firstAdvisorLastName == "" ||
-            this.firstAdvisorEmail == "";
+    sectionThreeComplete() {
+        return !this.advisors.valid;
     }
+
+    presenters = new FormArray([]);
+    addPresenter() {
+        if(this.presenters.length> 10) { //stops from adding more than 10 people
+            return;
+        }
+
+        const group = new FormGroup({
+            presenterFirstName: new FormControl('', Validators.required),
+            presenterLastName: new FormControl('', Validators.required),
+            presenterEmail: new FormControl('', Validators.compose([Validators.email, Validators.required]))
+        });
+
+        this.presenters.push(group);
+    }
+
+    removePresenter(index: number) {
+        this.presenters.removeAt(index);
+    }
+
+    advisors = new FormArray([]);
+    addAdvisor() {
+        if(this.advisors.length > 3) {
+            return;
+        }
+
+        const group = new FormGroup({
+            advisorFirstName: new FormControl('', Validators.required),
+            advisorLastName: new FormControl('', Validators.required),
+            advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+        });
+
+        this.advisors.push(group);
+    }
+
+    removeAdvisor(index: number) {
+        this.advisors.removeAt(index);
+    }
+
+    debugAdvisors() {
+        console.log("advisors.length() :" + this.advisors.length);
+    }
+
+    formGroup: FormGroup;
 
     ngOnInit(): void {
+
+        this.addAdvisor();
+
+        this.formGroup = this._formBuilder.group({
+            formArray: this._formBuilder.array([
+                this._formBuilder.group({
+                    advisorFirstName: new FormControl('', Validators.required),
+                    advisorLastName: new FormControl('', Validators.required),
+                    advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+                }),
+                this._formBuilder.group({
+                    emailFormCtrl: ['', Validators.email]
+                }),
+            ])
+        });
+
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
         });
@@ -200,13 +254,11 @@ export class NewSubmissionComponent implements OnInit{
         this.newSubmissionService.getCategories().subscribe(
             categories => {
                 this.categories = categories;
-                console.log('cats: ' + this.categories);
             });
 
         this.newSubmissionService.getSponsoredOrganizations().subscribe(
             sponsoredOrganizations => {
                 this.sponsoredOrganizations = sponsoredOrganizations;
-                console.log('spons: ' + this.sponsoredOrganizations);
             });
 
         // STEP TWO: Title/Abstract/Format step
@@ -220,18 +272,27 @@ export class NewSubmissionComponent implements OnInit{
 
         // STEP THREE: Presenter(s)/Discipline/Featured step
         this.secondFormGroup = this._formBuilder.group({
-            secondCtrlOne: ['', Validators.required],
-            secondCtrlTwo: ['', Validators.required],
-            secondCtrlThree: ['', Validators.required],
             secondCtrlFour: ['', Validators.required],
             secondCtrlFive: ['', Validators.required]
         });
 
+        this.ninthFormGroup = this._formBuilder.group({
+            advisorFirstName: new FormControl('', Validators.required),
+            advisorLastName: new FormControl('', Validators.required),
+            advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+        });
+
+        this.presenterFormGroup = this._formBuilder.group({
+            presenterFirstName: new FormControl('', Validators.required),
+            presenterLastName: new FormControl('', Validators.required),
+            presenterEmail: new FormControl('', Validators.required)
+        });
+
         // STEP 5: Advisor(s)
         this.thirdFormGroup = this._formBuilder.group({
-            thirdCtrlOne: ['', Validators.required],
-            thirdCtrlTwo: ['', Validators.required],
-            thirdCtrlThree: ['', Validators.required]
+            advisorFirstName: ['', Validators.required],
+            advisorLastName: ['', Validators.required],
+            advisorEmail: ['', Validators.compose([Validators.required, Validators.email])]
         });
     }
 }
