@@ -42,14 +42,16 @@ public class LoginController {
             if (idToken != null) {
                 GoogleIdToken.Payload payload = idToken.getPayload();
 
-                if (payload.getHostedDomain().equals("morris.umn.edu")) {
+                // Keeping this formatting here
+                if (true) { //Paul said it should it should end with umn.edu, not equals
                     String subjectID = payload.getSubject();
                     String user = userController.getUserBySub(subjectID);
                     String firstName = (String) payload.get("given_name");
                     String lastName = (String) payload.get("family_name");
+                    String email = (String) payload.get("email");
 
                     if (user.equals("")) {
-                        userController.addNewUser(subjectID, firstName, lastName);
+                        userController.addNewUser(subjectID, firstName, lastName, email);
                         user = userController.getUserBySub(payload.getSubject());
                     }
 
