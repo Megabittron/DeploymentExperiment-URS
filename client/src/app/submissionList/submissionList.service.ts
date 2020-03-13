@@ -13,15 +13,14 @@ export class SubmissionListService {
 
     public singleAbstractId = "";
 
-    constructor(
-        private http: HttpClient) {
+    constructor(private http: HttpClient) {
+
     }
 
-    // This function gets submissions from the server
-    getSubmissionsForUser(userID: string): Observable<Submission[]> {
+    getSubmissionsForStudent(email: string): Observable<Submission[]> {
         this.submissionUrl = this.baseUrl;
 
-        return this.http.get<Submission[]>(this.submissionUrl + '/' + userID);
+        return this.http.get<Submission[]>(this.submissionUrl + '/' + email);
     }
 
     getSubmissions(): Observable<Submission[]> {

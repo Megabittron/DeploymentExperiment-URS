@@ -6,58 +6,73 @@
             <mat-card-content [formGroup]="formGroup">
                 <mat-horizontal-stepper [linear]="true" #stepper>
                     <mat-step label="Application Info">
-                        <h1 id="non-student-disclaimer" *ngIf="user.Role!='user'">Warning: As a non-student you can preview the form, but not
-                        submit an abstract. If you or your students are having issues or or questions regarding the form,
-                        contact &lt;insert_admin_email&gt;.</h1>
-                        All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
-                        The faculty mentor should indicate:<br>
-                        * Confidence that the student's work will be ready to present by the URS date.<br>
-                        * Approval of the submitted abstract/statement/proposal for publication as-is in the program book.<br>
-                        Project adviser recommendations should complete the form prior to the student submitting their abstract for review.<br><br>
+                        <div id="infoPage">
+                            <h1 id="non-student-disclaimer" *ngIf="user.Role!='user'">
+                                Warning: As a non-student you can preview the form, but not
+                                submit an abstract. If you or your students are having issues or or questions regarding the form,
+                                contact small203@morris.umn.edu.
+                            </h1>
 
-                        The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative, and scholarly work representing the Divisions of Education,
-                        Humanities, Science and Mathematics, and Social Sciences at UMM. Accordingly, submissions from students enrolled at other institutions will not be accepted.<br><br>
+                            All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
+                            The faculty mentor should indicate:<br>
+                            <ul>
+                                <li>Confidence that the student's work will be ready to present by the URS date.</li>
+                                <li>Approval of the submitted abstract/statement/proposal for publication as-is in the program book.</li>
+                            </ul>
+                            Project adviser recommendations should complete the form prior to the student submitting their abstract for review.<br><br>
 
-                        Your username (x500) will be recorded when you submit this form.
+                            The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative, and scholarly work representing the Divisions of Education,
+                            Humanities, Science and Mathematics, and Social Sciences at UMM. Accordingly, submissions from students enrolled at other institutions will not be accepted.<br><br>
 
-                        URS submission descriptions:<br><br>
+                            <p class="text-center">
+                                <b><u>Your username (x500) will be recorded when you submit this form.</u></b>
+                            </p>
 
-                        General Criteria:<br>
-                        All submissions should be no more than 250 words and should contain the following elements:<br>
-                        1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?<br>
-                        2. Language that is clear and comprehensible to those who are not experts in the field.<br>
-                        3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.<br><br>
+                            <br><br><p class="text-center"><i>URS Submission Descriptions:</i></p><br><br>
 
-                        Field-specific criteria:<br><br>
+                            <b>General Criteria:</b><br>
+                            All submissions should contain the following elements:<br><br>
+                            1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?<br>
+                            2. Language that is clear and comprehensible to those who are not experts in the field.<br>
+                            3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.<br><br>
 
-                        Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.<br><br>
+                            <br>
+                            <b>Field-specific criteria:</b><br>
+                            Mark the category below that best describes your project. Your submission must also include the appropriate field-specific elements listed below.<br>
 
-                        Artist Statement Criteria<br>
-                        Humanities Proposal Criteria<br>
-                        Science and Social Science Abstract Criteria<br><br>
+                            <ul>
+                                <li>Artist Statement Criteria</li>
+                                <li>Humanities Proposal Criteria</li>
+                                <li>Science and Social Science Abstract Criteria</li>
+                            </ul>
 
-                        If you are unsure which category best fits your project, please consult your faculty sponsor.<br><br>
-                        <div class="mainTextButton">
-                            <button mat-raised-button matStepperNext color="primary">Next</button>
+                            <br>
+                            If you are unsure which category best fits your project, please consult your faculty sponsor.<br><br>
+                            <div class="mainTextButton">
+                                <button mat-raised-button matStepperNext color="primary">Next</button>
+                            </div>
                         </div>
+
                     </mat-step>
 
                     <mat-step label="Title/Abstract/Format" [stepControl]="firstFormGroup">
                         <div class="presentationTitle">
-                            <form [formGroup]="firstFormGroup">
+                            <form [formGroup]="firstFormGroup" id="titleAndAbstract">
                                 <mat-form-field class="presentationTitleBox">
-                                    <textarea matInput #input formControlName="firstCtrlOne"
+                                    <mat-label>Title</mat-label>
+                                    <input matInput #input formControlName="titleCtrl"
                                            required
                                            placeholder="Presentation Title"
                                            (input)="presentationTitle = $event.target.value"
                                            rows="1"
-                                              cols="1"></textarea>
+                                           cols="1">
                                 </mat-form-field>
 
                                 <mat-form-field class="abstractBox">
-                                    <textarea matInput #input formControlName="firstCtrlTwo"
+                                    <mat-label>Abstract</mat-label>
+                                    <textarea matInput #input formControlName="abstractCtrl"
                                               required
-                                              placeholder="Artist Statement/ Proposal/ Abstract"
+                                              placeholder="Artist Statement/Proposal/Abstract"
                                               (input)="abstractContent = $event.target.value"
                                               rows="10"
                                               cols="1"></textarea>
@@ -65,26 +80,35 @@
 
                                 <br><br>
 
-                                <mat-select placeholder="Format for Submission" required formControlName="firstCtrlThree">
-                                    <mat-option #input value="artist statement" (click) = "submissionFormat = 'artist statement'">Artist Statement</mat-option>
-                                    <mat-option #input value="humanities proposal" (click) = "submissionFormat = 'humanities proposal'">Humanities Proposal</mat-option>
-                                    <mat-option #input value="science or social science abstract" (click) = "submissionFormat = 'science or social science abstract'">Science or Social Science Abstract</mat-option>
-                                </mat-select>
+                                <mat-form-field>
+                                    <mat-label>Format for Submission</mat-label>
+                                    <mat-select placeholder="Format for Submission" required formControlName="subFormatCtrl">
+                                        <mat-option #input value="artist statement" (click) = "submissionFormat = 'artist statement'">Artist Statement</mat-option>
+                                        <mat-option #input value="humanities proposal" (click) = "submissionFormat = 'humanities proposal'">Humanities Proposal</mat-option>
+                                        <mat-option #input value="science or social science abstract" (click) = "submissionFormat = 'science or social science abstract'">Science or Social Science Abstract</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                                <mat-select placeholder="Type of Presentation" required formControlName="firstCtrlFour">
-                                    <mat-option #input value="poster or visual display" (click) = "presentationType = 'poster or visual display'">Poster or Visual Display</mat-option>
-                                    <mat-option #input value="oral presentation" (click) = "presentationType = 'oral presentation'">Oral Presentation</mat-option>
-                                    <mat-option #input value="performance" (click) = "presentationType = 'performance'">Performance</mat-option>
-                                </mat-select>
+                                <br>
+
+                                <mat-form-field>
+                                    <mat-label>Type of Presentation</mat-label>
+                                    <mat-select placeholder="Type of Presentation" required formControlName="presTypeCtrl">
+                                        <mat-option #input value="poster or visual display" (click) = "presentationType = 'poster or visual display'">Poster or Visual Display</mat-option>
+                                        <mat-option #input value="oral presentation" (click) = "presentationType = 'oral presentation'">Oral Presentation</mat-option>
+                                        <mat-option #input value="performance" (click) = "presentationType = 'performance'">Performance</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
                                 <br><br>
+
                                 Because of space constraints, we may not be able to have everyone do their preferred type of presentation.
                                 If necessary, would you be willing to give your presentation in another format?
                                 <br>
                                 (No change in format will be made without first contacting the presenter first)
                                 <br><br>
 
-                                <mat-radio-group (change)="onFormatChange($event)" formControlName="firstCtrlFive">
+                                <mat-radio-group (change)="onFormatChange($event)" formControlName="formatChangeCtrl">
                                     <mat-radio-button value="yes" color="primary">Yes</mat-radio-button>&nbsp;&nbsp;
                                     <mat-radio-button value="no" color="primary">No</mat-radio-button>
                                 </mat-radio-group>
@@ -101,36 +125,41 @@
                             <form [formGroup]="secondFormGroup">
                                 <h3>Discipline(s)</h3>
 
-                                <mat-form-field>
-                                    <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="secondCtrlFour" multiple>
+                                <mat-form-field id="discipline">
+                                    <mat-label>Academic Discipline</mat-label>
+                                    <mat-select placeholder="Academic Discipline" class="academicDiscipline" required formControlName="disciplineCtrl" multiple>
                                         <mat-option *ngFor="let discipline of disciplines" [value]="discipline.key" (click)="addOrRemoveDiscipline(discipline)">
                                             {{discipline.value}}
                                         </mat-option>
-                                        <mat-option #input value="other" (click)="this.otherAcademic = !this.otherAcademic">Other</mat-option>
+                                        <mat-option #input (click)="this.otherAcademic = !this.otherAcademic">Other</mat-option>
                                     </mat-select>
                                 </mat-form-field>
 
-                                <br><br>
+                                <br>
 
                                 <mat-form-field *ngIf="this.otherAcademic">
-                                        <textarea matInput
+                                    <mat-label>Other Academic Discipline</mat-label>
+                                        <input matInput
                                                   #input
                                                   required
                                                   placeholder="Please specify"
                                                   (input)="otherAcedemicDiscipline = $event.target.value"
                                                   rows="1"
-                                                  cols="1"></textarea>
+                                                  cols="1">
                                 </mat-form-field>
+
                                 <br>
 
+                                <p id="featuredPresentation">
+                                    The URS abstract review committee selects one submission to be the Feature Presentation. This presentation
+                                    should have broader appeal with interdisciplinary components, and may easily
+                                    accommodate a performance component. The featured presenter will have more time,
+                                    as well as a bigger room than regular presentations. Would you be interested in
+                                    having your presentation featured during the opening ceremony?
+                                </p>
+
                                 <br><br>
-                                The URS abstract review committee selects one submission to be the Feature Presentation. This presentation
-                                should have broader appeal with interdisciplinary components, and may easily
-                                accommodate a performance component. The featured presenter will have more time,
-                                as well as a bigger room than regular presentations. Would you be interested in
-                                having your presentation featured during the opening ceremony?
-                                <br><br>
-                                <mat-radio-group (change)="onFeaturePresentationChange($event)" formControlName="secondCtrlFive">
+                                <mat-radio-group (change)="onFeaturePresentationChange($event)" formControlName="featurePresCtrl">
                                     <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
                                     <mat-radio-button color="primary" value="no">No</mat-radio-button>
                                 </mat-radio-group>
@@ -145,6 +174,8 @@
                     <mat-step label="Presenter(s)" [stepControl]="presenters">
                         <div class="presenterForm">
 
+                            <h3>Presenters</h3>
+
                             <form [formGroup]="presenters">
                                 Who else will be presenting? Please add their name(s) and their university email below.
                                 If there are more than one presenter, click the plus button for more rows.
@@ -152,22 +183,29 @@
 
                                 <p>You will be automatically entered as: {{user.FirstName}} {{user.LastName}} ({{userEmail}})</p>
 
-                                <button mat-raised-button (click)="addPresenter()" *ngIf="presenters.length <= 10"><mat-icon>add_circle</mat-icon>Add Presenter</button>
+                                <br>
+
+                                <button mat-raised-button (click)="addPresenter()" *ngIf="presenters.length < 10"><mat-icon>add_circle</mat-icon>Add Presenter</button>
+
+                                <br><br>
 
                                 <div *ngFor="let presenter of presenters.controls; index as i">
                                     <div>
                                         <ng-container [formGroup]="presenter">
                                             <mat-form-field>
-                                            <textarea matInput formControlName="presenterFirstName">
-                                            </textarea>
+                                                <mat-label>First Name</mat-label>
+                                                <input matInput formControlName="presenterFirstName"
+                                            placeholder="First Name">
                                             </mat-form-field>
                                             <mat-form-field>
-                                            <textarea matInput formControlName="presenterLastName">
-                                            </textarea>
+                                                <mat-label>Last Name</mat-label>
+                                                <input matInput formControlName="presenterLastName"
+                                            placeholder="Last Name">
                                             </mat-form-field>
                                             <mat-form-field>
-                                            <textarea matInput formControlName="presenterEmail">
-                                            </textarea>
+                                                <mat-label>Email</mat-label>
+                                                <input matInput formControlName="presenterEmail"
+                                            placeholder="Email">
                                             </mat-form-field>
                                         </ng-container>
                                         <button mat-raised-button (click)="removePresenter(i)" *ngIf="presenters.length > 0"><mat-icon>remove_circle</mat-icon>Remove Presenter</button>
@@ -181,7 +219,7 @@
 
                     <mat-step label="Sponsor(s)/Category">
                         <div class="sponOrganization">
-                            <p>Sponsoring Organization or Fund</p>
+                            <h3>Sponsoring Organization or Fund</h3>
                             <p>Choose any applicable. If funded by faculty grant, specify under 'other'</p>
                             <div class="checkboxes">
                                 <mat-checkbox *ngFor="let sponsor of sponsoredOrganizations" [value]="sponsor.key" (click)="addOrRemoveSponsoredOrganization(sponsor)">
@@ -191,11 +229,11 @@
                             <br>
 
                             <mat-form-field>
-                                <textarea matInput #input
-                                          placeholder="Other"
+                                <input matInput #input
+                                          placeholder="Other Sponsor/Fund"
                                           (input)="miscSponOrganization = $event.target.value"
                                           rows="1"
-                                          cols="1"></textarea>
+                                          cols="1">
                             </mat-form-field>
 
                             <br>
@@ -216,28 +254,34 @@
 
                     <mat-step label="Advisor(s)" [stepControl]="advisors">
                         <div class="adviserForm">
+
+                            <h3>Advisors</h3>
+
                             <form [formGroup]="advisors">
                                 Who is the advisor(s)? Please add their name(s) and their university email below.
                                 If there are more than one presenter, click the plus button for more rows.
-                                <br>
-                                <button mat-raised-button (click)="addAdvisor()"><mat-icon>add_circle</mat-icon>Add Advisor</button>
+                                <br><br>
+
                                 <div *ngFor="let advisor of advisors.controls; index as i">
                                     <div>
+                                        <button *ngIf="i == 0" mat-raised-button (click)="addAdvisor()"><mat-icon>add_circle</mat-icon> Add an Advisor</button>
                                         <ng-container [formGroup]="advisor">
                                             <mat-form-field>
-                                            <textarea matInput formControlName="advisorFirstName">
-                                            </textarea>
+                                            <input matInput formControlName="advisorFirstName"
+                                            placeholder="First Name">
                                             </mat-form-field>
+
                                             <mat-form-field>
-                                            <textarea matInput formControlName="advisorLastName">
-                                            </textarea>
+                                            <input matInput formControlName="advisorLastName"
+                                            placeholder="Last Name">
                                             </mat-form-field>
+
                                             <mat-form-field>
-                                            <textarea matInput formControlName="advisorEmail">
-                                            </textarea>
+                                            <input matInput formControlName="advisorEmail"
+                                            placeholder="Email">
                                             </mat-form-field>
                                         </ng-container>
-                                        <button *ngIf="i > 0" mat-raised-button (click)="removeAdvisor(i)"><mat-icon>remove_circle</mat-icon>Remove Advisor</button>
+                                        <button *ngIf="i > 0" mat-raised-button (click)="removeAdvisor(i)"><mat-icon>remove_circle</mat-icon> Remove Advisor</button>
                                     </div>
                                 </div>
                             </form>
@@ -294,15 +338,18 @@
 
                     <mat-step label="Review/Submit">
                         <div>
-                            <p class="text-center">Please review the following information before submitting:</p>
+                            <h1 class="text-center">Please review the following information before submitting.
+                            </h1>
+                            <h2 class="text-center">Feel free to navigate back to any step.</h2>
+                            <br>
                             <div class="reviewAndSubmitPage">
-                                <p>Presentation Title: {{presentationTitle}}</p>
-                                <p>Abstract: {{abstractContent}}</p>
-                                <p>Submission Format: {{submissionFormat}}</p>
-                                <p>Presentation Type: {{presentationType}}</p>
-                                <p>Willing to Change Format: {{willingToChangePresentationFormat}}</p>
+                                <p><b>Presentation Title:</b> {{presentationTitle}}</p>
+                                <p><b>Abstract:</b> {{abstractContent}}</p>
+                                <p><b>Submission Format:</b> {{submissionFormat}}</p>
+                                <p><b>Presentation Type:</b> {{presentationType}}</p>
+                                <p><b>Willing to Change Format:</b> {{willingToChangePresentationFormat}}</p>
 
-                                <p>Presenter(s): </p>
+                                <p><b>Presenter(s):</b> </p>
                                 <ul>
                                     <li>{{presenterWhoIsSubmitting.presenterFirstName}}
                                         {{presenterWhoIsSubmitting.presenterLastName}}
@@ -315,10 +362,10 @@
                                     </li>
                                 </ul>
 
-                                <p>Discipline:
+                                <p><b>Discipline:</b>
                                     <span *ngFor="let discipline of academicDiscipline; let isLast = last">
                                         {{discipline.value}}{{isLast ? '' : ', '}}</span>
-                                    <span *ngIf="otherAcedemicDiscipline">
+                                    <span *ngIf="otherAcedemicDiscipline.trim()!=''">
                                         <span *ngIf="academicDiscipline.length > 0; else standalone">, {{otherAcedemicDiscipline}}
                                         </span>
                                         <ng-template #standalone>
@@ -327,43 +374,51 @@
                                     </span>
                                 </p>
 
-                                <p>Willing to be Feature Presentation: {{willingToBeFeaturePresenter}}</p>
+                                <p><b>Willing to be Feature Presentation:</b> {{willingToBeFeaturePresenter}}</p>
 
-                                <p *ngIf="sponOrganization">
-                                    Sponsoring Organization:
+                                <p *ngIf="sponOrganization.length>0 || miscSponOrganization">
+                                    <b>Sponsoring Organization:</b>
                                     <span *ngFor="let sponsOrg of sponOrganization; let isLast = last">
                                         {{sponsOrg.value}}{{isLast ? '' : ', '}}</span>
-                                    <span *ngIf="miscSponOrganization">
+                                    <span *ngIf="miscSponOrganization.trim()!=''">
                                         <span *ngIf="sponOrganization.length > 0; else standalone">, {{miscSponOrganization}}
                                         </span>
                                         <ng-template #standalone>
                                             {{miscSponOrganization}}
                                         </ng-template>
                                     </span>
-
                                 </p>
 
-                                <p *ngIf="category">
-                                    Categories:
+                                <p *ngIf="category.length>0">
+                                    <b>Categories:</b>
                                     <span *ngFor="let category of category; let isLast = last">{{category.value}}{{isLast ? '' : ', '}}</span>
                                 </p>
 
-                                <p>Advisors(s): </p>
+                                <p><b>Advisors(s): </b></p>
                                 <ul>
                                     <li *ngFor="let adv of advisors.value">{{adv.advisorFirstName}} {{adv.advisorLastName}} ({{adv.advisorEmail}})</li>
                                 </ul>
 
-                                <p *ngIf="additionalMediaEquipment">Media Services Equipment: {{additionalMediaEquipment}}</p>
-                                <p *ngIf="additionalRequirements">Special Requirements: {{additionalRequirements}}</p>
-                                <p *ngIf="other">Other: {{other}}</p>
+                                <p *ngIf="additionalMediaEquipment"><b>Media Services Equipment:</b> {{additionalMediaEquipment}}</p>
+                                <p *ngIf="additionalRequirements"><b>Special Requirements:</b> {{additionalRequirements}}</p>
+                                <p *ngIf="other"><b>Other:</b> {{other}}</p>
                             </div>
+                            <br><br>
+                            <h3 *ngIf="user.ShirtSize==''" class="text-center">Make sure to set your shirt size on the profile page after you submit!</h3>
                             <br><br>
                             <div class="text-center">
                                 <button mat-raised-button matStepperPrevious color="warn">Previous</button>
-                                <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/"
-                                        *ngIf="user.Role=='user'; else notStudent">Submit</button>
-                                <ng-template #notStudent>
-                                    <button mat-raised-button color="primary">Submit (non-students cannot submit)</button>
+
+                                <div *ngIf="(this.otherAcedemicDiscipline.trim() == '') && (this.otherAcademic) && (this.academicDiscipline.length == 0); else valid">
+                                    <h1><b>Missing a discipline. Either type in an 'other' or pick one of the options on the 'Disciplines' step.</b></h1>
+                                </div>
+
+                                <ng-template #valid>
+                                    <button mat-raised-button color="primary" (click)="saveSubmission()" routerLink="/"
+                                            *ngIf="user.Role=='user' && user.Email.includes('umn.edu'); else notStudent">Submit</button>
+                                    <ng-template #notStudent>
+                                        <button mat-raised-button color="primary">Submit (non-students cannot submit)</button>
+                                    </ng-template>
                                 </ng-template>
                             </div>
 

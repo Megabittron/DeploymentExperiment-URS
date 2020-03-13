@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from "./admin.service";
 import {User} from "../user";
 import {SystemInformation} from "./systemInformation";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
     selector: 'edit-user-info-component',
@@ -12,12 +13,13 @@ import {SystemInformation} from "./systemInformation";
 
 export class EditUserInfoComponent implements OnInit {
 
-    constructor(private adminService: AdminService) {}
+    constructor(private adminService: AdminService, private authenticationService: AuthenticationService) {}
 
     public users: User[];
     public user: User;
     public systemInformation: SystemInformation;
     private editingRole: boolean;
+    private currentUser: User;
 
     roles = [
         {value: 'user', viewValue: 'User'},
@@ -48,6 +50,11 @@ export class EditUserInfoComponent implements OnInit {
         this.adminService.getUserInfo().subscribe(value => {
             this.users = value;
             this.users.sort((a,b) => a.Role.localeCompare(b.Role));
+        });
+
+        this.authenticationService.user$.subscribe(currentUser => {
+            this.currentUser = currentUser;
+            console.log(this.currentUser);
         });
     }
 }

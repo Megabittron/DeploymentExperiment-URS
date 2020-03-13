@@ -86,7 +86,7 @@ public class UserController {
             .collect(Collectors.joining(", ", "[", "]"));
     }
 
-    public String addNewUser(String subjectID, String firstName, String lastName) {
+    public String addNewUser(String subjectID, String firstName, String lastName, String email) {
 
         Document newUser = new Document();
         newUser.append("SubjectID", subjectID);
@@ -94,11 +94,12 @@ public class UserController {
         newUser.append("LastName", lastName);
         newUser.append("ShirtSize", "");
         newUser.append("Role", "user");
+        newUser.append("Email", email);
 
         try {
             userCollection.insertOne(newUser);
             ObjectId id = newUser.getObjectId("_id");
-            System.err.println("Successfully added new user [_id= " + id + ", SubjectID= " + subjectID + ", FirstName= " + firstName + ", LastName= " + lastName + "]");
+            System.err.println("Successfully added new user [_id= " + id + ", SubjectID= " + subjectID + ", FirstName= " + firstName + ", LastName= " + lastName + ", Email=" + email + "]");
 
             return new BasicDBObject("_id", id).toJson();
         } catch (MongoException e) {

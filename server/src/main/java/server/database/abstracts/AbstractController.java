@@ -47,12 +47,13 @@ public class AbstractController {
     /**
      * Helper method called by getAbstractJSON(..)
      *
-     * @param id Users SubjectID
-     * @return Array of abstracts by userID as a JSON formatted string
+     * @param presenterEmail Abstract.presenters.presenterEmail
+     * @return Array of abstracts by presenters.presenterEmail as a JSON formatted string
      */
-    String getAbstractsForUser(String id) {//https://github.com/Megabittron/DeploymentExperiment-URS/blob/master/server/src/main/java/server/database/users/UserController.java#L30
+
+    String getAbstractsForStudent(String presenterEmail) {//https://github.com/Megabittron/DeploymentExperiment-URS/blob/master/server/src/main/java/server/database/users/UserController.java#L30
         Document filterDoc = new Document();
-        filterDoc.append("userID", id);
+        filterDoc.append("presenters.presenterEmail", presenterEmail);
 
         FindIterable<Document> abstracts = abstractCollection.find(filterDoc);
 
@@ -80,7 +81,7 @@ public class AbstractController {
 //                push("topComments", "$topComments"))
         ));
 
-        System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
+//        System.out.println("final result: \n" + toPrettyFormat(singleAbstract.first().toJson()));
 
         return singleAbstract.first().toJson();
     }
@@ -366,8 +367,6 @@ public class AbstractController {
 
         FindIterable<Document> matchingAbstracts = abstractCollection.find(filterDoc);
 
-        System.out.println(matchingAbstracts);
-
         return newAbstractArray(matchingAbstracts);
 
     }
@@ -523,11 +522,11 @@ public class AbstractController {
         Document setQuery = new Document();
         setQuery.append("$set", newAbstract);
         Document searchQuery = new Document().append("_id", new ObjectId(id));
-        System.out.println(searchQuery + " the search");
+//        System.out.println(searchQuery + " the search");
 
         try {
             abstractCollection.updateOne(searchQuery, setQuery);
-            System.out.println(abstractCollection.find());
+//            System.out.println(abstractCollection.find());
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully added new journal " +
                 "[_id=" + id1 + ", title=" + title + ", submissionFormat=" + submissionFormat + ", abstracts=" + abstracts + ", " +
@@ -552,11 +551,11 @@ public class AbstractController {
      */
     void deleteAbstract(String id) {
         Document searchQuery = new Document().append("_id", new ObjectId(id));
-        System.out.println("Abstract id: " + id);
+//        System.out.println("Abstract id: " + id);
         try {
             abstractCollection.deleteOne(searchQuery);
             ObjectId theID = searchQuery.getObjectId("_id");
-            System.out.println("Succesfully deleted abstract with ID: " + theID);
+//            System.out.println("Succesfully deleted abstract with ID: " + theID);
 
         } catch (MongoException me) {
             me.printStackTrace();

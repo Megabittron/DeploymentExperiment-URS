@@ -1,7 +1,7 @@
 [
     {
         "_id": {
-            "$oid": "5c832bec26656a20be5ec19a"
+            "$oid": "5e697069ed22a025c37a30ab"
         },
         "SubjectID": "110073864477046231185",
         "FirstName": "Charlotte",
@@ -11,7 +11,7 @@
     },
     {
         "_id": {
-            "$oid": "5b3524ba0e117cc103c592b9"
+            "$oid": "5e697069e2b84325d05306e3"
         },
         "SubjectID": "110073864477046231184",
         "FirstName": "Francesca",
@@ -21,7 +21,7 @@
     },
     {
         "_id": {
-            "$oid": "5b3524ba0e117cc103c592b7"
+            "$oid": "5e6970696cde6c2c578bb8b4"
         },
         "SubjectID": "110073864477046231183",
         "FirstName": "Barbara",
@@ -31,7 +31,7 @@
     },
     {
         "_id": {
-            "$oid": "5b3524ba0e117cc103c592b5"
+            "$oid": "5e697069faceca8c86dd27ca"
         },
         "SubjectID": "110073864477046231182",
         "FirstName": "Charles",
@@ -41,12 +41,13 @@
     },
     {
         "_id": {
-            "$oid": "5b3524ba0e117cc103c592b6"
+            "$oid": "5e6970694ca9a38d826ed0a4"
         },
         "SubjectID": "109020570512537057671",
         "FirstName": "Michael",
         "LastName": "Small",
-        "ShirtSize": "m",
-        "Role": "admin"
+        "ShirtSize": "",
+        "Role": "admin",
+        "Email": "small203@morris.umn.edu"
     }
 ]

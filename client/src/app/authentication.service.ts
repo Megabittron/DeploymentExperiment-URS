@@ -73,7 +73,7 @@ export class AuthenticationService {
                 gapi.auth2.init({
                     client_id: '360518813721-mppgbakr2g1pk5q843nm533uvdhp1lk6.apps.googleusercontent.com',
                     fetch_basic_profile: true,
-                    hosted_domain: 'morris.umn.edu'
+                    hosted_domain: ''
                 }).then(GoogleAuth => {
                     this.auth2 = GoogleAuth;
                     let GoogleUser = GoogleAuth.currentUser.get();
@@ -82,8 +82,6 @@ export class AuthenticationService {
                     if (isSignedIn) {
                         this.updateCurrentUser(GoogleUser);
                     }
-
-                    console.log("user email: " + GoogleUser.getBasicProfile().getEmail());
 
                     GoogleAuth.isSignedIn.listen(this.updateSignInStatus);
                     GoogleAuth.currentUser.listen(this.updateCurrentUser);

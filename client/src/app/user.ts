@@ -5,4 +5,5 @@ export interface User {
     LastName: string;
     ShirtSize: string;
     Role: string;
+    Email: string;
 }

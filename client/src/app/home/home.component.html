@@ -8,15 +8,18 @@
 
                 <h2>Hello {{user.FirstName}}, you are seeing this because you are an: {{user.Role.toUpperCase()}}</h2>
 
-                <h3>You have higher level access, including abilities such as: </h3>
-                <ul>
-                    <li>(depends on advisor or chair or admin)</li>
-                    <li>(depends on advisor or chair or admin)</li>
-                    <li>(etc etc etc)</li>
-                </ul>
+                <div *ngIf="user.Role=='admin'">
+                    <h3>You have higher level access, including abilities such as: </h3>
+                    <ul>
+                        <li>View statistics on submissions</li>
+                        <li>View ALL submissions</li>
+                        <li>Reassign user roles</li>
+                    </ul>
+                    <button mat-raised-button routerLink="/admin" *ngIf="user.Role == 'admin'">Admin Page</button>
+                    <br><br>
+                </div>
 
                 <button mat-raised-button routerLink="/submissionList">View All Submissions</button>
-                <button mat-raised-button routerLink="/admin" *ngIf="user.Role == 'admin'">Admin Page</button>
 
                 <h2 class="studentPOV">The Student Point of View</h2>
                 <p>If a student has a question about the submission interface, not to fear! You can step through the
@@ -61,12 +64,12 @@
 
                 <h3>In 2019 we introduced a few new categories:</h3>
                 <ul>
-                    <li>"works in progress" option for projects and papers not-yet-finished, but "far along"</li>
-                    <li>"capstone" category for those kinds of particular works that function to fulfill degree
+                    <li>"Works in Progress" option for projects and papers not-yet-finished, but "far along"</li>
+                    <li>"Capstone" category for those kinds of particular works that function to fulfill degree
                         requirements but may be presentable to a general audience</li>
-                    <li>"submitted panel" option, which could include several projects related to a tightly-defined
+                    <li>"Submitted Panel" option, which could include several projects related to a tightly-defined
                         topic or theme</li>
-                    <li>"sophomore spotlight" to highlight the work of younger scholar-students.</li>
+                    <li>"Sophomore Spotlight" to highlight the work of younger scholar-students.</li>
                 </ul>
 
                 <h2>Timeline</h2>
