@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {SubmissionListService} from "../submissionList/submissionList.service";
 import {Submission} from "../newSubmission/submission";
 import {Observable} from "rxjs";
@@ -6,6 +6,8 @@ import {TopComment} from "./comment";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../user";
 import {Presenters} from "../newSubmission/presenters";
+import {DOCUMENT} from "@angular/common";
+import * as url from "url";
 
 @Component({
     selector: 'submissionView.component',
@@ -17,7 +19,11 @@ import {Presenters} from "../newSubmission/presenters";
 export class SubmissionViewComponent implements OnInit {
 
     constructor(public submissionListService: SubmissionListService,
-                public authenticationService: AuthenticationService) {}
+                public authenticationService: AuthenticationService,
+                @Inject(DOCUMENT) private document: Document) {
+    }
+
+    public abstractID = "";
 
     public submission: Submission;
     public otherDiscipline: string;
@@ -34,8 +40,14 @@ export class SubmissionViewComponent implements OnInit {
     public presenterArray: Presenters[] = [];
 
     getSubmission() {
+        let url = this.document.location.href;
+        this.abstractID = url.substr(url.lastIndexOf('/') + 1); //grabs the abstract id from after the url's last slash
         let submissionObservable: Observable<Submission>;
-        submissionObservable = this.submissionListService.getSingleSubmissionById(this.submissionListService.singleAbstractId);
+        if (this.submissionListService.singleAbstractId == "") {
+            submissionObservable = this.submissionListService.getSingleSubmissionById(this.abstractID);
+        } else if (this.submissionListService.singleAbstractId != "") {
+            submissionObservable = this.submissionListService.getSingleSubmissionById(this.submissionListService.singleAbstractId);
+        }
         submissionObservable.subscribe(
             submission => {
                 if (submission != null) {

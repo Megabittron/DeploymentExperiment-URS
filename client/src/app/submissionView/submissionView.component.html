@@ -8,19 +8,24 @@
                 <mat-icon>arrow_back</mat-icon> Back to Submission List
             </button>
 
-            <br>
+            <br><br>
 
-            <div class="submission-judgement-btns" *ngIf="user.Role!='user'">
+            <div>
+                <h3><i>Buttons to vote on approval, rejection, or flagging for resubmission will be here during the
+                    designated review phase.</i></h3>
+            </div>
+
+            <div class="submission-judgement-btns" *ngIf="user.Role!='user'" [hidden]="true">
                 <button mat-button class="approve">
-                    <mat-icon>thumb_up</mat-icon> Give Adviser Approval [W]
+                    <mat-icon>thumb_up</mat-icon> Give Adviser Approval
                 </button>
 
                 <button mat-button class="reject">
-                    <mat-icon>thumb_down</mat-icon> Reject Submission [W]
+                    <mat-icon>thumb_down</mat-icon> Reject Submission
                 </button>
 
                 <button mat-button class="flag">
-                    <mat-icon>flag</mat-icon> Flag for Re-Submission [W]
+                    <mat-icon>flag</mat-icon> Flag for Re-Submission
                 </button>
             </div>
         </div>
@@ -72,17 +77,40 @@
 
         </mat-expansion-panel>
 
+        <br>
+
+        <div *ngIf="user.Role!='user'" class="text-center">
+            <span>You are seeing this submission because you are: </span>
+            <b *ngIf="user.Role=='reviewer'">an Advisor</b>
+            <b *ngIf="user.Role=='chair'">a Chair</b>
+            <b *ngIf="user.Role=='admin'">an Admin</b>
+        </div>
+
         <div class="abstract">
             <h1>Abstract</h1>
             <p (mouseup)="highlightAbstractToCommentOn()">{{submission.abstractContent}}</p>
         </div>
 
+        <br>
+        <div>
+            <p><b>Coming soon <span *ngIf="user.Role!='user'">(for students)</span> in the review phase: </b></p>
+            <ul>
+                <li>Commenting on abstracts between students and faculty</li>
+                <li>Editing title and abstract</li>
+                <li>Deleting abstract</li>
+            </ul>
+        </div>
+
+        <br>
+
         <div *ngIf="user.Role!='user'">
-            <p>You are seeing this submission because you are:
-                <b *ngIf="user.Role=='reviewer'">an Advisor</b>
-                <b *ngIf="user.Role=='chair'">a Chair</b>
-                <b *ngIf="user.Role=='admin'">an admin</b>
-            </p>
+            <p><b>Coming soon in the review phase for reviewers, chairs, and admins: </b></p>
+            <ul>
+                <li>Commenting on abstract</li>
+                <li>Editing all fields of an abstract</li>
+                <li>Deleting abstracts</li>
+                <li>Voting on/approving abstracts</li>
+            </ul>
         </div>
 
     </div>
