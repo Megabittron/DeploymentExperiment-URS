@@ -86,7 +86,7 @@ export class NewSubmissionComponent implements OnInit{
             return el != null;
         });
 
-        if(this.otherAcedemicDiscipline !== "" && this.otherAcademic) {
+        if(this.otherAcedemicDiscipline.trim() !== "" && this.otherAcademic) {
             this.academicDiscipline.push("other" + this.otherAcedemicDiscipline);
         }
 
@@ -94,7 +94,7 @@ export class NewSubmissionComponent implements OnInit{
             return el != null;
         });
 
-        if(this.miscSponOrganization!== "") {
+        if(this.miscSponOrganization.trim()!== "") {
             this.sponOrganization.push("other" + this.miscSponOrganization);
         }
 
@@ -170,7 +170,6 @@ export class NewSubmissionComponent implements OnInit{
             || this.presentationType == "" || this.willingToChangePresentationFormat == "undecided";
     }
 
-    //TODO: fix academicDiscipline requirement when you are not dead tired
     sectionTwoComplete() {
         return this.willingToBeFeaturePresenter == "undecided"
             || !(this.academicDiscipline.length != 0 || this.otherAcedemicDiscipline != "")
@@ -183,14 +182,14 @@ export class NewSubmissionComponent implements OnInit{
 
     presenters = new FormArray([]);
     addPresenter() {
-        if(this.presenters.length> 10) { //stops from adding more than 10 people
+        if(this.presenters.length > 10) { //stops from adding more than 10 people
             return;
         }
 
         const group = new FormGroup({
-            presenterFirstName: new FormControl('', Validators.required),
-            presenterLastName: new FormControl('', Validators.required),
-            presenterEmail: new FormControl('', Validators.compose([Validators.email, Validators.required]))
+            presenterFirstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+            presenterLastName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+            presenterEmail: new FormControl('', Validators.compose([Validators.email, Validators.required, Validators.maxLength(100)]))
         });
 
         this.presenters.push(group);
@@ -207,9 +206,9 @@ export class NewSubmissionComponent implements OnInit{
         }
 
         const group = new FormGroup({
-            advisorFirstName: new FormControl('', Validators.required),
-            advisorLastName: new FormControl('', Validators.required),
-            advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+            advisorFirstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+            advisorLastName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+            advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email, Validators.maxLength(100)]))
         });
 
         this.advisors.push(group);
@@ -217,10 +216,6 @@ export class NewSubmissionComponent implements OnInit{
 
     removeAdvisor(index: number) {
         this.advisors.removeAt(index);
-    }
-
-    debugAdvisors() {
-        console.log("advisors.length() :" + this.advisors.length);
     }
 
     formGroup: FormGroup;
@@ -232,9 +227,9 @@ export class NewSubmissionComponent implements OnInit{
         this.formGroup = this._formBuilder.group({
             formArray: this._formBuilder.array([
                 this._formBuilder.group({
-                    advisorFirstName: new FormControl('', Validators.required),
-                    advisorLastName: new FormControl('', Validators.required),
-                    advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+                    advisorFirstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+                    advisorLastName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
+                    advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email, Validators.maxLength(100)]))
                 }),
                 this._formBuilder.group({
                     emailFormCtrl: ['', Validators.email]
@@ -263,36 +258,17 @@ export class NewSubmissionComponent implements OnInit{
 
         // STEP TWO: Title/Abstract/Format step
         this.firstFormGroup = this._formBuilder.group({
-            firstCtrlOne: ['', Validators.required],
-            firstCtrlTwo: ['', Validators.required],
-            firstCtrlThree: ['', Validators.required],
-            firstCtrlFour: ['', Validators.required],
-            firstCtrlFive: ['', Validators.required]
+            titleCtrl: ['', Validators.compose([Validators.required, Validators.maxLength(400)])],
+            abstractCtrl: ['', Validators.compose([Validators.required, Validators.maxLength(7000)])],
+            subFormatCtrl: ['', Validators.required],
+            presTypeCtrl: ['', Validators.required],
+            formatChangeCtrl: ['', Validators.required]
         });
 
         // STEP THREE: Presenter(s)/Discipline/Featured step
         this.secondFormGroup = this._formBuilder.group({
-            secondCtrlFour: ['', Validators.required],
-            secondCtrlFive: ['', Validators.required]
-        });
-
-        this.ninthFormGroup = this._formBuilder.group({
-            advisorFirstName: new FormControl('', Validators.required),
-            advisorLastName: new FormControl('', Validators.required),
-            advisorEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
-        });
-
-        this.presenterFormGroup = this._formBuilder.group({
-            presenterFirstName: new FormControl('', Validators.required),
-            presenterLastName: new FormControl('', Validators.required),
-            presenterEmail: new FormControl('', Validators.required)
-        });
-
-        // STEP 5: Advisor(s)
-        this.thirdFormGroup = this._formBuilder.group({
-            advisorFirstName: ['', Validators.required],
-            advisorLastName: ['', Validators.required],
-            advisorEmail: ['', Validators.compose([Validators.required, Validators.email])]
+            disciplineCtrl: ['', Validators.required],
+            featurePresCtrl: ['', Validators.required]
         });
     }
 }

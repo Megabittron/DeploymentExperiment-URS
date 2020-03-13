@@ -2,8 +2,13 @@
     text-align: center;
 }
 
+#titleAndAbstract {
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
 .presentationTitleBox{
-    width: 50%;
+    width: 70%;
     padding-bottom: 2px;
 }
 
@@ -23,6 +28,11 @@
     text-align: center;
 }
 
+#infoPage {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
 .sponOrganization{
     text-align: center;
 }
@@ -32,12 +42,28 @@
     padding-left: 48%;
 }
 
+//mat-select {
+//    padding-top: 5%;
+//    padding-bottom: 5%;
+//}
+
+#discipline {
+    width: 50%;
+}
+
 .adviserForm{
     text-align: center;
 }
 
+#featuredPresentation {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
 .additionalInfoPage{
     text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .reviewAndSubmitPage{
