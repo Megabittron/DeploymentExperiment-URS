@@ -54,7 +54,7 @@ export class EditUserInfoComponent implements OnInit {
 
         this.authenticationService.user$.subscribe(currentUser => {
             this.currentUser = currentUser;
-            console.log(this.currentUser);
+            // console.log(this.currentUser);
         });
     }
 }

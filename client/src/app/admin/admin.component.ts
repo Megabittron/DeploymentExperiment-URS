@@ -53,9 +53,9 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if(result) {
                 this.changeReviewGroups();
-                console.log('Review groups SAVED');
+                // console.log('Review groups SAVED');
             } else {
-                console.log('Review groups NOT saved');
+                // console.log('Review groups NOT saved');
             }
         });
     }

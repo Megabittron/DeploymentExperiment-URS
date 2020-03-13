@@ -32,7 +32,7 @@ export class SubmissionListComponent implements OnInit {
     }
     // This function shows today's submissions or all submissions based on the the given type
     showSubmissions(): Submission[] {
-        console.log(this.submissions);
+        // console.log(this.submissions);
         this.submissions.filter(submission => {
                 return true;
             });
