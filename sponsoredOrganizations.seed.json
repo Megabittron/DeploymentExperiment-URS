@@ -1,42 +1,42 @@
 [
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19a"
+            "$oid": "5e696f5b7fa274c9f47121a4"
         },
         "key": "curf",
         "value": "CURF"
     },
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19b"
+            "$oid": "5e696f5bade11f6ae9a84e86"
         },
         "key": "lsamp",
         "value": "LSAMP"
     },
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19c"
+            "$oid": "5e696f5ba24e0921e12cf587"
         },
         "key": "map",
         "value": "MAP"
     },
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19d"
+            "$oid": "5e696f5b42e7b377f8257c46"
         },
         "key": "mcnair",
         "value": "McNair"
     },
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19e"
+            "$oid": "5e696f5b8ee8663b328229e6"
         },
         "key": "mmp",
         "value": "MMP"
     },
     {
         "_id": {
-            "$oid": "6c832bec26656a20be5ec19f"
+            "$oid": "5e696f5b046087c049a5ebb2"
         },
         "key": "urop",
         "value": "UROP"
