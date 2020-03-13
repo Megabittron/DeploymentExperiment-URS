@@ -30,6 +30,5 @@ export class HomeComponent {
         this.authenticationService.user$.subscribe(user => {
             this.user = user;
         });
-        console.log(this.date);
     }
 }

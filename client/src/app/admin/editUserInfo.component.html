@@ -15,20 +15,22 @@
             <mat-card-title>
                 <b>{{oneUser.FirstName}} {{oneUser.LastName}}</b>
             </mat-card-title>
+            <p>Email: {{oneUser.Email}}</p>
             <p>Role: {{oneUser.Role}}</p>
             <p>Shirt Size: {{oneUser.ShirtSize | uppercase}}</p>
-            <mat-form-field>
+            <mat-form-field  *ngIf="oneUser.Email != currentUser.Email">
                 <mat-label>Change role</mat-label>
-
                 <mat-select>
                     <mat-option *ngFor="let role of roles" [value]="role.value"
                                 (click)="changeUserRole(oneUser, role.value)">
                         {{role.viewValue}}
                     </mat-option>
                 </mat-select>
-
             </mat-form-field>
-
+            <div *ngIf="oneUser.Email == currentUser.Email">
+                <br><br>
+                You cannot change your own role.
+            </div>
             <button *ngIf="editingRole && (oneUser == this.user)" mat-raised-button (click)="saveUserRole()">Confirm Role Change</button>
         </mat-card>
     </mat-grid-tile>

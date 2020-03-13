@@ -12,6 +12,7 @@
                     <h3 *ngIf="user && isEditing">Shirt Size: </h3>
                     <div class="edit-form" *ngIf="isEditing">
                         <mat-form-field>
+                            <mat-label>Please select size</mat-label>
                             <mat-select [(ngModel)]="user.ShirtSize">
                                 <mat-option *ngFor="let size of shirtSizes" [value]="size.value"
                                             (click)="saveUserShirtSize(user.ShirtSize)">
