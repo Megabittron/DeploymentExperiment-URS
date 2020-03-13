@@ -79,8 +79,6 @@ export class NewSubmissionComponent implements OnInit{
         });
         this.presenters.push(firstPresenter);
 
-        console.log("presenter length: " + this.presenters.length);
-
         //trims 'other' categories that were removed and subsequently empty strings
         this.academicDiscipline.filter(function (el) {
             return el != null;
@@ -118,7 +116,6 @@ export class NewSubmissionComponent implements OnInit{
             approval: this.approval
         };
 
-        console.log(newSubmission);
         this.newSubmissionService.addNewSubmission(newSubmission).subscribe(
             addSubmissionResult => {
                 this.highlightedID = addSubmissionResult;
