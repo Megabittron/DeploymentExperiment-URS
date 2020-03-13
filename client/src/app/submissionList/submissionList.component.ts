@@ -64,7 +64,7 @@ export class SubmissionListComponent implements OnInit {
         let submissionObservable: Observable<Submission[]>;
 
         if (this.user.Role.includes('user')) {
-            submissionObservable = this.submissionListService.getSubmissionsForStudent(userID);
+            submissionObservable = this.submissionListService.getSubmissionsForStudent(this.user.Email);
         } else if (this.user.Role.includes('reviewer')) {
             //submissionObservable = this.submissionListService.getSubmissionsForReview();
         } else if (this.user.Role.includes('admin')) {

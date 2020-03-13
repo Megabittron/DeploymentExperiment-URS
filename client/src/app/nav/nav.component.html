@@ -12,7 +12,9 @@
         <b *ngIf="user.Role!='user'; else isUser">Submission List</b>
 
         <ng-template #isUser>
-            <b>Your Submissions</b>
+            <div *ngIf="submissions.length > 0">
+                <b>Your Submissions</b>
+            </div>
         </ng-template>
     </a>
 

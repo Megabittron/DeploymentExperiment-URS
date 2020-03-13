@@ -4,6 +4,8 @@ import {User} from "../user";
 import {Router} from "@angular/router";
 import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 import {Observable} from "rxjs/Rx";
+import {SubmissionListService} from "../submissionList/submissionList.service";
+import {Submission} from "../newSubmission/submission";
 
 declare const gapi: any;
 @Component({
@@ -21,9 +23,12 @@ export class NavComponent implements OnInit{
     public breakPointState: Observable<BreakpointState> = this.breakPointObserver.observe('(max-width: 960px)');
     public isMobile: boolean;
 
+    public submissions: Submission[] = []; // full list of submissions
+
     constructor(private authenticationService: AuthenticationService,
                 private router: Router,
-                private breakPointObserver: BreakpointObserver) {
+                private breakPointObserver: BreakpointObserver,
+                private submissionListService: SubmissionListService) {
         this.text = 'Nav';
 
     }
@@ -49,6 +54,16 @@ export class NavComponent implements OnInit{
 
         this.authenticationService.user$.subscribe(value => {
             this.user = value;
+
+            if (this.user.Role.includes('user')) {
+                this.submissionListService.getSubmissionsForStudent(this.user.Email).subscribe(
+                    submissions => {
+                        this.submissions = submissions;
+                    },
+                    err => {
+                        console.log(err);
+                    });
+            }
 
             if (gapi) {
                 this.profilePic = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getImageUrl();
