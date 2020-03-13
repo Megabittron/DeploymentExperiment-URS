@@ -17,15 +17,16 @@ public class AbstractRequestHandler {
      *
      * @param req HTTP request
      * @param res HTTP response
-     * @return Array of abstracts by userID as a JSON formatted string
+     * @return Array of abstracts by `presenters.presenterEmail` as a JSON formatted string
      */
-    public String getAbstractsJSON(Request req, Response res){
+
+    public String getAbstractsForStudent(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
 
         String abstracts;
         try {
-            abstracts = abstractController.getAbstractsForUser(id);
+            abstracts = abstractController.getAbstractsForStudent(id);
         } catch (IllegalArgumentException e) {
 
             // This is thrown if the ID doesn't have the appropriate
@@ -262,7 +263,7 @@ public class AbstractRequestHandler {
         try {
             String id = req.params(":id");
 
-            System.out.println("Deleting abstract with ID: " + id);
+//            System.out.println("Deleting abstract with ID: " + id);
 
             abstractController.deleteAbstract(id);
             return req.params(":id");

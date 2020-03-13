@@ -106,7 +106,7 @@ public class Server {
         get("api/abstracts/disciplines", abstractRequestHandler::getDisciplines);
         get("api/abstracts/categories", abstractRequestHandler::getCategories);
         get("api/abstracts/sponsoredOrganizations", abstractRequestHandler::getSponsoredOrganizations);
-        get("api/abstracts/:id", abstractRequestHandler::getAbstractsJSON);
+        get("api/abstracts/:id", abstractRequestHandler::getAbstractsForStudent);
         post("api/abstracts/new", abstractRequestHandler::addNewAbstract);
 
         post("api/login", loginRequestHandler::loginUser);

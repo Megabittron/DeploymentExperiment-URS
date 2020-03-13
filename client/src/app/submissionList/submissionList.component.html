@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="submissions">
     <div class="status-legend">
 
     </div>
@@ -6,7 +6,7 @@
         <div class="submission-card" *ngFor="let submission of submissions" routerLink="/abstract/{{submission._id['$oid']}}" (click)="grabSubmissionId(submission._id['$oid'])">
             <div class="status-bar"></div>
             <div class="submission-card-content">
-                <p><i>{{submission.presentationTitle}}</i></p>
+                <p style="overflow: hidden"><i>{{submission.presentationTitle}}</i></p>
                 <p><b>Presenter(s):</b> </p>
                 <ul>
                     <li *ngFor="let pres of submission.presenters">{{pres.presenterFirstName}} {{pres.presenterLastName}} ({{pres.presenterEmail}})</li>
