@@ -97,17 +97,17 @@ public class AbstractRequestHandler {
 
     public String getDisciplines(Request req, Response res) {
         res.type("application/json");
-        return abstractController.getDisciplines(req.queryMap().toMap());
+        return abstractController.getAbstractField(req.queryMap().toMap(), "disciplines");
     }
 
     public String getCategories(Request req, Response res) {
         res.type("application/json");
-        return abstractController.getCategories(req.queryMap().toMap());
+        return abstractController.getAbstractField(req.queryMap().toMap(), "categories");
     }
 
     public String getSponsoredOrganizations(Request req, Response res) {
         res.type("application/json");
-        return abstractController.getSpongsoredOrganizations(req.queryMap().toMap());
+        return abstractController.getAbstractField(req.queryMap().toMap(), "sponsoredOrganizations");
     }
 
     /**

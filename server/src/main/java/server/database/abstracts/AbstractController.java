@@ -91,12 +91,12 @@ public class AbstractController {
         JsonObject json = parser.parse(jsonString).getAsJsonObject();
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String prettyJson = gson.toJson(json);
 
-        return prettyJson;
+        return gson.toJson(json);
     }
 
-    String getDisciplines(Map<String, String[]> queryParams) {
+    String getAbstractField(Map<String, String[]> queryParams, String fieldName) {
+
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("key")) {
@@ -115,57 +115,23 @@ public class AbstractController {
             filterDoc = filterDoc.append("value", contentRegQuery);
         }
 
-        FindIterable<Document> matchingDisciplines = disciplinesCollection.find(filterDoc);
+        FindIterable<Document> matchingField;
 
-        return serializeIterable(matchingDisciplines);
-    }
-
-    String getCategories(Map<String, String[]> queryParams) {
-        Document filterDoc = new Document();
-
-        if (queryParams.containsKey("key")) {
-            String targetContent = (queryParams.get("key")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("key", contentRegQuery);
+        switch (fieldName) {
+            case "disciplines":
+                matchingField = disciplinesCollection.find(filterDoc);
+                break;
+            case "categories":
+                matchingField = categoriesCollection.find(filterDoc);
+                break;
+            case "sponsoredOrganizations":
+                matchingField = sponsoredOrganizationsCollection.find(filterDoc);
+                break;
+            default:
+                throw new IllegalArgumentException("Not a supported field of an abstract");
         }
 
-        if (queryParams.containsKey("value")) {
-            String targetContent = (queryParams.get("value")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("value", contentRegQuery);
-        }
-
-        FindIterable<Document> matchingDisciplines = categoriesCollection.find(filterDoc);
-
-        return serializeIterable(matchingDisciplines);
-    }
-
-    String getSpongsoredOrganizations(Map<String, String[]> queryParams) {
-        Document filterDoc = new Document();
-
-        if (queryParams.containsKey("key")) {
-            String targetContent = (queryParams.get("key")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("key", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("value")) {
-            String targetContent = (queryParams.get("value")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("value", contentRegQuery);
-        }
-
-        FindIterable<Document> matchingDisciplines = sponsoredOrganizationsCollection.find(filterDoc);
-
-        return serializeIterable(matchingDisciplines);
+        return serializeIterable(matchingField);
     }
 
     public static String serializeIterable(Iterable<Document> documents) {
