@@ -11,7 +11,7 @@ apply plugin: 'application'
 mainClassName = 'server.database.Server'
 
 dependencies {
-    compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'com.sparkjava:spark-core:2.9.3'
     compile 'com.sparkjava:spark-debug-tools:0.5'
     compile 'org.slf4j:slf4j-simple:1.7.26'
     compile 'com.google.code.gson:gson:2.8.5'
